@@ -9,118 +9,125 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Malgun Gothic',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;font-size:13px}
 nav{display:flex;align-items:center;padding:0 20px;height:52px;background:var(--sur);border-bottom:1px solid var(--bdr);gap:3px;position:sticky;top:0;z-index:100;overflow-x:auto}
-.nlogo{font-size:14px;font-weight:900;color:var(--txt);margin-right:12px;white-space:nowrap;text-decoration:none;cursor:pointer}.nlogo:hover{opacity:.8}.nlogo span{color:var(--acc)}
+.nlogo{font-size:14px;font-weight:900;color:var(--txt);margin-right:12px;white-space:nowrap;text-decoration:none}.nlogo:hover{opacity:.8}.nlogo span{color:var(--acc)}
 a.nl{text-decoration:none;color:var(--txt3);font-size:12px;font-weight:700;padding:5px 10px;border-radius:7px;transition:all .15s;border:1px solid transparent;white-space:nowrap;flex-shrink:0}
 a.nl:hover{color:var(--txt2);background:var(--sur2)}a.nl.on{color:var(--acc);background:#4d7aff12;border-color:#4d7aff28}
 .nr{margin-left:auto;white-space:nowrap;font-size:12px;color:var(--txt3);padding-left:10px}
 .subnav{display:flex;align-items:center;gap:10px;padding:0 20px;height:36px;background:#0a0c12;border-bottom:1px solid #ff3a3a22;flex-shrink:0;position:sticky;top:52px;z-index:99}
 .snl{text-decoration:none;color:#ff6666;font-size:12px;font-weight:800;padding:4px 12px;border-radius:6px;border:1px solid #ff3a3a28;background:#ff3a3a12;white-space:nowrap;transition:all .15s}
 .snl:hover{background:#ff3a3a20}.snl.on{background:#ff3a3a22;border-color:#ff3a3a40}
-.sn-arr{color:#ff3a3a55;font-size:11px}
-.sn-flow{display:flex;align-items:center;gap:6px}
+.sn-arr{color:#ff3a3a55;font-size:11px}.sn-flow{display:flex;align-items:center;gap:6px}
 .sn-desc{font-size:11px;color:#424f68;font-weight:600;margin-left:8px}
-
-.layout{display:grid;grid-template-columns:300px 1fr;height:calc(100vh - 88px)}
-
-/* 왼쪽: 상담 기록 */
+.layout{display:grid;grid-template-columns:280px 1fr;height:calc(100vh - 88px)}
 .sidebar{background:var(--sur);border-right:1px solid var(--bdr);display:flex;flex-direction:column;overflow:hidden}
-.sb-head{padding:14px 16px 12px;border-bottom:1px solid var(--bdr2);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.sb-head{padding:13px 15px 11px;border-bottom:1px solid var(--bdr2);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
 .sb-title{font-size:14px;font-weight:900}
-.sb-sub{font-size:11px;color:var(--txt3);margin-top:2px}
-.record-list{flex:1;overflow-y:auto;padding:10px}
-
-.rec-item{background:var(--sur2);border:1px solid var(--bdr2);border-radius:10px;padding:11px 13px;margin-bottom:7px;cursor:pointer;transition:all .15s}
-.rec-item:hover{border-color:var(--bdr)}.rec-item.active{border-color:var(--acc);background:#4d7aff08}
-.rec-cat{font-size:10px;font-weight:800;padding:2px 7px;border-radius:4px;margin-bottom:5px;display:inline-block}
-.cat-urgent{background:#ff3a3a18;color:#ff6666;border:1px solid #ff3a3a28}
-.cat-civil{background:#4d7aff18;color:#7a9fff;border:1px solid #4d7aff28}
-.cat-criminal{background:#ff882218;color:#ffaa44;border:1px solid #ff882228}
-.cat-content{background:#7a4dff18;color:#aa7fff;border:1px solid #7a4dff28}
-.cat-contract{background:#22ccff18;color:#44ddff;border:1px solid #22ccff28}
-.cat-etc{background:#424f6818;color:#6b7fa3;border:1px solid #424f6828}
-.rec-q{font-size:12px;font-weight:700;color:var(--txt);margin-bottom:3px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.rec-date{font-size:10px;color:var(--txt3)}
-.rec-answered{font-size:10px;color:var(--grn);margin-left:6px}
-
-.empty-rec{text-align:center;padding:30px 16px;color:var(--txt3);font-size:12px}
-
-/* 오른쪽: 메인 */
+.rec-list{flex:1;overflow-y:auto;padding:9px}
+.rec-item{background:var(--sur2);border:1px solid var(--bdr2);border-radius:10px;padding:10px 12px;margin-bottom:6px;cursor:pointer;transition:all .15s}
+.rec-item:hover{border-color:var(--bdr)}.rec-item.active{border-color:var(--acc);background:#4d7aff06}
+.ri-top{display:flex;align-items:center;gap:5px;margin-bottom:5px;flex-wrap:wrap}
+.ri-cat,.ri-urg,.ri-status{font-size:10px;font-weight:800;padding:2px 6px;border-radius:4px}
+.cb-urgent{color:#ff6666;border-color:#ff3a3a40;background:#ff3a3a0a}.cb-urgent.sel{background:#ff3a3a22;border-color:#ff5555;color:#ff5555}
+.cb-civil{color:#7a9fff;border-color:#4d7aff40;background:#4d7aff0a}.cb-civil.sel{background:#4d7aff22;border-color:#7a9fff;color:#7a9fff}
+.cb-criminal{color:#ffaa44;border-color:#ff882240;background:#ff88220a}.cb-criminal.sel{background:#ff882222;border-color:#ffaa44;color:#ffaa44}
+.cb-content{color:#aa7fff;border-color:#7a4dff40;background:#7a4dff0a}.cb-content.sel{background:#7a4dff22;border-color:#aa7fff;color:#aa7fff}
+.cb-contract{color:#44ddff;border-color:#22ccff40;background:#22ccff0a}.cb-contract.sel{background:#22ccff22;border-color:#44ddff;color:#44ddff}
+.cb-etc{color:#8492b0;border-color:#424f6840;background:#424f680a}.cb-etc.sel{background:#424f6822;border-color:#8492b0;color:#8492b0}
+.u-emergency{background:#ff3a3a20;color:#ff5555;border:1px solid #ff3a3a35}
+.u-high{background:#ff882218;color:#ffaa44;border:1px solid #ff882228}
+.u-mid{background:#ffcc2218;color:#ffdd44;border:1px solid #ffcc2228}
+.u-low{background:#22ffaa18;color:#33ffaa;border:1px solid #22ffaa28}
+.st-new{background:#4d7aff18;color:#7a9fff;border:1px solid #4d7aff28}
+.st-pending{background:#ffcc2218;color:#ffdd44;border:1px solid #ffcc2228}
+.st-done{background:#22ffaa18;color:#33ffaa;border:1px solid #22ffaa28}
+.st-urgent{background:#ff3a3a20;color:#ff5555;border:1px solid #ff3a3a35;animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.5}}
+.ri-q{font-size:12px;font-weight:700;color:var(--txt);margin-bottom:3px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ri-date{font-size:10px;color:var(--txt3)}
+.empty-rec{text-align:center;padding:30px 14px;color:var(--txt3);font-size:12px}
 .main{display:flex;flex-direction:column;overflow:hidden}
-
-/* 새 질문 입력 */
-.ask-area{padding:16px 20px;border-bottom:1px solid var(--bdr2);background:var(--sur);flex-shrink:0}
-.ask-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.ask-title{font-size:14px;font-weight:900}
-.cat-row{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px}
-.cat-btn{padding:6px 14px;border-radius:7px;font-size:12px;font-weight:800;cursor:pointer;border:1px solid var(--bdr);background:var(--sur2);color:var(--txt2);transition:all .15s}
-.cat-btn:hover{border-color:var(--bdr);color:var(--txt)}
-.cb-urgent{color:#ff6666;border-color:#ff3a3a40;background:#ff3a3a0a}
-.cb-urgent.sel{background:#ff3a3a22;border-color:#ff5555;color:#ff5555}
-.cb-civil{color:#7a9fff;border-color:#4d7aff40;background:#4d7aff0a}
-.cb-civil.sel{background:#4d7aff22;border-color:#7a9fff;color:#7a9fff}
-.cb-criminal{color:#ffaa44;border-color:#ff882240;background:#ff88220a}
-.cb-criminal.sel{background:#ff882222;border-color:#ffaa44;color:#ffaa44}
-.cb-content{color:#aa7fff;border-color:#7a4dff40;background:#7a4dff0a}
-.cb-content.sel{background:#7a4dff22;border-color:#aa7fff;color:#aa7fff}
-.cb-contract{color:#44ddff;border-color:#22ccff40;background:#22ccff0a}
-.cb-contract.sel{background:#22ccff22;border-color:#44ddff;color:#44ddff}
-.cb-etc{color:#8492b0;border-color:#424f6840;background:#424f680a}
-.cb-etc.sel{background:#424f6822;border-color:#8492b0;color:#8492b0}
-
-.ask-input{width:100%;background:var(--sur2);border:1px solid var(--bdr);border-radius:9px;padding:10px 13px;color:var(--txt);font-size:13px;outline:none;resize:vertical;min-height:80px;font-family:inherit;transition:border-color .15s;line-height:1.6}
-.ask-input:focus{border-color:var(--acc)}
-.ask-input::placeholder{color:var(--txt3)}
-.ask-actions{display:flex;gap:8px;margin-top:10px;align-items:center}
+.form-area{padding:14px 20px;border-bottom:1px solid var(--bdr2);background:var(--sur);flex-shrink:0}
+.form-title{font-size:15px;font-weight:900;margin-bottom:12px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.form-group{display:flex;flex-direction:column;gap:5px}
+.form-label{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--txt3)}
+.cat-grid{display:flex;gap:5px;flex-wrap:wrap}
+.cat-btn{padding:5px 11px;border-radius:6px;font-size:11px;font-weight:800;cursor:pointer;transition:all .15s;border:1px solid}
+.urg-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+.urg-btn{padding:7px 4px;border-radius:7px;font-size:11px;font-weight:800;cursor:pointer;border:1px solid;text-align:center;transition:all .15s;line-height:1.4}
+.ub-e{color:#ff5555;border-color:#ff3a3a40;background:#ff3a3a0a}.ub-e.sel{background:#ff3a3a22;border-color:#ff5555}
+.ub-h{color:#ffaa44;border-color:#ff882240;background:#ff88220a}.ub-h.sel{background:#ff882222;border-color:#ffaa44}
+.ub-m{color:#ffdd44;border-color:#ffcc2240;background:#ffcc220a}.ub-m.sel{background:#ffcc2222;border-color:#ffdd44}
+.ub-l{color:#33ffaa;border-color:#22ffaa40;background:#22ffaa0a}.ub-l.sel{background:#22ffaa22;border-color:#33ffaa}
+.q-input{width:100%;background:var(--sur2);border:1px solid var(--bdr);border-radius:9px;padding:10px 13px;color:var(--txt);font-size:13px;outline:none;resize:vertical;min-height:72px;font-family:inherit;transition:border-color .15s;line-height:1.6}
+.q-input:focus{border-color:var(--acc)}.q-input::placeholder{color:var(--txt3)}
+.sel-input{width:100%;background:var(--sur2);border:1px solid var(--bdr);border-radius:8px;padding:8px 11px;color:var(--txt2);font-size:12px;outline:none;cursor:pointer}
+.sel-input:focus{border-color:var(--acc)}.sel-input option{background:var(--sur2)}
+.form-actions{display:flex;gap:8px;margin-top:10px;align-items:center}
+.hint{font-size:11px;color:var(--txt3);flex:1}
 .btn{padding:7px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;border:none;transition:all .15s}
 .bp{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff}.bp:hover{opacity:.85}
 .bg{background:var(--sur2);color:var(--txt2);border:1px solid var(--bdr)}.bg:hover{border-color:var(--acc);color:var(--acc)}
-.bgrn{background:#22ffaa18;color:var(--grn);border:1px solid #22ffaa28}.bgrn:hover{background:#22ffaa25}
+.bgrn{background:#22ffaa18;color:var(--grn);border:1px solid #22ffaa28}.bgrn:hover{background:#22ffaa22}
+.bred{background:#ff3a3a12;color:var(--red);border:1px solid #ff3a3a28}.bred:hover{background:#ff3a3a20}
 .sm{padding:5px 11px;font-size:11px}
-.ask-hint{font-size:11px;color:var(--txt3);flex:1}
-
-/* 답변 영역 */
-.answer-area{flex:1;overflow-y:auto;padding:16px 20px}
-
-.welcome{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:12px;color:var(--txt3);text-align:center}
-.welcome-ico{font-size:40px;opacity:.3}
-
-/* 상담 뷰 */
-.consult-view{}
-.cv-header{background:var(--sur);border:1px solid var(--bdr);border-radius:12px;padding:14px 16px;margin-bottom:14px}
-.cv-cat-badge{font-size:10px;font-weight:800;padding:3px 9px;border-radius:5px;margin-bottom:6px;display:inline-block}
-.cv-q{font-size:15px;font-weight:800;color:var(--txt);line-height:1.5;margin-bottom:4px}
-.cv-date{font-size:11px;color:var(--txt3)}
-
-/* 7단 답변 */
-.seven-steps{margin-bottom:14px}
-.step-card{background:var(--sur);border:1px solid var(--bdr);border-radius:11px;margin-bottom:8px;overflow:hidden}
-.step-head{display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid var(--bdr2);cursor:pointer}
-.step-num{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff;flex-shrink:0}
-.step-title{font-size:13px;font-weight:800;color:var(--txt)}
-.step-toggle{margin-left:auto;font-size:11px;color:var(--txt3)}
-.step-body{padding:12px 14px;font-size:12px;color:var(--txt2);line-height:1.8;white-space:pre-wrap}
-.step-body textarea{width:100%;background:var(--sur2);border:1px solid var(--bdr);border-radius:8px;padding:10px 12px;color:var(--txt);font-size:12px;outline:none;resize:vertical;min-height:80px;font-family:inherit;transition:border-color .15s;line-height:1.8}
-.step-body textarea:focus{border-color:var(--acc)}
-
-.s1{background:#4d7aff}.s2{background:#ff3a3a}.s3{background:#ff8822}.s4{background:#22ffaa;color:#050709 !important}
-.s5{background:#ffcc22;color:#050709 !important}.s6{background:#7a4dff}.s7{background:linear-gradient(135deg,#4d7aff,#7a4dff)}
-
-/* 프롬프트 박스 */
-.prompt-box{background:var(--sur2);border:1px solid var(--bdr);border-radius:11px;padding:14px 16px;margin-bottom:14px}
-.pb-title{font-size:11px;font-weight:800;color:var(--txt3);letter-spacing:.5px;margin-bottom:8px}
-.pb-text{font-size:11px;color:var(--txt2);line-height:1.7;font-family:monospace;white-space:pre-wrap;background:var(--sur3);border-radius:7px;padding:10px 12px;border:1px solid var(--bdr2);max-height:200px;overflow-y:auto}
-.pb-notice{font-size:11px;color:var(--org);margin-top:8px;padding:6px 9px;background:#ff882210;border-radius:5px;border:1px solid #ff882220}
-
-/* 소스 표시 */
-.source-box{background:var(--sur2);border:1px solid var(--bdr2);border-radius:8px;padding:10px 13px;font-size:11px;color:var(--txt3);line-height:1.7}
-.source-box strong{color:var(--txt2)}
-
-/* 모달 */
+.result-area{flex:1;overflow-y:auto;padding:14px 20px}
+.welcome{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:10px;text-align:center;color:var(--txt3)}
+.consult-header{background:var(--sur);border:1px solid var(--bdr);border-radius:12px;padding:14px 16px;margin-bottom:12px;display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.ch-left{flex:1}.ch-badges{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:6px}
+.ch-q{font-size:15px;font-weight:800;color:var(--txt);line-height:1.5;margin-bottom:4px}
+.ch-meta{font-size:11px;color:var(--txt3)}
+.ch-right{display:flex;flex-direction:column;gap:5px;align-items:flex-end;flex-shrink:0}
+.analysis-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.analysis-grid.full{grid-template-columns:1fr}
+.acard{background:var(--sur);border:1px solid var(--bdr);border-radius:11px;overflow:hidden}
+.ac-head{display:flex;align-items:center;gap:8px;padding:10px 13px;border-bottom:1px solid var(--bdr2)}
+.ac-num{width:22px;height:22px;border-radius:6px;font-size:10px;font-weight:900;display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0}
+.ac-title{font-size:12px;font-weight:800;color:var(--txt)}
+.ac-indicator{margin-left:auto;font-size:10px;font-weight:800;padding:2px 7px;border-radius:4px}
+.ind-ok{background:#22ffaa18;color:#33ffaa;border:1px solid #22ffaa28}
+.ind-danger{background:#ff3a3a18;color:#ff5555;border:1px solid #ff3a3a28}
+.ac-body{padding:10px 13px;font-size:12px;color:var(--txt2);line-height:1.7}
+.n1{background:#4d7aff}.n2{background:#ff3a3a}.n3{background:#ff5500}.n4{background:#22bb66}
+.n5{background:#e6b800}.n6{background:#7a4dff}.n7{background:#22aaff}
+.n8{background:linear-gradient(135deg,#4d7aff,#7a4dff)}.n9{background:#ff8822}.n10{background:#424f88}
+.yn-row{display:flex;gap:8px;align-items:center;padding:4px 0}
+.yn-label{font-size:12px;color:var(--txt2);flex:1}
+.yn-btns{display:flex;gap:5px}
+.yn-btn{padding:4px 12px;border-radius:6px;font-size:11px;font-weight:800;cursor:pointer;border:1px solid;transition:all .15s}
+.yn-yes{color:var(--red);border-color:#ff3a3a35;background:#ff3a3a0a}.yn-yes.sel{background:#ff3a3a22;border-color:#ff5555}
+.yn-no{color:var(--grn);border-color:#22ffaa35;background:#22ffaa0a}.yn-no.sel{background:#22ffaa22;border-color:#33ffaa}
+.dept-row{display:flex;flex-wrap:wrap;gap:5px;padding:4px 0}
+.dept-badge{font-size:11px;font-weight:700;padding:4px 10px;border-radius:6px;cursor:pointer;transition:all .15s;text-decoration:none;display:inline-block}
+.dept-legal{background:#4d7aff18;color:#7a9fff;border:1px solid #4d7aff28}
+.dept-action{background:#ff3a3a18;color:#ff6666;border:1px solid #ff3a3a28}
+.dept-content{background:#7a4dff18;color:#aa7fff;border:1px solid #7a4dff28}
+.dept-judge{background:#ffcc2218;color:#ffdd44;border:1px solid #ffcc2228}
+.dept-evidence{background:#22ffaa18;color:#33ffaa;border:1px solid #22ffaa28}
+.conf-bar-bg{height:6px;background:var(--sur3);border-radius:3px;overflow:hidden;margin-bottom:6px}
+.conf-bar-fill{height:100%;border-radius:3px;transition:width .4s}
+.conf-reasons{display:flex;flex-wrap:wrap;gap:4px}
+.conf-reason{font-size:10px;color:var(--txt3);background:var(--sur2);padding:2px 6px;border-radius:4px}
+.source-list{display:flex;flex-direction:column;gap:4px}
+.source-item{font-size:11px;color:var(--txt3);display:flex;align-items:center;gap:5px;padding:3px 0;border-bottom:1px solid var(--bdr2)}
+.source-item:last-child{border-bottom:none}
+.source-dot{width:4px;height:4px;border-radius:50%;background:var(--acc);flex-shrink:0}
+.action-list{list-style:none;padding:0}
+.action-list li{font-size:12px;color:var(--txt2);padding:4px 0;border-bottom:1px solid var(--bdr2);display:flex;align-items:flex-start;gap:6px;line-height:1.5}
+.action-list li:last-child{border-bottom:none}
+.action-list li.danger::before{content:'✗';color:var(--red);font-weight:900;flex-shrink:0;margin-top:1px}
+.action-list li.ok::before{content:'✓';color:var(--grn);font-weight:900;flex-shrink:0;margin-top:1px}
+.final-recommend{font-size:14px;font-weight:800;color:var(--txt);padding:12px 13px;line-height:1.6;background:linear-gradient(135deg,#4d7aff08,#7a4dff08)}
 .modal-bg{display:none;position:fixed;inset:0;background:#00000088;z-index:200;align-items:center;justify-content:center}
 .modal-bg.open{display:flex}
-.modal{background:var(--sur);border:1px solid var(--bdr);border-radius:14px;padding:22px;width:560px;max-width:92vw;max-height:88vh;overflow-y:auto}
+.modal{background:var(--sur);border:1px solid var(--bdr);border-radius:14px;padding:22px;width:600px;max-width:92vw;max-height:90vh;overflow-y:auto}
 .mtit{font-size:15px;font-weight:900;margin-bottom:14px}
 .mbtns{display:flex;gap:7px;margin-top:16px;justify-content:flex-end}
+.mf{margin-bottom:10px}
+.mf label{display:block;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--txt3);margin-bottom:5px}
+.mf textarea,.mf input,.mf select{width:100%;background:var(--sur2);border:1px solid var(--bdr);border-radius:8px;padding:8px 11px;color:var(--txt);font-size:12px;outline:none;font-family:inherit}
+.mf textarea{resize:vertical;min-height:60px;line-height:1.6}
+.mf select option{background:var(--sur2)}
 </style>
 </head>
 <body>
@@ -138,86 +145,106 @@ a.nl:hover{color:var(--txt2);background:var(--sur2)}a.nl.on{color:var(--acc);bac
 </nav>
 <div class="subnav">
   <span class="sn-flow">
-    <a href="모니터링.html" class="snl">👁️ 모니터링 센터</a>
+    <a href="모니터링.html" class="snl">👁️ 모니터링</a>
     <span class="sn-arr">→</span>
     <a href="분류실.html" class="snl">📋 분류실</a>
     <span class="sn-arr">→</span>
-    <a href="증거보존.html" class="snl">📦 증거보존팀</a>
+    <a href="증거보존.html" class="snl">📦 증거보존</a>
   </span>
-  <span class="sn-desc">법률 상담 · 7단 분석 · 기록 저장</span>
+  <span class="sn-desc">채팅창이 아닌 의사결정 인터페이스 · 10항목 구조화 분석</span>
 </div>
 
 <div class="layout">
-  <!-- 왼쪽: 상담 기록 -->
   <div class="sidebar">
     <div class="sb-head">
-      <div>
-        <div class="sb-title">상담 기록</div>
-        <div class="sb-sub" id="rec-count">0건</div>
-      </div>
+      <div class="sb-title">상담 기록</div>
       <button class="btn bg sm" onclick="newConsult()">+ 새 상담</button>
     </div>
-    <div class="record-list" id="rec-list">
-      <div class="empty-rec">
-        <div style="font-size:28px;opacity:.3;margin-bottom:8px">💬</div>
-        상담 기록이 없습니다
-      </div>
+    <div class="rec-list" id="rec-list">
+      <div class="empty-rec"><div style="font-size:28px;opacity:.25;margin-bottom:8px">💬</div>상담 기록이 없습니다</div>
     </div>
   </div>
 
-  <!-- 오른쪽: 메인 -->
   <div class="main">
-    <!-- 질문 입력 -->
-    <div class="ask-area">
-      <div class="ask-head">
-        <div class="ask-title">💬 법률 상담실</div>
+    <div class="form-area">
+      <div class="form-title">💬 법률 상담실 — 의사결정 인터페이스</div>
+      <div class="form-row">
+        <div class="form-group">
+          <span class="form-label">카테고리</span>
+          <div class="cat-grid">
+            <button class="cat-btn cb-urgent sel" onclick="setCat(this,'urgent')">🚨 긴급</button>
+            <button class="cat-btn cb-civil" onclick="setCat(this,'civil')">⚖️ 민사</button>
+            <button class="cat-btn cb-criminal" onclick="setCat(this,'criminal')">🔒 형사</button>
+            <button class="cat-btn cb-content" onclick="setCat(this,'content')">📱 콘텐츠</button>
+            <button class="cat-btn cb-contract" onclick="setCat(this,'contract')">📄 계약</button>
+            <button class="cat-btn cb-etc" onclick="setCat(this,'etc')">💬 기타</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <span class="form-label">긴급도</span>
+          <div class="urg-grid">
+            <button class="urg-btn ub-e" onclick="setUrg(this,'emergency')">🔴<br>긴급</button>
+            <button class="urg-btn ub-h sel" onclick="setUrg(this,'high')">🟠<br>높음</button>
+            <button class="urg-btn ub-m" onclick="setUrg(this,'mid')">🟡<br>보통</button>
+            <button class="urg-btn ub-l" onclick="setUrg(this,'low')">🟢<br>낮음</button>
+          </div>
+        </div>
       </div>
-      <div class="cat-row">
-        <button class="cat-btn cb-urgent sel" onclick="setCat(this,'urgent')">🚨 긴급</button>
-        <button class="cat-btn cb-civil" onclick="setCat(this,'civil')">⚖️ 민사</button>
-        <button class="cat-btn cb-criminal" onclick="setCat(this,'criminal')">🔒 형사</button>
-        <button class="cat-btn cb-content" onclick="setCat(this,'content')">📱 콘텐츠</button>
-        <button class="cat-btn cb-contract" onclick="setCat(this,'contract')">📄 계약</button>
-        <button class="cat-btn cb-etc" onclick="setCat(this,'etc')">💬 기타</button>
+      <div class="form-row" style="margin-bottom:8px">
+        <div class="form-group">
+          <span class="form-label">사건 연결 (선택)</span>
+          <select class="sel-input" id="case-link">
+            <option value="">— 사건 연결 안 함 —</option>
+            <option value="2026나529">서정은 vs 황철순 (2026나529)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <span class="form-label">상담 상태</span>
+          <select class="sel-input" id="consult-status">
+            <option value="new">🆕 신규</option>
+            <option value="pending">⏳ 분석 대기</option>
+            <option value="done">✅ 분석 완료</option>
+            <option value="urgent">🚨 긴급 처리</option>
+          </select>
+        </div>
       </div>
-      <textarea class="ask-input" id="q-input" placeholder="법률적으로 궁금한 것을 자유롭게 질문하세요.
+      <textarea class="q-input" id="q-input" placeholder="법률적으로 궁금한 것을 자유롭게 질문하세요.
 
-예시:
-• 지금 상대방이 유튜브에 내 사생활을 올렸어. 어떻게 해야 해?
-• 라이브 중에 이런 말을 해도 괜찮아?
-• 항소심에서 상대가 이런 주장을 했는데 어떻게 반박해?"></textarea>
-      <div class="ask-actions">
-        <span class="ask-hint">⚠️ AI는 법률 보조 시스템입니다. 최종 판단은 변호사 검토가 필요합니다.</span>
-        <button class="btn bg sm" onclick="genPrompt()">📋 프롬프트 복사</button>
-        <button class="btn bp" onclick="startConsult()">상담 시작 →</button>
+예: 상대가 유튜브에 내 사생활을 올렸어. 지금 어떻게 해야 해?
+예: 라이브에서 이런 말을 해도 돼?
+예: 항소심에서 이 주장을 어떻게 반박해?"></textarea>
+      <div class="form-actions">
+        <span class="hint">⚠️ AI 보조 시스템 — 최종 판단은 변호사 검토 필요</span>
+        <button class="btn bg sm" onclick="copyPrompt()">📋 프롬프트 복사</button>
+        <button class="btn bp" onclick="startConsult()">상담 등록 →</button>
       </div>
     </div>
 
-    <!-- 답변 영역 -->
-    <div class="answer-area" id="answer-area">
+    <div class="result-area" id="result-area">
       <div class="welcome">
-        <div class="welcome-ico">⚖️</div>
-        <div style="font-size:15px;font-weight:700;color:var(--txt2)">보배 법률전략실</div>
-        <div style="font-size:12px;margin-top:4px">질문을 입력하고 상담을 시작하세요</div>
-        <div style="font-size:11px;color:var(--txt3);margin-top:8px;line-height:1.7;max-width:400px">
-          민사·형사·콘텐츠·계약 관련 법률 질문에<br>7단 형식으로 분석해드립니다
+        <div style="font-size:44px;opacity:.2;margin-bottom:8px">⚖️</div>
+        <div style="font-size:16px;font-weight:800;color:var(--txt2)">보배 법률전략실</div>
+        <div style="font-size:12px;margin-top:4px;color:var(--txt3)">상담을 등록하고 10항목 분석을 입력하세요</div>
+        <div style="font-size:11px;color:var(--txt3);margin-top:12px;line-height:1.9;max-width:380px;background:var(--sur2);border-radius:10px;padding:12px 16px;border:1px solid var(--bdr2)">
+          <strong style="color:var(--txt2)">채팅창이 아닙니다.</strong><br>
+          <strong style="color:var(--acc)">의사결정 인터페이스</strong>입니다.<br><br>
+          긴급도 · 즉시금지행동 · 증거보존여부<br>
+          연결부서 · 변호사필요여부 · AI신뢰도 · 출처<br>
+          10가지 항목으로 구조화합니다.
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- 답변 입력 모달 -->
-<div class="modal-bg" id="modal-answer" onclick="if(event.target===this)closeModal()">
+<div class="modal-bg" id="modal" onclick="if(event.target===this)closeModal()">
   <div class="modal">
-    <div class="mtit">📝 답변 저장</div>
-    <p style="font-size:12px;color:var(--txt3);margin-bottom:12px;line-height:1.6">
-      Claude의 답변을 각 단계별로 붙여넣으세요.<br>빈 칸으로 두면 해당 단계는 표시되지 않습니다.
-    </p>
-    <div id="step-inputs"></div>
+    <div class="mtit">📋 10항목 분석 입력</div>
+    <p style="font-size:11px;color:var(--txt3);margin-bottom:12px;line-height:1.6">Claude 답변을 항목별로 입력하세요. 빈 칸은 미입력으로 표시됩니다.</p>
+    <div id="modal-fields"></div>
     <div class="mbtns">
       <button class="btn bg" onclick="closeModal()">취소</button>
-      <button class="btn bgrn" onclick="saveAnswer()">저장</button>
+      <button class="btn bgrn" onclick="saveAnalysis()">저장</button>
     </div>
   </div>
 </div>
@@ -225,248 +252,271 @@ a.nl:hover{color:var(--txt2);background:var(--sur2)}a.nl.on{color:var(--acc);bac
 <script>
 setInterval(()=>{ document.getElementById('clk').textContent = new Date().toLocaleTimeString('ko-KR',{hour12:false}); },1000);
 
-const STEPS = [
-  {num:1, title:'지금 상황 요약', cls:'s1', placeholder:'무슨 일이 일어나고 있는지 3줄 이내로'},
-  {num:2, title:'법적으로 위험한 부분', cls:'s2', placeholder:'형사·민사 리스크, 위반 가능 법령, 최악 시나리오'},
-  {num:3, title:'지금 하면 안 되는 행동', cls:'s3', placeholder:'즉각 중단해야 할 것, 역효과 나는 행동'},
-  {num:4, title:'지금 해도 되는 행동', cls:'s4', placeholder:'안전하게 할 수 있는 것, 권리 행사 가능한 것'},
-  {num:5, title:'증거로 남겨야 할 것', cls:'s5', placeholder:'캡처·보존 방법 포함, 우선순위 순'},
-  {num:6, title:'변호사에게 바로 물어볼 질문', cls:'s6', placeholder:'실제 상담 시 꺼내야 할 핵심 질문 목록'},
-  {num:7, title:'최종 추천 대응', cls:'s7', placeholder:'지금 이 순간 가장 좋은 선택 1가지'},
+const CAT_LABEL={urgent:'🚨 긴급',civil:'⚖️ 민사',criminal:'🔒 형사',content:'📱 콘텐츠',contract:'📄 계약',etc:'💬 기타'};
+const CAT_CSS={urgent:'cb-urgent',civil:'cb-civil',criminal:'cb-criminal',content:'cb-content',contract:'cb-contract',etc:'cb-etc'};
+const URG_LABEL={emergency:'🔴 긴급',high:'🟠 높음',mid:'🟡 보통',low:'🟢 낮음'};
+const URG_CSS={emergency:'u-emergency',high:'u-high',mid:'u-mid',low:'u-low'};
+const ST_LABEL={new:'🆕 신규',pending:'⏳ 대기',done:'✅ 완료',urgent:'🚨 긴급처리'};
+const ST_CSS={new:'st-new',pending:'st-pending',done:'st-done',urgent:'st-urgent'};
+
+const ITEMS=[
+  {n:1,title:'상황 요약',cls:'n1',type:'text',ph:'현재 상황을 3줄 이내로 요약'},
+  {n:2,title:'법적 위험',cls:'n2',type:'text',ph:'형사·민사 리스크, 위반 가능 법령, 최악 시나리오'},
+  {n:3,title:'즉시 금지 행동',cls:'n3',type:'list_danger',ph:'지금 당장 하면 안 되는 것들 (줄바꿈으로 구분)'},
+  {n:4,title:'허용 행동',cls:'n4',type:'list_ok',ph:'지금 안전하게 할 수 있는 것들 (줄바꿈으로 구분)'},
+  {n:5,title:'증거 보존 필요 여부',cls:'n5',type:'yn',label:'즉시 증거 보존이 필요한가?'},
+  {n:6,title:'연결 필요 부서',cls:'n6',type:'dept',ph:'연결할 부서'},
+  {n:7,title:'변호사 확인 필요',cls:'n7',type:'yn',label:'실제 변호사 검토가 즉시 필요한가?'},
+  {n:8,title:'최종 추천',cls:'n8',type:'final',ph:'지금 이 순간 가장 좋은 선택 1가지'},
+  {n:9,title:'AI 신뢰도',cls:'n9',type:'confidence',ph:'첫 줄: 숫자(0-100)\n이후 줄: 근거들'},
+  {n:10,title:'근거 출처',cls:'n10',type:'sources',ph:'판결문/법령/URL 등 (줄바꿈으로 구분)'},
 ];
 
-const CAT_LABEL = {urgent:'🚨 긴급',civil:'⚖️ 민사',criminal:'🔒 형사',content:'📱 콘텐츠',contract:'📄 계약',etc:'💬 기타'};
-const CAT_CSS   = {urgent:'cat-urgent',civil:'cat-civil',criminal:'cat-criminal',content:'cat-content',contract:'cat-contract',etc:'cat-etc'};
+const DEPTS=[
+  {id:'법률전략실',label:'⚖️ 법률전략실',cls:'dept-legal',href:'상황실.html'},
+  {id:'행동위험차단팀',label:'🛑 행동위험차단팀',cls:'dept-action',href:'업데이터.html'},
+  {id:'콘텐츠검수팀',label:'🛡️ 콘텐츠 검수실',cls:'dept-content',href:'검수실.html'},
+  {id:'판사시점분석팀',label:'👨‍⚖️ 판사시점분석팀',cls:'dept-judge',href:'업데이터.html'},
+  {id:'증거보존팀',label:'📦 증거보존팀',cls:'dept-evidence',href:'증거보존.html'},
+];
 
-let consults = JSON.parse(localStorage.getItem('consult_v1')||'[]');
-let currentId = null;
-let currentCat = 'urgent';
-let editingId = null;
+let consults=JSON.parse(localStorage.getItem('consult_v2')||'[]');
+let currentId=null, currentCat='urgent', currentUrg='high', editId=null;
 
-function save(){ localStorage.setItem('consult_v1', JSON.stringify(consults)); }
-function ts(){ return new Date().toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}); }
-
-function setCat(el, cat){
-  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('sel'));
-  el.classList.add('sel');
-  currentCat = cat;
-}
+function save(){localStorage.setItem('consult_v2',JSON.stringify(consults));}
+function ts(){return new Date().toLocaleString('ko-KR',{year:'numeric',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'});}
+function setCat(el,v){document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('sel'));el.classList.add('sel');currentCat=v;}
+function setUrg(el,v){document.querySelectorAll('.urg-btn').forEach(b=>b.classList.remove('sel'));el.classList.add('sel');currentUrg=v;}
 
 function renderRecList(){
-  const el = document.getElementById('rec-list');
-  document.getElementById('rec-count').textContent = consults.length + '건';
-  if(!consults.length){
-    el.innerHTML='<div class="empty-rec"><div style="font-size:28px;opacity:.3;margin-bottom:8px">💬</div>상담 기록이 없습니다</div>';
-    return;
-  }
-  el.innerHTML = [...consults].reverse().map(c=>`
+  const el=document.getElementById('rec-list');
+  if(!consults.length){el.innerHTML='<div class="empty-rec"><div style="font-size:28px;opacity:.25;margin-bottom:8px">💬</div>상담 기록이 없습니다</div>';return;}
+  el.innerHTML=[...consults].reverse().map(c=>`
     <div class="rec-item${currentId===c.id?' active':''}" onclick="loadConsult('${c.id}')">
-      <div>
-        <span class="rec-cat ${CAT_CSS[c.cat]||'cat-etc'}">${CAT_LABEL[c.cat]||'기타'}</span>
-        ${c.answered?'<span class="rec-answered">✓ 답변</span>':''}
+      <div class="ri-top">
+        <span class="ri-cat ${CAT_CSS[c.cat]||'cb-etc'}">${CAT_LABEL[c.cat]||'기타'}</span>
+        <span class="ri-urg ${URG_CSS[c.urg]||'u-mid'}">${URG_LABEL[c.urg]||'보통'}</span>
+        <span class="ri-status ${ST_CSS[c.status]||'st-new'}">${ST_LABEL[c.status]||'신규'}</span>
       </div>
-      <div class="rec-q">${c.question}</div>
-      <div class="rec-date">${c.date}</div>
+      <div class="ri-q">${c.question}</div>
+      <div class="ri-date">${c.date}${c.caseLink?' · '+c.caseLink:''}</div>
     </div>`).join('');
 }
 
-function genPrompt(){
-  const q = document.getElementById('q-input').value.trim();
-  if(!q){ alert('질문을 입력하세요'); return; }
-  const prompt = `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-보배 법률전략실 상담 요청
-카테고리: ${CAT_LABEL[currentCat]}
+function newConsult(){
+  currentId=null;
+  document.getElementById('q-input').value='';
+  document.getElementById('q-input').focus();
+  renderRecList();
+  document.getElementById('result-area').innerHTML='<div class="welcome"><div style="font-size:44px;opacity:.2;margin-bottom:8px">⚖️</div><div style="font-size:14px;color:var(--txt2);font-weight:700">새 상담</div><div style="font-size:12px;margin-top:4px;color:var(--txt3)">위에 질문을 입력하고 상담을 등록하세요</div></div>';
+}
+
+function startConsult(){
+  const q=document.getElementById('q-input').value.trim();
+  if(!q){alert('질문을 입력하세요');return;}
+  const c={id:'c'+Date.now(),cat:currentCat,urg:currentUrg,question:q,
+    caseLink:document.getElementById('case-link').value,
+    status:document.getElementById('consult-status').value,
+    analysis:{},date:ts()};
+  consults.push(c);save();currentId=c.id;
+  document.getElementById('q-input').value='';
+  renderRecList();renderConsult(c);
+}
+
+function loadConsult(id){const c=consults.find(x=>x.id===id);if(!c)return;currentId=id;renderRecList();renderConsult(c);}
+
+function renderConsult(c){
+  const hasA=Object.keys(c.analysis||{}).some(k=>c.analysis[k]);
+  document.getElementById('result-area').innerHTML=`
+    <div class="consult-header">
+      <div class="ch-left">
+        <div class="ch-badges">
+          <span class="ri-cat ${CAT_CSS[c.cat]||'cb-etc'}">${CAT_LABEL[c.cat]||'기타'}</span>
+          <span class="ri-urg ${URG_CSS[c.urg]||'u-mid'}">${URG_LABEL[c.urg]||'보통'}</span>
+          <span class="ri-status ${ST_CSS[c.status]||'st-new'}">${ST_LABEL[c.status]||'신규'}</span>
+          ${c.caseLink?`<span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;background:#4d7aff12;color:#7a9fff;border:1px solid #4d7aff28">📁 ${c.caseLink}</span>`:''}
+        </div>
+        <div class="ch-q">${c.question}</div>
+        <div class="ch-meta">${c.date}</div>
+      </div>
+      <div class="ch-right">
+        <button class="btn bp sm" onclick="openModal('${c.id}')">✏️ 분석 입력</button>
+        <button class="btn bg sm" onclick="copyPromptFor('${c.id}')">📋 프롬프트</button>
+        <button class="btn bred sm" onclick="delConsult('${c.id}')">삭제</button>
+      </div>
+    </div>
+    ${hasA?renderCards(c):`
+    <div style="background:var(--sur2);border:1px solid var(--bdr2);border-radius:11px;padding:24px;text-align:center">
+      <div style="font-size:24px;opacity:.3;margin-bottom:8px">📋</div>
+      <div style="font-size:13px;font-weight:700;color:var(--txt2);margin-bottom:6px">분석 결과 없음</div>
+      <div style="font-size:11px;color:var(--txt3);margin-bottom:14px">프롬프트를 복사해서 Claude에게 질문한 후 10항목 답변을 입력하세요</div>
+      <div style="display:flex;gap:8px;justify-content:center">
+        <button class="btn bg sm" onclick="copyPromptFor('${c.id}')">📋 프롬프트 복사</button>
+        <button class="btn bp sm" onclick="openModal('${c.id}')">✏️ 분석 입력</button>
+      </div>
+    </div>`}`;
+}
+
+function renderCards(c){
+  const a=c.analysis||{};
+  let h='<div class="analysis-grid">';
+  ITEMS.forEach((item,idx)=>{
+    if(idx===7)h+='</div><div class="analysis-grid full">';
+    h+=card(item,a[item.n],c.id);
+  });
+  return h+'</div>';
+}
+
+function card(item,val,cid){
+  if(item.type==='yn'){
+    const v=val||'none';
+    return `<div class="acard">
+      <div class="ac-head"><div class="ac-num ${item.cls}">${item.n}</div><div class="ac-title">${item.title}</div></div>
+      <div class="ac-body">
+        <div class="yn-row"><span class="yn-label">${item.label}</span>
+          <div class="yn-btns">
+            <button class="yn-btn yn-yes${v==='yes'?' sel':''}" onclick="setYN('${cid}',${item.n},'yes')">예</button>
+            <button class="yn-btn yn-no${v==='no'?' sel':''}" onclick="setYN('${cid}',${item.n},'no')">아니오</button>
+          </div>
+        </div>
+        ${v==='yes'?`<div style="font-size:11px;color:var(--red);margin-top:6px;padding:5px 8px;background:#ff3a3a10;border-radius:5px;border:1px solid #ff3a3a20">⚠️ 즉시 조치 필요</div>`:''}
+        ${v==='no'?`<div style="font-size:11px;color:var(--grn);margin-top:6px;padding:5px 8px;background:#22ffaa10;border-radius:5px;border:1px solid #22ffaa20">✓ 현재 조치 불필요</div>`:''}
+      </div>
+    </div>`;
+  }
+  if(item.type==='dept'){
+    const sel=(val||'').split(',').map(s=>s.trim()).filter(Boolean);
+    return `<div class="acard">
+      <div class="ac-head"><div class="ac-num ${item.cls}">${item.n}</div><div class="ac-title">${item.title}</div></div>
+      <div class="ac-body"><div class="dept-row">${DEPTS.map(d=>`<a href="${d.href}" class="dept-badge ${d.cls}">${d.label}</a>`).join('')}</div>
+        ${sel.length?`<div style="font-size:11px;color:var(--txt3);margin-top:6px">연결: ${sel.join(', ')}</div>`:''}
+      </div>
+    </div>`;
+  }
+  if(item.type==='confidence'){
+    const lines=(val||'').split('\n');
+    const pct=parseInt(lines[0])||0;
+    const reasons=lines.slice(1).filter(Boolean);
+    const color=pct>=70?'var(--grn)':pct>=50?'var(--yel)':'var(--red)';
+    return `<div class="acard">
+      <div class="ac-head"><div class="ac-num ${item.cls}">${item.n}</div><div class="ac-title">${item.title}</div>
+        ${pct?`<span class="ac-indicator" style="background:${color}1a;color:${color};border:1px solid ${color}40">${pct}%</span>`:''}
+      </div>
+      <div class="ac-body">
+        ${pct?`<div class="conf-bar-bg"><div class="conf-bar-fill" style="width:${pct}%;background:${color}"></div></div>`:''}
+        ${reasons.length?`<div class="conf-reasons">${reasons.map(r=>`<span class="conf-reason">${r}</span>`).join('')}</div>`:'<span style="color:var(--txt3);font-size:11px">미입력</span>'}
+      </div>
+    </div>`;
+  }
+  if(item.type==='sources'){
+    const lines=(val||'').split('\n').filter(Boolean);
+    return `<div class="acard">
+      <div class="ac-head"><div class="ac-num ${item.cls}">${item.n}</div><div class="ac-title">${item.title}</div></div>
+      <div class="ac-body">${lines.length?`<div class="source-list">${lines.map(l=>`<div class="source-item"><div class="source-dot"></div><span>${l}</span></div>`).join('')}</div>`:'<span style="color:var(--txt3);font-size:11px">미입력</span>'}</div>
+    </div>`;
+  }
+  if(item.type==='final'){
+    return `<div class="acard" style="border-color:#4d7aff35">
+      <div class="ac-head" style="background:#4d7aff0a"><div class="ac-num ${item.cls}">${item.n}</div><div class="ac-title">${item.title}</div></div>
+      <div class="final-recommend">${val||'<span style="color:var(--txt3);font-size:12px;font-weight:400">미입력</span>'}</div>
+    </div>`;
+  }
+  if(item.type==='list_danger'||item.type==='list_ok'){
+    const lines=(val||'').split('\n').filter(Boolean);
+    const isDanger=item.type==='list_danger';
+    return `<div class="acard">
+      <div class="ac-head"><div class="ac-num ${item.cls}">${item.n}</div><div class="ac-title">${item.title}</div>
+        ${lines.length?`<span class="ac-indicator ${isDanger?'ind-danger':'ind-ok'}">${lines.length}개</span>`:''}
+      </div>
+      <div class="ac-body">${lines.length?`<ul class="action-list">${lines.map(l=>`<li class="${isDanger?'danger':'ok'}">${l}</li>`).join('')}</ul>`:'<span style="color:var(--txt3);font-size:11px">미입력</span>'}</div>
+    </div>`;
+  }
+  return `<div class="acard">
+    <div class="ac-head"><div class="ac-num ${item.cls}">${item.n}</div><div class="ac-title">${item.title}</div></div>
+    <div class="ac-body">${val||'<span style="color:var(--txt3);font-size:11px">미입력</span>'}</div>
+  </div>`;
+}
+
+function setYN(cid,num,val){
+  const c=consults.find(x=>x.id===cid);if(!c)return;
+  if(!c.analysis)c.analysis={};
+  c.analysis[num]=c.analysis[num]===val?'none':val;
+  save();renderConsult(c);
+}
+
+function openModal(id){
+  editId=id;
+  const c=consults.find(x=>x.id===id);if(!c)return;
+  document.getElementById('modal-fields').innerHTML=ITEMS.map(item=>{
+    const v=(c.analysis||{})[item.n]||'';
+    if(item.type==='yn') return `<div class="mf"><label>${item.n}. ${item.title}</label>
+      <select id="mf-${item.n}"><option value="">— 선택 —</option>
+        <option value="yes"${v==='yes'?' selected':''}>예 (필요)</option>
+        <option value="no"${v==='no'?' selected':''}>아니오 (불필요)</option>
+      </select></div>`;
+    if(item.type==='dept') return `<div class="mf"><label>${item.n}. ${item.title} (쉼표 구분)</label>
+      <input id="mf-${item.n}" value="${v}" placeholder="법률전략실, 행동위험차단팀"></div>`;
+    return `<div class="mf"><label>${item.n}. ${item.title}</label>
+      <textarea id="mf-${item.n}" placeholder="${item.ph||''}">${v}</textarea></div>`;
+  }).join('');
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal(){document.getElementById('modal').classList.remove('open');}
+
+function saveAnalysis(){
+  const c=consults.find(x=>x.id===editId);if(!c)return;
+  if(!c.analysis)c.analysis={};
+  ITEMS.forEach(item=>{
+    const el=document.getElementById('mf-'+item.n);
+    if(el)c.analysis[item.n]=el.value.trim();
+  });
+  c.status='done';save();closeModal();renderRecList();renderConsult(c);
+}
+
+function copyPrompt(){
+  const q=document.getElementById('q-input').value.trim();
+  if(!q){alert('질문을 입력하세요');return;}
+  doCopy(q,CAT_LABEL[currentCat],URG_LABEL[currentUrg]);
+}
+function copyPromptFor(id){
+  const c=consults.find(x=>x.id===id);if(!c)return;
+  doCopy(c.question,CAT_LABEL[c.cat],URG_LABEL[c.urg]);
+}
+function doCopy(q,cat,urg){
+  const text=`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+보배 법률전략실 — 법률 상담 요청
+카테고리: ${cat} | 긴급도: ${urg}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ${q}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-위 질문에 대해 보배 법률전략실 7단 형식으로 답변해줘:
+아래 10항목으로 분석해줘:
 
-1. 지금 상황 요약 (3줄 이내)
-2. 법적으로 위험한 부분
-3. 지금 하면 안 되는 행동
-4. 지금 해도 되는 행동
-5. 증거로 남겨야 할 것
-6. 변호사에게 바로 물어볼 질문
-7. 최종 추천 대응
+1. 상황 요약 (3줄 이내)
+2. 법적 위험 (형사·민사 리스크, 최악 시나리오)
+3. 즉시 금지 행동 (줄바꿈으로 나열)
+4. 허용 행동 (줄바꿈으로 나열)
+5. 증거 보존 필요 여부 (예 또는 아니오)
+6. 연결 필요 부서 (법률전략실/행동위험차단팀/콘텐츠검수팀/판사시점분석팀/증거보존팀 중)
+7. 변호사 확인 필요 여부 (예 또는 아니오)
+8. 최종 추천 (지금 이 순간 가장 좋은 선택 1가지)
+9. AI 신뢰도 (첫 줄: 숫자, 이후 줄: 근거들)
+10. 근거 출처 (법령명+조항/판례번호/URL)
 
-참고 소스: law.go.kr / glaw.scourt.go.kr 기준으로 분석.
-AI는 법률 보조 시스템이므로 최종 판단은 변호사 검토가 필요하다는 전제 유지.`;
-
-  navigator.clipboard.writeText(prompt).then(()=>{
-    alert('✅ 프롬프트가 복사됐습니다!\n\n채팅창에 붙여넣기(Ctrl+V)해서 질문하세요.\n답변 받은 후 "답변 입력" 버튼으로 저장하세요.');
-  });
-}
-
-function startConsult(){
-  const q = document.getElementById('q-input').value.trim();
-  if(!q){ alert('질문을 입력하세요'); return; }
-  const c = {
-    id: 'c'+Date.now(),
-    cat: currentCat,
-    question: q,
-    steps: {},
-    answered: false,
-    date: ts()
-  };
-  consults.push(c);
-  save();
-  currentId = c.id;
-  document.getElementById('q-input').value = '';
-  renderRecList();
-  renderConsult(c);
-}
-
-function newConsult(){
-  currentId = null;
-  document.getElementById('q-input').value = '';
-  document.getElementById('q-input').focus();
-  renderRecList();
-  document.getElementById('answer-area').innerHTML = `
-    <div class="welcome">
-      <div class="welcome-ico">⚖️</div>
-      <div style="font-size:15px;font-weight:700;color:var(--txt2)">새 상담</div>
-      <div style="font-size:12px;margin-top:4px">위에 질문을 입력하세요</div>
-    </div>`;
-}
-
-function loadConsult(id){
-  const c = consults.find(x=>x.id===id);
-  if(!c) return;
-  currentId = id;
-  renderRecList();
-  renderConsult(c);
-}
-
-function renderConsult(c){
-  const area = document.getElementById('answer-area');
-  const catCss = CAT_CSS[c.cat]||'cat-etc';
-  const catLabel = CAT_LABEL[c.cat]||'기타';
-
-  let stepsHtml = '';
-  if(c.answered){
-    stepsHtml = STEPS.map(s=>{
-      const content = c.steps[s.num] || '';
-      if(!content) return '';
-      return `<div class="step-card">
-        <div class="step-head" onclick="toggleStep(this)">
-          <div class="step-num ${s.cls}">${s.num}</div>
-          <div class="step-title">${s.title}</div>
-          <span class="step-toggle">▼</span>
-        </div>
-        <div class="step-body">${content}</div>
-      </div>`;
-    }).join('');
-
-    // 출처 표시
-    stepsHtml += `<div class="source-box">
-      <div style="font-size:10px;font-weight:800;color:var(--txt3);margin-bottom:5px;letter-spacing:.5px">참고 소스</div>
-      📌 국가법령정보센터 (law.go.kr) · 대법원 종합법률정보 (glaw.scourt.go.kr)<br>
-      ⚠️ AI 분석은 법률 보조 수준입니다. 중요한 결정 전 변호사 검토 필요.
-    </div>`;
-  } else {
-    // 프롬프트 안내
-    const prompt = `카테고리: ${catLabel}\n\n${c.question}\n\n위 질문에 대해 보배 법률전략실 7단 형식으로 답변해줘.`;
-    stepsHtml = `
-      <div class="prompt-box">
-        <div class="pb-title">📋 이 내용을 복사해서 채팅창에 붙여넣으세요</div>
-        <div class="pb-text">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-보배 법률전략실 상담 요청
-카테고리: ${catLabel}
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-${c.question}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-위 질문에 대해 보배 법률전략실 7단 형식으로 답변해줘:
-
-1. 지금 상황 요약
-2. 법적으로 위험한 부분
-3. 지금 하면 안 되는 행동
-4. 지금 해도 되는 행동
-5. 증거로 남겨야 할 것
-6. 변호사에게 바로 물어볼 질문
-7. 최종 추천 대응</div>
-        <div class="pb-notice">⚠️ 답변 받은 후 아래 "답변 입력" 버튼을 눌러 저장하세요</div>
-      </div>
-      <div style="display:flex;gap:8px">
-        <button class="btn bp" onclick="copyPrompt('${c.id}')">📋 프롬프트 복사</button>
-        <button class="btn bgrn" onclick="openAnswerModal('${c.id}')">✏️ 답변 입력</button>
-        <button class="btn bg sm" onclick="delConsult('${c.id}')" style="margin-left:auto">삭제</button>
-      </div>`;
-  }
-
-  area.innerHTML = `
-    <div class="consult-view">
-      <div class="cv-header">
-        <span class="cv-cat-badge ${catCss}">${catLabel}</span>
-        <div class="cv-q">${c.question}</div>
-        <div class="cv-date">${c.date} ${c.answered?'· ✅ 답변 완료':''}</div>
-      </div>
-      <div class="seven-steps" id="steps-${c.id}">${stepsHtml}</div>
-      ${c.answered?`<div style="display:flex;gap:8px;margin-top:8px">
-        <button class="btn bg sm" onclick="openAnswerModal('${c.id}')">✏️ 답변 수정</button>
-        <button class="btn bg sm" onclick="delConsult('${c.id}')" style="margin-left:auto">삭제</button>
-      </div>`:''}
-    </div>`;
-}
-
-function toggleStep(el){
-  const body = el.nextElementSibling;
-  const arrow = el.querySelector('.step-toggle');
-  if(body.style.display==='none'){ body.style.display=''; arrow.textContent='▼'; }
-  else { body.style.display='none'; arrow.textContent='▶'; }
-}
-
-function copyPrompt(id){
-  const c = consults.find(x=>x.id===id);
-  if(!c) return;
-  const text = `카테고리: ${CAT_LABEL[c.cat]}\n\n${c.question}\n\n위 질문에 대해 보배 법률전략실 7단 형식으로 답변해줘:\n1. 지금 상황 요약\n2. 법적으로 위험한 부분\n3. 지금 하면 안 되는 행동\n4. 지금 해도 되는 행동\n5. 증거로 남겨야 할 것\n6. 변호사에게 바로 물어볼 질문\n7. 최종 추천 대응`;
-  navigator.clipboard.writeText(text).then(()=>alert('✅ 복사됐습니다! 채팅창에 붙여넣기하세요.'));
-}
-
-function openAnswerModal(id){
-  editingId = id;
-  const c = consults.find(x=>x.id===id);
-  if(!c) return;
-  document.getElementById('step-inputs').innerHTML = STEPS.map(s=>`
-    <div style="margin-bottom:12px">
-      <label style="display:block;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--txt3);margin-bottom:5px">
-        ${s.num}. ${s.title}
-      </label>
-      <textarea id="step-${s.num}" style="width:100%;background:var(--sur2);border:1px solid var(--bdr);border-radius:8px;padding:8px 11px;color:var(--txt);font-size:12px;outline:none;resize:vertical;min-height:60px;font-family:inherit;line-height:1.6" placeholder="${s.placeholder}">${c.steps[s.num]||''}</textarea>
-    </div>`).join('');
-  document.getElementById('modal-answer').classList.add('open');
-}
-
-function closeModal(){ document.getElementById('modal-answer').classList.remove('open'); }
-
-function saveAnswer(){
-  const c = consults.find(x=>x.id===editingId);
-  if(!c) return;
-  STEPS.forEach(s=>{
-    const v = document.getElementById('step-'+s.num)?.value.trim();
-    if(v) c.steps[s.num] = v;
-  });
-  c.answered = Object.keys(c.steps).length > 0;
-  save();
-  closeModal();
-  renderRecList();
-  renderConsult(c);
+⚠️ AI는 법률 보조 시스템. 최종 판단은 변호사 검토 필요.
+참고: law.go.kr / glaw.scourt.go.kr`;
+  navigator.clipboard.writeText(text).then(()=>alert('✅ 복사됐습니다!\n채팅창에 붙여넣기(Ctrl+V)하세요.'));
 }
 
 function delConsult(id){
-  if(!confirm('이 상담을 삭제하시겠습니까?')) return;
-  consults = consults.filter(c=>c.id!==id);
-  currentId = null;
-  save();
-  renderRecList();
-  document.getElementById('answer-area').innerHTML = `<div class="welcome"><div class="welcome-ico">⚖️</div><div style="font-size:13px;color:var(--txt2)">상담이 삭제됐습니다</div></div>`;
+  if(!confirm('삭제하시겠습니까?'))return;
+  consults=consults.filter(c=>c.id!==id);
+  currentId=null;save();renderRecList();
+  document.getElementById('result-area').innerHTML='<div class="welcome"><div style="font-size:40px;opacity:.2">⚖️</div><div style="font-size:13px;color:var(--txt2);margin-top:8px">삭제됐습니다</div></div>';
 }
 
-document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
-
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 renderRecList();
 </script>
 </body>
