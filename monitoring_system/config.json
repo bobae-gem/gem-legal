@@ -1,0 +1,24 @@
+{
+  "youtube_api_key": "YOUR_YOUTUBE_API_KEY",
+  "check_intervals_sec": {
+    "youtube": 600,
+    "news": 1800,
+    "community": 3600
+  },
+  "dashboard_pending_path": "../dashboard_pending.json",
+  "evidence_path": "evidence_storage",
+  "keywords_path": "keywords/keywords.json",
+  "max_results_per_search": 10,
+  "risk_thresholds": {
+    "urgent": 80,
+    "high": 60,
+    "mid": 35,
+    "low": 0
+  },
+  "spread_thresholds": {
+    "viral_views": 50000,
+    "high_views": 10000,
+    "alert_comments": 100
+  },
+  "legal_notice": "공개 게시물만 수집. 비공개 계정 접근 절대 금지."
+}

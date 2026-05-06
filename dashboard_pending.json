@@ -1,6 +1,276 @@
 {
   "pending": [
     {
+      "id": "mon_20260506164522_3336",
+      "category": "alert",
+      "priority": "low",
+      "title": "[뉴스·기사] '여성 BJ 폭행' 범프리카 \"난 쓰레기, 인생 잘못 살았다\"…시청자에 또 욕설 - 뉴스1",
+      "detail": "채널/작성자: 뉴스1\n내용: <a href=\"https://news.google.com/rss/articles/CBMiYkFVX3lxTE9rckRwdHM3YzN6TzZJZGJpY2JXUzlPeEVEZ1dlZkUtWTF0d3Mwb0NKVWtHdk1xQWpaZmJkVXNwT0E0ZUVCOHRKMS1OTjB0OFpscHBzWl8wLUoyMmwwOWxabnZB?oc=5\" target=\"_bl\nURL: https://news.google.com/rss/articles/CBMiYkFVX3lxTE9rckRwdHM3YzN6TzZJZGJpY2JXUzlPeEVEZ1dlZkUtWTF0d3Mwb0NKVWtHdk1xQWpaZmJkVXNwT0E0ZUVCOHRKMS1OTjB0OFpscHBzWl8wLUoyMmwwOWxabnZB?oc=5\n위험 요소: 분류: 모욕 가능성",
+      "sources": [
+        "뉴스 자동 수집",
+        "감지 키워드: BJ 폭행"
+      ],
+      "confidence": 20,
+      "confidence_reasons": [
+        "모욕 표현: 쓰레기"
+      ],
+      "time": "2026. 5. 6. 16:45",
+      "status": "pending",
+      "vtypes": [
+        "모욕 가능성"
+      ],
+      "connects": [
+        "행동위험차단팀"
+      ],
+      "risk_score": 15,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9rckRwdHM3YzN6TzZJZGJpY2JXUzlPeEVEZ1dlZkUtWTF0d3Mwb0NKVWtHdk1xQWpaZmJkVXNwT0E0ZUVCOHRKMS1OTjB0OFpscHBzWl8wLUoyMmwwOWxabnZB?oc=5"
+    },
+    {
+      "id": "mon_20260506164522_5715",
+      "category": "alert",
+      "priority": "low",
+      "title": "[뉴스·기사] \"우발적 폭행일 뿐\" 황철순, 전 여친 BJ 엔돌핀과 폭로전 [TOP이슈] - 톱스타뉴스",
+      "detail": "채널/작성자: 톱스타뉴스\n내용: <a href=\"https://news.google.com/rss/articles/CBMickFVX3lxTE5FWVNwckxzdnc3NzhjeEp5ODdTTXRHTGowX3dKLWlodDVxSlNlcVNJWnZVZVJwZU9OOVdKQXlXTGJkMFp2QkdmbU9aeTl1SW5ha09VaFFoWUtzazF4NkJzcmVfMktWcHJULXdvU0dMTz\nURL: https://news.google.com/rss/articles/CBMickFVX3lxTE5FWVNwckxzdnc3NzhjeEp5ODdTTXRHTGowX3dKLWlodDVxSlNlcVNJWnZVZVJwZU9OOVdKQXlXTGJkMFp2QkdmbU9aeTl1SW5ha09VaFFoWUtzazF4NkJzcmVfMktWcHJULXdvU0dMTzBKdw?oc=5\n위험 요소: 분류: 명예훼손 가능성",
+      "sources": [
+        "뉴스 자동 수집",
+        "감지 키워드: 엔돌핀 사건"
+      ],
+      "confidence": 25,
+      "confidence_reasons": [
+        "명예훼손 패턴: 폭로"
+      ],
+      "time": "2026. 5. 6. 16:45",
+      "status": "pending",
+      "vtypes": [
+        "명예훼손 가능성"
+      ],
+      "connects": [
+        "법률전략실"
+      ],
+      "risk_score": 25,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5FWVNwckxzdnc3NzhjeEp5ODdTTXRHTGowX3dKLWlodDVxSlNlcVNJWnZVZVJwZU9OOVdKQXlXTGJkMFp2QkdmbU9aeTl1SW5ha09VaFFoWUtzazF4NkJzcmVfMktWcHJULXdvU0dMTzBKdw?oc=5"
+    },
+    {
+      "id": "mon_20260506164522_4016",
+      "category": "alert",
+      "priority": "low",
+      "title": "[뉴스·기사] \"폭행 맞지만, 사망보험 요구\" 황철순vs\"난 '이은해' 아냐\" 전 연인 BJ 엔돌핀 진실공방 [★FOCUS",
+      "detail": "채널/작성자: ASIA ARTIST AWARDS 2025\n내용: <a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE9iWmkwcHludUtrRkRlUkx4MThmeFJJWE5rY3duXzYtelZLWDJ5aTBSUGM1OHVVOEIwQ3Y5UjF0Ni1TMXhqTkFyVk56VUNjNUgzQVlQazlnNzBMXzVaVzkzcmJkVEU?oc=5\" target=\"\nURL: https://news.google.com/rss/articles/CBMiZEFVX3lxTE9iWmkwcHludUtrRkRlUkx4MThmeFJJWE5rY3duXzYtelZLWDJ5aTBSUGM1OHVVOEIwQ3Y5UjF0Ni1TMXhqTkFyVk56VUNjNUgzQVlQazlnNzBMXzVaVzkzcmJkVEU?oc=5\n위험 요소: 분류: 명예훼손 가능성",
+      "sources": [
+        "뉴스 자동 수집",
+        "감지 키워드: 엔돌핀 사건"
+      ],
+      "confidence": 25,
+      "confidence_reasons": [
+        "명예훼손 패턴: 진실"
+      ],
+      "time": "2026. 5. 6. 16:45",
+      "status": "pending",
+      "vtypes": [
+        "명예훼손 가능성"
+      ],
+      "connects": [
+        "법률전략실"
+      ],
+      "risk_score": 25,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9iWmkwcHludUtrRkRlUkx4MThmeFJJWE5rY3duXzYtelZLWDJ5aTBSUGM1OHVVOEIwQ3Y5UjF0Ni1TMXhqTkFyVk56VUNjNUgzQVlQazlnNzBMXzVaVzkzcmJkVEU?oc=5"
+    },
+    {
+      "id": "mon_20260506164522_6402",
+      "category": "alert",
+      "priority": "low",
+      "title": "[뉴스·기사] 황철순 전여친 \"음주운전 말렸더니 폭행...머리 질질 끌고가\" 폭로 [종합] - v.daum.net",
+      "detail": "채널/작성자: v.daum.net\n내용: <a href=\"https://news.google.com/rss/articles/CBMiRkFVX3lxTFAtSXMtbmlINVBOT2pUeXZMd2lWSHFaZWdOTm9zcVF4a3hKQTNYUDZjejVDQ010TjRrUURVVWNZYmRnSFkwWkE?oc=5\" target=\"_blank\">황철순 전여친 \"음주운전 말렸더니 폭행...머리 질질 끌고\nURL: https://news.google.com/rss/articles/CBMiRkFVX3lxTFAtSXMtbmlINVBOT2pUeXZMd2lWSHFaZWdOTm9zcVF4a3hKQTNYUDZjejVDQ010TjRrUURVVWNZYmRnSFkwWkE?oc=5\n위험 요소: 분류: 명예훼손 가능성",
+      "sources": [
+        "뉴스 자동 수집",
+        "감지 키워드: 엔돌핀 사건"
+      ],
+      "confidence": 25,
+      "confidence_reasons": [
+        "명예훼손 패턴: 폭로"
+      ],
+      "time": "2026. 5. 6. 16:45",
+      "status": "pending",
+      "vtypes": [
+        "명예훼손 가능성"
+      ],
+      "connects": [
+        "법률전략실"
+      ],
+      "risk_score": 25,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTFAtSXMtbmlINVBOT2pUeXZMd2lWSHFaZWdOTm9zcVF4a3hKQTNYUDZjejVDQ010TjRrUURVVWNZYmRnSFkwWkE?oc=5"
+    },
+    {
+      "id": "mon_20260506164522_0180",
+      "category": "alert",
+      "priority": "low",
+      "title": "[뉴스·기사] '징맨' 황철순, 전여친과 폭로전 \"사망보험 상속자 시켜달라더라\" - 머니투데이 - 머니투데이",
+      "detail": "채널/작성자: 머니투데이\n내용: <a href=\"https://news.google.com/rss/articles/CBMic0FVX3lxTE9OMUdYTXh5M2R6QTlUbXI1S2h1RzlmbTlXZFFVbE9HSUhXdmt2RWN5UE5VMFp4NHBVZnlGVXlIS1QxYmNieHV5N0tVMEs0ejBVR3hHVFRDSjBMbGNha0xFcnlkaEZLNUZPWmtqUkM2S2\nURL: https://news.google.com/rss/articles/CBMic0FVX3lxTE9OMUdYTXh5M2R6QTlUbXI1S2h1RzlmbTlXZFFVbE9HSUhXdmt2RWN5UE5VMFp4NHBVZnlGVXlIS1QxYmNieHV5N0tVMEs0ejBVR3hHVFRDSjBMbGNha0xFcnlkaEZLNUZPWmtqUkM2S2R6MEnSAXhBVV95cUxQTGNDUVFGRVVuMG1UWi1LNWZBT2xTNjBzbmRKNzR6QjRvc0ItWWpLMUREd0FQZExMNUJuajNhcFFac1hxUENqY3kydnQ4SkVSdW5MTGd2X3RaZlN4VERuWXQ4NGYxMG1fdGdSVzZ3ZzcxTTVHMjYtak0?oc=5\n위험 요소: 분류: 명예훼손 가능성",
+      "sources": [
+        "뉴스 자동 수집",
+        "감지 키워드: 엔돌핀 사건"
+      ],
+      "confidence": 25,
+      "confidence_reasons": [
+        "명예훼손 패턴: 폭로"
+      ],
+      "time": "2026. 5. 6. 16:45",
+      "status": "pending",
+      "vtypes": [
+        "명예훼손 가능성"
+      ],
+      "connects": [
+        "법률전략실"
+      ],
+      "risk_score": 25,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9OMUdYTXh5M2R6QTlUbXI1S2h1RzlmbTlXZFFVbE9HSUhXdmt2RWN5UE5VMFp4NHBVZnlGVXlIS1QxYmNieHV5N0tVMEs0ejBVR3hHVFRDSjBMbGNha0xFcnlkaEZLNUZPWmtqUkM2S2R6MEnSAXhBVV95cUxQTGNDUVFGRVVuMG1UWi1LNWZBT2xTNjBzbmRKNzR6QjRvc0ItWWpLMUREd0FQZExMNUJuajNhcFFac1hxUENqY3kydnQ4SkVSdW5MTGd2X3RaZlN4VERuWXQ4NGYxMG1fdGdSVzZ3ZzcxTTVHMjYtak0?oc=5"
+    },
+    {
+      "id": "mon_20260506164522_8807",
+      "category": "alert",
+      "priority": "low",
+      "title": "[뉴스·기사] '징맨' 황철순, 연인 폭행·사생활 폭로…法 \"1500만원 추가 배상\" - v.daum.net",
+      "detail": "채널/작성자: v.daum.net\n내용: <a href=\"https://news.google.com/rss/articles/CBMiRkFVX3lxTFAyMHYxdkV0bVdnZzI3ekNTT1JkRW5OSU9hOUtpY3ZUcTUyREdDRGRhdnZsa2tTUWgwaThfNURmZXBXa3Z1NHc?oc=5\" target=\"_blank\">'징맨' 황철순, 연인 폭행·사생활 폭로…法 \"1500만원\nURL: https://news.google.com/rss/articles/CBMiRkFVX3lxTFAyMHYxdkV0bVdnZzI3ekNTT1JkRW5OSU9hOUtpY3ZUcTUyREdDRGRhdnZsa2tTUWgwaThfNURmZXBXa3Z1NHc?oc=5\n위험 요소: 분류: 명예훼손 가능성",
+      "sources": [
+        "뉴스 자동 수집",
+        "감지 키워드: 황철순 폭행"
+      ],
+      "confidence": 25,
+      "confidence_reasons": [
+        "명예훼손 패턴: 폭로"
+      ],
+      "time": "2026. 5. 6. 16:45",
+      "status": "pending",
+      "vtypes": [
+        "명예훼손 가능성"
+      ],
+      "connects": [
+        "법률전략실"
+      ],
+      "risk_score": 25,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTFAyMHYxdkV0bVdnZzI3ekNTT1JkRW5OSU9hOUtpY3ZUcTUyREdDRGRhdnZsa2tTUWgwaThfNURmZXBXa3Z1NHc?oc=5"
+    },
+    {
+      "id": "mon_20260506164522_3596",
+      "category": "alert",
+      "priority": "low",
+      "title": "[뉴스·기사] [전문] 황철순 아내 \"이혼절차中…불륜의혹·폭행 CCTV 행명도 거짓\" 폭로에 '발칵' - 조선일보",
+      "detail": "채널/작성자: 조선일보\n내용: <a href=\"https://news.google.com/rss/articles/CBMijwFBVV95cUxOZUJpcmhGbE9ndVFsODJJSDNSejVzTkhudGtCTFdSdS1kX0NSRG1LdDhic1pYSG1RYWFXUG1NNVNmTTRNS2RkbUFla2c0R1Q4MmtpelJwVVBPU3JLTkMyU2RiUWV3MHNpbTZrdzVSak\nURL: https://news.google.com/rss/articles/CBMijwFBVV95cUxOZUJpcmhGbE9ndVFsODJJSDNSejVzTkhudGtCTFdSdS1kX0NSRG1LdDhic1pYSG1RYWFXUG1NNVNmTTRNS2RkbUFla2c0R1Q4MmtpelJwVVBPU3JLTkMyU2RiUWV3MHNpbTZrdzVSaklUdG1yNFZjM3VkUDVPUlFoalZNb0ktVm9JMk51OU9Sdw?oc=5\n위험 요소: 분류: 명예훼손 가능성",
+      "sources": [
+        "뉴스 자동 수집",
+        "감지 키워드: 황철순 아내"
+      ],
+      "confidence": 25,
+      "confidence_reasons": [
+        "명예훼손 패턴: 폭로"
+      ],
+      "time": "2026. 5. 6. 16:45",
+      "status": "pending",
+      "vtypes": [
+        "명예훼손 가능성"
+      ],
+      "connects": [
+        "법률전략실"
+      ],
+      "risk_score": 25,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOZUJpcmhGbE9ndVFsODJJSDNSejVzTkhudGtCTFdSdS1kX0NSRG1LdDhic1pYSG1RYWFXUG1NNVNmTTRNS2RkbUFla2c0R1Q4MmtpelJwVVBPU3JLTkMyU2RiUWV3MHNpbTZrdzVSaklUdG1yNFZjM3VkUDVPUlFoalZNb0ktVm9JMk51OU9Sdw?oc=5"
+    },
+    {
+      "id": "mon_20260506164522_6385",
+      "category": "alert",
+      "priority": "low",
+      "title": "[뉴스·기사] ‘폭행 출소’ 황철순 “수감 때 질성형·아들 이름도 바꿔”···아내 사생활 폭로 - v.daum.net",
+      "detail": "채널/작성자: v.daum.net\n내용: <a href=\"https://news.google.com/rss/articles/CBMiT0FVX3lxTE1aQXJjU3pzQllHTFZsVERxNjFHQXhMUS1IV0RabjlQZFMtbVN4TEh2a29DN0w3VUlvelpvdkx4ZTQ4eGJHVFg5eHBjTGdsMkE?oc=5\" target=\"_blank\">‘폭행 출소’ 황철순 “수감 때 질성\nURL: https://news.google.com/rss/articles/CBMiT0FVX3lxTE1aQXJjU3pzQllHTFZsVERxNjFHQXhMUS1IV0RabjlQZFMtbVN4TEh2a29DN0w3VUlvelpvdkx4ZTQ4eGJHVFg5eHBjTGdsMkE?oc=5\n위험 요소: 분류: 명예훼손 가능성",
+      "sources": [
+        "뉴스 자동 수집",
+        "감지 키워드: 황철순 아내"
+      ],
+      "confidence": 25,
+      "confidence_reasons": [
+        "명예훼손 패턴: 폭로"
+      ],
+      "time": "2026. 5. 6. 16:45",
+      "status": "pending",
+      "vtypes": [
+        "명예훼손 가능성"
+      ],
+      "connects": [
+        "법률전략실"
+      ],
+      "risk_score": 25,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1aQXJjU3pzQllHTFZsVERxNjFHQXhMUS1IV0RabjlQZFMtbVN4TEh2a29DN0w3VUlvelpvdkx4ZTQ4eGJHVFg5eHBjTGdsMkE?oc=5"
+    },
+    {
+      "id": "mon_20260506164522_4586",
+      "category": "alert",
+      "priority": "low",
+      "title": "[뉴스·기사] ‘출소’ 황철순, 아내 사생활 폭로 “허구한 날 술자리·男과 파티” - 헤럴드경제",
+      "detail": "채널/작성자: 헤럴드경제\n내용: <a href=\"https://news.google.com/rss/articles/CBMiVkFVX3lxTE5RdUJiVEhobnlIR05hWENVeU5jeWMzYXRIN1BJSzUtY3NCNFU1VWFQWjFQNS1zYU1LQXhxVVZyWTA3cnhGZ2xCOWs1d2h6aFVLQVpsaENR?oc=5\" target=\"_blank\">‘출소’ 황철순, 아\nURL: https://news.google.com/rss/articles/CBMiVkFVX3lxTE5RdUJiVEhobnlIR05hWENVeU5jeWMzYXRIN1BJSzUtY3NCNFU1VWFQWjFQNS1zYU1LQXhxVVZyWTA3cnhGZ2xCOWs1d2h6aFVLQVpsaENR?oc=5\n위험 요소: 분류: 명예훼손 가능성",
+      "sources": [
+        "뉴스 자동 수집",
+        "감지 키워드: 황철순 아내"
+      ],
+      "confidence": 25,
+      "confidence_reasons": [
+        "명예훼손 패턴: 폭로"
+      ],
+      "time": "2026. 5. 6. 16:45",
+      "status": "pending",
+      "vtypes": [
+        "명예훼손 가능성"
+      ],
+      "connects": [
+        "법률전략실"
+      ],
+      "risk_score": 25,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5RdUJiVEhobnlIR05hWENVeU5jeWMzYXRIN1BJSzUtY3NCNFU1VWFQWjFQNS1zYU1LQXhxVVZyWTA3cnhGZ2xCOWs1d2h6aFVLQVpsaENR?oc=5"
+    },
+    {
+      "id": "mon_20260506164522_7863",
+      "category": "alert",
+      "priority": "low",
+      "title": "[뉴스·기사] [단독]가족 돌보느라 지각·결석·결근···하루 8시간 ‘독박 돌봄’ 시달리는 청소년·청년들 - v.daum.",
+      "detail": "채널/작성자: v.daum.net\n내용: <a href=\"https://news.google.com/rss/articles/CBMiT0FVX3lxTE9IRWFPRVphdkVGc01CeDNvYXN2ZWEtYVBieFpDcUJjWVJYQkN4eGVJTEhzNl8tbGpUSzlEb1lQaHA4dFN4eW5wekl6c0pOWEU?oc=5\" target=\"_blank\">[단독]가족 돌보느라 지각·결석·결근\nURL: https://news.google.com/rss/articles/CBMiT0FVX3lxTE9IRWFPRVphdkVGc01CeDNvYXN2ZWEtYVBieFpDcUJjWVJYQkN4eGVJTEhzNl8tbGpUSzlEb1lQaHA4dFN4eW5wekl6c0pOWEU?oc=5\n위험 요소: 분류: 사생활 침해 가능성",
+      "sources": [
+        "뉴스 자동 수집",
+        "감지 키워드: 돌하루"
+      ],
+      "confidence": 30,
+      "confidence_reasons": [
+        "사생활 정보 언급: 가족"
+      ],
+      "time": "2026. 5. 6. 16:45",
+      "status": "pending",
+      "vtypes": [
+        "사생활 침해 가능성"
+      ],
+      "connects": [
+        "법률전략실"
+      ],
+      "risk_score": 30,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9IRWFPRVphdkVGc01CeDNvYXN2ZWEtYVBieFpDcUJjWVJYQkN4eGVJTEhzNl8tbGpUSzlEb1lQaHA4dFN4eW5wekl6c0pOWEU?oc=5"
+    },
+    {
       "id": "p001",
       "category": "alert",
       "priority": "high",
