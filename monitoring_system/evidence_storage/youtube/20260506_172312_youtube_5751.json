@@ -1,0 +1,52 @@
+{
+  "saved_at": "2026-05-06T17:23:12.032257",
+  "platform": "유튜브",
+  "type": "영상",
+  "title": "황철순에게 두들겨맞은 &#39;지연아&#39;가 충격 고백한 황철순의 행패",
+  "author": "연예일보",
+  "url": "https://www.youtube.com/watch?v=uML7r-YpKcM",
+  "published_at": "2025-07-12T20:00:37Z",
+  "found_at": "2026-05-06T17:22:39.470247",
+  "content": {
+    "description": "",
+    "body": ""
+  },
+  "stats": {
+    "views": 6591,
+    "likes": 37,
+    "comments": 2
+  },
+  "analysis": {
+    "classification": {
+      "types": [
+        "렉카 확산 가능성",
+        "명예훼손 가능성",
+        "법적 대응 검토 필요"
+      ],
+      "confidence": 60,
+      "reasons": [
+        "명예훼손 패턴: 충격",
+        "렉카 키워드: 충격",
+        "복합 위험 요소 감지"
+      ]
+    },
+    "risk": {
+      "risk_level": "high",
+      "risk_score": 65,
+      "risk_factors": [
+        "분류: 렉카 확산 가능성",
+        "분류: 명예훼손 가능성",
+        "분류: 법적 대응 검토 필요",
+        "조회수: 6591회"
+      ]
+    },
+    "spread": {
+      "is_spreading": false,
+      "spread_count": 0,
+      "platforms": [],
+      "spread_speed": "느림",
+      "notes": []
+    }
+  },
+  "legal_note": "공개 게시물에서 수집됨. 비공개 정보 미포함."
+}

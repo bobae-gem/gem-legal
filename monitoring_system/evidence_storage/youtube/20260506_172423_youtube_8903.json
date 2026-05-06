@@ -1,0 +1,45 @@
+{
+  "saved_at": "2026-05-06T17:24:23.896740",
+  "platform": "유튜브",
+  "type": "영상",
+  "title": "[경찰관폭행 조작사건] 재심(2) 소장",
+  "author": "최성년0",
+  "url": "https://www.youtube.com/watch?v=EyEh1b0XCro",
+  "published_at": "2026-05-06T02:05:23Z",
+  "found_at": "2026-05-06T17:23:26.461940",
+  "content": {
+    "description": "\"경찰관폭행 조작사건 의 진상 \" 랑독- 33 253~256쪽.",
+    "body": ""
+  },
+  "stats": {
+    "views": 1,
+    "likes": 1,
+    "comments": 1
+  },
+  "analysis": {
+    "classification": {
+      "types": [
+        "허위사실 가능성"
+      ],
+      "confidence": 30,
+      "reasons": [
+        "허위사실 패턴: 조작"
+      ]
+    },
+    "risk": {
+      "risk_level": "low",
+      "risk_score": 30,
+      "risk_factors": [
+        "분류: 허위사실 가능성"
+      ]
+    },
+    "spread": {
+      "is_spreading": false,
+      "spread_count": 0,
+      "platforms": [],
+      "spread_speed": "느림",
+      "notes": []
+    }
+  },
+  "legal_note": "공개 게시물에서 수집됨. 비공개 정보 미포함."
+}

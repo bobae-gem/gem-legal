@@ -1,0 +1,45 @@
+{
+  "saved_at": "2026-05-06T17:24:24.008129",
+  "platform": "유튜브",
+  "type": "영상",
+  "title": "[속보] 범프리카, 여BJ 머리채 잡고 폭행 ‘난리난’",
+  "author": "한국 경제 데일리",
+  "url": "https://www.youtube.com/watch?v=atD-vT13B-A",
+  "published_at": "2026-04-10T03:09:06Z",
+  "found_at": "2026-05-06T17:24:12.998440",
+  "content": {
+    "description": "BJ 범프리카, 술 먹방 중 동료 여성 BJ 머리채 잡고 폭행 영상 공개되며 비난 쇄도 BJ 범프리카(본명 김동범)가 SOOP(구 아프리카TV) ...",
+    "body": ""
+  },
+  "stats": {
+    "views": 159,
+    "likes": 0,
+    "comments": 0
+  },
+  "analysis": {
+    "classification": {
+      "types": [
+        "렉카 확산 가능성"
+      ],
+      "confidence": 20,
+      "reasons": [
+        "렉카 키워드: 난리난"
+      ]
+    },
+    "risk": {
+      "risk_level": "low",
+      "risk_score": 20,
+      "risk_factors": [
+        "분류: 렉카 확산 가능성"
+      ]
+    },
+    "spread": {
+      "is_spreading": false,
+      "spread_count": 0,
+      "platforms": [],
+      "spread_speed": "느림",
+      "notes": []
+    }
+  },
+  "legal_note": "공개 게시물에서 수집됨. 비공개 정보 미포함."
+}

@@ -1,0 +1,45 @@
+{
+  "saved_at": "2026-05-06T17:24:23.887634",
+  "platform": "유튜브",
+  "type": "영상",
+  "title": "부모님 댁 간다던 남편! 상간녀와 모텔 1박2일 #부부관계#불륜#외도#이혼#현실부부#흥신소#탐정#쇼츠#Shorts#바람을잡다#배신#증거수집#외도#결혼생활",
+  "author": "바람을잡다",
+  "url": "https://www.youtube.com/watch?v=1YfMsFwVc5A",
+  "published_at": "2026-05-06T06:08:29Z",
+  "found_at": "2026-05-06T17:23:21.814826",
+  "content": {
+    "description": "의뢰인님은 주말마다 부모님 댁 일손을 돕겠다며 집을 나서는 남편이 유독 밤늦게만 통화가 되거나, 정작 다녀왔다는 남편의 차 안에서 ...",
+    "body": ""
+  },
+  "stats": {
+    "views": 768,
+    "likes": 2,
+    "comments": 0
+  },
+  "analysis": {
+    "classification": {
+      "types": [
+        "사생활 침해 가능성"
+      ],
+      "confidence": 30,
+      "reasons": [
+        "사생활 정보 언급: 집, 부모"
+      ]
+    },
+    "risk": {
+      "risk_level": "low",
+      "risk_score": 30,
+      "risk_factors": [
+        "분류: 사생활 침해 가능성"
+      ]
+    },
+    "spread": {
+      "is_spreading": false,
+      "spread_count": 0,
+      "platforms": [],
+      "spread_speed": "느림",
+      "notes": []
+    }
+  },
+  "legal_note": "공개 게시물에서 수집됨. 비공개 정보 미포함."
+}

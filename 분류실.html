@@ -235,8 +235,18 @@ function getStatus(item){
   return classifications[item.id] || item.class_status || 'unclassified';
 }
 
-function loadItems(){
-  items = JSON.parse(localStorage.getItem('monitoring_v1')||'[]');
+const API = 'http://localhost:8080/api';
+
+async function loadItems(){
+  try {
+    const r = await fetch(API+'/monitoring');
+    if(!r.ok) throw new Error();
+    const data = await r.json();
+    items = data.items || [];
+  } catch(e) {
+    // 폴백: localStorage
+    items = JSON.parse(localStorage.getItem('monitoring_v1')||'[]');
+  }
   // 중복 제거 (같은 URL)
   const seen = new Set();
   items = items.filter(i => {

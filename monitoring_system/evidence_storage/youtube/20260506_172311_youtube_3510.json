@@ -1,0 +1,45 @@
+{
+  "saved_at": "2026-05-06T17:23:11.837618",
+  "platform": "유튜브",
+  "type": "영상",
+  "title": "용돈 끊자 부모 둔기 폭행…&#39;선처&#39; 한마디에 형량이 깎인다고요? #Shorts",
+  "author": "깨시민 청년",
+  "url": "https://www.youtube.com/watch?v=GRMhi636cec",
+  "published_at": "2026-05-05T22:00:18Z",
+  "found_at": "2026-05-06T17:22:06.881753",
+  "content": {
+    "description": "30대 아들의 부모 둔기 폭행 사건, '부모 선처' 한마디로 주범이 공범보다 가벼운 형을 받은 사법 구조의 민낯입니다. 보복이 두려워 ...",
+    "body": ""
+  },
+  "stats": {
+    "views": 298,
+    "likes": 4,
+    "comments": 0
+  },
+  "analysis": {
+    "classification": {
+      "types": [
+        "사생활 침해 가능성"
+      ],
+      "confidence": 30,
+      "reasons": [
+        "사생활 정보 언급: 부모"
+      ]
+    },
+    "risk": {
+      "risk_level": "low",
+      "risk_score": 30,
+      "risk_factors": [
+        "분류: 사생활 침해 가능성"
+      ]
+    },
+    "spread": {
+      "is_spreading": false,
+      "spread_count": 0,
+      "platforms": [],
+      "spread_speed": "느림",
+      "notes": []
+    }
+  },
+  "legal_note": "공개 게시물에서 수집됨. 비공개 정보 미포함."
+}

@@ -1,0 +1,51 @@
+{
+  "saved_at": "2026-05-06T17:23:11.980404",
+  "platform": "유튜브",
+  "type": "영상",
+  "title": "에겐남 #황철순",
+  "author": "CHUL SOON HWANG",
+  "url": "https://www.youtube.com/watch?v=2kYpAmLOGFM",
+  "published_at": "2026-04-09T04:08:37Z",
+  "found_at": "2026-05-06T17:22:39.470234",
+  "content": {
+    "description": "",
+    "body": ""
+  },
+  "stats": {
+    "views": 143998,
+    "likes": 1064,
+    "comments": 148
+  },
+  "analysis": {
+    "classification": {
+      "types": [
+        "렉카 확산 가능성"
+      ],
+      "confidence": 20,
+      "reasons": [
+        "조회수 급증: 143,998회"
+      ]
+    },
+    "risk": {
+      "risk_level": "mid",
+      "risk_score": 55,
+      "risk_factors": [
+        "분류: 렉카 확산 가능성",
+        "바이럴 조회수: 143998회",
+        "댓글 활성화: 148개"
+      ]
+    },
+    "spread": {
+      "is_spreading": true,
+      "spread_count": 6,
+      "platforms": [
+        "유튜브"
+      ],
+      "spread_speed": "바이럴",
+      "notes": [
+        "10만 조회 달성 — 즉시 대응 필요"
+      ]
+    }
+  },
+  "legal_note": "공개 게시물에서 수집됨. 비공개 정보 미포함."
+}

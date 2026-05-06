@@ -1,0 +1,50 @@
+{
+  "saved_at": "2026-05-06T17:24:23.908927",
+  "platform": "유튜브",
+  "type": "영상",
+  "title": "의외로 CASTLE폭행",
+  "author": "헛소리의 이것저것",
+  "url": "https://www.youtube.com/watch?v=sZou4QORT1w",
+  "published_at": "2026-04-26T05:00:47Z",
+  "found_at": "2026-05-06T17:23:31.192085",
+  "content": {
+    "description": "생방송 주소 - https://naver.me/GYcq7VTf 팬카페 : https://cafe.naver.com/hotsorry0403 문의 이메일 : hotsorry0403@naver.com.",
+    "body": ""
+  },
+  "stats": {
+    "views": 86643,
+    "likes": 2265,
+    "comments": 270
+  },
+  "analysis": {
+    "classification": {
+      "types": [
+        "사생활 침해 가능성"
+      ],
+      "confidence": 40,
+      "reasons": [
+        "사생활 정보 언급: 주소",
+        "주목할 만한 조회수: 86,643회"
+      ]
+    },
+    "risk": {
+      "risk_level": "high",
+      "risk_score": 65,
+      "risk_factors": [
+        "분류: 사생활 침해 가능성",
+        "바이럴 조회수: 86643회",
+        "댓글 활성화: 270개"
+      ]
+    },
+    "spread": {
+      "is_spreading": true,
+      "spread_count": 0,
+      "platforms": [],
+      "spread_speed": "빠름",
+      "notes": [
+        "5만 조회 — 확산 중"
+      ]
+    }
+  },
+  "legal_note": "공개 게시물에서 수집됨. 비공개 정보 미포함."
+}

@@ -1,0 +1,52 @@
+{
+  "saved_at": "2026-05-06T17:24:24.009740",
+  "platform": "유튜브",
+  "type": "영상",
+  "title": "유명 BJ생방 폭행충격 실체#이슈 #실제사연 #유튜버 #shorts",
+  "author": "다파라뉴스",
+  "url": "https://www.youtube.com/watch?v=LuvBVyQkNcI",
+  "published_at": "2026-04-08T01:00:00Z",
+  "found_at": "2026-05-06T17:24:12.998442",
+  "content": {
+    "description": "유명 BJ생방 폭행충격 실체#이슈 #실제사연 #유튜버 #shorts.",
+    "body": ""
+  },
+  "stats": {
+    "views": 300,
+    "likes": 1,
+    "comments": 0
+  },
+  "analysis": {
+    "classification": {
+      "types": [
+        "법적 대응 검토 필요",
+        "명예훼손 가능성",
+        "렉카 확산 가능성"
+      ],
+      "confidence": 60,
+      "reasons": [
+        "명예훼손 패턴: 충격, 실체",
+        "렉카 키워드: 충격",
+        "복합 위험 요소 감지"
+      ]
+    },
+    "risk": {
+      "risk_level": "high",
+      "risk_score": 75,
+      "risk_factors": [
+        "분류: 법적 대응 검토 필요",
+        "분류: 명예훼손 가능성",
+        "분류: 렉카 확산 가능성",
+        "자극적 제목"
+      ]
+    },
+    "spread": {
+      "is_spreading": false,
+      "spread_count": 0,
+      "platforms": [],
+      "spread_speed": "느림",
+      "notes": []
+    }
+  },
+  "legal_note": "공개 게시물에서 수집됨. 비공개 정보 미포함."
+}

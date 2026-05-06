@@ -1,0 +1,49 @@
+{
+  "saved_at": "2026-05-06T17:24:23.912221",
+  "platform": "유튜브",
+  "type": "영상",
+  "title": "&quot;도와주세요&quot; 쏟아진 제보…무차별 폭행에 &#39;사지마비&#39; / JTBC 사건반장",
+  "author": "JTBC News",
+  "url": "https://www.youtube.com/watch?v=LU2nobU06gQ",
+  "published_at": "2026-04-20T13:10:00Z",
+  "found_at": "2026-05-06T17:23:31.192087",
+  "content": {
+    "description": "남성 두 명이 어두운 골목길을 걷고 있습니다. 그 뒤를 한 남성이 따라가는데요. 잠시 뒤, 뒤따르던 남성이 달아나고 다른 남성이 다급히 ...",
+    "body": ""
+  },
+  "stats": {
+    "views": 177732,
+    "likes": 2146,
+    "comments": 1038
+  },
+  "analysis": {
+    "classification": {
+      "types": [
+        "렉카 확산 가능성"
+      ],
+      "confidence": 20,
+      "reasons": [
+        "조회수 급증: 177,732회"
+      ]
+    },
+    "risk": {
+      "risk_level": "mid",
+      "risk_score": 55,
+      "risk_factors": [
+        "분류: 렉카 확산 가능성",
+        "바이럴 조회수: 177732회",
+        "댓글 활성화: 1038개"
+      ]
+    },
+    "spread": {
+      "is_spreading": true,
+      "spread_count": 0,
+      "platforms": [],
+      "spread_speed": "바이럴",
+      "notes": [
+        "10만 조회 달성 — 즉시 대응 필요"
+      ]
+    }
+  },
+  "legal_note": "공개 게시물에서 수집됨. 비공개 정보 미포함."
+}

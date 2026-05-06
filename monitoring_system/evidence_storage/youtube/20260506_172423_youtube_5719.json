@@ -1,0 +1,52 @@
+{
+  "saved_at": "2026-05-06T17:24:23.920950",
+  "platform": "유튜브",
+  "type": "영상",
+  "title": "&#39;음주 도주&#39; MC딩동, 생방 중 여성BJ 폭행 논란 / YTN star",
+  "author": "YTN star",
+  "url": "https://www.youtube.com/watch?v=0JaEXZvAtfA",
+  "published_at": "2026-03-11T07:30:01Z",
+  "found_at": "2026-05-06T17:23:35.716952",
+  "content": {
+    "description": "사전 MC로 활동해온 MC딩동이 인터넷 생방송 도중 여성 출연자를 폭행해 구설에 올랐습니다. MC딩동이 최근 진행된 온라인 생방송 ...",
+    "body": ""
+  },
+  "stats": {
+    "views": 64482,
+    "likes": 443,
+    "comments": 515
+  },
+  "analysis": {
+    "classification": {
+      "types": [
+        "단순 언급"
+      ],
+      "confidence": 15,
+      "reasons": [
+        "주목할 만한 조회수: 64,482회",
+        "위험 패턴 미감지"
+      ]
+    },
+    "risk": {
+      "risk_level": "mid",
+      "risk_score": 40,
+      "risk_factors": [
+        "분류: 단순 언급",
+        "바이럴 조회수: 64482회",
+        "댓글 활성화: 515개"
+      ]
+    },
+    "spread": {
+      "is_spreading": true,
+      "spread_count": 1,
+      "platforms": [
+        "뉴스"
+      ],
+      "spread_speed": "빠름",
+      "notes": [
+        "5만 조회 — 확산 중"
+      ]
+    }
+  },
+  "legal_note": "공개 게시물에서 수집됨. 비공개 정보 미포함."
+}

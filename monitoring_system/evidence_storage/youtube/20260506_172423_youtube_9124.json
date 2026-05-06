@@ -1,0 +1,55 @@
+{
+  "saved_at": "2026-05-06T17:24:23.954822",
+  "platform": "유튜브",
+  "type": "영상",
+  "title": "모든 걸 내려놓고 다시 시작합니다.. [황철순 심경고백]",
+  "author": "성명준",
+  "url": "https://www.youtube.com/watch?v=KCOUW3Y0EiY",
+  "published_at": "2025-07-06T03:00:31Z",
+  "found_at": "2026-05-06T17:23:58.882414",
+  "content": {
+    "description": "광고, 협찬 문의 tjdaudwns1128@gmail.com 합리적으로 자동차 살 땐 KS오토플랜 https://vo.la/wrhVVI 대표번호 1833-2746.",
+    "body": ""
+  },
+  "stats": {
+    "views": 240958,
+    "likes": 1538,
+    "comments": 330
+  },
+  "analysis": {
+    "classification": {
+      "types": [
+        "법적 대응 검토 필요",
+        "렉카 확산 가능성",
+        "사생활 침해 가능성"
+      ],
+      "confidence": 65,
+      "reasons": [
+        "사생활 정보 언급: 번호",
+        "조회수 급증: 240,958회",
+        "복합 위험 요소 감지"
+      ]
+    },
+    "risk": {
+      "risk_level": "urgent",
+      "risk_score": 100,
+      "risk_factors": [
+        "분류: 법적 대응 검토 필요",
+        "분류: 렉카 확산 가능성",
+        "분류: 사생활 침해 가능성",
+        "바이럴 조회수: 240958회",
+        "댓글 활성화: 330개"
+      ]
+    },
+    "spread": {
+      "is_spreading": true,
+      "spread_count": 0,
+      "platforms": [],
+      "spread_speed": "바이럴",
+      "notes": [
+        "10만 조회 달성 — 즉시 대응 필요"
+      ]
+    }
+  },
+  "legal_note": "공개 게시물에서 수집됨. 비공개 정보 미포함."
+}

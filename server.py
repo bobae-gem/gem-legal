@@ -5,14 +5,18 @@ sys.stderr.reconfigure(encoding='utf-8')
 
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 
-DATA_FILE    = 'dashboard_data.json'
-PENDING_FILE = 'dashboard_pending.json'
-LOG_FILE     = 'dashboard_log.json'
+DATA_FILE       = 'dashboard_data.json'
+PENDING_FILE    = 'dashboard_pending.json'
+LOG_FILE        = 'dashboard_log.json'
+MONITORING_FILE = 'raw_monitoring.json'
+CLASS_FILE      = 'monitoring_classifications.json'
 
 API_MAP = {
-    '/api/data':    DATA_FILE,
-    '/api/pending': PENDING_FILE,
-    '/api/log':     LOG_FILE,
+    '/api/data':            DATA_FILE,
+    '/api/pending':         PENDING_FILE,
+    '/api/log':             LOG_FILE,
+    '/api/monitoring':      MONITORING_FILE,
+    '/api/classifications': CLASS_FILE,
 }
 
 class Handler(SimpleHTTPRequestHandler):

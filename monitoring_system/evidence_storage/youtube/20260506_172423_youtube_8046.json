@@ -1,0 +1,45 @@
+{
+  "saved_at": "2026-05-06T17:24:23.864041",
+  "platform": "유튜브",
+  "type": "영상",
+  "title": "주일 예배 | 26 05 03 찬양 | 서정은 집사 인도",
+  "author": "든든한교회",
+  "url": "https://www.youtube.com/watch?v=5ahNHaBRC1I",
+  "published_at": "2026-05-05T02:01:53Z",
+  "found_at": "2026-05-06T17:23:07.552920",
+  "content": {
+    "description": "00:00 완전하신 나의 주 03:56 주님만 사랑하리 11:02 있는 모습 그대로 19:22 예수 뿐이네 23:22 주 말씀 향하여 28:33 눈을 들어 주 ...",
+    "body": ""
+  },
+  "stats": {
+    "views": 15,
+    "likes": 1,
+    "comments": 0
+  },
+  "analysis": {
+    "classification": {
+      "types": [
+        "사생활 침해 가능성"
+      ],
+      "confidence": 30,
+      "reasons": [
+        "사생활 정보 언급: 집"
+      ]
+    },
+    "risk": {
+      "risk_level": "low",
+      "risk_score": 30,
+      "risk_factors": [
+        "분류: 사생활 침해 가능성"
+      ]
+    },
+    "spread": {
+      "is_spreading": false,
+      "spread_count": 0,
+      "platforms": [],
+      "spread_speed": "느림",
+      "notes": []
+    }
+  },
+  "legal_note": "공개 게시물에서 수집됨. 비공개 정보 미포함."
+}

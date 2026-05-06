@@ -159,5 +159,5 @@ if __name__ == "__main__":
         run_scheduler(config, keywords)
     else:
         result = run_cycle(config, keywords)
-        print(f"\n[DONE] {result} items -> dashboard_pending.json")
-        print("-> http://localhost:8080/updater.html\n")
+        print(f"\n[DONE] {result} items -> raw_monitoring.json")
+        print("-> http://localhost:8080/모니터링.html (분류실에서 분류 후 상황실 전달)\n")
