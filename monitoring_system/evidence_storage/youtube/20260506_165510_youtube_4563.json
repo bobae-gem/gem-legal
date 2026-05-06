@@ -1,0 +1,48 @@
+{
+  "saved_at": "2026-05-06T16:55:10.451858",
+  "platform": "유튜브",
+  "type": "영상",
+  "title": "[철순과 코코] 황철순 결국 등판.. &quot;얘는 XX 영상까지 우리 부모님한테 보냈다니까!!&quot; 31화",
+  "author": "땅튜브",
+  "url": "https://www.youtube.com/watch?v=dJCVg4cFrqQ",
+  "published_at": "2026-03-26T10:00:00Z",
+  "found_at": "2026-05-06T16:54:41.541105",
+  "content": {
+    "description": "편집: 김규남 채널에 가입하여 혜택을 누려보세요. https://www.youtube.com/channel/UCS4Nkl8F8U99K8zGPgIApXw/join #황철순 ...",
+    "body": ""
+  },
+  "stats": {
+    "views": 46162,
+    "likes": 489,
+    "comments": 225
+  },
+  "analysis": {
+    "classification": {
+      "types": [
+        "사생활 침해 가능성"
+      ],
+      "confidence": 40,
+      "reasons": [
+        "사생활 정보 언급: 집, 부모",
+        "주목할 만한 조회수: 46,162회"
+      ]
+    },
+    "risk": {
+      "risk_level": "mid",
+      "risk_score": 55,
+      "risk_factors": [
+        "분류: 사생활 침해 가능성",
+        "높은 조회수: 46162회",
+        "댓글 활성화: 225개"
+      ]
+    },
+    "spread": {
+      "is_spreading": false,
+      "spread_count": 0,
+      "platforms": [],
+      "spread_speed": "보통",
+      "notes": []
+    }
+  },
+  "legal_note": "공개 게시물에서 수집됨. 비공개 정보 미포함."
+}

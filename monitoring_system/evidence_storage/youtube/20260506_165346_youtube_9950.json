@@ -1,0 +1,52 @@
+{
+  "saved_at": "2026-05-06T16:53:46.928747",
+  "platform": "유튜브",
+  "type": "영상",
+  "title": "대낮 공원서 2살 아기를? 묻지마 폭행 실제상황 !",
+  "author": "호랑호랑",
+  "url": "https://www.youtube.com/watch?v=bCyiswhJqcQ",
+  "published_at": "2026-05-05T22:00:45Z",
+  "found_at": "2026-05-06T16:52:43.487835",
+  "content": {
+    "description": "영상 출처: MBCNEWS11 분노 주의 !! 인천의 한 공원, 2살 아기가 괴한에게 갑자기 뒤통수를 맞는 충격적인 '묻지마 폭행' 영상입니다.",
+    "body": ""
+  },
+  "stats": {
+    "views": 1051,
+    "likes": 15,
+    "comments": 2
+  },
+  "analysis": {
+    "classification": {
+      "types": [
+        "법적 대응 검토 필요",
+        "명예훼손 가능성",
+        "렉카 확산 가능성"
+      ],
+      "confidence": 60,
+      "reasons": [
+        "명예훼손 패턴: 충격",
+        "렉카 키워드: 충격",
+        "복합 위험 요소 감지"
+      ]
+    },
+    "risk": {
+      "risk_level": "high",
+      "risk_score": 65,
+      "risk_factors": [
+        "분류: 법적 대응 검토 필요",
+        "분류: 명예훼손 가능성",
+        "분류: 렉카 확산 가능성",
+        "조회수: 1051회"
+      ]
+    },
+    "spread": {
+      "is_spreading": false,
+      "spread_count": 0,
+      "platforms": [],
+      "spread_speed": "느림",
+      "notes": []
+    }
+  },
+  "legal_note": "공개 게시물에서 수집됨. 비공개 정보 미포함."
+}

@@ -1,0 +1,45 @@
+{
+  "saved_at": "2026-05-06T16:53:46.864289",
+  "platform": "유튜브",
+  "type": "영상",
+  "title": "친정아버지 장례식날 상간녀 데려와 이혼하자는 남편&quot;구질구질하니 이제 꺼져! 도장찍어&quot;저는 웃으며 도장 찍어줬습니다 3일 뒤, 길바닥에서 통곡하는 남편",
+  "author": "전 세계의 이야기",
+  "url": "https://www.youtube.com/watch?v=sNaCq-PZ5cE",
+  "published_at": "2026-05-06T05:00:51Z",
+  "found_at": "2026-05-06T16:52:38.649641",
+  "content": {
+    "description": "\"야, 네 몸에선 고기 핏물 냄새밖에 안 나. 이제 그만 내 인생에서 꺼져줘!\" 평생을 기름 냄새 맡으며 남편과 함께 일군 갈비집. 시장통 ...",
+    "body": ""
+  },
+  "stats": {
+    "views": 198,
+    "likes": 11,
+    "comments": 1
+  },
+  "analysis": {
+    "classification": {
+      "types": [
+        "사생활 침해 가능성"
+      ],
+      "confidence": 30,
+      "reasons": [
+        "사생활 정보 언급: 집"
+      ]
+    },
+    "risk": {
+      "risk_level": "low",
+      "risk_score": 30,
+      "risk_factors": [
+        "분류: 사생활 침해 가능성"
+      ]
+    },
+    "spread": {
+      "is_spreading": false,
+      "spread_count": 0,
+      "platforms": [],
+      "spread_speed": "느림",
+      "notes": []
+    }
+  },
+  "legal_note": "공개 게시물에서 수집됨. 비공개 정보 미포함."
+}

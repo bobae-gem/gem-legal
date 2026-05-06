@@ -1,0 +1,56 @@
+{
+  "saved_at": "2026-05-06T16:55:10.361778",
+  "platform": "유튜브",
+  "type": "영상",
+  "title": "첫 돌 하루, 외할아버지 메시지에 웃음 폭발 #심형탁 #심하루 #형탁사야 #하루 #사야 #한일부부 #예능 #Haru #SimHyungTak #ハル #サヤ #슈돌 #슈퍼맨",
+  "author": "KrVlog 247",
+  "url": "https://www.youtube.com/watch?v=o13WOK3TH_U",
+  "published_at": "2026-02-18T14:01:17Z",
+  "found_at": "2026-05-06T16:53:55.837085",
+  "content": {
+    "description": "심형탁♥사야, 그리고 아기 하루의 리얼 가족일기 한류 배우 심형탁, 일본인 아내 사야, 그리고 눈을 뗄 수 없는 사랑둥이 아들 하루!",
+    "body": ""
+  },
+  "stats": {
+    "views": 168329,
+    "likes": 4274,
+    "comments": 33
+  },
+  "analysis": {
+    "classification": {
+      "types": [
+        "렉카 확산 가능성",
+        "법적 대응 검토 필요",
+        "사생활 침해 가능성"
+      ],
+      "confidence": 65,
+      "reasons": [
+        "사생활 정보 언급: 가족",
+        "조회수 급증: 168,329회",
+        "복합 위험 요소 감지"
+      ]
+    },
+    "risk": {
+      "risk_level": "urgent",
+      "risk_score": 90,
+      "risk_factors": [
+        "분류: 렉카 확산 가능성",
+        "분류: 법적 대응 검토 필요",
+        "분류: 사생활 침해 가능성",
+        "바이럴 조회수: 168329회"
+      ]
+    },
+    "spread": {
+      "is_spreading": true,
+      "spread_count": 1,
+      "platforms": [
+        "유튜브"
+      ],
+      "spread_speed": "바이럴",
+      "notes": [
+        "10만 조회 달성 — 즉시 대응 필요"
+      ]
+    }
+  },
+  "legal_note": "공개 게시물에서 수집됨. 비공개 정보 미포함."
+}

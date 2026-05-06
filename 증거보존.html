@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>증거보존팀 — 보배 법률전략실</title>
+<style>
+:root{--bg:#070910;--sur:#0d1017;--sur2:#121620;--sur3:#181d28;--bdr:#222a3a;--bdr2:#1a2030;--acc:#4d7aff;--acc2:#7a4dff;--red:#ff3a3a;--org:#ff8822;--yel:#ffcc22;--grn:#22ffaa;--tel:#22ccff;--txt:#edf0ff;--txt2:#8492b0;--txt3:#424f68}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Malgun Gothic',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;font-size:13px}
+nav{display:flex;align-items:center;padding:0 20px;height:52px;background:var(--sur);border-bottom:1px solid var(--bdr);gap:3px;position:sticky;top:0;z-index:100;overflow-x:auto}
+.nlogo{font-size:14px;font-weight:900;color:var(--txt);margin-right:12px;white-space:nowrap}.nlogo span{color:var(--acc)}
+a.nl{text-decoration:none;color:var(--txt3);font-size:12px;font-weight:700;padding:5px 10px;border-radius:7px;transition:all .15s;border:1px solid transparent;white-space:nowrap;flex-shrink:0}
+a.nl:hover{color:var(--txt2);background:var(--sur2)}a.nl.on{color:var(--acc);background:#4d7aff12;border-color:#4d7aff28}
+.nr{margin-left:auto;white-space:nowrap;font-size:12px;color:var(--txt3);padding-left:10px}
+.subnav{display:flex;align-items:center;gap:10px;padding:0 20px;height:36px;background:#0a0c12;border-bottom:1px solid #ff3a3a22;flex-shrink:0;position:sticky;top:52px;z-index:99}
+.snl{text-decoration:none;color:#ff6666;font-size:12px;font-weight:800;padding:4px 12px;border-radius:6px;border:1px solid #ff3a3a28;background:#ff3a3a12;white-space:nowrap;transition:all .15s}
+.snl:hover{background:#ff3a3a20}.snl.on{background:#ff3a3a22;border-color:#ff3a3a40}
+.sn-arr{color:#ff3a3a55;font-size:11px;font-weight:700}
+.sn-flow{display:flex;align-items:center;gap:6px}
+.sn-desc{font-size:11px;color:#424f68;font-weight:600;margin-left:8px}
+
+.layout{display:grid;grid-template-columns:220px 1fr;height:calc(100vh - 88px)}
+.sidebar{background:var(--sur);border-right:1px solid var(--bdr);overflow-y:auto;padding:12px 10px}
+.sb-sec{margin-bottom:14px}
+.sb-title{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--txt3);margin-bottom:8px;padding:0 4px}
+.f-item{display:flex;align-items:center;justify-content:space-between;padding:7px 10px;border-radius:8px;cursor:pointer;border:1px solid transparent;margin-bottom:3px;transition:all .15s}
+.f-item:hover{background:var(--sur2);border-color:var(--bdr)}
+.f-item.on{background:var(--sur2);border-color:var(--acc)28}
+.fi-left{display:flex;align-items:center;gap:7px}
+.fi-ico{font-size:13px}
+.fi-name{font-size:12px;font-weight:700;color:var(--txt2)}
+.f-item.on .fi-name{color:var(--txt)}
+.fi-cnt{font-size:10px;font-weight:800;padding:1px 6px;border-radius:6px;background:var(--sur3);color:var(--txt3)}
+.fi-cnt.has{background:#22ffaa18;color:var(--grn)}
+.div-line{height:1px;background:var(--bdr2);margin:10px 0}
+.stat-mini{background:var(--sur2);border-radius:8px;padding:10px 12px;margin-bottom:8px;border:1px solid var(--bdr2)}
+.sm-num{font-size:20px;font-weight:900;color:var(--grn)}
+.sm-lbl{font-size:10px;color:var(--txt3);margin-top:2px}
+
+.main{display:flex;flex-direction:column;overflow:hidden}
+.mhead{padding:12px 20px;border-bottom:1px solid var(--bdr2);background:var(--sur);flex-shrink:0;display:flex;align-items:center;justify-content:space-between}
+.pb{flex:1;overflow-y:auto;padding:14px 20px}
+
+.btn{padding:6px 13px;border-radius:7px;font-size:11px;font-weight:700;cursor:pointer;border:none;transition:all .15s}
+.bg{background:var(--sur2);color:var(--txt2);border:1px solid var(--bdr)}.bg:hover{border-color:var(--acc);color:var(--acc)}
+.bp{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff}.bp:hover{opacity:.85}
+.bgrn{background:#22ffaa18;color:var(--grn);border:1px solid #22ffaa28}.bgrn:hover{background:#22ffaa25}
+.sm{padding:4px 9px;font-size:10px}
+
+/* 증거 카드 */
+.ecard{background:var(--sur);border:1px solid var(--bdr);border-radius:12px;margin-bottom:10px;overflow:hidden}
+.ec-header{display:flex;align-items:center;gap:7px;padding:12px 15px;border-bottom:1px solid var(--bdr2);flex-wrap:wrap}
+.ec-plat{font-size:10px;font-weight:800;padding:3px 8px;border-radius:5px}
+.pl-yt{background:#ff3a3a18;color:#ff6666;border:1px solid #ff3a3a28}
+.pl-cm{background:#4d7aff18;color:#7a9fff;border:1px solid #4d7aff28}
+.pl-nw{background:#ffcc2218;color:#ffdd55;border:1px solid #ffcc2228}
+.pl-ig{background:#7a4dff18;color:#aa7fff;border:1px solid #7a4dff28}
+.pl-etc{background:#424f6818;color:#6b7fa3;border:1px solid #424f6828}
+.risk-b{font-size:10px;font-weight:800;padding:3px 8px;border-radius:5px}
+.rb-u{background:#ff3a3a20;color:#ff5555;border:1px solid #ff3a3a35}
+.rb-h{background:#ff882218;color:#ffaa44;border:1px solid #ff882228}
+.rb-m{background:#ffcc2218;color:#ffdd44;border:1px solid #ffcc2228}
+.rb-l{background:#22ffaa18;color:#33ffaa;border:1px solid #22ffaa28}
+.cap-badge{font-size:10px;font-weight:800;padding:3px 8px;border-radius:5px;animation:blink2 2s infinite}
+@keyframes blink2{0%,100%{opacity:1}50%{opacity:.6}}
+.cap-need{background:#ff882218;color:#ffaa44;border:1px solid #ff882228}
+.cap-done{background:#22ffaa18;color:#33ffaa;border:1px solid #22ffaa28;animation:none}
+.ec-date{font-size:10px;color:var(--txt3);margin-left:auto}
+.ec-title{font-size:14px;font-weight:800;color:var(--txt);padding:10px 15px 4px;line-height:1.4}
+.ec-author{font-size:11px;color:var(--txt3);padding:0 15px 8px}
+
+/* 증거 상세 그리드 */
+.ev-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--bdr2)}
+.ev-col{padding:10px 15px;border-right:1px solid var(--bdr2)}
+.ev-col:last-child{border-right:none}
+.ev-title{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--txt3);margin-bottom:8px}
+.ev-row{display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--bdr2);font-size:11px}
+.ev-row:last-child{border-bottom:none}
+.ev-lbl{color:var(--txt3)}
+.ev-val{color:var(--txt2);font-weight:600;text-align:right;max-width:180px;word-break:break-all}
+.ev-val.highlight{color:var(--grn);font-weight:800}
+.ev-val.warn{color:var(--org)}
+
+.ec-body{padding:10px 15px;border-top:1px solid var(--bdr2)}
+.ec-body-title{font-size:10px;font-weight:800;color:var(--txt3);margin-bottom:5px;letter-spacing:.5px}
+.ec-body-text{font-size:11px;color:var(--txt2);background:var(--sur2);border-radius:6px;padding:8px 10px;border:1px solid var(--bdr2);line-height:1.6;font-family:monospace;white-space:pre-wrap;word-break:break-all;max-height:120px;overflow-y:auto}
+
+.ec-vtags{display:flex;flex-wrap:wrap;gap:4px;padding:8px 15px;border-top:1px solid var(--bdr2)}
+.vtag{font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;background:#ff3a3a12;color:#ff6666;border:1px solid #ff3a3a28}
+
+.ec-actions{display:flex;gap:6px;padding:10px 15px;border-top:1px solid var(--bdr2)}
+
+.empty{text-align:center;padding:40px;color:var(--txt3);font-size:12px}
+.notice-box{background:#22ffaa08;border:1px solid #22ffaa20;border-radius:9px;padding:10px 14px;margin-bottom:12px;font-size:11px;color:var(--grn);line-height:1.7}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nlogo">보배 <span>법률전략실</span></div>
+  <a href="상황실.html" class="nl">🔴 메인 상황실</a>
+  <a href="업데이터.html" class="nl">🤖 상황실 업데이터</a>
+  <a href="사건.html" class="nl">📁 사건 관리실</a>
+  <a href="검수실.html" class="nl">🛡️ 콘텐츠 검수실</a>
+  <a href="리서치.html" class="nl">🔍 리서치 센터</a>
+  <a href="메모리.html" class="nl">🧠 메모리 관리실</a>
+  <a href="대시보드.html" class="nl">📊 시스템구조</a>
+  <div class="nr" id="clk">--:--:--</div>
+</nav>
+<div class="subnav">
+  <span class="sn-flow"><a href="모니터링.html" class="snl">👁️ 모니터링 센터</a>
+  <span class="sn-arr">→</span>
+  <a href="분류실.html"   class="snl">📋 분류실</a>
+  <span class="sn-arr">→</span>
+  <a href="증거보존.html" class="snl on">📦 증거보존팀</a></span>
+  <span class="sn-desc">공개 게시물만 · 수집 → 분류 → 증거보존 → 상황실</span>
+</div>
+
+<div class="layout">
+  <!-- 사이드바 -->
+  <div class="sidebar">
+    <div class="sb-sec">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px">
+        <div class="stat-mini"><div class="sm-num" id="s-total">0</div><div class="sm-lbl">전체 증거</div></div>
+        <div class="stat-mini"><div class="sm-num" style="color:var(--org)" id="s-need-cap">0</div><div class="sm-lbl">캡처 필요</div></div>
+      </div>
+    </div>
+    <div class="sb-sec">
+      <div class="sb-title">플랫폼 필터</div>
+      <div class="f-item on" onclick="setFilter('all',this)">
+        <div class="fi-left"><span class="fi-ico">📋</span><span class="fi-name">전체</span></div>
+        <span class="fi-cnt has" id="cnt-all">0</span>
+      </div>
+      <div class="f-item" onclick="setFilter('유튜브',this)">
+        <div class="fi-left"><span class="fi-ico">▶️</span><span class="fi-name">유튜브</span></div>
+        <span class="fi-cnt" id="cnt-yt">0</span>
+      </div>
+      <div class="f-item" onclick="setFilter('커뮤니티',this)">
+        <div class="fi-left"><span class="fi-ico">💬</span><span class="fi-name">커뮤니티</span></div>
+        <span class="fi-cnt" id="cnt-cm">0</span>
+      </div>
+      <div class="f-item" onclick="setFilter('뉴스',this)">
+        <div class="fi-left"><span class="fi-ico">📰</span><span class="fi-name">뉴스</span></div>
+        <span class="fi-cnt" id="cnt-nw">0</span>
+      </div>
+      <div class="f-item" onclick="setFilter('인스타그램',this)">
+        <div class="fi-left"><span class="fi-ico">📸</span><span class="fi-name">인스타그램</span></div>
+        <span class="fi-cnt" id="cnt-ig">0</span>
+      </div>
+    </div>
+    <div class="div-line"></div>
+    <div class="sb-sec">
+      <div class="sb-title">보존 원칙</div>
+      <div style="font-size:11px;color:var(--txt3);line-height:1.8;padding:0 4px">
+        ✓ 발견 즉시 저장<br>
+        ✓ 원본 그대로 보존<br>
+        ✓ 편집 가능성 메모<br>
+        ✓ 공개 게시물만 저장<br>
+        ✗ 감정적 해석 금지<br>
+        ✗ 미확인 사실 기록 금지
+      </div>
+    </div>
+    <div class="div-line"></div>
+    <button class="btn bg" style="width:100%;font-size:11px" onclick="loadEvidence()">새로고침</button>
+  </div>
+
+  <!-- 메인 -->
+  <div class="main">
+    <div class="mhead">
+      <div>
+        <div style="font-size:15px;font-weight:900">📦 증거보존팀</div>
+        <div style="font-size:11px;color:var(--txt3);margin-top:2px">삭제 전 즉시 저장 · URL·원문·통계·시각 보존 · 공개 게시물만</div>
+      </div>
+      <div style="display:flex;gap:7px">
+        <button class="btn bgrn sm" onclick="loadEvidence()">새로고침</button>
+        <button class="btn bg sm" onclick="openAddModal()">+ 수동 등록</button>
+      </div>
+    </div>
+    <div class="pb" id="list-area">
+      <div class="notice-box">
+        📦 증거보존 원칙: "나중에 저장"이 아니라 <strong>"발견 즉시 저장"</strong><br>
+        스토리·임시 게시물은 24시간 내 삭제 가능 → 발견 즉시 캡처 필수
+      </div>
+      <div id="ev-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 수동 등록 모달 -->
+<div id="modal" style="display:none;position:fixed;inset:0;background:#00000088;z-index:200;align-items:center;justify-content:center">
+  <div style="background:var(--sur);border:1px solid var(--bdr);border-radius:14px;padding:22px;width:580px;max-width:92vw;max-height:90vh;overflow-y:auto">
+    <div style="font-size:15px;font-weight:900;margin-bottom:14px">📦 증거 수동 등록</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div style="margin-bottom:10px"><label style="display:block;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--txt3);margin-bottom:5px">플랫폼</label>
+        <select id="f-plat" style="width:100%;background:var(--sur2);border:1px solid var(--bdr);border-radius:8px;padding:8px 11px;color:var(--txt);font-size:12px;outline:none"><option>유튜브</option><option>커뮤니티</option><option>인스타그램</option><option>뉴스</option><option>틱톡</option><option>기타</option></select>
+      </div>
+      <div style="margin-bottom:10px"><label style="display:block;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--txt3);margin-bottom:5px">유형</label>
+        <select id="f-type" style="width:100%;background:var(--sur2);border:1px solid var(--bdr);border-radius:8px;padding:8px 11px;color:var(--txt);font-size:12px;outline:none"><option>영상</option><option>쇼츠/릴스</option><option>게시글</option><option>댓글</option><option>스토리</option><option>기사</option><option>렉카 영상</option></select>
+      </div>
+    </div>
+    <div style="margin-bottom:10px"><label style="display:block;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--txt3);margin-bottom:5px">제목</label><input id="f-title" style="width:100%;background:var(--sur2);border:1px solid var(--bdr);border-radius:8px;padding:8px 11px;color:var(--txt);font-size:12px;outline:none" placeholder="게시물·영상 제목"></div>
+    <div style="margin-bottom:10px"><label style="display:block;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--txt3);margin-bottom:5px">URL (원문)</label><input id="f-url" style="width:100%;background:var(--sur2);border:1px solid var(--bdr);border-radius:8px;padding:8px 11px;color:var(--txt);font-size:12px;outline:none" placeholder="https://..."></div>
+    <div style="margin-bottom:10px"><label style="display:block;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--txt3);margin-bottom:5px">작성자/채널</label><input id="f-author" style="width:100%;background:var(--sur2);border:1px solid var(--bdr);border-radius:8px;padding:8px 11px;color:var(--txt);font-size:12px;outline:none" placeholder="공개된 이름만"></div>
+    <div style="margin-bottom:10px"><label style="display:block;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--txt3);margin-bottom:5px">원문 내용 (그대로 붙여넣기)</label><textarea id="f-body" style="width:100%;background:var(--sur2);border:1px solid var(--bdr);border-radius:8px;padding:8px 11px;color:var(--txt);font-size:12px;outline:none;resize:vertical;min-height:80px;font-family:monospace" placeholder="원문 그대로. 요약하지 마세요."></textarea></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px">
+      <div><label style="display:block;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--txt3);margin-bottom:5px">업로드 시각</label><input id="f-postdate" style="width:100%;background:var(--sur2);border:1px solid var(--bdr);border-radius:8px;padding:8px 11px;color:var(--txt);font-size:12px;outline:none" placeholder="2026. 5. 6. 14:30"></div>
+      <div><label style="display:block;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--txt3);margin-bottom:5px">발견 시각</label><input id="f-founddate" style="width:100%;background:var(--sur2);border:1px solid var(--bdr);border-radius:8px;padding:8px 11px;color:var(--txt);font-size:12px;outline:none" placeholder="자동 입력"></div>
+      <div><label style="display:block;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--txt3);margin-bottom:5px">캡처 여부</label>
+        <select id="f-cap" style="width:100%;background:var(--sur2);border:1px solid var(--bdr);border-radius:8px;padding:8px 11px;color:var(--txt);font-size:12px;outline:none"><option value="need">⚠️ 즉시 필요</option><option value="done">✅ 완료</option><option value="no">불필요</option></select>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px">
+      <div><label style="display:block;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--txt3);margin-bottom:5px">조회수</label><input id="f-views" style="width:100%;background:var(--sur2);border:1px solid var(--bdr);border-radius:8px;padding:8px 11px;color:var(--txt);font-size:12px;outline:none" placeholder="예: 84,200"></div>
+      <div><label style="display:block;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--txt3);margin-bottom:5px">좋아요</label><input id="f-likes" style="width:100%;background:var(--sur2);border:1px solid var(--bdr);border-radius:8px;padding:8px 11px;color:var(--txt);font-size:12px;outline:none"></div>
+      <div><label style="display:block;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--txt3);margin-bottom:5px">댓글 수</label><input id="f-comments" style="width:100%;background:var(--sur2);border:1px solid var(--bdr);border-radius:8px;padding:8px 11px;color:var(--txt);font-size:12px;outline:none"></div>
+    </div>
+    <div style="margin-bottom:10px"><label style="display:block;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--txt3);margin-bottom:5px">위험도</label>
+      <select id="f-risk" style="width:100%;background:var(--sur2);border:1px solid var(--bdr);border-radius:8px;padding:8px 11px;color:var(--txt);font-size:12px;outline:none">
+        <option value="urgent">🔴 매우 높음</option><option value="high">🟠 높음</option><option value="mid" selected>🟡 중간</option><option value="low">🟢 낮음</option>
+      </select>
+    </div>
+    <div style="display:flex;gap:7px;justify-content:flex-end;margin-top:14px">
+      <button class="btn bg" onclick="closeModal()">취소</button>
+      <button class="btn bgrn" onclick="saveManual()">📦 즉시 보존</button>
+    </div>
+  </div>
+</div>
+
+<script>
+setInterval(()=>{ document.getElementById('clk').textContent = new Date().toLocaleTimeString('ko-KR',{hour12:false}); },1000);
+
+let evidences = JSON.parse(localStorage.getItem('evidence_v1')||'[]');
+let classifications = JSON.parse(localStorage.getItem('mon_classifications')||'{}');
+let currentFilter = 'all';
+
+function saveEv(){ localStorage.setItem('evidence_v1', JSON.stringify(evidences)); }
+
+const RISK_CSS = {urgent:'rb-u',high:'rb-h',mid:'rb-m',low:'rb-l'};
+const RISK_LABEL = {urgent:'매우 높음',high:'높음',mid:'중간',low:'낮음'};
+const PLAT_CSS = {유튜브:'pl-yt',인스타그램:'pl-ig',커뮤니티:'pl-cm',뉴스:'pl-nw'};
+
+function loadEvidence(){
+  // 모니터링에서 needs_evidence 항목 가져오기
+  const monitoring = JSON.parse(localStorage.getItem('monitoring_v1')||'[]');
+  const evidenceItems = monitoring.filter(i => classifications[i.id] === 'needs_evidence' || classifications[i.id] === 'needs_legal_review' || classifications[i.id] === 'needs_dashboard_alert');
+
+  // 기존 수동 등록 항목 + 자동 항목 합치기
+  const existing = new Set(evidences.map(e=>e.id));
+  evidenceItems.forEach(item => {
+    if(!existing.has(item.id)){
+      evidences.push({
+        id: item.id,
+        platform: item.platform,
+        type: item.ptype||item.type,
+        title: item.title,
+        author: item.author||item.channel,
+        url: item.url||item.raw_url,
+        body: item.body,
+        postdate: item.postdate||item.published_at,
+        founddate: item.founddate||item.date,
+        views: item.views,
+        likes: item.likes,
+        comments: item.comments,
+        risk: item.risk||'mid',
+        capStatus: item.capStatus||'need',
+        vtypes: item.vtypes||[],
+        delRisk: item.delrisk,
+        class_status: classifications[item.id],
+        saved_at: new Date().toISOString()
+      });
+      existing.add(item.id);
+    }
+  });
+  saveEv();
+  renderList();
+}
+
+function renderList(){
+  updateStats();
+  let list = evidences;
+  if(currentFilter !== 'all') list = evidences.filter(e=>e.platform===currentFilter);
+
+  document.getElementById('s-total').textContent = evidences.length;
+  document.getElementById('s-need-cap').textContent = evidences.filter(e=>e.capStatus==='need').length;
+
+  const el = document.getElementById('ev-list');
+  if(!list.length){ el.innerHTML='<div class="empty"><div style="font-size:28px;opacity:.3;margin-bottom:8px">📦</div>보존된 증거가 없습니다</div>'; return; }
+
+  el.innerHTML = list.map((ev,i)=>{
+    const capCss = ev.capStatus==='need'?'cap-need':'cap-done';
+    const capLabel = ev.capStatus==='need'?'⚠️ 즉시 캡처 필요':'✅ 캡처 완료';
+    const vtags = (ev.vtypes||[]).map(v=>`<span class="vtag">${v}</span>`).join('');
+    return `<div class="ecard">
+      <div class="ec-header">
+        <span class="ec-plat ${PLAT_CSS[ev.platform]||'pl-etc'}">${ev.platform||'?'}</span>
+        <span style="font-size:10px;color:var(--txt3)">${ev.type||''}</span>
+        <span class="risk-b ${RISK_CSS[ev.risk]||'rb-m'}">${RISK_LABEL[ev.risk]||'중간'}</span>
+        <span class="cap-badge ${capCss}">${capLabel}</span>
+        <span class="ec-date">발견: ${ev.founddate||ev.saved_at?.slice(0,10)||''}</span>
+      </div>
+      <div class="ec-title">${ev.title||'(제목 없음)'}</div>
+      ${ev.author?`<div class="ec-author">작성자/채널: ${ev.author}</div>`:''}
+      <div class="ev-grid">
+        <div class="ev-col">
+          <div class="ev-title">증거 정보</div>
+          ${ev.url?`<div class="ev-row"><span class="ev-lbl">URL</span><a href="${ev.url}" target="_blank" style="color:var(--acc);font-size:10px;max-width:180px;word-break:break-all">${ev.url.slice(0,50)}...</a></div>`:''}
+          <div class="ev-row"><span class="ev-lbl">업로드 시각</span><span class="ev-val">${ev.postdate||'미확인'}</span></div>
+          <div class="ev-row"><span class="ev-lbl">발견 시각</span><span class="ev-val highlight">${ev.founddate||'미기록'}</span></div>
+          ${ev.delRisk?`<div class="ev-row"><span class="ev-lbl">삭제 가능성</span><span class="ev-val warn">${ev.delRisk}</span></div>`:''}
+        </div>
+        <div class="ev-col">
+          <div class="ev-title">통계 (발견 시점)</div>
+          <div class="ev-row"><span class="ev-lbl">조회수</span><span class="ev-val">${ev.views||'미기록'}</span></div>
+          <div class="ev-row"><span class="ev-lbl">좋아요</span><span class="ev-val">${ev.likes||'미기록'}</span></div>
+          <div class="ev-row"><span class="ev-lbl">댓글 수</span><span class="ev-val">${ev.comments||'미기록'}</span></div>
+          <div class="ev-row"><span class="ev-lbl">저장 일시</span><span class="ev-val">${ev.saved_at?.slice(0,16).replace('T',' ')||''}</span></div>
+        </div>
+      </div>
+      ${ev.body?`<div class="ec-body"><div class="ec-body-title">원문 내용</div><div class="ec-body-text">${ev.body}</div></div>`:''}
+      ${vtags?`<div class="ec-vtags">${vtags}</div>`:''}
+      <div class="ec-actions">
+        ${ev.capStatus==='need'?`<button class="btn bgrn sm" onclick="markCaptured(${i})">✅ 캡처 완료 표시</button>`:''}
+        ${ev.url?`<a href="${ev.url}" target="_blank" class="btn bg sm" style="text-decoration:none">원문 보기</a>`:''}
+        <button class="btn bg sm" onclick="delEvidence(${i})" style="margin-left:auto">삭제</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function updateStats(){
+  const total = evidences.length;
+  document.getElementById('cnt-all').textContent = total;
+  document.getElementById('cnt-all').className = 'fi-cnt'+(total>0?' has':'');
+  const pMap = {유튜브:'cnt-yt',커뮤니티:'cnt-cm',뉴스:'cnt-nw',인스타그램:'cnt-ig'};
+  Object.entries(pMap).forEach(([p,id])=>{
+    const el = document.getElementById(id);
+    const n = evidences.filter(e=>e.platform===p).length;
+    if(el){ el.textContent=n; el.className='fi-cnt'+(n>0?' has':''); }
+  });
+}
+
+function setFilter(f, el){
+  currentFilter = f;
+  document.querySelectorAll('.f-item').forEach(m=>m.classList.remove('on'));
+  if(el) el.classList.add('on');
+  renderList();
+}
+
+function markCaptured(i){ evidences[i].capStatus='done'; saveEv(); renderList(); }
+function delEvidence(i){ if(!confirm('삭제하시겠습니까?')) return; evidences.splice(i,1); saveEv(); renderList(); }
+
+function openAddModal(){
+  const now = new Date();
+  document.getElementById('f-founddate').value = `${now.getFullYear()}. ${now.getMonth()+1}. ${now.getDate()}. ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+  document.getElementById('modal').style.display='flex';
+  setTimeout(()=>document.getElementById('f-title').focus(),80);
+}
+function closeModal(){ document.getElementById('modal').style.display='none'; }
+
+function saveManual(){
+  const title = document.getElementById('f-title').value.trim();
+  if(!title){ alert('제목을 입력하세요'); return; }
+  evidences.unshift({
+    id: 'ev_manual_'+Date.now(),
+    platform: document.getElementById('f-plat').value,
+    type: document.getElementById('f-type').value,
+    title,
+    author: document.getElementById('f-author').value,
+    url: document.getElementById('f-url').value,
+    body: document.getElementById('f-body').value,
+    postdate: document.getElementById('f-postdate').value,
+    founddate: document.getElementById('f-founddate').value,
+    views: document.getElementById('f-views').value,
+    likes: document.getElementById('f-likes').value,
+    comments: document.getElementById('f-comments').value,
+    risk: document.getElementById('f-risk').value,
+    capStatus: document.getElementById('f-cap').value,
+    saved_at: new Date().toISOString(),
+    manual: true
+  });
+  saveEv(); closeModal(); renderList();
+}
+
+document.getElementById('modal').addEventListener('click', e=>{ if(e.target===document.getElementById('modal')) closeModal(); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+
+loadEvidence();
+</script>
+</body>
+</html>

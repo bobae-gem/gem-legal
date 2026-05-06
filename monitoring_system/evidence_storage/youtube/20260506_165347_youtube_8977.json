@@ -1,0 +1,50 @@
+{
+  "saved_at": "2026-05-06T16:53:47.200137",
+  "platform": "유튜브",
+  "type": "영상",
+  "title": "​@흑자헬스SurplusHealth 황철순보다 많이 꽂았는데도 몸이 개 떡이 된 이유 | 흑자의 결정적인 실수 3가지 #40대 #틀포티 #호르몬진단",
+  "author": "크로커다일 남자훈련소",
+  "url": "https://www.youtube.com/watch?v=WnbQhfJYdrw",
+  "published_at": "2025-12-16T01:45:07Z",
+  "found_at": "2026-05-06T16:53:16.084215",
+  "content": {
+    "description": "흑자헬스 #로이더 #스테로이드 [궁금한 점은 크로커다일 인스타그램에서 물어보세요!] ✔️인스타그램 ...",
+    "body": ""
+  },
+  "stats": {
+    "views": 97317,
+    "likes": 1417,
+    "comments": 528
+  },
+  "analysis": {
+    "classification": {
+      "types": [
+        "단순 언급"
+      ],
+      "confidence": 15,
+      "reasons": [
+        "주목할 만한 조회수: 97,317회",
+        "위험 패턴 미감지"
+      ]
+    },
+    "risk": {
+      "risk_level": "mid",
+      "risk_score": 40,
+      "risk_factors": [
+        "분류: 단순 언급",
+        "바이럴 조회수: 97317회",
+        "댓글 활성화: 528개"
+      ]
+    },
+    "spread": {
+      "is_spreading": true,
+      "spread_count": 0,
+      "platforms": [],
+      "spread_speed": "빠름",
+      "notes": [
+        "5만 조회 — 확산 중"
+      ]
+    }
+  },
+  "legal_note": "공개 게시물에서 수집됨. 비공개 정보 미포함."
+}

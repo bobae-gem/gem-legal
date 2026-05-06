@@ -1,5 +1,5 @@
 {
-  "youtube_api_key": "YOUR_YOUTUBE_API_KEY",
+  "youtube_api_key": "REMOVED_API_KEY",
   "check_intervals_sec": {
     "youtube": 600,
     "news": 1800,

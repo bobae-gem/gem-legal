@@ -1,0 +1,53 @@
+{
+  "saved_at": "2026-05-06T16:55:10.405086",
+  "platform": "유튜브",
+  "type": "영상",
+  "title": "[스트리머 납치 사건②] 단순 폭행 사건이 아니다? 장기매매까지 이어질뻔한 스트리머 납치 사건 l #히든아이 l #MBCevery1 l EP.82",
+  "author": "MBC every1",
+  "url": "https://www.youtube.com/watch?v=1SBnMKy7etU",
+  "published_at": "2026-04-27T12:50:00Z",
+  "found_at": "2026-05-06T16:54:14.466725",
+  "content": {
+    "description": "충격 사건 파일 ▷ 경찰차 조롱하고 발길질까지...통제 불능 민폐 10대에 '정신 좀 차렸으면' 최강창민 일침 ▷ 히든아이 사상 최초!",
+    "body": ""
+  },
+  "stats": {
+    "views": 17601,
+    "likes": 189,
+    "comments": 25
+  },
+  "analysis": {
+    "classification": {
+      "types": [
+        "렉카 확산 가능성",
+        "법적 대응 검토 필요",
+        "명예훼손 가능성"
+      ],
+      "confidence": 70,
+      "reasons": [
+        "명예훼손 패턴: 충격",
+        "렉카 키워드: 충격",
+        "주목할 만한 조회수: 17,601회",
+        "복합 위험 요소 감지"
+      ]
+    },
+    "risk": {
+      "risk_level": "high",
+      "risk_score": 75,
+      "risk_factors": [
+        "분류: 렉카 확산 가능성",
+        "분류: 법적 대응 검토 필요",
+        "분류: 명예훼손 가능성",
+        "높은 조회수: 17601회"
+      ]
+    },
+    "spread": {
+      "is_spreading": false,
+      "spread_count": 0,
+      "platforms": [],
+      "spread_speed": "보통",
+      "notes": []
+    }
+  },
+  "legal_note": "공개 게시물에서 수집됨. 비공개 정보 미포함."
+}

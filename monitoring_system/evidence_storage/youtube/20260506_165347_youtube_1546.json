@@ -1,0 +1,45 @@
+{
+  "saved_at": "2026-05-06T16:53:47.281832",
+  "platform": "유튜브",
+  "type": "영상",
+  "title": "황철순,  “전 아내 주장은 허위…법적 대응할 것” #황철순 #이혼 #폭행 #양육비 #법적대응 #이슈",
+  "author": "이슈퀵",
+  "url": "https://www.youtube.com/watch?v=qa0MWC6ERYc",
+  "published_at": "2025-04-24T05:29:09Z",
+  "found_at": "2026-05-06T16:53:20.720504",
+  "content": {
+    "description": "뜨거운 연예 이슈를 빠르게 전달하는 채널 이슈퀵 issuequick@gmail.com #Shorts.",
+    "body": ""
+  },
+  "stats": {
+    "views": 43,
+    "likes": 0,
+    "comments": 0
+  },
+  "analysis": {
+    "classification": {
+      "types": [
+        "허위사실 가능성"
+      ],
+      "confidence": 30,
+      "reasons": [
+        "허위사실 패턴: 허위"
+      ]
+    },
+    "risk": {
+      "risk_level": "low",
+      "risk_score": 30,
+      "risk_factors": [
+        "분류: 허위사실 가능성"
+      ]
+    },
+    "spread": {
+      "is_spreading": false,
+      "spread_count": 0,
+      "platforms": [],
+      "spread_speed": "느림",
+      "notes": []
+    }
+  },
+  "legal_note": "공개 게시물에서 수집됨. 비공개 정보 미포함."
+}

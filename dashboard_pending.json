@@ -1,6 +1,1820 @@
 {
   "pending": [
     {
+      "id": "mon_20260506165510_4674",
+      "category": "alert",
+      "priority": "low",
+      "title": "[뉴스·기사] 황철순 전여친 \"음주운전 말렸더니 폭행...머리 질질 끌고가\" 폭로 [종합] - v.daum.net",
+      "detail": "채널/작성자: v.daum.net\n내용: <a href=\"https://news.google.com/rss/articles/CBMiS0FVX3lxTE9QT0pJZks4Wlo1U2tBdXBsZDV1RTE4cDZxeUZvQXBpRkVycU4tQTRHZGdFRElBdXNGNDY2T3BsQlVDMTllTklzbTBKYw?oc=5\" target=\"_blank\">황철순 전여친 \"음주운전 말렸더니 폭행...머\nURL: https://news.google.com/rss/articles/CBMiS0FVX3lxTE9QT0pJZks4Wlo1U2tBdXBsZDV1RTE4cDZxeUZvQXBpRkVycU4tQTRHZGdFRElBdXNGNDY2T3BsQlVDMTllTklzbTBKYw?oc=5\n위험 요소: 분류: 명예훼손 가능성",
+      "sources": [
+        "뉴스 자동 수집",
+        "감지 키워드: 엔돌핀 사건"
+      ],
+      "confidence": 25,
+      "confidence_reasons": [
+        "명예훼손 패턴: 폭로"
+      ],
+      "time": "2026. 5. 6. 16:55",
+      "status": "pending",
+      "vtypes": [
+        "명예훼손 가능성"
+      ],
+      "connects": [
+        "법률전략실"
+      ],
+      "risk_score": 25,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9QT0pJZks4Wlo1U2tBdXBsZDV1RTE4cDZxeUZvQXBpRkVycU4tQTRHZGdFRElBdXNGNDY2T3BsQlVDMTllTklzbTBKYw?oc=5"
+    },
+    {
+      "id": "mon_20260506165510_2487",
+      "category": "alert",
+      "priority": "high",
+      "title": "[유튜브·영상] 유명 BJ생방 폭행충격 실체#이슈 #실제사연 #유튜버 #shorts",
+      "detail": "채널/작성자: 다파라뉴스\n내용: 유명 BJ생방 폭행충격 실체#이슈 #실제사연 #유튜버 #shorts.\nURL: https://www.youtube.com/watch?v=LuvBVyQkNcI\n조회수: 300회\n위험 요소: 분류: 렉카 확산 가능성, 분류: 법적 대응 검토 필요, 분류: 명예훼손 가능성, 자극적 제목",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: BJ 폭행"
+      ],
+      "confidence": 60,
+      "confidence_reasons": [
+        "명예훼손 패턴: 충격, 실체",
+        "렉카 키워드: 충격",
+        "복합 위험 요소 감지"
+      ],
+      "time": "2026. 5. 6. 16:55",
+      "status": "pending",
+      "vtypes": [
+        "렉카 확산 가능성",
+        "법적 대응 검토 필요",
+        "명예훼손 가능성"
+      ],
+      "connects": [
+        "행동위험차단팀",
+        "판사시점분석팀",
+        "법률전략실"
+      ],
+      "risk_score": 75,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=LuvBVyQkNcI"
+    },
+    {
+      "id": "mon_20260506165510_2485",
+      "category": "alert",
+      "priority": "low",
+      "title": "[유튜브·영상] [속보] 범프리카, 여BJ 머리채 잡고 폭행 ‘난리난’",
+      "detail": "채널/작성자: 한국 경제 데일리\n내용: BJ 범프리카, 술 먹방 중 동료 여성 BJ 머리채 잡고 폭행 영상 공개되며 비난 쇄도 BJ 범프리카(본명 김동범)가 SOOP(구 아프리카TV) ...\nURL: https://www.youtube.com/watch?v=atD-vT13B-A\n조회수: 159회\n위험 요소: 분류: 렉카 확산 가능성",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: BJ 폭행"
+      ],
+      "confidence": 20,
+      "confidence_reasons": [
+        "렉카 키워드: 난리난"
+      ],
+      "time": "2026. 5. 6. 16:55",
+      "status": "pending",
+      "vtypes": [
+        "렉카 확산 가능성"
+      ],
+      "connects": [
+        "행동위험차단팀"
+      ],
+      "risk_score": 20,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=atD-vT13B-A"
+    },
+    {
+      "id": "mon_20260506165510_3388",
+      "category": "alert",
+      "priority": "high",
+      "title": "[유튜브·영상] &quot;알몸 촬영하고 가래침 먹였다&quot; 걸그룹 오빠 아내의 피맺힌 폭로",
+      "detail": "채널/작성자: 이지뉴스\n내용: 유명 걸그룹 멤버의 친오빠가 BJ 성추행 혐의로 체포된 데 이어, 아내의 충격적인 가정폭력 폭로까지 터져 나왔습니다. 물고문부터 ...\nURL: https://www.youtube.com/watch?v=2yuADhiZ8mo\n조회수: 55회\n위험 요소: 분류: 렉카 확산 가능성, 분류: 법적 대응 검토 필요, 분류: 명예훼손 가능성",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: BJ 폭행"
+      ],
+      "confidence": 60,
+      "confidence_reasons": [
+        "명예훼손 패턴: 폭로, 충격",
+        "렉카 키워드: 충격",
+        "복합 위험 요소 감지"
+      ],
+      "time": "2026. 5. 6. 16:55",
+      "status": "pending",
+      "vtypes": [
+        "렉카 확산 가능성",
+        "법적 대응 검토 필요",
+        "명예훼손 가능성"
+      ],
+      "connects": [
+        "행동위험차단팀",
+        "판사시점분석팀",
+        "법률전략실"
+      ],
+      "risk_score": 60,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=2yuADhiZ8mo"
+    },
+    {
+      "id": "mon_20260506165510_3563",
+      "category": "alert",
+      "priority": "mid",
+      "title": "[유튜브·영상] &quot;차라리 죽여달라고...&quot; 100만 유튜버 납치 사건 전말 공개된다 / YTN star",
+      "detail": "채널/작성자: YTN star\n내용: 구독자 100만 명을 보유한 유튜버 '수탉'의 납치·폭행 사건 전말이 방송을 통해 공개됩니다. 오늘(27일) 방송되는 MBC에브리원 '히든 ...\nURL: https://www.youtube.com/watch?v=yGVL3rO2Kdw\n조회수: 13,082회\n댓글: 54개\n위험 요소: 분류: 명예훼손 가능성, 높은 조회수: 13082회",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 유튜버 폭행"
+      ],
+      "confidence": 35,
+      "confidence_reasons": [
+        "명예훼손 패턴: 전말",
+        "주목할 만한 조회수: 13,082회"
+      ],
+      "time": "2026. 5. 6. 16:55",
+      "status": "pending",
+      "vtypes": [
+        "명예훼손 가능성"
+      ],
+      "connects": [
+        "법률전략실"
+      ],
+      "risk_score": 40,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=yGVL3rO2Kdw"
+    },
+    {
+      "id": "mon_20260506165347_1936",
+      "category": "alert",
+      "priority": "low",
+      "title": "[뉴스·기사] [단독]가족 돌보느라 지각·결석·결근···하루 8시간 ‘독박 돌봄’ 시달리는 청소년·청년들 - 경향신문",
+      "detail": "채널/작성자: 경향신문\n내용: <a href=\"https://news.google.com/rss/articles/CBMiWkFVX3lxTE1BSHFxR2ItZVF3VldGc2VaRUtTTTZva1N4aGdURlotZzZzdHBSUDdOQ0JtX01rbXc1NVdQZXlDeTdmbEk0UDlJeUcwaWlfS0FTb3dINjlxS0d1QdIBX0FVX3lxTE9rUG9XMzNoc1EzV0\nURL: https://news.google.com/rss/articles/CBMiWkFVX3lxTE1BSHFxR2ItZVF3VldGc2VaRUtTTTZva1N4aGdURlotZzZzdHBSUDdOQ0JtX01rbXc1NVdQZXlDeTdmbEk0UDlJeUcwaWlfS0FTb3dINjlxS0d1QdIBX0FVX3lxTE9rUG9XMzNoc1EzV0F4YVQ4c1hKdDhWbmt5eW9VMlFobUhQTHlBNHVSUU9CbXEwc2t3QVQ4OXI2dlVNWGFuZzRobjBKRU10UWJVQ3J0ZWc0Z21qQzk0OUdZ?oc=5\n위험 요소: 분류: 사생활 침해 가능성",
+      "sources": [
+        "뉴스 자동 수집",
+        "감지 키워드: 돌하루"
+      ],
+      "confidence": 30,
+      "confidence_reasons": [
+        "사생활 정보 언급: 가족"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "사생활 침해 가능성"
+      ],
+      "connects": [
+        "법률전략실"
+      ],
+      "risk_score": 30,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1BSHFxR2ItZVF3VldGc2VaRUtTTTZva1N4aGdURlotZzZzdHBSUDdOQ0JtX01rbXc1NVdQZXlDeTdmbEk0UDlJeUcwaWlfS0FTb3dINjlxS0d1QdIBX0FVX3lxTE9rUG9XMzNoc1EzV0F4YVQ4c1hKdDhWbmt5eW9VMlFobUhQTHlBNHVSUU9CbXEwc2t3QVQ4OXI2dlVNWGFuZzRobjBKRU10UWJVQ3J0ZWc0Z21qQzk0OUdZ?oc=5"
+    },
+    {
+      "id": "mon_20260506165347_9553",
+      "category": "alert",
+      "priority": "high",
+      "title": "[유튜브·영상] [충격] BJ 범프리카, 생방 중 여BJ 폭행+실내 흡연 난리",
+      "detail": "채널/작성자: 한국 경제 데일리\n내용: 1세대 BJ 범프리카가 음식점 실내 흡연 및 여성 BJ 폭행 논란으로 비난받고 있습니다. BJ 범프리카(본명 김동범)가 라이브 방송 중 ...\nURL: https://www.youtube.com/watch?v=REnxLMAjonM\n조회수: 51회\n위험 요소: 분류: 법적 대응 검토 필요, 분류: 명예훼손 가능성, 분류: 렉카 확산 가능성, 자극적 제목",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: BJ 폭행"
+      ],
+      "confidence": 60,
+      "confidence_reasons": [
+        "명예훼손 패턴: 충격",
+        "렉카 키워드: 충격",
+        "복합 위험 요소 감지"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "법적 대응 검토 필요",
+        "명예훼손 가능성",
+        "렉카 확산 가능성"
+      ],
+      "connects": [
+        "행동위험차단팀",
+        "판사시점분석팀",
+        "법률전략실"
+      ],
+      "risk_score": 75,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=REnxLMAjonM"
+    },
+    {
+      "id": "mon_20260506165347_2340",
+      "category": "alert",
+      "priority": "urgent",
+      "title": "[유튜브·영상] [단독]“BJ와 식사 데이트권 사고 성폭행 시도” / 채널A / 뉴스A",
+      "detail": "채널/작성자: 채널A News\n내용: [단독]“BJ와 식사 데이트권 사고 성폭행 시도” 인터넷방송 여성 BJ와 식사권을 구매한 30대 남성이 이 여성을 자기 집으로 데려가 강제 ...\nURL: https://www.youtube.com/watch?v=VD2EblIo2dw\n조회수: 657,357회\n댓글: 4835개\n위험 요소: 분류: 사생활 침해 가능성, 분류: 렉카 확산 가능성, 분류: 법적 대응 검토 필요, 바이럴 조회수: 657357회\n확산: 10만 조회 달성 — 즉시 대응 필요",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: BJ 폭행"
+      ],
+      "confidence": 65,
+      "confidence_reasons": [
+        "사생활 정보 언급: 집",
+        "조회수 급증: 657,357회",
+        "복합 위험 요소 감지"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "사생활 침해 가능성",
+        "렉카 확산 가능성",
+        "법적 대응 검토 필요"
+      ],
+      "connects": [
+        "행동위험차단팀",
+        "판사시점분석팀",
+        "법률전략실"
+      ],
+      "risk_score": 100,
+      "is_spreading": true,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=VD2EblIo2dw"
+    },
+    {
+      "id": "mon_20260506165347_4649",
+      "category": "alert",
+      "priority": "mid",
+      "title": "[유튜브·영상] &quot;유명 걸그룹 가족, 성폭행 시도?&quot; 여성 BJ 식사 데이트권 구매 후… / KNN",
+      "detail": "채널/작성자: KNN NEWS\n내용: knn뉴스 #BJ #성폭행 여성 BJ와 함께 밥 한 끼 먹기 위해 '식사 데이트권'을 구매한 남성. 자기 집으로 BJ를 데려가 동의 없는 신체 접촉 ...\nURL: https://www.youtube.com/watch?v=QQt3iuFygAY\n조회수: 13,777회\n댓글: 100개\n위험 요소: 분류: 사생활 침해 가능성, 높은 조회수: 13777회, 댓글 활성화: 100개",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: BJ 폭행"
+      ],
+      "confidence": 40,
+      "confidence_reasons": [
+        "사생활 정보 언급: 집, 가족",
+        "주목할 만한 조회수: 13,777회"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "사생활 침해 가능성"
+      ],
+      "connects": [
+        "법률전략실"
+      ],
+      "risk_score": 55,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=QQt3iuFygAY"
+    },
+    {
+      "id": "mon_20260506165347_8678",
+      "category": "alert",
+      "priority": "urgent",
+      "title": "[유튜브·영상] 300만 원 식사 데이트권 사서 여성 BJ 강제 추행?💥😱…이 와중에📌 30대 남성, 유명 여성 아이돌 멤버",
+      "detail": "채널/작성자: 채널A News\n내용: 300만 원 식사 데이트권 사서 여성 BJ 강제 추행?…이 와중에 30대 남성, 유명 여성 아이돌 멤버 가족으로 알려졌다는데!!! [직썰] 'BJ와 ...\nURL: https://www.youtube.com/watch?v=0NrHkiNfItU\n조회수: 10,448회\n댓글: 68개\n위험 요소: 분류: 사생활 침해 가능성, 분류: 허위사실 가능성, 분류: 법적 대응 검토 필요, 높은 조회수: 10448회",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: BJ 폭행"
+      ],
+      "confidence": 85,
+      "confidence_reasons": [
+        "허위사실 패턴: 썰",
+        "사생활 정보 언급: 가족",
+        "주목할 만한 조회수: 10,448회",
+        "복합 위험 요소 감지"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "사생활 침해 가능성",
+        "허위사실 가능성",
+        "법적 대응 검토 필요"
+      ],
+      "connects": [
+        "행동위험차단팀",
+        "판사시점분석팀",
+        "법률전략실"
+      ],
+      "risk_score": 90,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=0NrHkiNfItU"
+    },
+    {
+      "id": "mon_20260506165347_7231",
+      "category": "alert",
+      "priority": "mid",
+      "title": "[유튜브·영상] 블랙핑크 지수 친오빠 폭행논란, 협박이 엄청나다...",
+      "detail": "채널/작성자: 노빠꾸 변호사들\nURL: https://www.youtube.com/watch?v=q4IPm2qMJjI\n조회수: 170,932회\n댓글: 272개\n위험 요소: 분류: 렉카 확산 가능성, 바이럴 조회수: 170932회, 댓글 활성화: 272개\n확산: 10만 조회 달성 — 즉시 대응 필요",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: BJ 폭행"
+      ],
+      "confidence": 20,
+      "confidence_reasons": [
+        "조회수 급증: 170,932회"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "렉카 확산 가능성"
+      ],
+      "connects": [
+        "행동위험차단팀"
+      ],
+      "risk_score": 55,
+      "is_spreading": true,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=q4IPm2qMJjI"
+    },
+    {
+      "id": "mon_20260506165347_8610",
+      "category": "alert",
+      "priority": "mid",
+      "title": "[유튜브·영상] 지수 친오빠 가정폭행, BJ 강제추행, 성관계 불법촬영 논란 노빠꾸로 털어봅니다",
+      "detail": "채널/작성자: 노빠꾸 변호사들\n내용: 하이라이트 00:00 1 2025년 5월, 블라인드 불법촬영 폭로 00:39 2 2026년 4월, 강남 BJ 성폭행 미수 사건 02:31 3 4월 17일, 두 번째 ...\nURL: https://www.youtube.com/watch?v=0P6WrIM2zwA\n조회수: 20,766회\n댓글: 61개\n위험 요소: 분류: 명예훼손 가능성, 높은 조회수: 20766회",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: BJ 폭행"
+      ],
+      "confidence": 35,
+      "confidence_reasons": [
+        "명예훼손 패턴: 폭로",
+        "주목할 만한 조회수: 20,766회"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "명예훼손 가능성"
+      ],
+      "connects": [
+        "법률전략실"
+      ],
+      "risk_score": 40,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=0P6WrIM2zwA"
+    },
+    {
+      "id": "mon_20260506165347_5324",
+      "category": "alert",
+      "priority": "urgent",
+      "title": "[유튜브·영상] &quot;알몸으로 무릎 꿇리고 목 졸라&quot; 지수 친오빠 아내 &#39;가정폭력&#39; 폭로 / K",
+      "detail": "채널/작성자: KNN NEWS\n내용: knn뉴스 #지수 #친오빠 #가정폭력 블랙핑크 멤버 지수의 친오빠 A씨가 BJ 성추행 혐의로 체포된 데 이어, 아내를 상대로 심각한 가정 ...\nURL: https://www.youtube.com/watch?v=TF6yU6pUhh4\n조회수: 1,226,079회\n댓글: 3647개\n위험 요소: 분류: 법적 대응 검토 필요, 분류: 명예훼손 가능성, 분류: 렉카 확산 가능성, 바이럴 조회수: 1226079회\n확산: 10만 조회 달성 — 즉시 대응 필요",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: BJ 폭행"
+      ],
+      "confidence": 60,
+      "confidence_reasons": [
+        "명예훼손 패턴: 폭로",
+        "조회수 급증: 1,226,079회",
+        "복합 위험 요소 감지"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "법적 대응 검토 필요",
+        "명예훼손 가능성",
+        "렉카 확산 가능성"
+      ],
+      "connects": [
+        "행동위험차단팀",
+        "판사시점분석팀",
+        "법률전략실"
+      ],
+      "risk_score": 95,
+      "is_spreading": true,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=TF6yU6pUhh4"
+    },
+    {
+      "id": "mon_20260506165347_9307",
+      "category": "alert",
+      "priority": "mid",
+      "title": "[유튜브·영상] 지수 친오빠 BJ 성추행으로 잡혔더니 아내 가정폭력 폭로까지 터졌음",
+      "detail": "채널/작성자: 짤단지\n내용: 가정폭력처벌법상 피해자가 처벌을 원하지 않아도 검사가 공소를 제기할 수 있습니다. 다만 피해자가 직접 신고하지 않으면 수사가 ...\nURL: https://www.youtube.com/watch?v=OrZaY4ZKeO8\n조회수: 10,487회\n댓글: 3개\n위험 요소: 분류: 명예훼손 가능성, 높은 조회수: 10487회",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: BJ 폭행"
+      ],
+      "confidence": 35,
+      "confidence_reasons": [
+        "명예훼손 패턴: 폭로",
+        "주목할 만한 조회수: 10,487회"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "명예훼손 가능성"
+      ],
+      "connects": [
+        "법률전략실"
+      ],
+      "risk_score": 40,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=OrZaY4ZKeO8"
+    },
+    {
+      "id": "mon_20260506165347_2407",
+      "category": "alert",
+      "priority": "low",
+      "title": "[유튜브·영상] [엔돌핀]스트리머가 선행스택을 쌓으면 생기는 일",
+      "detail": "채널/작성자: 엔돌핀\n내용: [사건의전말] 이날은 전날방송에서 옹알님께서 만취상태로 방송사고가 날 뻔한 것을 저를 비롯한 트수들이 도네로 열심히 막았는데 그 ...\nURL: https://www.youtube.com/watch?v=kt-a8zKIhlA\n조회수: 746회\n댓글: 8개\n위험 요소: 분류: 명예훼손 가능성",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 엔돌핀 사건"
+      ],
+      "confidence": 25,
+      "confidence_reasons": [
+        "명예훼손 패턴: 전말"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "명예훼손 가능성"
+      ],
+      "connects": [
+        "법률전략실"
+      ],
+      "risk_score": 25,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=kt-a8zKIhlA"
+    },
+    {
+      "id": "mon_20260506165347_5756",
+      "category": "alert",
+      "priority": "mid",
+      "title": "[유튜브·영상] 황철순 bj엔돌핀 진흙탕 싸움 최후의 승자는?",
+      "detail": "채널/작성자: 빠다 콘치즈\n내용: 무료 동영상 편집기 CapCut을 사용하여 동영상을 제작하세요! https://www.capcut.com/t/Zs8MqHjsn/\nURL: https://www.youtube.com/watch?v=fhZ91eMKsgc\n조회수: 39,457회\n댓글: 30개\n위험 요소: 분류: 사생활 침해 가능성, 높은 조회수: 39457회",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 엔돌핀 사건"
+      ],
+      "confidence": 40,
+      "confidence_reasons": [
+        "사생활 정보 언급: 집",
+        "주목할 만한 조회수: 39,457회"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "사생활 침해 가능성"
+      ],
+      "connects": [
+        "법률전략실"
+      ],
+      "risk_score": 45,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=fhZ91eMKsgc"
+    },
+    {
+      "id": "mon_20260506165347_3830",
+      "category": "alert",
+      "priority": "urgent",
+      "title": "[유튜브·영상] 횡성한우축제 &quot;이 사건 때문에 멘붕?” 박지현 공연 중 MC 양해 요청 사건 😢 #귀여운박지현 #천",
+      "detail": "채널/작성자: 상콤토리\n내용: 횡성한우축제에서 박지현님의 공연 중 MC가 양해를 구한 사건이 있었어요! 궁금하신 분들을 위해 사건의 전말과 현장 분위기를 담았 ...\nURL: https://www.youtube.com/watch?v=Wybq_ncG13M\n조회수: 132,486회\n댓글: 52개\n위험 요소: 분류: 법적 대응 검토 필요, 분류: 명예훼손 가능성, 분류: 렉카 확산 가능성, 바이럴 조회수: 132486회\n확산: 10만 조회 달성 — 즉시 대응 필요",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 엔돌핀 사건"
+      ],
+      "confidence": 60,
+      "confidence_reasons": [
+        "명예훼손 패턴: 전말",
+        "조회수 급증: 132,486회",
+        "복합 위험 요소 감지"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "법적 대응 검토 필요",
+        "명예훼손 가능성",
+        "렉카 확산 가능성"
+      ],
+      "connects": [
+        "행동위험차단팀",
+        "판사시점분석팀",
+        "법률전략실"
+      ],
+      "risk_score": 85,
+      "is_spreading": true,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=Wybq_ncG13M"
+    },
+    {
+      "id": "mon_20260506165347_9150",
+      "category": "alert",
+      "priority": "mid",
+      "title": "[유튜브·영상] 널리 알려져야할 황철순 출소후 근황..",
+      "detail": "채널/작성자: VS특공대\n내용: 널리 알려져야할 황철순 출소후 근황.. #황철순 #헬스.\nURL: https://www.youtube.com/watch?v=1IplbnGmbt0\n조회수: 422,941회\n댓글: 346개\n위험 요소: 분류: 렉카 확산 가능성, 바이럴 조회수: 422941회, 댓글 활성화: 346개\n확산: 10만 조회 달성 — 즉시 대응 필요",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 황철순 폭행"
+      ],
+      "confidence": 20,
+      "confidence_reasons": [
+        "조회수 급증: 422,941회"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "렉카 확산 가능성"
+      ],
+      "connects": [
+        "행동위험차단팀"
+      ],
+      "risk_score": 55,
+      "is_spreading": true,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=1IplbnGmbt0"
+    },
+    {
+      "id": "mon_20260506165347_1546",
+      "category": "alert",
+      "priority": "low",
+      "title": "[유튜브·영상] 황철순,  “전 아내 주장은 허위…법적 대응할 것” #황철순 #이혼 #폭행 #양육비 #법적대응 #이슈",
+      "detail": "채널/작성자: 이슈퀵\n내용: 뜨거운 연예 이슈를 빠르게 전달하는 채널 이슈퀵 issuequick@gmail.com #Shorts.\nURL: https://www.youtube.com/watch?v=qa0MWC6ERYc\n조회수: 43회\n위험 요소: 분류: 허위사실 가능성",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 황철순 폭행"
+      ],
+      "confidence": 30,
+      "confidence_reasons": [
+        "허위사실 패턴: 허위"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "허위사실 가능성"
+      ],
+      "connects": [
+        "법률전략실"
+      ],
+      "risk_score": 30,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=qa0MWC6ERYc"
+    },
+    {
+      "id": "mon_20260506165347_3181",
+      "category": "alert",
+      "priority": "urgent",
+      "title": "[유튜브·영상] 황철순 싸대기 논란의 진실 첫 폭로 합니다 ㄷㄷㄷㄷ",
+      "detail": "채널/작성자: 어원준\nURL: https://www.youtube.com/watch?v=zp-UW5ltwDM\n조회수: 1,752,324회\n댓글: 385개\n위험 요소: 분류: 법적 대응 검토 필요, 분류: 명예훼손 가능성, 분류: 렉카 확산 가능성, 바이럴 조회수: 1752324회\n확산: 10만 조회 달성 — 즉시 대응 필요",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 황철순 폭행"
+      ],
+      "confidence": 60,
+      "confidence_reasons": [
+        "명예훼손 패턴: 폭로, 진실",
+        "조회수 급증: 1,752,324회",
+        "복합 위험 요소 감지"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "법적 대응 검토 필요",
+        "명예훼손 가능성",
+        "렉카 확산 가능성"
+      ],
+      "connects": [
+        "행동위험차단팀",
+        "판사시점분석팀",
+        "법률전략실"
+      ],
+      "risk_score": 100,
+      "is_spreading": true,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=zp-UW5ltwDM"
+    },
+    {
+      "id": "mon_20260506165347_0843",
+      "category": "alert",
+      "priority": "mid",
+      "title": "[유튜브·영상] 보디빌딩 참교육 당했습니다 (Feat. 황철순)",
+      "detail": "채널/작성자: 코리안갱스터 PARK WON SIK\n내용: INSTAGRAM:) https://www.instagram.com/group_jeesoo https://www.instagram.com/koreangangstermma #코리안갱스터 #황철순 ...\nURL: https://www.youtube.com/watch?v=PTgKrgZut4k\n조회수: 147,755회\n댓글: 287개\n위험 요소: 분류: 렉카 확산 가능성, 바이럴 조회수: 147755회, 댓글 활성화: 287개\n확산: 10만 조회 달성 — 즉시 대응 필요",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 황철순 폭행"
+      ],
+      "confidence": 20,
+      "confidence_reasons": [
+        "조회수 급증: 147,755회"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "렉카 확산 가능성"
+      ],
+      "connects": [
+        "행동위험차단팀"
+      ],
+      "risk_score": 55,
+      "is_spreading": true,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=PTgKrgZut4k"
+    },
+    {
+      "id": "mon_20260506165347_1329",
+      "category": "alert",
+      "priority": "mid",
+      "title": "[유튜브·영상] 황철순, 몽골부터 다시 시작",
+      "detail": "채널/작성자: CHUL SOON HWANG\n내용: 황철순 #몽골 #브이로그 #chulsoon 황철순 인스타그램 : https://www.instagram.com/chulsoon_official.\nURL: https://www.youtube.com/watch?v=e00GlpualJg\n조회수: 258,243회\n댓글: 789개\n위험 요소: 분류: 렉카 확산 가능성, 바이럴 조회수: 258243회, 댓글 활성화: 789개\n확산: 10만 조회 달성 — 즉시 대응 필요",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 황철순 아내"
+      ],
+      "confidence": 20,
+      "confidence_reasons": [
+        "조회수 급증: 258,243회"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "렉카 확산 가능성"
+      ],
+      "connects": [
+        "행동위험차단팀"
+      ],
+      "risk_score": 55,
+      "is_spreading": true,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=e00GlpualJg"
+    },
+    {
+      "id": "mon_20260506165347_2344",
+      "category": "alert",
+      "priority": "low",
+      "title": "[유튜브·영상] 황철순 여성 폭행: &quot;내 돈으로 성형하고 유흥, 남자들과 파티&quot;...출소 후 아내 사생활 ",
+      "detail": "채널/작성자: Neul\n내용: 황철순 여성 폭행: \"내 돈으로 성형하고 유흥, 남자들과 파티\"...출소 후 아내 사생활 sns 폭로....? #shorts​ #핫이슈 #황철순 더 자세한 ...\nURL: https://www.youtube.com/watch?v=f_a_8Jmqnm4\n조회수: 1,335회\n위험 요소: 분류: 명예훼손 가능성, 조회수: 1335회",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 황철순 아내"
+      ],
+      "confidence": 25,
+      "confidence_reasons": [
+        "명예훼손 패턴: 폭로"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "명예훼손 가능성"
+      ],
+      "connects": [
+        "법률전략실"
+      ],
+      "risk_score": 30,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=f_a_8Jmqnm4"
+    },
+    {
+      "id": "mon_20260506165347_1959",
+      "category": "alert",
+      "priority": "urgent",
+      "title": "[유튜브·영상] 모든 걸 내려놓고 다시 시작합니다.. [황철순 심경고백]",
+      "detail": "채널/작성자: 성명준\n내용: 광고, 협찬 문의 tjdaudwns1128@gmail.com 합리적으로 자동차 살 땐 KS오토플랜 https://vo.la/wrhVVI 대표번호 1833-2746.\nURL: https://www.youtube.com/watch?v=KCOUW3Y0EiY\n조회수: 240,958회\n댓글: 330개\n위험 요소: 분류: 사생활 침해 가능성, 분류: 렉카 확산 가능성, 분류: 법적 대응 검토 필요, 바이럴 조회수: 240958회\n확산: 10만 조회 달성 — 즉시 대응 필요",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 황철순 아내"
+      ],
+      "confidence": 65,
+      "confidence_reasons": [
+        "사생활 정보 언급: 번호",
+        "조회수 급증: 240,958회",
+        "복합 위험 요소 감지"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "사생활 침해 가능성",
+        "렉카 확산 가능성",
+        "법적 대응 검토 필요"
+      ],
+      "connects": [
+        "행동위험차단팀",
+        "판사시점분석팀",
+        "법률전략실"
+      ],
+      "risk_score": 100,
+      "is_spreading": true,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=KCOUW3Y0EiY"
+    },
+    {
+      "id": "mon_20260506165347_3843",
+      "category": "alert",
+      "priority": "high",
+      "title": "[유튜브·영상] 황철순에게 두들겨맞은 &#39;지연아&#39;가 충격 고백한 황철순의 행패",
+      "detail": "채널/작성자: 연예일보\nURL: https://www.youtube.com/watch?v=uML7r-YpKcM\n조회수: 6,591회\n댓글: 2개\n위험 요소: 분류: 법적 대응 검토 필요, 분류: 명예훼손 가능성, 분류: 렉카 확산 가능성, 조회수: 6591회",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 황철순 아내"
+      ],
+      "confidence": 60,
+      "confidence_reasons": [
+        "명예훼손 패턴: 충격",
+        "렉카 키워드: 충격",
+        "복합 위험 요소 감지"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "법적 대응 검토 필요",
+        "명예훼손 가능성",
+        "렉카 확산 가능성"
+      ],
+      "connects": [
+        "행동위험차단팀",
+        "판사시점분석팀",
+        "법률전략실"
+      ],
+      "risk_score": 65,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=uML7r-YpKcM"
+    },
+    {
+      "id": "mon_20260506165347_8875",
+      "category": "alert",
+      "priority": "mid",
+      "title": "[유튜브·영상] [철순과 코코] 땅컴퍼니에 직접 행차한 지연아.. 야 황철순!! 두뇌 풀가동 코코 21화",
+      "detail": "채널/작성자: 땅튜브\n내용: [땅튜브 X 인터넷끝판왕] 모르면 못받는 통신지원금 80만원 + 결합할인 72만원 추가혜택   지금 견적만 받아도 스타벅스 커피 쿠폰 ...\nURL: https://www.youtube.com/watch?v=kAMgByg7mBQ\n조회수: 71,995회\n댓글: 236개\n위험 요소: 분류: 단순 언급, 바이럴 조회수: 71995회, 댓글 활성화: 236개\n확산: 5만 조회 — 확산 중",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 황철순 아내"
+      ],
+      "confidence": 15,
+      "confidence_reasons": [
+        "주목할 만한 조회수: 71,995회",
+        "위험 패턴 미감지"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "단순 언급"
+      ],
+      "connects": [
+        "행동위험차단팀"
+      ],
+      "risk_score": 40,
+      "is_spreading": true,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=kAMgByg7mBQ"
+    },
+    {
+      "id": "mon_20260506165347_4306",
+      "category": "alert",
+      "priority": "mid",
+      "title": "[유튜브·영상] 비싸도 갈 수 밖에 없는 수산업자 황철순의 강남 보물섬",
+      "detail": "채널/작성자: CHUL SOON HWANG\n내용: 황철순 #회먹방 #총총 투네이션 : https://toon.at/donate/chulsoonhwang 황철순 인스타그램 ...\nURL: https://www.youtube.com/watch?v=yQmW98FG1Nw\n조회수: 273,696회\n댓글: 588개\n위험 요소: 분류: 렉카 확산 가능성, 바이럴 조회수: 273696회, 댓글 활성화: 588개\n확산: 10만 조회 달성 — 즉시 대응 필요",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 황철순 아내"
+      ],
+      "confidence": 20,
+      "confidence_reasons": [
+        "조회수 급증: 273,696회"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "렉카 확산 가능성"
+      ],
+      "connects": [
+        "행동위험차단팀"
+      ],
+      "risk_score": 55,
+      "is_spreading": true,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=yQmW98FG1Nw"
+    },
+    {
+      "id": "mon_20260506165347_8977",
+      "category": "alert",
+      "priority": "mid",
+      "title": "[유튜브·영상] ​@흑자헬스SurplusHealth 황철순보다 많이 꽂았는데도 몸이 개 떡이 된 이유 | 흑자의 결정적인 실",
+      "detail": "채널/작성자: 크로커다일 남자훈련소\n내용: 흑자헬스 #로이더 #스테로이드 [궁금한 점은 크로커다일 인스타그램에서 물어보세요!] ✔️인스타그램 ...\nURL: https://www.youtube.com/watch?v=WnbQhfJYdrw\n조회수: 97,317회\n댓글: 528개\n위험 요소: 분류: 단순 언급, 바이럴 조회수: 97317회, 댓글 활성화: 528개\n확산: 5만 조회 — 확산 중",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 황철순 아내"
+      ],
+      "confidence": 15,
+      "confidence_reasons": [
+        "주목할 만한 조회수: 97,317회",
+        "위험 패턴 미감지"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "단순 언급"
+      ],
+      "connects": [
+        "행동위험차단팀"
+      ],
+      "risk_score": 40,
+      "is_spreading": true,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=WnbQhfJYdrw"
+    },
+    {
+      "id": "mon_20260506165347_8374",
+      "category": "alert",
+      "priority": "mid",
+      "title": "[유튜브·영상] 자신의 아내를 &#39;그거&#39;라고 표현하는 79만 유튜버 흑자헬스 #shorts",
+      "detail": "채널/작성자: 불지옥 피트니스\n내용: 자신의 아내를 이름이 아니라, '그거'라고 표현하는 사람을 보았습니까? #간고 #간고TV #흑자헬스 #황철순.\nURL: https://www.youtube.com/watch?v=NktuokHDc40\n조회수: 55,520회\n댓글: 121개\n위험 요소: 분류: 단순 언급, 바이럴 조회수: 55520회, 댓글 활성화: 121개\n확산: 5만 조회 — 확산 중",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 황철순 아내"
+      ],
+      "confidence": 15,
+      "confidence_reasons": [
+        "주목할 만한 조회수: 55,520회",
+        "위험 패턴 미감지"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "단순 언급"
+      ],
+      "connects": [
+        "행동위험차단팀"
+      ],
+      "risk_score": 40,
+      "is_spreading": true,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=NktuokHDc40"
+    },
+    {
+      "id": "mon_20260506165347_6347",
+      "category": "alert",
+      "priority": "mid",
+      "title": "[유튜브·영상] [철순과 코코] 황철순 결국 등판.. &quot;얘는 XX 영상까지 우리 부모님한테 보냈다니까!",
+      "detail": "채널/작성자: 땅튜브\n내용: 편집: 김규남 채널에 가입하여 혜택을 누려보세요. https://www.youtube.com/channel/UCS4Nkl8F8U99K8zGPgIApXw/join #황철순 ...\nURL: https://www.youtube.com/watch?v=dJCVg4cFrqQ\n조회수: 46,162회\n댓글: 225개\n위험 요소: 분류: 사생활 침해 가능성, 높은 조회수: 46162회, 댓글 활성화: 225개",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 황철순 아내"
+      ],
+      "confidence": 40,
+      "confidence_reasons": [
+        "사생활 정보 언급: 집, 부모",
+        "주목할 만한 조회수: 46,162회"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "사생활 침해 가능성"
+      ],
+      "connects": [
+        "법률전략실"
+      ],
+      "risk_score": 55,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=dJCVg4cFrqQ"
+    },
+    {
+      "id": "mon_20260506165347_1384",
+      "category": "alert",
+      "priority": "mid",
+      "title": "[유튜브·영상] 에겐남 #황철순",
+      "detail": "채널/작성자: CHUL SOON HWANG\nURL: https://www.youtube.com/watch?v=2kYpAmLOGFM\n조회수: 143,998회\n댓글: 148개\n위험 요소: 분류: 렉카 확산 가능성, 바이럴 조회수: 143998회, 댓글 활성화: 148개\n확산: 10만 조회 달성 — 즉시 대응 필요",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 황철순 아내"
+      ],
+      "confidence": 20,
+      "confidence_reasons": [
+        "조회수 급증: 143,998회"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "렉카 확산 가능성"
+      ],
+      "connects": [
+        "행동위험차단팀"
+      ],
+      "risk_score": 55,
+      "is_spreading": true,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=2kYpAmLOGFM"
+    },
+    {
+      "id": "mon_20260506165347_2834",
+      "category": "alert",
+      "priority": "mid",
+      "title": "[유튜브·영상] [TOB Ep.2] 아프리카 BJ들과 보디빌더들의 콜라보",
+      "detail": "채널/작성자: CHUL SOON HWANG\n내용: 황철순 #talent #bodybuilding 투네이션 : https://toon.at/donate/chulsoonhwang 황철순 인스타그램 ...\nURL: https://www.youtube.com/watch?v=OBTquDvqZHM\n조회수: 149,062회\n댓글: 131개\n위험 요소: 분류: 렉카 확산 가능성, 바이럴 조회수: 149062회, 댓글 활성화: 131개\n확산: 10만 조회 달성 — 즉시 대응 필요",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 아프리카 엔돌핀"
+      ],
+      "confidence": 20,
+      "confidence_reasons": [
+        "조회수 급증: 149,062회"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "렉카 확산 가능성"
+      ],
+      "connects": [
+        "행동위험차단팀"
+      ],
+      "risk_score": 55,
+      "is_spreading": true,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=OBTquDvqZHM"
+    },
+    {
+      "id": "mon_20260506165347_5961",
+      "category": "alert",
+      "priority": "mid",
+      "title": "[유튜브·영상] 아프리카TV 전설의 대참사 모음",
+      "detail": "채널/작성자: 연예속보24\n내용: shorts.\nURL: https://www.youtube.com/watch?v=k4muTBnDPvI\n조회수: 588,224회\n댓글: 36개\n위험 요소: 분류: 렉카 확산 가능성, 바이럴 조회수: 588224회\n확산: 10만 조회 달성 — 즉시 대응 필요",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 아프리카TV 폭행"
+      ],
+      "confidence": 20,
+      "confidence_reasons": [
+        "조회수 급증: 588,224회"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "렉카 확산 가능성"
+      ],
+      "connects": [
+        "행동위험차단팀"
+      ],
+      "risk_score": 45,
+      "is_spreading": true,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=k4muTBnDPvI"
+    },
+    {
+      "id": "mon_20260506165347_8796",
+      "category": "alert",
+      "priority": "mid",
+      "title": "[유튜브·영상] &quot;폴리스 안 뜨지?&quot;…무차별 폭행 생중계한 조폭 BJ / JTBC 사건반장",
+      "detail": "채널/작성자: JTBC News\n내용: 지금 보시는 장면은 오늘(2일) 새벽, 한 인터넷 방송 플랫폼을 통해 송출된 영상 중 일부입니다. BJ가, 함께 방송하던 게스트를 넘어 ...\nURL: https://www.youtube.com/watch?v=IKtBZXWnSeA\n조회수: 356,832회\n댓글: 1589개\n위험 요소: 분류: 렉카 확산 가능성, 바이럴 조회수: 356832회, 댓글 활성화: 1589개\n확산: 10만 조회 달성 — 즉시 대응 필요",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 아프리카TV 폭행"
+      ],
+      "confidence": 20,
+      "confidence_reasons": [
+        "조회수 급증: 356,832회"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "렉카 확산 가능성"
+      ],
+      "connects": [
+        "행동위험차단팀"
+      ],
+      "risk_score": 55,
+      "is_spreading": true,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=IKtBZXWnSeA"
+    },
+    {
+      "id": "mon_20260506165347_8405",
+      "category": "alert",
+      "priority": "mid",
+      "title": "[유튜브·영상] &#39;음주운전 자숙&#39; MC딩동, 인터넷 방송 중 女 BJ 머리채 잡은 이유",
+      "detail": "채널/작성자: 뉴스1 연예TV\n내용: (서울=뉴스1) 박혜성 기자 = 방송인 MC딩동이 인터넷 생방송 도중 여성 BJ의 머리채를 잡아 논란이 된 가운데, 피해를 주장하는 BJ가 ...\nURL: https://www.youtube.com/watch?v=Qcfi-U22Czc\n조회수: 88,984회\n댓글: 272개\n위험 요소: 분류: 단순 언급, 바이럴 조회수: 88984회, 댓글 활성화: 272개\n확산: 5만 조회 — 확산 중",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 아프리카TV 폭행"
+      ],
+      "confidence": 15,
+      "confidence_reasons": [
+        "주목할 만한 조회수: 88,984회",
+        "위험 패턴 미감지"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "단순 언급"
+      ],
+      "connects": [
+        "행동위험차단팀"
+      ],
+      "risk_score": 40,
+      "is_spreading": true,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=Qcfi-U22Czc"
+    },
+    {
+      "id": "mon_20260506165347_7513",
+      "category": "alert",
+      "priority": "mid",
+      "title": "[유튜브·영상] &#39;음주 도주&#39; MC딩동, 생방 중 여성BJ 폭행 논란 / YTN star",
+      "detail": "채널/작성자: YTN star\n내용: 사전 MC로 활동해온 MC딩동이 인터넷 생방송 도중 여성 출연자를 폭행해 구설에 올랐습니다. MC딩동이 최근 진행된 온라인 생방송 ...\nURL: https://www.youtube.com/watch?v=0JaEXZvAtfA\n조회수: 64,482회\n댓글: 515개\n위험 요소: 분류: 단순 언급, 바이럴 조회수: 64482회, 댓글 활성화: 515개\n확산: 5만 조회 — 확산 중",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 아프리카TV 폭행"
+      ],
+      "confidence": 15,
+      "confidence_reasons": [
+        "주목할 만한 조회수: 64,482회",
+        "위험 패턴 미감지"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "단순 언급"
+      ],
+      "connects": [
+        "행동위험차단팀"
+      ],
+      "risk_score": 40,
+      "is_spreading": true,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=0JaEXZvAtfA"
+    },
+    {
+      "id": "mon_20260506165347_6466",
+      "category": "alert",
+      "priority": "mid",
+      "title": "[유튜브·영상] &#39;50만 유튜버&#39; 엄태웅, 특수폭행 혐의로 긴급체포 / YTN star",
+      "detail": "채널/작성자: YTN star\n내용: 구독자 50만 명을 보유한 '사적제재' 유튜브 채널 운영자 엄태웅이 특수폭행 및 탈세 혐의로 경찰에 긴급체포됐습니다. 지난 2일 한 ...\nURL: https://www.youtube.com/watch?v=lHQa2tpfLZo\n조회수: 284,985회\n댓글: 1772개\n위험 요소: 분류: 렉카 확산 가능성, 바이럴 조회수: 284985회, 댓글 활성화: 1772개\n확산: 10만 조회 달성 — 즉시 대응 필요",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 아프리카TV 폭행"
+      ],
+      "confidence": 20,
+      "confidence_reasons": [
+        "조회수 급증: 284,985회"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "렉카 확산 가능성"
+      ],
+      "connects": [
+        "행동위험차단팀"
+      ],
+      "risk_score": 55,
+      "is_spreading": true,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=lHQa2tpfLZo"
+    },
+    {
+      "id": "mon_20260506165347_6120",
+      "category": "alert",
+      "priority": "mid",
+      "title": "[유튜브·영상] 범프리카 여BJ 머리채 잡아 난리난 상황.",
+      "detail": "채널/작성자: 십분만에\n내용: 범프리카 #찡찡시아 #주성 #실내흡연 #숲 #아프리카TV #씨나인.\nURL: https://www.youtube.com/watch?v=Er1RHBunW3k\n조회수: 113,056회\n댓글: 473개\n위험 요소: 분류: 렉카 확산 가능성, 바이럴 조회수: 113056회, 댓글 활성화: 473개\n확산: 10만 조회 달성 — 즉시 대응 필요",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 아프리카TV 폭행"
+      ],
+      "confidence": 40,
+      "confidence_reasons": [
+        "렉카 키워드: 난리난",
+        "조회수 급증: 113,056회"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "렉카 확산 가능성"
+      ],
+      "connects": [
+        "행동위험차단팀"
+      ],
+      "risk_score": 55,
+      "is_spreading": true,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=Er1RHBunW3k"
+    },
+    {
+      "id": "mon_20260506165347_1399",
+      "category": "alert",
+      "priority": "low",
+      "title": "[유튜브·영상] 범프리카, 라방 女 BJ 폭행 논란 &quot;전 쓰레기, 인생 잘못 살았다&quot;",
+      "detail": "채널/작성자: 라이브캐스트24\n내용: BJ 범프리카(본명 김동범)가 폭행 및 실내 흡연 논란에 휩싸인 가운데 사과를 전했다. 범프리카는 6일 자신의 숲 채널에 '전 쓰레기 ...\nURL: https://www.youtube.com/watch?v=KE0YV52VPtw\n조회수: 3,167회\n댓글: 5개\n위험 요소: 분류: 모욕 가능성, 조회수: 3167회",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 아프리카TV 폭행"
+      ],
+      "confidence": 20,
+      "confidence_reasons": [
+        "모욕 표현: 쓰레기"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "모욕 가능성"
+      ],
+      "connects": [
+        "행동위험차단팀"
+      ],
+      "risk_score": 20,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=KE0YV52VPtw"
+    },
+    {
+      "id": "mon_20260506165347_4316",
+      "category": "alert",
+      "priority": "mid",
+      "title": "[유튜브·영상] 제 모든 의혹에 대해 해명합니다.",
+      "detail": "채널/작성자: 영베리\n내용: Instagram: https://www.instagram.com/_youngberry/ - LIVE: https://www.sooplive.co.kr/station/gkksdk7777 - 광고문의: ...\nURL: https://www.youtube.com/watch?v=-U3mrpuwQv8\n조회수: 961,353회\n댓글: 4028개\n위험 요소: 분류: 렉카 확산 가능성, 바이럴 조회수: 961353회, 댓글 활성화: 4028개\n확산: 10만 조회 달성 — 즉시 대응 필요",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 유튜버 폭행"
+      ],
+      "confidence": 20,
+      "confidence_reasons": [
+        "조회수 급증: 961,353회"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "렉카 확산 가능성"
+      ],
+      "connects": [
+        "행동위험차단팀"
+      ],
+      "risk_score": 55,
+      "is_spreading": true,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=-U3mrpuwQv8"
+    },
+    {
+      "id": "mon_20260506165346_3898",
+      "category": "alert",
+      "priority": "mid",
+      "title": "[유튜브·영상] &quot;도와주세요&quot; 쏟아진 제보…무차별 폭행에 &#39;사지마비&#39; / JTBC 사건반장",
+      "detail": "채널/작성자: JTBC News\n내용: 남성 두 명이 어두운 골목길을 걷고 있습니다. 그 뒤를 한 남성이 따라가는데요. 잠시 뒤, 뒤따르던 남성이 달아나고 다른 남성이 다급히 ...\nURL: https://www.youtube.com/watch?v=LU2nobU06gQ\n조회수: 177,732회\n댓글: 1038개\n위험 요소: 분류: 렉카 확산 가능성, 바이럴 조회수: 177732회, 댓글 활성화: 1038개\n확산: 10만 조회 달성 — 즉시 대응 필요",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 유튜버 폭행"
+      ],
+      "confidence": 20,
+      "confidence_reasons": [
+        "조회수 급증: 177,732회"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "렉카 확산 가능성"
+      ],
+      "connects": [
+        "행동위험차단팀"
+      ],
+      "risk_score": 55,
+      "is_spreading": true,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=LU2nobU06gQ"
+    },
+    {
+      "id": "mon_20260506165346_5762",
+      "category": "alert",
+      "priority": "mid",
+      "title": "[유튜브·영상] [단독] 시비 끝 10대 찌른 호객꾼…CCTV에 담긴 영상 보니 / JTBC 뉴스룸",
+      "detail": "채널/작성자: JTBC News\n내용: 남양주 한 상가에서 유흥업소 호객꾼이 10대 남성에게 흉기를 휘둘러 구속됐습니다. 시민들이 오가는 새벽 번화가에서 흉기를 든 채 ...\nURL: https://www.youtube.com/watch?v=nsg-jLOkZx4\n조회수: 245,784회\n댓글: 2361개\n위험 요소: 분류: 렉카 확산 가능성, 바이럴 조회수: 245784회, 댓글 활성화: 2361개\n확산: 10만 조회 달성 — 즉시 대응 필요",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 유튜버 폭행"
+      ],
+      "confidence": 20,
+      "confidence_reasons": [
+        "조회수 급증: 245,784회"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "렉카 확산 가능성"
+      ],
+      "connects": [
+        "행동위험차단팀"
+      ],
+      "risk_score": 55,
+      "is_spreading": true,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=nsg-jLOkZx4"
+    },
+    {
+      "id": "mon_20260506165346_2830",
+      "category": "alert",
+      "priority": "high",
+      "title": "[유튜브·영상] 의외로 CASTLE폭행",
+      "detail": "채널/작성자: 헛소리의 이것저것\n내용: 생방송 주소 - https://naver.me/GYcq7VTf 팬카페 : https://cafe.naver.com/hotsorry0403 문의 이메일 : hotsorry0403@naver.com.\nURL: https://www.youtube.com/watch?v=sZou4QORT1w\n조회수: 86,643회\n댓글: 270개\n위험 요소: 분류: 사생활 침해 가능성, 바이럴 조회수: 86643회, 댓글 활성화: 270개\n확산: 5만 조회 — 확산 중",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 유튜버 폭행"
+      ],
+      "confidence": 40,
+      "confidence_reasons": [
+        "사생활 정보 언급: 주소",
+        "주목할 만한 조회수: 86,643회"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "사생활 침해 가능성"
+      ],
+      "connects": [
+        "행동위험차단팀",
+        "법률전략실"
+      ],
+      "risk_score": 65,
+      "is_spreading": true,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=sZou4QORT1w"
+    },
+    {
+      "id": "mon_20260506165346_8794",
+      "category": "alert",
+      "priority": "high",
+      "title": "[유튜브·영상] [스트리머 납치 사건②] 단순 폭행 사건이 아니다? 장기매매까지 이어질뻔한 스트리머 납치 사건 l #히든아이",
+      "detail": "채널/작성자: MBC every1\n내용: 충격 사건 파일 ▷ 경찰차 조롱하고 발길질까지...통제 불능 민폐 10대에 '정신 좀 차렸으면' 최강창민 일침 ▷ 히든아이 사상 최초!\nURL: https://www.youtube.com/watch?v=1SBnMKy7etU\n조회수: 17,597회\n댓글: 25개\n위험 요소: 분류: 법적 대응 검토 필요, 분류: 명예훼손 가능성, 분류: 렉카 확산 가능성, 높은 조회수: 17597회",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 유튜버 폭행"
+      ],
+      "confidence": 70,
+      "confidence_reasons": [
+        "명예훼손 패턴: 충격",
+        "렉카 키워드: 충격",
+        "주목할 만한 조회수: 17,597회",
+        "복합 위험 요소 감지"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "법적 대응 검토 필요",
+        "명예훼손 가능성",
+        "렉카 확산 가능성"
+      ],
+      "connects": [
+        "행동위험차단팀",
+        "판사시점분석팀",
+        "법률전략실"
+      ],
+      "risk_score": 75,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=1SBnMKy7etU"
+    },
+    {
+      "id": "mon_20260506165346_8255",
+      "category": "alert",
+      "priority": "mid",
+      "title": "[유튜브·영상] 닭꼬치 먹으러 가는중 택시기사님 폭행목격 후신고다급해서 욕설은이해 부탁드립니다모자이크 관련 말씀이 많아 재업",
+      "detail": "채널/작성자: 바린이 모여라\nURL: https://www.youtube.com/watch?v=IJUuc8gcBhA\n조회수: 554,075회\n댓글: 2168개\n위험 요소: 분류: 렉카 확산 가능성, 바이럴 조회수: 554075회, 댓글 활성화: 2168개\n확산: 10만 조회 달성 — 즉시 대응 필요",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 유튜버 폭행"
+      ],
+      "confidence": 20,
+      "confidence_reasons": [
+        "조회수 급증: 554,075회"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "렉카 확산 가능성"
+      ],
+      "connects": [
+        "행동위험차단팀"
+      ],
+      "risk_score": 55,
+      "is_spreading": true,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=IJUuc8gcBhA"
+    },
+    {
+      "id": "mon_20260506165346_0331",
+      "category": "alert",
+      "priority": "mid",
+      "title": "[유튜브·영상] 환경미화원 폭행, 처벌이 약한 이유? #환경미화원 #폭행사건 #징역6개월 #현장직현실 #갑질문화 #노동존중 ",
+      "detail": "채널/작성자: 현장아재\n내용: 환경미화원을 폭행한 가해자가 결국 징역 6개월, 집행유예 1년을 받았습니다. 많다고 느끼십니까? 저는 그렇게 생각하지 않습니다.\nURL: https://www.youtube.com/watch?v=ypxqnTQY4PU\n조회수: 1,361회\n댓글: 1개\n위험 요소: 분류: 사생활 침해 가능성, 조회수: 1361회",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 폭행 사건"
+      ],
+      "confidence": 30,
+      "confidence_reasons": [
+        "사생활 정보 언급: 집"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "사생활 침해 가능성"
+      ],
+      "connects": [
+        "법률전략실"
+      ],
+      "risk_score": 35,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=ypxqnTQY4PU"
+    },
+    {
+      "id": "mon_20260506165346_2712",
+      "category": "alert",
+      "priority": "low",
+      "title": "[유튜브·영상] 용돈 끊자 부모 둔기 폭행…&#39;선처&#39; 한마디에 형량이 깎인다고요? #Shorts",
+      "detail": "채널/작성자: 깨시민 청년\n내용: 30대 아들의 부모 둔기 폭행 사건, '부모 선처' 한마디로 주범이 공범보다 가벼운 형을 받은 사법 구조의 민낯입니다. 보복이 두려워 ...\nURL: https://www.youtube.com/watch?v=GRMhi636cec\n조회수: 298회\n위험 요소: 분류: 사생활 침해 가능성",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 폭행 사건"
+      ],
+      "confidence": 30,
+      "confidence_reasons": [
+        "사생활 정보 언급: 부모"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "사생활 침해 가능성"
+      ],
+      "connects": [
+        "법률전략실"
+      ],
+      "risk_score": 30,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=GRMhi636cec"
+    },
+    {
+      "id": "mon_20260506165346_9950",
+      "category": "alert",
+      "priority": "high",
+      "title": "[유튜브·영상] 대낮 공원서 2살 아기를? 묻지마 폭행 실제상황 !",
+      "detail": "채널/작성자: 호랑호랑\n내용: 영상 출처: MBCNEWS11 분노 주의 !! 인천의 한 공원, 2살 아기가 괴한에게 갑자기 뒤통수를 맞는 충격적인 '묻지마 폭행' 영상입니다.\nURL: https://www.youtube.com/watch?v=bCyiswhJqcQ\n조회수: 1,051회\n댓글: 2개\n위험 요소: 분류: 법적 대응 검토 필요, 분류: 명예훼손 가능성, 분류: 렉카 확산 가능성, 조회수: 1051회",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 폭행 사건"
+      ],
+      "confidence": 60,
+      "confidence_reasons": [
+        "명예훼손 패턴: 충격",
+        "렉카 키워드: 충격",
+        "복합 위험 요소 감지"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "법적 대응 검토 필요",
+        "명예훼손 가능성",
+        "렉카 확산 가능성"
+      ],
+      "connects": [
+        "행동위험차단팀",
+        "판사시점분석팀",
+        "법률전략실"
+      ],
+      "risk_score": 65,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=bCyiswhJqcQ"
+    },
+    {
+      "id": "mon_20260506165346_3770",
+      "category": "alert",
+      "priority": "high",
+      "title": "[유튜브·영상] [충격] 김신영, 블랙박스 보며 &#39;분노 폭발&#39;…역대급 사건",
+      "detail": "채널/작성자: 붉은점\n내용: 김신영이 만취 승객의 무차별 폭행 사건 블랙박스 영상을 보고 분노를 폭발시킨다. JTBC '한문철의 블랙박스 리뷰'(이하 '한블리') ...\nURL: https://www.youtube.com/watch?v=al33rGzQsR0\n조회수: 1회\n위험 요소: 분류: 법적 대응 검토 필요, 분류: 명예훼손 가능성, 분류: 렉카 확산 가능성",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 폭행 사건"
+      ],
+      "confidence": 60,
+      "confidence_reasons": [
+        "명예훼손 패턴: 충격",
+        "렉카 키워드: 충격",
+        "복합 위험 요소 감지"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "법적 대응 검토 필요",
+        "명예훼손 가능성",
+        "렉카 확산 가능성"
+      ],
+      "connects": [
+        "행동위험차단팀",
+        "판사시점분석팀",
+        "법률전략실"
+      ],
+      "risk_score": 60,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=al33rGzQsR0"
+    },
+    {
+      "id": "mon_20260506165346_3412",
+      "category": "alert",
+      "priority": "low",
+      "title": "[유튜브·영상] [경찰관폭행 조작사건] 재심(2) 소장",
+      "detail": "채널/작성자: 최성년0\n내용: \"경찰관폭행 조작사건 의 진상 \" 랑독- 33 253~256쪽.\nURL: https://www.youtube.com/watch?v=EyEh1b0XCro\n조회수: 2회\n댓글: 1개\n위험 요소: 분류: 허위사실 가능성",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 폭행 사건"
+      ],
+      "confidence": 30,
+      "confidence_reasons": [
+        "허위사실 패턴: 조작"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "허위사실 가능성"
+      ],
+      "connects": [
+        "법률전략실"
+      ],
+      "risk_score": 30,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=EyEh1b0XCro"
+    },
+    {
+      "id": "mon_20260506165346_4681",
+      "category": "alert",
+      "priority": "low",
+      "title": "[유튜브·영상] 故 김창민 감독 사망사건, 경찰 수사의 치명적 문제점 3가지",
+      "detail": "채널/작성자: 법무법인 한강 파트너스\n내용: 구리집단폭행 #김창민감독 #구리폭행사건 #검사출신변호사 #형사전문변호사 #법무법인한강.\nURL: https://www.youtube.com/watch?v=txYR7C6HTzg\n조회수: 722회\n댓글: 5개\n위험 요소: 분류: 사생활 침해 가능성",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 폭행 사건"
+      ],
+      "confidence": 30,
+      "confidence_reasons": [
+        "사생활 정보 언급: 집"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "사생활 침해 가능성"
+      ],
+      "connects": [
+        "법률전략실"
+      ],
+      "risk_score": 30,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=txYR7C6HTzg"
+    },
+    {
+      "id": "mon_20260506165346_3830",
+      "category": "alert",
+      "priority": "low",
+      "title": "[유튜브·영상] 故 김창민 감독 사망사건, 경찰 수사의 치명적 문제점 3가지",
+      "detail": "채널/작성자: 법무법인 한강 파트너스\n내용: \"검찰 출신 변호사가 직접 설계하는 승소 전략, 한강 파트너스\" 수사 방향을 읽는 경험의 차이가 결과의 차이를 만듭니다. 나와 내 가족 ...\nURL: https://www.youtube.com/watch?v=NkkKPTA6SR0\n조회수: 29회\n댓글: 2개\n위험 요소: 분류: 사생활 침해 가능성",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 폭행 사건"
+      ],
+      "confidence": 30,
+      "confidence_reasons": [
+        "사생활 정보 언급: 가족"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "사생활 침해 가능성"
+      ],
+      "connects": [
+        "법률전략실"
+      ],
+      "risk_score": 30,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=NkkKPTA6SR0"
+    },
+    {
+      "id": "mon_20260506165346_9071",
+      "category": "alert",
+      "priority": "low",
+      "title": "[유튜브·영상] 가만히 있는 아이 &#39;퍽&#39; 폭행 해도 경찰 &quot;귀가 조치&quot;? 부모 공분 / KN",
+      "detail": "채널/작성자: KNN NEWS\n내용: knn뉴스 #아이 #폭행 #공원 어린이날을 하루 앞둔 4일, 인천의 한 공원에서 60대 남성이 즐겁게 뛰어다니던 2세 아이의 뒤통수를 가격 ...\nURL: https://www.youtube.com/watch?v=fmq6JmvfADs\n조회수: 30회\n댓글: 1개\n위험 요소: 분류: 사생활 침해 가능성",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 폭행 사건"
+      ],
+      "confidence": 30,
+      "confidence_reasons": [
+        "사생활 정보 언급: 부모"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "사생활 침해 가능성"
+      ],
+      "connects": [
+        "법률전략실"
+      ],
+      "risk_score": 30,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=fmq6JmvfADs"
+    },
+    {
+      "id": "mon_20260506165346_2522",
+      "category": "alert",
+      "priority": "low",
+      "title": "[유튜브·영상] (반전신청사연)상간녀가 아침만되면 남편과 찍은 외도 사진을 보내며 자극하는데! ＂아줌마! 만나서 얘기좀 할까",
+      "detail": "채널/작성자: 속풀이 사연\n내용: 오늘은 특별한 주제 없이, 편하게 앉아 이런저런 이야기를 나눠봅니다. 일상 속에서 문득 떠오른 생각들, 사소하지만 공감되는 이야기 ...\nURL: https://www.youtube.com/watch?v=NHngWADwcL4\n위험 요소: 분류: 허위사실 가능성",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 상간녀"
+      ],
+      "confidence": 30,
+      "confidence_reasons": [
+        "허위사실 패턴: 썰"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "허위사실 가능성"
+      ],
+      "connects": [
+        "법률전략실"
+      ],
+      "risk_score": 30,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=NHngWADwcL4"
+    },
+    {
+      "id": "mon_20260506165346_9174",
+      "category": "alert",
+      "priority": "low",
+      "title": "[유튜브·영상] 친정아버지 장례식날 상간녀 데려와 이혼하자는 남편&quot;구질구질하니 이제 꺼져! 도장찍어&quot;저는 ",
+      "detail": "채널/작성자: 전 세계의 이야기\n내용: \"야, 네 몸에선 고기 핏물 냄새밖에 안 나. 이제 그만 내 인생에서 꺼져줘!\" 평생을 기름 냄새 맡으며 남편과 함께 일군 갈비집. 시장통 ...\nURL: https://www.youtube.com/watch?v=sNaCq-PZ5cE\n조회수: 198회\n댓글: 1개\n위험 요소: 분류: 사생활 침해 가능성",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 상간녀"
+      ],
+      "confidence": 30,
+      "confidence_reasons": [
+        "사생활 정보 언급: 집"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "사생활 침해 가능성"
+      ],
+      "connects": [
+        "법률전략실"
+      ],
+      "risk_score": 30,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=sNaCq-PZ5cE"
+    },
+    {
+      "id": "mon_20260506165346_0186",
+      "category": "alert",
+      "priority": "high",
+      "title": "[유튜브·영상] 남편이 상간녀와 살림차린다는데 시댁식구 모두가 한편이었다ㅣ오디오북ㅣ사연극장ㅣ사연라디오ㅣ감동사연",
+      "detail": "채널/작성자: 화려한 이야기\n내용: 남편이 상간녀와 살림을 차리겠다며 이혼을 요구했습니다. 더 충격적인 건 시댁 식구 모두가 남편 편을 들며 저를 쫓아냈다는 거예요.\nURL: https://www.youtube.com/watch?v=RwjUoiIn2cM\n위험 요소: 분류: 법적 대응 검토 필요, 분류: 명예훼손 가능성, 분류: 렉카 확산 가능성",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 상간녀"
+      ],
+      "confidence": 60,
+      "confidence_reasons": [
+        "명예훼손 패턴: 충격",
+        "렉카 키워드: 충격",
+        "복합 위험 요소 감지"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "법적 대응 검토 필요",
+        "명예훼손 가능성",
+        "렉카 확산 가능성"
+      ],
+      "connects": [
+        "행동위험차단팀",
+        "판사시점분석팀",
+        "법률전략실"
+      ],
+      "risk_score": 60,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=RwjUoiIn2cM"
+    },
+    {
+      "id": "mon_20260506165346_1551",
+      "category": "alert",
+      "priority": "low",
+      "title": "[유튜브·영상] 당장 집에 오라는 아내의 전화,상간녀가 남편을 막는중..",
+      "detail": "채널/작성자: 에이스탐정사무소\n내용: 의뢰 진행 중, 의뢰인이 감정을 참지 못하고 남편에게 전화를 걸어 “지금 당장 집에 들어오라”고 강하게 요구했습니다. ⠀ 현장에서 ...\nURL: https://www.youtube.com/watch?v=wTro7SCjjck\n조회수: 973회\n위험 요소: 분류: 사생활 침해 가능성",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 상간녀"
+      ],
+      "confidence": 30,
+      "confidence_reasons": [
+        "사생활 정보 언급: 집"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "사생활 침해 가능성"
+      ],
+      "connects": [
+        "법률전략실"
+      ],
+      "risk_score": 30,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=wTro7SCjjck"
+    },
+    {
+      "id": "mon_20260506165346_9850",
+      "category": "alert",
+      "priority": "low",
+      "title": "[유튜브·영상] 부모님 댁 간다던 남편! 상간녀와 모텔 1박2일 #부부관계#불륜#외도#이혼#현실부부#흥신소#탐정#쇼츠#Sho",
+      "detail": "채널/작성자: 바람을잡다\n내용: 의뢰인님은 주말마다 부모님 댁 일손을 돕겠다며 집을 나서는 남편이 유독 밤늦게만 통화가 되거나, 정작 다녀왔다는 남편의 차 안에서 ...\nURL: https://www.youtube.com/watch?v=1YfMsFwVc5A\n조회수: 768회\n위험 요소: 분류: 사생활 침해 가능성",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 상간녀"
+      ],
+      "confidence": 30,
+      "confidence_reasons": [
+        "사생활 정보 언급: 집, 부모"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "사생활 침해 가능성"
+      ],
+      "connects": [
+        "법률전략실"
+      ],
+      "risk_score": 30,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=1YfMsFwVc5A"
+    },
+    {
+      "id": "mon_20260506165346_0532",
+      "category": "alert",
+      "priority": "mid",
+      "title": "[유튜브·영상] 황철순이 알려주는 빨래판 만드는 복근 운동",
+      "detail": "채널/작성자: 운동꿀팁\nURL: https://www.youtube.com/watch?v=ZN-KrxrjW-Q\n조회수: 145,493회\n댓글: 17개\n위험 요소: 분류: 렉카 확산 가능성, 바이럴 조회수: 145493회\n확산: 10만 조회 달성 — 즉시 대응 필요",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 황철순"
+      ],
+      "confidence": 20,
+      "confidence_reasons": [
+        "조회수 급증: 145,493회"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "렉카 확산 가능성"
+      ],
+      "connects": [
+        "행동위험차단팀"
+      ],
+      "risk_score": 45,
+      "is_spreading": true,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=ZN-KrxrjW-Q"
+    },
+    {
+      "id": "mon_20260506165346_2125",
+      "category": "alert",
+      "priority": "mid",
+      "title": "[유튜브·영상] [Weekly Idol] 입덕을 유발하는 천년돌 하루아의 오또케송♥ 저는 일단 입덕했습니다(๑•́ ₃ •̀๑",
+      "detail": "채널/작성자: ALL THE K-POP\n내용: 천년돌 하루아가 오또케송을 부른다고요????? 울루아 귀여움이 지구 뿌셔! 뿌셔! 하루아 유명해지지마...아니..유명해져.. 아니.\nURL: https://www.youtube.com/watch?v=Tf9ORLuhGE4\n조회수: 63,249회\n댓글: 626개\n위험 요소: 분류: 단순 언급, 바이럴 조회수: 63249회, 댓글 활성화: 626개\n확산: 5만 조회 — 확산 중",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 돌하루"
+      ],
+      "confidence": 15,
+      "confidence_reasons": [
+        "주목할 만한 조회수: 63,249회",
+        "위험 패턴 미감지"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "단순 언급"
+      ],
+      "connects": [
+        "행동위험차단팀"
+      ],
+      "risk_score": 40,
+      "is_spreading": true,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=Tf9ORLuhGE4"
+    },
+    {
+      "id": "mon_20260506165346_1394",
+      "category": "alert",
+      "priority": "urgent",
+      "title": "[유튜브·영상] 첫 돌 하루, 외할아버지 메시지에 웃음 폭발 #심형탁 #심하루 #형탁사야 #하루 #사야 #한일부부 #예능 #",
+      "detail": "채널/작성자: KrVlog 247\n내용: 심형탁♥사야, 그리고 아기 하루의 리얼 가족일기 한류 배우 심형탁, 일본인 아내 사야, 그리고 눈을 뗄 수 없는 사랑둥이 아들 하루!\nURL: https://www.youtube.com/watch?v=o13WOK3TH_U\n조회수: 168,329회\n댓글: 33개\n위험 요소: 분류: 사생활 침해 가능성, 분류: 렉카 확산 가능성, 분류: 법적 대응 검토 필요, 바이럴 조회수: 168329회\n확산: 10만 조회 달성 — 즉시 대응 필요",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 돌하루"
+      ],
+      "confidence": 65,
+      "confidence_reasons": [
+        "사생활 정보 언급: 가족",
+        "조회수 급증: 168,329회",
+        "복합 위험 요소 감지"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "사생활 침해 가능성",
+        "렉카 확산 가능성",
+        "법적 대응 검토 필요"
+      ],
+      "connects": [
+        "행동위험차단팀",
+        "판사시점분석팀",
+        "법률전략실"
+      ],
+      "risk_score": 90,
+      "is_spreading": true,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=o13WOK3TH_U"
+    },
+    {
+      "id": "mon_20260506165346_3526",
+      "category": "alert",
+      "priority": "urgent",
+      "title": "[유튜브·영상] 품에 안긴 첫 돌 하루, 외조부모님의 감동 순간 #심형탁 #심하루 #형탁사야 #하루 #사야 #한일부부 #예능",
+      "detail": "채널/작성자: KrVlog 247\n내용: 심형탁♥사야, 그리고 아기 하루의 리얼 가족일기 한류 배우 심형탁, 일본인 아내 사야, 그리고 눈을 뗄 수 없는 사랑둥이 아들 하루!\nURL: https://www.youtube.com/watch?v=NcQBWN41KhY\n조회수: 177,371회\n댓글: 20개\n위험 요소: 분류: 사생활 침해 가능성, 분류: 렉카 확산 가능성, 분류: 법적 대응 검토 필요, 바이럴 조회수: 177371회\n확산: 10만 조회 달성 — 즉시 대응 필요",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 돌하루"
+      ],
+      "confidence": 65,
+      "confidence_reasons": [
+        "사생활 정보 언급: 가족, 부모",
+        "조회수 급증: 177,371회",
+        "복합 위험 요소 감지"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "사생활 침해 가능성",
+        "렉카 확산 가능성",
+        "법적 대응 검토 필요"
+      ],
+      "connects": [
+        "행동위험차단팀",
+        "판사시점분석팀",
+        "법률전략실"
+      ],
+      "risk_score": 90,
+      "is_spreading": true,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=NcQBWN41KhY"
+    },
+    {
+      "id": "mon_20260506165346_0652",
+      "category": "alert",
+      "priority": "low",
+      "title": "[유튜브·영상] 주일 예배 | 26 05 03 찬양 | 서정은 집사 인도",
+      "detail": "채널/작성자: 든든한교회\n내용: 00:00 완전하신 나의 주 03:56 주님만 사랑하리 11:02 있는 모습 그대로 19:22 예수 뿐이네 23:22 주 말씀 향하여 28:33 눈을 들어 주 ...\nURL: https://www.youtube.com/watch?v=5ahNHaBRC1I\n조회수: 15회\n위험 요소: 분류: 사생활 침해 가능성",
+      "sources": [
+        "유튜브 자동 수집",
+        "감지 키워드: 서정은"
+      ],
+      "confidence": 30,
+      "confidence_reasons": [
+        "사생활 정보 언급: 집"
+      ],
+      "time": "2026. 5. 6. 16:53",
+      "status": "pending",
+      "vtypes": [
+        "사생활 침해 가능성"
+      ],
+      "connects": [
+        "법률전략실"
+      ],
+      "risk_score": 30,
+      "is_spreading": false,
+      "auto_detected": true,
+      "raw_url": "https://www.youtube.com/watch?v=5ahNHaBRC1I"
+    },
+    {
       "id": "mon_20260506164522_3336",
       "category": "alert",
       "priority": "low",

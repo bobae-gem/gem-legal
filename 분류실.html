@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>모니터링 분류실 — 보배 법률전략실</title>
+<style>
+:root{--bg:#070910;--sur:#0d1017;--sur2:#121620;--sur3:#181d28;--bdr:#222a3a;--bdr2:#1a2030;--acc:#4d7aff;--acc2:#7a4dff;--red:#ff3a3a;--org:#ff8822;--yel:#ffcc22;--grn:#22ffaa;--tel:#22ccff;--txt:#edf0ff;--txt2:#8492b0;--txt3:#424f68}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Malgun Gothic',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;font-size:13px}
+nav{display:flex;align-items:center;padding:0 20px;height:52px;background:var(--sur);border-bottom:1px solid var(--bdr);gap:3px;position:sticky;top:0;z-index:100;overflow-x:auto}
+.nlogo{font-size:14px;font-weight:900;color:var(--txt);margin-right:12px;white-space:nowrap}.nlogo span{color:var(--acc)}
+a.nl{text-decoration:none;color:var(--txt3);font-size:12px;font-weight:700;padding:5px 10px;border-radius:7px;transition:all .15s;border:1px solid transparent;white-space:nowrap;flex-shrink:0}
+a.nl:hover{color:var(--txt2);background:var(--sur2)}a.nl.on{color:var(--acc);background:#4d7aff12;border-color:#4d7aff28}
+.nr{margin-left:auto;white-space:nowrap;font-size:12px;color:var(--txt3);padding-left:10px}
+.subnav{display:flex;align-items:center;gap:10px;padding:0 20px;height:36px;background:#0a0c12;border-bottom:1px solid #ff3a3a22;flex-shrink:0;position:sticky;top:52px;z-index:99}
+.snl{text-decoration:none;color:#ff6666;font-size:12px;font-weight:800;padding:4px 12px;border-radius:6px;border:1px solid #ff3a3a28;background:#ff3a3a12;white-space:nowrap;transition:all .15s}
+.snl:hover{background:#ff3a3a20}.snl.on{background:#ff3a3a22;border-color:#ff3a3a40}
+.sn-arr{color:#ff3a3a55;font-size:11px;font-weight:700}
+.sn-flow{display:flex;align-items:center;gap:6px}
+.sn-desc{font-size:11px;color:#424f68;font-weight:600;margin-left:8px}
+
+.layout{display:grid;grid-template-columns:220px 1fr;height:calc(100vh - 88px)}
+.sidebar{background:var(--sur);border-right:1px solid var(--bdr);overflow-y:auto;padding:12px 10px}
+.sb-sec{margin-bottom:14px}
+.sb-title{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--txt3);margin-bottom:8px;padding:0 4px}
+.f-item{display:flex;align-items:center;justify-content:space-between;padding:7px 10px;border-radius:8px;cursor:pointer;border:1px solid transparent;margin-bottom:3px;transition:all .15s}
+.f-item:hover{background:var(--sur2);border-color:var(--bdr)}
+.f-item.on{background:var(--sur2);border-color:var(--acc)28}
+.fi-left{display:flex;align-items:center;gap:7px}
+.fi-ico{font-size:13px}
+.fi-name{font-size:12px;font-weight:700;color:var(--txt2)}
+.f-item.on .fi-name{color:var(--txt)}
+.fi-cnt{font-size:10px;font-weight:800;padding:1px 6px;border-radius:6px;background:var(--sur3);color:var(--txt3)}
+.fi-cnt.has{background:#4d7aff18;color:var(--acc)}
+.div-line{height:1px;background:var(--bdr2);margin:10px 0}
+
+.main{display:flex;flex-direction:column;overflow:hidden}
+.mhead{padding:12px 20px;border-bottom:1px solid var(--bdr2);background:var(--sur);flex-shrink:0;display:flex;align-items:center;justify-content:space-between}
+.mh-info{font-size:11px;color:var(--txt3);margin-top:2px}
+.stats-bar{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;padding:10px 20px;flex-shrink:0;background:var(--sur);border-bottom:1px solid var(--bdr2)}
+.sb{border-radius:8px;padding:8px 10px;text-align:center;cursor:pointer;border:1px solid transparent;transition:all .15s}
+.sb:hover{opacity:.85}
+.sb-n{font-size:16px;font-weight:900;margin-bottom:2px}
+.sb-l{font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+.sb-discard{background:#424f6818;border-color:#424f6830}.sb-n-d{color:#6b7fa3}
+.sb-monitor{background:#22ccff12;border-color:#22ccff28}.sb-n-m{color:var(--tel)}
+.sb-evidence{background:#ffcc2212;border-color:#ffcc2228}.sb-n-e{color:var(--yel)}
+.sb-legal{background:#ff882212;border-color:#ff882228}.sb-n-l{color:var(--org)}
+.sb-alert{background:#ff3a3a12;border-color:#ff3a3a28}.sb-n-a{color:var(--red)}
+.pb{flex:1;overflow-y:auto;padding:14px 20px}
+
+.btn{padding:6px 13px;border-radius:7px;font-size:11px;font-weight:700;cursor:pointer;border:none;transition:all .15s}
+.bg{background:var(--sur2);color:var(--txt2);border:1px solid var(--bdr)}.bg:hover{border-color:var(--acc);color:var(--acc)}
+.bp{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff}.bp:hover{opacity:.85}
+.sm{padding:4px 9px;font-size:10px}
+
+/* 분류 카드 */
+.ccard{background:var(--sur);border:1px solid var(--bdr);border-radius:11px;padding:13px 15px;margin-bottom:8px;transition:all .15s}
+.ccard:hover{border-color:var(--bdr)}
+.cc-top{display:flex;align-items:center;gap:6px;margin-bottom:8px;flex-wrap:wrap}
+.cc-plat{font-size:10px;font-weight:800;padding:3px 8px;border-radius:5px}
+.pl-yt{background:#ff3a3a18;color:#ff6666;border:1px solid #ff3a3a28}
+.pl-ig{background:#7a4dff18;color:#aa7fff;border:1px solid #7a4dff28}
+.pl-cm{background:#4d7aff18;color:#7a9fff;border:1px solid #4d7aff28}
+.pl-nw{background:#ffcc2218;color:#ffdd55;border:1px solid #ffcc2228}
+.pl-etc{background:#424f6818;color:#6b7fa3;border:1px solid #424f6828}
+.cc-status{font-size:10px;font-weight:800;padding:3px 8px;border-radius:5px}
+.st-discard{background:#424f6818;color:#6b7fa3;border:1px solid #424f6828}
+.st-monitor{background:#22ccff18;color:var(--tel);border:1px solid #22ccff28}
+.st-evidence{background:#ffcc2218;color:var(--yel);border:1px solid #ffcc2228}
+.st-legal{background:#ff882218;color:var(--org);border:1px solid #ff882228}
+.st-alert{background:#ff3a3a18;color:var(--red);border:1px solid #ff3a3a28}
+.cc-date{font-size:10px;color:var(--txt3);margin-left:auto}
+.cc-title{font-size:13px;font-weight:800;color:var(--txt);margin-bottom:4px;line-height:1.4}
+.cc-meta{font-size:11px;color:var(--txt3);margin-bottom:8px}
+.cc-vtags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px}
+.vtag{font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;background:#ff3a3a12;color:#ff6666;border:1px solid #ff3a3a28}
+.cc-actions{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+.ca-lbl{font-size:10px;color:var(--txt3);margin-right:4px;white-space:nowrap}
+.ca-btn{padding:4px 9px;border-radius:6px;font-size:10px;font-weight:800;cursor:pointer;border:1px solid;transition:all .15s;white-space:nowrap}
+.ca-d{background:#424f6812;color:#6b7fa3;border-color:#424f6828}.ca-d:hover{background:#424f6822}
+.ca-m{background:#22ccff12;color:var(--tel);border-color:#22ccff28}.ca-m:hover{background:#22ccff20}
+.ca-e{background:#ffcc2212;color:var(--yel);border-color:#ffcc2228}.ca-e:hover{background:#ffcc2220}
+.ca-l{background:#ff882212;color:var(--org);border-color:#ff882228}.ca-l:hover{background:#ff882220}
+.ca-a{background:#ff3a3a12;color:var(--red);border-color:#ff3a3a28}.ca-a:hover{background:#ff3a3a20}
+.cc-auto{font-size:10px;color:var(--grn);padding:2px 7px;border-radius:4px;background:#22ffaa10;border:1px solid #22ffaa25}
+
+.empty{text-align:center;padding:40px;color:var(--txt3);font-size:12px}
+.unclassified-banner{background:#ffcc2210;border:1px solid #ffcc2230;border-radius:9px;padding:10px 14px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between}
+.ub-txt{font-size:12px;color:var(--yel);font-weight:700}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nlogo">보배 <span>법률전략실</span></div>
+  <a href="상황실.html" class="nl">🔴 메인 상황실</a>
+  <a href="업데이터.html" class="nl">🤖 상황실 업데이터</a>
+  <a href="사건.html" class="nl">📁 사건 관리실</a>
+  <a href="검수실.html" class="nl">🛡️ 콘텐츠 검수실</a>
+  <a href="리서치.html" class="nl">🔍 리서치 센터</a>
+  <a href="메모리.html" class="nl">🧠 메모리 관리실</a>
+  <a href="대시보드.html" class="nl">📊 시스템구조</a>
+  <div class="nr" id="clk">--:--:--</div>
+</nav>
+<div class="subnav">
+  <span class="sn-flow"><a href="모니터링.html" class="snl">👁️ 모니터링 센터</a>
+  <span class="sn-arr">→</span>
+  <a href="분류실.html"   class="snl on">📋 분류실</a>
+  <span class="sn-arr">→</span>
+  <a href="증거보존.html" class="snl">📦 증거보존팀</a></span>
+  <span class="sn-desc">공개 게시물만 · 수집 → 분류 → 증거보존 → 상황실</span>
+</div>
+
+<div class="layout">
+  <!-- 사이드바 -->
+  <div class="sidebar">
+    <div class="sb-sec">
+      <div class="sb-title">분류 상태 필터</div>
+      <div class="f-item on" onclick="setFilter('all',this)">
+        <div class="fi-left"><span class="fi-ico">📋</span><span class="fi-name">전체</span></div>
+        <span class="fi-cnt has" id="cnt-all">0</span>
+      </div>
+      <div class="f-item" onclick="setFilter('unclassified',this)">
+        <div class="fi-left"><span class="fi-ico">❓</span><span class="fi-name">미분류</span></div>
+        <span class="fi-cnt" id="cnt-unclassified">0</span>
+      </div>
+      <div class="f-item" onclick="setFilter('discarded',this)">
+        <div class="fi-left"><span class="fi-ico">🗑</span><span class="fi-name">버려짐</span></div>
+        <span class="fi-cnt" id="cnt-discard">0</span>
+      </div>
+      <div class="f-item" onclick="setFilter('monitoring_only',this)">
+        <div class="fi-left"><span class="fi-ico">👀</span><span class="fi-name">모니터링만</span></div>
+        <span class="fi-cnt" id="cnt-monitor">0</span>
+      </div>
+      <div class="f-item" onclick="setFilter('needs_evidence',this)">
+        <div class="fi-left"><span class="fi-ico">📦</span><span class="fi-name">증거보존 필요</span></div>
+        <span class="fi-cnt" id="cnt-evidence">0</span>
+      </div>
+      <div class="f-item" onclick="setFilter('needs_legal_review',this)">
+        <div class="fi-left"><span class="fi-ico">⚖️</span><span class="fi-name">법률 검토 필요</span></div>
+        <span class="fi-cnt" id="cnt-legal">0</span>
+      </div>
+      <div class="f-item" onclick="setFilter('needs_dashboard_alert',this)">
+        <div class="fi-left"><span class="fi-ico">🚨</span><span class="fi-name">상황실 알림</span></div>
+        <span class="fi-cnt" id="cnt-alert">0</span>
+      </div>
+    </div>
+    <div class="div-line"></div>
+    <div class="sb-sec">
+      <div class="sb-title">핵심 원칙</div>
+      <div style="font-size:11px;color:var(--txt3);line-height:1.8;padding:0 4px">
+        ✓ 단순 언급은 상황실 미전달<br>
+        ✓ 허위사실·명예훼손 우선 분석<br>
+        ✓ 삭제 가능성 높으면 즉시 증거보존<br>
+        ✓ AI 자동 대응 금지<br>
+        ✓ 대표 승인 후 상황실 반영
+      </div>
+    </div>
+    <div class="div-line"></div>
+    <button class="btn bg" style="width:100%;font-size:11px" onclick="autoClassifyAll()">🤖 미분류 자동 분류</button>
+  </div>
+
+  <!-- 메인 -->
+  <div class="main">
+    <div class="mhead">
+      <div>
+        <div style="font-size:15px;font-weight:900">📋 모니터링 분류실</div>
+        <div class="mh-info">수집 데이터 정리 · 중복 제거 · 위험도 분류 · 상황실 전달 여부 결정</div>
+      </div>
+      <div style="display:flex;gap:7px">
+        <button class="btn bg sm" onclick="loadItems()">새로고침</button>
+        <button class="btn bp sm" onclick="sendAlertsToDashboard()">상황실 알림 전송</button>
+      </div>
+    </div>
+
+    <!-- 통계 바 -->
+    <div class="stats-bar">
+      <div class="sb sb-discard" onclick="setFilter('discarded',null)">
+        <div class="sb-n sb-n-d" id="s-discard">0</div>
+        <div class="sb-l" style="color:#6b7fa3">버려짐</div>
+      </div>
+      <div class="sb sb-monitor" onclick="setFilter('monitoring_only',null)">
+        <div class="sb-n sb-n-m" id="s-monitor">0</div>
+        <div class="sb-l" style="color:var(--tel)">모니터링만</div>
+      </div>
+      <div class="sb sb-evidence" onclick="setFilter('needs_evidence',null)">
+        <div class="sb-n sb-n-e" id="s-evidence">0</div>
+        <div class="sb-l" style="color:var(--yel)">증거보존</div>
+      </div>
+      <div class="sb sb-legal" onclick="setFilter('needs_legal_review',null)">
+        <div class="sb-n sb-n-l" id="s-legal">0</div>
+        <div class="sb-l" style="color:var(--org)">법률검토</div>
+      </div>
+      <div class="sb sb-alert" onclick="setFilter('needs_dashboard_alert',null)">
+        <div class="sb-n sb-n-a" id="s-alert">0</div>
+        <div class="sb-l" style="color:var(--red)">상황실알림</div>
+      </div>
+    </div>
+
+    <div class="pb" id="list-area">
+      <div class="empty">로딩 중...</div>
+    </div>
+  </div>
+</div>
+
+<script>
+setInterval(()=>{ document.getElementById('clk').textContent = new Date().toLocaleTimeString('ko-KR',{hour12:false}); },1000);
+
+let items = [];
+let classifications = JSON.parse(localStorage.getItem('mon_classifications')||'{}');
+let currentFilter = 'all';
+
+const STATUS_LABEL = {
+  unclassified:          '❓ 미분류',
+  discarded:             '🗑 버려짐',
+  monitoring_only:       '👀 모니터링만',
+  needs_evidence:        '📦 증거보존 필요',
+  needs_legal_review:    '⚖️ 법률 검토 필요',
+  needs_dashboard_alert: '🚨 상황실 알림'
+};
+const STATUS_CSS = {
+  unclassified: 'st-monitor',
+  discarded: 'st-discard',
+  monitoring_only: 'st-monitor',
+  needs_evidence: 'st-evidence',
+  needs_legal_review: 'st-legal',
+  needs_dashboard_alert: 'st-alert'
+};
+const PLAT_CSS = {유튜브:'pl-yt',인스타그램:'pl-ig',커뮤니티:'pl-cm',뉴스:'pl-nw'};
+
+function saveClassifications(){ localStorage.setItem('mon_classifications', JSON.stringify(classifications)); }
+
+function getStatus(item){
+  return classifications[item.id] || item.class_status || 'unclassified';
+}
+
+function loadItems(){
+  items = JSON.parse(localStorage.getItem('monitoring_v1')||'[]');
+  // 중복 제거 (같은 URL)
+  const seen = new Set();
+  items = items.filter(i => {
+    const key = i.url || i.title;
+    if(seen.has(key)) return false;
+    seen.add(key); return true;
+  });
+  renderAll();
+}
+
+function renderAll(){
+  updateStats();
+  let filtered = items;
+  if(currentFilter === 'unclassified') filtered = items.filter(i => getStatus(i) === 'unclassified');
+  else if(currentFilter !== 'all') filtered = items.filter(i => getStatus(i) === currentFilter);
+
+  const el = document.getElementById('list-area');
+  if(!filtered.length){
+    el.innerHTML='<div class="empty"><div style="font-size:28px;opacity:.3;margin-bottom:8px">📋</div>해당 항목이 없습니다</div>';
+    return;
+  }
+
+  const unclassified = items.filter(i=>getStatus(i)==='unclassified').length;
+  let html = '';
+  if(unclassified > 0 && currentFilter === 'all'){
+    html += `<div class="unclassified-banner"><span class="ub-txt">⚠️ 미분류 ${unclassified}건 — 분류가 필요합니다</span><button class="btn bp sm" onclick="autoClassifyAll()">자동 분류</button></div>`;
+  }
+
+  html += filtered.map(item => {
+    const st = getStatus(item);
+    const vtags = (item.vtypes||[]).map(v=>`<span class="vtag">${v}</span>`).join('');
+    const isAuto = item.auto_detected;
+    return `<div class="ccard">
+      <div class="cc-top">
+        <span class="cc-plat ${PLAT_CSS[item.platform]||'pl-etc'}">${item.platform||'?'}</span>
+        <span style="font-size:10px;color:var(--txt3)">${item.ptype||''}</span>
+        <span class="cc-status ${STATUS_CSS[st]}">${STATUS_LABEL[st]}</span>
+        ${isAuto?'<span class="cc-auto">자동수집</span>':''}
+        <span class="cc-date">${item.founddate||item.date||''}</span>
+      </div>
+      <div class="cc-title">${item.title||'(제목 없음)'}</div>
+      <div class="cc-meta">${item.author||item.channel||''} ${item.kw?'· 키워드: '+item.kw:''}</div>
+      ${vtags?`<div class="cc-vtags">${vtags}</div>`:''}
+      <div class="cc-actions">
+        <span class="ca-lbl">분류:</span>
+        <button class="ca-btn ca-d${st==='discarded'?' on':''}" onclick="classify('${item.id}','discarded')">버려짐</button>
+        <button class="ca-btn ca-m${st==='monitoring_only'?' on':''}" onclick="classify('${item.id}','monitoring_only')">모니터링만</button>
+        <button class="ca-btn ca-e${st==='needs_evidence'?' on':''}" onclick="classify('${item.id}','needs_evidence')">📦 증거보존</button>
+        <button class="ca-btn ca-l${st==='needs_legal_review'?' on':''}" onclick="classify('${item.id}','needs_legal_review')">⚖️ 법률검토</button>
+        <button class="ca-btn ca-a${st==='needs_dashboard_alert'?' on':''}" onclick="classify('${item.id}','needs_dashboard_alert')">🚨 상황실</button>
+      </div>
+    </div>`;
+  }).join('');
+  el.innerHTML = html;
+}
+
+function updateStats(){
+  const c = s => items.filter(i=>getStatus(i)===s).length;
+  document.getElementById('s-discard').textContent   = c('discarded');
+  document.getElementById('s-monitor').textContent   = c('monitoring_only');
+  document.getElementById('s-evidence').textContent  = c('needs_evidence');
+  document.getElementById('s-legal').textContent     = c('needs_legal_review');
+  document.getElementById('s-alert').textContent     = c('needs_dashboard_alert');
+  document.getElementById('cnt-all').textContent     = items.length;
+  document.getElementById('cnt-all').className       = 'fi-cnt'+(items.length>0?' has':'');
+  const unc = items.filter(i=>getStatus(i)==='unclassified').length;
+  document.getElementById('cnt-unclassified').textContent = unc;
+  document.getElementById('cnt-unclassified').className = 'fi-cnt'+(unc>0?' has':'');
+  const mp = {discarded:'discard',monitoring_only:'monitor',needs_evidence:'evidence',needs_legal_review:'legal',needs_dashboard_alert:'alert'};
+  Object.entries(mp).forEach(([s,id])=>{
+    const el = document.getElementById('cnt-'+id);
+    const n = c(s); if(el){ el.textContent=n; el.className='fi-cnt'+(n>0?' has':''); }
+  });
+}
+
+function classify(id, status){
+  classifications[id] = status;
+  saveClassifications();
+  renderAll();
+}
+
+function setFilter(f, el){
+  currentFilter = f;
+  document.querySelectorAll('.f-item').forEach(m=>m.classList.remove('on'));
+  if(el) el.classList.add('on');
+  renderAll();
+}
+
+// AI 자동 분류 (룰 기반)
+function autoClassifyAll(){
+  let count = 0;
+  items.forEach(item => {
+    if(getStatus(item) !== 'unclassified') return;
+    const vtypes = item.vtypes || [];
+    const risk = item.risk || 'low';
+
+    let status = 'monitoring_only';
+    if(vtypes.includes('법적 대응 검토 필요') || vtypes.includes('허위사실 가능성') || risk === 'urgent')
+      status = 'needs_dashboard_alert';
+    else if(vtypes.includes('명예훼손 가능성') || vtypes.includes('렉카 확산 가능성') || risk === 'high')
+      status = 'needs_legal_review';
+    else if(vtypes.includes('사생활 침해 가능성') || vtypes.includes('악성 댓글'))
+      status = 'needs_evidence';
+    else if(vtypes.includes('단순 언급') && risk === 'low')
+      status = 'discarded';
+
+    classifications[item.id] = status;
+    count++;
+  });
+  saveClassifications();
+  renderAll();
+  alert(`${count}건 자동 분류 완료`);
+}
+
+// 상황실 알림 항목 dashboard_pending에 전송
+async function sendAlertsToDashboard(){
+  const alerts = items.filter(i=>getStatus(i)==='needs_dashboard_alert');
+  if(!alerts.length){ alert('상황실 알림 항목이 없습니다'); return; }
+  try{
+    const r = await fetch('http://localhost:8080/api/pending');
+    const data = await r.json();
+    let added = 0;
+    const now = new Date();
+    const ts = `${now.getFullYear()}. ${now.getMonth()+1}. ${now.getDate()}. ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+    alerts.forEach(item => {
+      const exists = data.pending.some(p=>p.raw_url===item.url);
+      if(!exists){
+        data.pending.unshift({
+          id: 'cls_'+Date.now()+'_'+Math.random().toString(36).slice(2,6),
+          category:'alert', priority: item.risk==='urgent'?'urgent':'high',
+          title:`[분류실 → 상황실] ${item.title||'(제목 없음)'}`.slice(0,80),
+          detail: [item.author?`작성자: ${item.author}`:'', item.url?`URL: ${item.url}`:'', (item.vtypes||[]).join(', ')].filter(Boolean).join('\n'),
+          sources:[`${item.platform||'?'} 모니터링 자동수집`,'분류실 검토 완료'],
+          confidence: 75, confidence_reasons:['분류실에서 검토됨','상황실 알림으로 분류'],
+          vtypes: item.vtypes||[], connects:['법률전략실','행동위험차단팀'],
+          time: ts, status:'pending', raw_url: item.url||'', auto_detected:true
+        });
+        added++;
+      }
+    });
+    await fetch('http://localhost:8080/api/pending',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+    alert(`${added}건을 상황실 업데이터로 전송했습니다`);
+  }catch(e){ alert('서버 연결 필요: server.py 실행 후 재시도'); }
+}
+
+document.addEventListener('keydown',e=>{ if(e.key==='F5') loadItems(); });
+loadItems();
+</script>
+</body>
+</html>

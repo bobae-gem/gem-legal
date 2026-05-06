@@ -1,0 +1,46 @@
+{
+  "saved_at": "2026-05-06T16:55:10.396516",
+  "platform": "유튜브",
+  "type": "영상",
+  "title": "환경미화원 폭행, 처벌이 약한 이유? #환경미화원 #폭행사건 #징역6개월 #현장직현실 #갑질문화 #노동존중 #공무직 #현장아재 #산업안전 #직업존중",
+  "author": "현장아재",
+  "url": "https://www.youtube.com/watch?v=ypxqnTQY4PU",
+  "published_at": "2026-05-05T19:41:15Z",
+  "found_at": "2026-05-06T16:54:09.832299",
+  "content": {
+    "description": "환경미화원을 폭행한 가해자가 결국 징역 6개월, 집행유예 1년을 받았습니다. 많다고 느끼십니까? 저는 그렇게 생각하지 않습니다.",
+    "body": ""
+  },
+  "stats": {
+    "views": 1361,
+    "likes": 12,
+    "comments": 1
+  },
+  "analysis": {
+    "classification": {
+      "types": [
+        "사생활 침해 가능성"
+      ],
+      "confidence": 30,
+      "reasons": [
+        "사생활 정보 언급: 집"
+      ]
+    },
+    "risk": {
+      "risk_level": "mid",
+      "risk_score": 35,
+      "risk_factors": [
+        "분류: 사생활 침해 가능성",
+        "조회수: 1361회"
+      ]
+    },
+    "spread": {
+      "is_spreading": false,
+      "spread_count": 0,
+      "platforms": [],
+      "spread_speed": "느림",
+      "notes": []
+    }
+  },
+  "legal_note": "공개 게시물에서 수집됨. 비공개 정보 미포함."
+}

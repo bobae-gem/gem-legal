@@ -1,0 +1,49 @@
+{
+  "saved_at": "2026-05-06T16:53:47.000185",
+  "platform": "유튜브",
+  "type": "영상",
+  "title": "제 모든 의혹에 대해 해명합니다.",
+  "author": "영베리",
+  "url": "https://www.youtube.com/watch?v=-U3mrpuwQv8",
+  "published_at": "2026-04-14T09:20:10Z",
+  "found_at": "2026-05-06T16:52:48.086944",
+  "content": {
+    "description": "Instagram: https://www.instagram.com/_youngberry/ - LIVE: https://www.sooplive.co.kr/station/gkksdk7777 - 광고문의: ...",
+    "body": ""
+  },
+  "stats": {
+    "views": 961353,
+    "likes": 15394,
+    "comments": 4028
+  },
+  "analysis": {
+    "classification": {
+      "types": [
+        "렉카 확산 가능성"
+      ],
+      "confidence": 20,
+      "reasons": [
+        "조회수 급증: 961,353회"
+      ]
+    },
+    "risk": {
+      "risk_level": "mid",
+      "risk_score": 55,
+      "risk_factors": [
+        "분류: 렉카 확산 가능성",
+        "바이럴 조회수: 961353회",
+        "댓글 활성화: 4028개"
+      ]
+    },
+    "spread": {
+      "is_spreading": true,
+      "spread_count": 0,
+      "platforms": [],
+      "spread_speed": "바이럴",
+      "notes": [
+        "10만 조회 달성 — 즉시 대응 필요"
+      ]
+    }
+  },
+  "legal_note": "공개 게시물에서 수집됨. 비공개 정보 미포함."
+}

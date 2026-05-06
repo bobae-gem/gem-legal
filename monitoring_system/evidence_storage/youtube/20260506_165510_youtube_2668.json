@@ -1,0 +1,47 @@
+{
+  "saved_at": "2026-05-06T16:55:10.386670",
+  "platform": "유튜브",
+  "type": "영상",
+  "title": "故 김창민 감독 사망사건, 경찰 수사의 치명적 문제점 3가지",
+  "author": "법무법인 한강 파트너스",
+  "url": "https://www.youtube.com/watch?v=txYR7C6HTzg",
+  "published_at": "2026-05-06T05:25:53Z",
+  "found_at": "2026-05-06T16:54:09.832292",
+  "content": {
+    "description": "구리집단폭행 #김창민감독 #구리폭행사건 #검사출신변호사 #형사전문변호사 #법무법인한강.",
+    "body": ""
+  },
+  "stats": {
+    "views": 724,
+    "likes": 39,
+    "comments": 5
+  },
+  "analysis": {
+    "classification": {
+      "types": [
+        "사생활 침해 가능성"
+      ],
+      "confidence": 30,
+      "reasons": [
+        "사생활 정보 언급: 집"
+      ]
+    },
+    "risk": {
+      "risk_level": "low",
+      "risk_score": 30,
+      "risk_factors": [
+        "분류: 사생활 침해 가능성"
+      ]
+    },
+    "spread": {
+      "is_spreading": false,
+      "spread_count": 1,
+      "platforms": [
+        "유튜브"
+      ],
+      "spread_speed": "느림",
+      "notes": []
+    }
+  },
+  "legal_note": "공개 게시물에서 수집됨. 비공개 정보 미포함."
+}

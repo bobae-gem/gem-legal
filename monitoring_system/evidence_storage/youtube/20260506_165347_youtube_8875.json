@@ -1,0 +1,50 @@
+{
+  "saved_at": "2026-05-06T16:53:47.219038",
+  "platform": "유튜브",
+  "type": "영상",
+  "title": "[철순과 코코] 땅컴퍼니에 직접 행차한 지연아.. 야 황철순!! 두뇌 풀가동 코코 21화",
+  "author": "땅튜브",
+  "url": "https://www.youtube.com/watch?v=kAMgByg7mBQ",
+  "published_at": "2025-09-03T14:58:21Z",
+  "found_at": "2026-05-06T16:53:16.084217",
+  "content": {
+    "description": "[땅튜브 X 인터넷끝판왕] 모르면 못받는 통신지원금 80만원 + 결합할인 72만원 추가혜택   지금 견적만 받아도 스타벅스 커피 쿠폰 ...",
+    "body": ""
+  },
+  "stats": {
+    "views": 71995,
+    "likes": 397,
+    "comments": 236
+  },
+  "analysis": {
+    "classification": {
+      "types": [
+        "단순 언급"
+      ],
+      "confidence": 15,
+      "reasons": [
+        "주목할 만한 조회수: 71,995회",
+        "위험 패턴 미감지"
+      ]
+    },
+    "risk": {
+      "risk_level": "mid",
+      "risk_score": 40,
+      "risk_factors": [
+        "분류: 단순 언급",
+        "바이럴 조회수: 71995회",
+        "댓글 활성화: 236개"
+      ]
+    },
+    "spread": {
+      "is_spreading": true,
+      "spread_count": 0,
+      "platforms": [],
+      "spread_speed": "빠름",
+      "notes": [
+        "5만 조회 — 확산 중"
+      ]
+    }
+  },
+  "legal_note": "공개 게시물에서 수집됨. 비공개 정보 미포함."
+}

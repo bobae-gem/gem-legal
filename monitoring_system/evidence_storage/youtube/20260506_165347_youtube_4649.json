@@ -1,0 +1,48 @@
+{
+  "saved_at": "2026-05-06T16:53:47.393444",
+  "platform": "유튜브",
+  "type": "영상",
+  "title": "&quot;유명 걸그룹 가족, 성폭행 시도?&quot; 여성 BJ 식사 데이트권 구매 후… / KNN",
+  "author": "KNN NEWS",
+  "url": "https://www.youtube.com/watch?v=QQt3iuFygAY",
+  "published_at": "2026-04-17T10:15:05Z",
+  "found_at": "2026-05-06T16:53:30.133343",
+  "content": {
+    "description": "knn뉴스 #BJ #성폭행 여성 BJ와 함께 밥 한 끼 먹기 위해 '식사 데이트권'을 구매한 남성. 자기 집으로 BJ를 데려가 동의 없는 신체 접촉 ...",
+    "body": ""
+  },
+  "stats": {
+    "views": 13777,
+    "likes": 63,
+    "comments": 100
+  },
+  "analysis": {
+    "classification": {
+      "types": [
+        "사생활 침해 가능성"
+      ],
+      "confidence": 40,
+      "reasons": [
+        "사생활 정보 언급: 집, 가족",
+        "주목할 만한 조회수: 13,777회"
+      ]
+    },
+    "risk": {
+      "risk_level": "mid",
+      "risk_score": 55,
+      "risk_factors": [
+        "분류: 사생활 침해 가능성",
+        "높은 조회수: 13777회",
+        "댓글 활성화: 100개"
+      ]
+    },
+    "spread": {
+      "is_spreading": false,
+      "spread_count": 0,
+      "platforms": [],
+      "spread_speed": "보통",
+      "notes": []
+    }
+  },
+  "legal_note": "공개 게시물에서 수집됨. 비공개 정보 미포함."
+}

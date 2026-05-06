@@ -1,0 +1,52 @@
+{
+  "saved_at": "2026-05-06T16:55:10.499162",
+  "platform": "유튜브",
+  "type": "영상",
+  "title": "[충격] BJ 범프리카, 생방 중 여BJ 폭행+실내 흡연 난리",
+  "author": "한국 경제 데일리",
+  "url": "https://www.youtube.com/watch?v=REnxLMAjonM",
+  "published_at": "2026-04-10T06:38:48Z",
+  "found_at": "2026-05-06T16:54:55.354770",
+  "content": {
+    "description": "1세대 BJ 범프리카가 음식점 실내 흡연 및 여성 BJ 폭행 논란으로 비난받고 있습니다. BJ 범프리카(본명 김동범)가 라이브 방송 중 ...",
+    "body": ""
+  },
+  "stats": {
+    "views": 51,
+    "likes": 0,
+    "comments": 0
+  },
+  "analysis": {
+    "classification": {
+      "types": [
+        "렉카 확산 가능성",
+        "법적 대응 검토 필요",
+        "명예훼손 가능성"
+      ],
+      "confidence": 60,
+      "reasons": [
+        "명예훼손 패턴: 충격",
+        "렉카 키워드: 충격",
+        "복합 위험 요소 감지"
+      ]
+    },
+    "risk": {
+      "risk_level": "high",
+      "risk_score": 75,
+      "risk_factors": [
+        "분류: 렉카 확산 가능성",
+        "분류: 법적 대응 검토 필요",
+        "분류: 명예훼손 가능성",
+        "자극적 제목"
+      ]
+    },
+    "spread": {
+      "is_spreading": false,
+      "spread_count": 0,
+      "platforms": [],
+      "spread_speed": "느림",
+      "notes": []
+    }
+  },
+  "legal_note": "공개 게시물에서 수집됨. 비공개 정보 미포함."
+}
