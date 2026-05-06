@@ -9,7 +9,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Malgun Gothic',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;font-size:13px}
 nav{display:flex;align-items:center;padding:0 20px;height:52px;background:var(--sur);border-bottom:1px solid var(--bdr);gap:3px;position:sticky;top:0;z-index:100;overflow-x:auto}
-.nlogo{font-size:14px;font-weight:900;color:var(--txt);margin-right:12px;white-space:nowrap}.nlogo span{color:var(--acc)}
+.nlogo{font-size:14px;font-weight:900;color:var(--txt);margin-right:12px;white-space:nowrap;text-decoration:none;cursor:pointer}.nlogo:hover{opacity:.8}.nlogo span{color:var(--acc)}
 a.nl{text-decoration:none;color:var(--txt3);font-size:12px;font-weight:700;padding:5px 10px;border-radius:7px;transition:all .15s;border:1px solid transparent;white-space:nowrap;flex-shrink:0}
 a.nl:hover{color:var(--txt2);background:var(--sur2)}a.nl.on{color:var(--acc);background:#4d7aff12;border-color:#4d7aff28}
 .nr{margin-left:auto;white-space:nowrap;font-size:12px;color:var(--txt3);padding-left:10px}
@@ -51,16 +51,21 @@ a.nl:hover{color:var(--txt2);background:var(--sur2)}a.nl.on{color:var(--acc);bac
 .ask-area{padding:16px 20px;border-bottom:1px solid var(--bdr2);background:var(--sur);flex-shrink:0}
 .ask-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .ask-title{font-size:14px;font-weight:900}
-.cat-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
-.cat-btn{padding:5px 12px;border-radius:6px;font-size:11px;font-weight:800;cursor:pointer;border:1px solid;transition:all .15s;background:none}
-.cat-btn:hover{opacity:.8}
-.cat-btn.sel{opacity:1}
-.cb-urgent{color:#ff6666;border-color:#ff3a3a28}.cb-urgent.sel{background:#ff3a3a18}
-.cb-civil{color:#7a9fff;border-color:#4d7aff28}.cb-civil.sel{background:#4d7aff18}
-.cb-criminal{color:#ffaa44;border-color:#ff882228}.cb-criminal.sel{background:#ff882218}
-.cb-content{color:#aa7fff;border-color:#7a4dff28}.cb-content.sel{background:#7a4dff18}
-.cb-contract{color:#44ddff;border-color:#22ccff28}.cb-contract.sel{background:#22ccff18}
-.cb-etc{color:#6b7fa3;border-color:#424f6828}.cb-etc.sel{background:#424f6818}
+.cat-row{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px}
+.cat-btn{padding:6px 14px;border-radius:7px;font-size:12px;font-weight:800;cursor:pointer;border:1px solid var(--bdr);background:var(--sur2);color:var(--txt2);transition:all .15s}
+.cat-btn:hover{border-color:var(--bdr);color:var(--txt)}
+.cb-urgent{color:#ff6666;border-color:#ff3a3a40;background:#ff3a3a0a}
+.cb-urgent.sel{background:#ff3a3a22;border-color:#ff5555;color:#ff5555}
+.cb-civil{color:#7a9fff;border-color:#4d7aff40;background:#4d7aff0a}
+.cb-civil.sel{background:#4d7aff22;border-color:#7a9fff;color:#7a9fff}
+.cb-criminal{color:#ffaa44;border-color:#ff882240;background:#ff88220a}
+.cb-criminal.sel{background:#ff882222;border-color:#ffaa44;color:#ffaa44}
+.cb-content{color:#aa7fff;border-color:#7a4dff40;background:#7a4dff0a}
+.cb-content.sel{background:#7a4dff22;border-color:#aa7fff;color:#aa7fff}
+.cb-contract{color:#44ddff;border-color:#22ccff40;background:#22ccff0a}
+.cb-contract.sel{background:#22ccff22;border-color:#44ddff;color:#44ddff}
+.cb-etc{color:#8492b0;border-color:#424f6840;background:#424f680a}
+.cb-etc.sel{background:#424f6822;border-color:#8492b0;color:#8492b0}
 
 .ask-input{width:100%;background:var(--sur2);border:1px solid var(--bdr);border-radius:9px;padding:10px 13px;color:var(--txt);font-size:13px;outline:none;resize:vertical;min-height:80px;font-family:inherit;transition:border-color .15s;line-height:1.6}
 .ask-input:focus{border-color:var(--acc)}
@@ -120,7 +125,7 @@ a.nl:hover{color:var(--txt2);background:var(--sur2)}a.nl.on{color:var(--acc);bac
 </head>
 <body>
 <nav>
-  <div class="nlogo">보배 <span>법률전략실</span></div>
+  <a href="상담실.html" class="nlogo">보배 <span>법률전략실</span></a>
   <a href="상황실.html" class="nl">🔴 메인 상황실</a>
   <a href="상담실.html" class="nl on">💬 법률 상담실</a>
   <a href="업데이터.html" class="nl">🤖 상황실 업데이터</a>
