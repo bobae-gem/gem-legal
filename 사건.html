@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>사건 관리실 — 보배 법률전략실</title>
+<style>
+:root{--bg:#070910;--sur:#0d1017;--sur2:#121620;--sur3:#181d28;--bdr:#222a3a;--bdr2:#1a2030;--acc:#4d7aff;--acc2:#7a4dff;--red:#ff3a3a;--org:#ff8822;--yel:#ffcc22;--grn:#22ffaa;--tel:#22ccff;--txt:#edf0ff;--txt2:#8492b0;--txt3:#424f68}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Malgun Gothic',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;font-size:13px}
+nav{display:flex;align-items:center;padding:0 20px;height:52px;background:var(--sur);border-bottom:1px solid var(--bdr);gap:3px;position:sticky;top:0;z-index:100;overflow-x:auto}
+.nlogo{font-size:14px;font-weight:900;color:var(--txt);margin-right:12px;white-space:nowrap}.nlogo span{color:var(--acc)}
+a.nl{text-decoration:none;color:var(--txt3);font-size:12px;font-weight:700;padding:5px 10px;border-radius:7px;transition:all .15s;border:1px solid transparent;white-space:nowrap;flex-shrink:0}
+a.nl:hover{color:var(--txt2);background:var(--sur2)}a.nl.on{color:var(--acc);background:#4d7aff14;border-color:#4d7aff30}
+.nr{margin-left:auto;white-space:nowrap;font-size:12px;color:var(--txt3);padding-left:10px}
+
+.layout{display:grid;grid-template-columns:260px 1fr;height:calc(100vh - 52px)}
+
+/* 사이드바 */
+.sidebar{background:var(--sur);border-right:1px solid var(--bdr);display:flex;flex-direction:column;overflow:hidden}
+.sb-head{padding:14px 16px 12px;border-bottom:1px solid var(--bdr2);display:flex;align-items:center;justify-content:space-between}
+.sb-title{font-size:14px;font-weight:900}
+.case-list{flex:1;overflow-y:auto;padding:10px}
+.case-item{padding:10px 12px;border-radius:10px;cursor:pointer;margin-bottom:6px;border:1px solid transparent;transition:all .15s;background:var(--sur2)}
+.case-item:hover{border-color:var(--bdr)}
+.case-item.active{border-color:var(--acc);background:#4d7aff0c}
+.ci-name{font-size:13px;font-weight:800;color:var(--txt);margin-bottom:3px}
+.ci-status{font-size:11px;color:var(--txt3)}
+.ci-risk{display:inline-block;font-size:10px;font-weight:800;padding:2px 7px;border-radius:4px;margin-top:4px}
+.crh{background:#ff3a3a18;color:#ff5555;border:1px solid #ff3a3a30}
+.crm{background:#ffcc2218;color:#ffdd55;border:1px solid #ffcc2230}
+.crl{background:#22ffaa18;color:#44ffbb;border:1px solid #22ffaa30}
+.sb-empty{padding:24px;text-align:center;color:var(--txt3);font-size:12px}
+
+/* 메인 */
+.main{display:flex;flex-direction:column;overflow:hidden}
+.no-case{display:flex;align-items:center;justify-content:center;flex-direction:column;flex:1;gap:12px;color:var(--txt3)}
+.no-case-ico{font-size:40px;opacity:.3}
+
+/* 탭 */
+.tab-bar{display:flex;gap:0;border-bottom:1px solid var(--bdr2);background:var(--sur);flex-shrink:0;overflow-x:auto}
+.tab-btn{padding:12px 16px;font-size:12px;font-weight:700;color:var(--txt3);cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.tab-btn:hover{color:var(--txt2)}
+.tab-btn.on{color:var(--txt);border-bottom-color:var(--acc)}
+.tab-cnt{font-size:10px;font-weight:800;padding:1px 6px;border-radius:8px;background:var(--sur2);color:var(--txt3)}
+.tab-cnt.has{background:#4d7aff18;color:var(--acc)}
+
+/* 탭 컨텐츠 */
+.tab-content{flex:1;overflow-y:auto;padding:16px 20px}
+.tab-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.tab-info{font-size:11px;color:var(--txt3);line-height:1.5;background:var(--sur2);border-radius:7px;padding:8px 11px;border:1px solid var(--bdr2);margin-bottom:12px}
+
+/* 항목 카드 */
+.fact-card{background:var(--sur);border:1px solid var(--bdr);border-radius:11px;padding:13px 15px;margin-bottom:8px;transition:border-color .15s;position:relative}
+.fact-card:hover{border-color:var(--bdr)}
+.fc-top{display:flex;align-items:center;gap:7px;margin-bottom:8px;flex-wrap:wrap}
+.fc-type{font-size:10px;font-weight:800;padding:3px 9px;border-radius:5px;letter-spacing:.3px}
+
+/* 타입별 색상 */
+.ft-confirmed{background:#22ffaa18;color:#33ffaa;border:1px solid #22ffaa30}
+.ft-disputed{background:#ff882218;color:#ffaa44;border:1px solid #ff882230}
+.ft-user{background:#4d7aff18;color:#7a9fff;border:1px solid #4d7aff30}
+.ft-opponent{background:#ff3a3a18;color:#ff6666;border:1px solid #ff3a3a30}
+.ft-doc{background:#7a4dff18;color:#aa7fff;border:1px solid #7a4dff30}
+.ft-evidence{background:#22ccff18;color:#44ddff;border:1px solid #22ccff30}
+
+/* 신뢰도 */
+.fc-conf{display:flex;align-items:center;gap:6px;margin-left:auto}
+.fc-conf-pct{font-size:11px;font-weight:800}
+.conf-h{color:#22ffaa}.conf-m{color:#ffcc22}.conf-l{color:#ff3a3a}
+.fc-title{font-size:13px;font-weight:800;color:var(--txt);margin-bottom:4px;line-height:1.4}
+.fc-body{font-size:12px;color:var(--txt2);line-height:1.6;margin-bottom:8px}
+.fc-src{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
+.fc-src-tag{font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;background:var(--sur2);color:var(--txt3);border:1px solid var(--bdr2)}
+.fc-note{font-size:11px;color:var(--org);background:#ff882210;border-radius:5px;padding:5px 8px;border:1px solid #ff882220;margin-bottom:8px}
+.fc-actions{display:flex;gap:6px}
+
+/* 버튼 */
+.btn{padding:6px 13px;border-radius:7px;font-size:11px;font-weight:700;cursor:pointer;border:none;transition:all .15s}
+.bg{background:var(--sur2);color:var(--txt2);border:1px solid var(--bdr)}.bg:hover{border-color:var(--acc);color:var(--acc)}
+.bp{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff}.bp:hover{opacity:.85}
+.br{background:#ff3a3a12;color:var(--red);border:1px solid #ff3a3a28}.br:hover{background:#ff3a3a20}
+.sm{padding:5px 10px;font-size:11px}
+
+.empty{text-align:center;padding:36px;color:var(--txt3);font-size:12px;font-weight:600}
+.empty-ico{font-size:28px;opacity:.3;margin-bottom:8px}
+
+/* 모달 */
+.mbg{display:none;position:fixed;inset:0;background:#00000088;z-index:200;align-items:center;justify-content:center}
+.mbg.open{display:flex}
+.modal{background:var(--sur);border:1px solid var(--bdr);border-radius:14px;padding:22px;width:520px;max-width:92vw;max-height:88vh;overflow-y:auto}
+.mtit{font-size:15px;font-weight:900;margin-bottom:14px}
+.f{margin-bottom:11px}
+.f label{display:block;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--txt3);margin-bottom:5px}
+.f input,.f select,.f textarea{width:100%;background:var(--sur2);border:1px solid var(--bdr);border-radius:8px;padding:8px 11px;color:var(--txt);font-size:12px;font-weight:600;outline:none;transition:border-color .15s;font-family:inherit}
+.f input:focus,.f select:focus,.f textarea:focus{border-color:var(--acc)}
+.f select option{background:var(--sur2)}.f textarea{resize:vertical;min-height:80px}
+.mbtns{display:flex;gap:7px;margin-top:16px;justify-content:flex-end}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nlogo">보배 <span>법률전략실</span></div>
+  <a href="상황실.html" class="nl">🔴 메인 상황실</a>
+  <a href="업데이터.html" class="nl">🤖 상황실 업데이터</a>
+  <a href="사건.html" class="nl on">📁 사건 관리실</a>
+  <a href="검수실.html" class="nl">🛡️ 콘텐츠 검수실</a>
+  <a href="리서치.html" class="nl">🔍 리서치 센터</a>
+  <a href="메모리.html" class="nl">🧠 메모리 관리실</a>
+  <a href="대시보드.html" class="nl">📊 시스템구조</a>
+  <div class="nr" id="clk">--:--:--</div>
+</nav>
+
+<div class="layout">
+  <!-- 사이드바: 사건 목록 -->
+  <div class="sidebar">
+    <div class="sb-head">
+      <div class="sb-title">사건 목록</div>
+      <button class="btn bp sm" onclick="openCaseModal()">+ 등록</button>
+    </div>
+    <div class="case-list" id="case-list">
+      <div class="sb-empty">등록된 사건이 없습니다</div>
+    </div>
+  </div>
+
+  <!-- 메인: 사건 상세 -->
+  <div class="main" id="main-area">
+    <div class="no-case">
+      <div class="no-case-ico">⚖️</div>
+      <div style="font-size:14px;font-weight:700">사건을 선택하거나 등록하세요</div>
+    </div>
+  </div>
+</div>
+
+<!-- 사건 등록 모달 -->
+<div class="mbg" id="m-case" onclick="if(event.target===this)closeModal('case')">
+  <div class="modal">
+    <div class="mtit">⚖️ 사건 등록</div>
+    <div class="f"><label>사건번호</label><input id="cn" placeholder="예: 2026나529"></div>
+    <div class="f"><label>사건명</label><input id="cn2" placeholder="예: 서정은 vs 황철순"></div>
+    <div class="f"><label>법원</label><input id="cc" placeholder="예: 서울중앙지방법원"></div>
+    <div class="f"><label>진행 단계</label>
+      <select id="cs"><option>항소심 진행 중</option><option>1심 진행 중</option><option>판결 대기</option><option>준비서면 작성 중</option><option>조정/합의 중</option><option>수사 단계</option><option>종결</option></select>
+    </div>
+    <div class="f"><label>위험도</label>
+      <select id="cr"><option value="low">낮음</option><option value="mid" selected>중간</option><option value="high">높음</option></select>
+    </div>
+    <div class="mbtns">
+      <button class="btn bg" onclick="closeModal('case')">취소</button>
+      <button class="btn bp" onclick="addCase()">등록</button>
+    </div>
+  </div>
+</div>
+
+<!-- 항목 추가 모달 -->
+<div class="mbg" id="m-item" onclick="if(event.target===this)closeModal('item')">
+  <div class="modal">
+    <div class="mtit" id="item-modal-title">항목 추가</div>
+    <div class="f"><label>제목</label><input id="it-title" placeholder="항목 제목"></div>
+    <div class="f"><label>내용</label><textarea id="it-body" placeholder="상세 내용..."></textarea></div>
+    <div class="f"><label>출처 (쉼표로 구분)</label><input id="it-src" placeholder="예: 판결문, 사용자 진술, 갑14호증"></div>
+    <div class="f"><label>AI 신뢰도 (0~100)</label><input id="it-conf" type="number" min="0" max="100" placeholder="예: 90"></div>
+    <div class="f"><label>비고 (선택)</label><input id="it-note" placeholder="예: 추가 확인 필요"></div>
+    <div class="mbtns">
+      <button class="btn bg" onclick="closeModal('item')">취소</button>
+      <button class="btn bp" onclick="saveItem()">저장</button>
+    </div>
+  </div>
+</div>
+
+<script>
+setInterval(()=>{ document.getElementById('clk').textContent = new Date().toLocaleTimeString('ko-KR',{hour12:false}); },1000);
+
+const TABS = [
+  { id:'confirmed', label:'✅ 확정 사실', css:'ft-confirmed',
+    desc:'판결문·전자소송·공식 서면으로 확인된 사실. 법원이 인정한 사실관계만 포함.' },
+  { id:'disputed',  label:'⚡ 다투는 사실', css:'ft-disputed',
+    desc:'아직 법적으로 확정되지 않은 사실. 양측이 각자 다르게 주장하는 부분.' },
+  { id:'user',      label:'👤 사용자 주장', css:'ft-user',
+    desc:'우리 측(피항소인)이 주장하는 내용. 확정 사실이 아님 — 법원이 인정해야 확정.' },
+  { id:'opponent',  label:'🔴 상대방 주장', css:'ft-opponent',
+    desc:'상대방(항소인)이 주장하는 내용. 사실 여부 미확인 — 반박 준비 필요.' },
+  { id:'doc',       label:'📜 공식 문서', css:'ft-doc',
+    desc:'법원·기관이 발행한 공식 문서. 판결문, 항소이유서, 답변서, 전자소송 기록.' },
+  { id:'evidence',  label:'📸 증거', css:'ft-evidence',
+    desc:'제출된 증거 목록. 갑·을 호증 번호, 증거 종류, 강도 포함.' },
+];
+
+let cases = JSON.parse(localStorage.getItem('case_data')||'[]');
+let currentCase = null;
+let currentTab = 'confirmed';
+let addingTab = 'confirmed';
+
+function save(){ localStorage.setItem('case_data', JSON.stringify(cases)); }
+function ts(){ return new Date().toLocaleDateString('ko-KR',{year:'numeric',month:'numeric',day:'numeric'}); }
+
+function renderCaseList(){
+  const el = document.getElementById('case-list');
+  if(!cases.length){ el.innerHTML='<div class="sb-empty">등록된 사건이 없습니다</div>'; return; }
+  el.innerHTML = cases.map((c,i)=>`
+    <div class="case-item${currentCase&&currentCase.id===c.id?' active':''}" onclick="selectCase(${i})">
+      <div class="ci-name">${c.casenum} ${c.name}</div>
+      <div class="ci-status">${c.court} · ${c.status}</div>
+      <span class="ci-risk ${c.risk==='high'?'crh':c.risk==='low'?'crl':'crm'}">${c.risk==='high'?'높음':c.risk==='low'?'낮음':'중간'}</span>
+    </div>`).join('');
+}
+
+function selectCase(i){
+  currentCase = cases[i];
+  renderCaseList();
+  renderCaseDetail();
+}
+
+function renderCaseDetail(){
+  if(!currentCase){ document.getElementById('main-area').innerHTML='<div class="no-case"><div class="no-case-ico">⚖️</div><div style="font-size:14px;font-weight:700">사건을 선택하거나 등록하세요</div></div>'; return; }
+  const c = currentCase;
+  const tabBar = TABS.map(t=>{
+    const cnt = (c.items||{})[t.id]?.length||0;
+    return `<div class="tab-btn${currentTab===t.id?' on':''}" onclick="switchTab('${t.id}')">${t.label}<span class="tab-cnt${cnt>0?' has':''}">${cnt}</span></div>`;
+  }).join('');
+
+  const tabDef = TABS.find(t=>t.id===currentTab);
+  const items = (c.items||{})[currentTab]||[];
+
+  const cardsHtml = items.length
+    ? items.map((it,i)=>{
+        const conf = it.confidence;
+        const confClass = conf>=70?'conf-h':conf>=50?'conf-m':'conf-l';
+        const srcs = Array.isArray(it.sources) ? it.sources : (it.source?[it.source]:[]);
+        return `<div class="fact-card">
+          <div class="fc-top">
+            <span class="fc-type ${tabDef.css}">${tabDef.label.replace(/^[^\s]+\s/,'')}</span>
+            ${conf!=null?`<div class="fc-conf"><span class="fc-conf-pct ${confClass}">신뢰도 ${conf}%</span></div>`:''}
+          </div>
+          <div class="fc-title">${it.title}</div>
+          <div class="fc-body">${it.body}</div>
+          ${srcs.length?`<div class="fc-src">${srcs.map(s=>`<span class="fc-src-tag">${s}</span>`).join('')}</div>`:''}
+          ${it.note?`<div class="fc-note">⚠️ ${it.note}</div>`:''}
+          <div class="fc-actions">
+            <button class="btn br sm" onclick="delItem('${currentTab}',${i})">삭제</button>
+          </div>
+        </div>`;
+      }).join('')
+    : `<div class="empty"><div class="empty-ico">${tabDef.label.split(' ')[0]}</div>등록된 항목이 없습니다<br><span style="font-size:11px;margin-top:4px;display:block">${tabDef.desc}</span></div>`;
+
+  document.getElementById('main-area').innerHTML = `
+    <div style="padding:14px 20px;border-bottom:1px solid var(--bdr2);background:var(--sur);display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
+      <div>
+        <div style="font-size:16px;font-weight:900">${c.casenum} ${c.name}</div>
+        <div style="font-size:11px;color:var(--txt3);margin-top:2px">${c.court} · ${c.status}</div>
+      </div>
+      <div style="display:flex;gap:7px">
+        <button class="btn bg sm" onclick="openItemModal('${currentTab}')">+ 항목 추가</button>
+        <button class="btn br sm" onclick="delCase()">사건 삭제</button>
+      </div>
+    </div>
+    <div class="tab-bar">${tabBar}</div>
+    <div class="tab-content">
+      <div class="tab-info">${tabDef.desc}</div>
+      ${cardsHtml}
+    </div>`;
+}
+
+function switchTab(tab){
+  currentTab = tab;
+  renderCaseDetail();
+}
+
+function openCaseModal(){ document.getElementById('m-case').classList.add('open'); setTimeout(()=>document.getElementById('cn').focus(),80); }
+function closeModal(id){ document.getElementById('m-'+id).classList.remove('open'); }
+
+function addCase(){
+  const casenum = document.getElementById('cn').value.trim();
+  const name = document.getElementById('cn2').value.trim();
+  if(!casenum&&!name){ alert('사건번호 또는 사건명을 입력하세요'); return; }
+  const c = {
+    id: 'c'+Date.now(),
+    casenum, name,
+    court: document.getElementById('cc').value,
+    status: document.getElementById('cs').value,
+    risk: document.getElementById('cr').value,
+    items: {confirmed:[],disputed:[],user:[],opponent:[],doc:[],evidence:[]},
+    created: ts()
+  };
+  cases.unshift(c);
+  save();
+  closeModal('case');
+  document.getElementById('cn').value='';
+  document.getElementById('cn2').value='';
+  document.getElementById('cc').value='';
+  selectCase(0);
+}
+
+function delCase(){
+  if(!currentCase||!confirm('이 사건을 삭제하시겠습니까?')) return;
+  cases = cases.filter(c=>c.id!==currentCase.id);
+  currentCase = null;
+  save();
+  renderCaseList();
+  renderCaseDetail();
+}
+
+function openItemModal(tab){
+  addingTab = tab;
+  const tabDef = TABS.find(t=>t.id===tab);
+  document.getElementById('item-modal-title').textContent = tabDef.label + ' 항목 추가';
+  document.getElementById('it-title').value='';
+  document.getElementById('it-body').value='';
+  document.getElementById('it-src').value='';
+  document.getElementById('it-conf').value='';
+  document.getElementById('it-note').value='';
+  document.getElementById('m-item').classList.add('open');
+  setTimeout(()=>document.getElementById('it-title').focus(),80);
+}
+
+function saveItem(){
+  if(!currentCase) return;
+  const title = document.getElementById('it-title').value.trim();
+  if(!title){ alert('제목을 입력하세요'); return; }
+  const srcRaw = document.getElementById('it-src').value;
+  const conf = document.getElementById('it-conf').value;
+  const item = {
+    id: 'i'+Date.now(),
+    title,
+    body: document.getElementById('it-body').value,
+    sources: srcRaw ? srcRaw.split(',').map(s=>s.trim()).filter(Boolean) : [],
+    confidence: conf ? parseInt(conf) : null,
+    note: document.getElementById('it-note').value,
+    time: ts()
+  };
+  if(!currentCase.items) currentCase.items={confirmed:[],disputed:[],user:[],opponent:[],doc:[],evidence:[]};
+  if(!currentCase.items[addingTab]) currentCase.items[addingTab]=[];
+  currentCase.items[addingTab].unshift(item);
+  // cases 배열 업데이트
+  const idx = cases.findIndex(c=>c.id===currentCase.id);
+  if(idx>=0) cases[idx]=currentCase;
+  save();
+  closeModal('item');
+  renderCaseDetail();
+}
+
+function delItem(tab, i){
+  if(!currentCase) return;
+  currentCase.items[tab].splice(i,1);
+  const idx = cases.findIndex(c=>c.id===currentCase.id);
+  if(idx>=0) cases[idx]=currentCase;
+  save();
+  renderCaseDetail();
+}
+
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){closeModal('case');closeModal('item');} });
+
+// 현재 사건이 있으면 바로 서정은 사건 로드
+function initDefaultCase(){
+  if(cases.length===0){
+    const defaultCase = {
+      id: 'c_main',
+      casenum: '2026나529',
+      name: '서정은 vs 황철순',
+      court: '서울중앙지방법원',
+      status: '항소심 진행 중',
+      risk: 'mid',
+      created: '2026. 5. 6.',
+      items: {
+        confirmed: [
+          { id:'i001', title:'원심 판결: 15,501,000원 인용 (2025.12.12)', body:'적극손해 3,501,000원 + 위자료①(폭행) 7,000,000원 + 위자료②(명예훼손) 5,000,000원. 소극손해 전부 기각. 소송비용 9/10 원고 부담.', sources:['판결문 2024가단5350608'], confidence:100, note:'', time:'2026. 5. 6.' },
+          { id:'i002', title:'피고 형사 확정: 징역 9월 (2024.11.13)', body:'1심 징역 1년 → 항소심 파기 징역 9월. 피고가 모든 범행 인정·반성, 공탁 2,000만원 참작. 폭행·폭행치상·재물손괴 전부 인정.', sources:['2024고단785','2024노2216'], confidence:100, note:'', time:'2026. 5. 6.' },
+          { id:'i003', title:'상대방 변호사 교체 (2026.05.01)', body:'기존 이돈호(노바법률사무소) → 2026.05.01 새 변호사 교체. 새 서면 아직 없음 (2026.05.06 기준).', sources:['전자소송 직접 확인'], confidence:100, note:'', time:'2026. 5. 6.' },
+          { id:'i004', title:'답변서 본인 직접 제출 (2026.02.26)', body:'피항소인 서정은이 변호사 없이 직접 작성·제출. 가~사 7항목, 갑1~15호증 15개 첨부.', sources:['전자소송 기록'], confidence:100, note:'', time:'2026. 5. 6.' }
+        ],
+        disputed: [
+          { id:'i010', title:'공탁금 수령 여부', body:'원심 판결문: "원고가 이를 수령한 점" 기재. 답변서(바항): "변호사 행정 착오로 일부 지급됨, 수령 의사 없었음". 실제 수령 금액 불명확.', sources:['원심 판결문','답변서 바항','갑10~13호증'], confidence:75, note:'갑10~13 카카오톡으로 확인 필요', time:'2026. 5. 6.' },
+          { id:'i011', title:'언론 제보 주체', body:'피고 주장: 피항소인이 먼저 언론에 제보했다. 피항소인 주장: 제보한 사실 없음, 뉴스(2024.05.23) 보도 후 알게 됨.', sources:['항소이유서','답변서 나항','갑8·9호증'], confidence:80, note:'상대방 증거 없음 — 우리에게 유리', time:'2026. 5. 6.' }
+        ],
+        user: [
+          { id:'i020', title:'공탁금 수령은 변호사 착오, 의도 없었음', body:'수령하지 않겠다는 의사를 변호사에게 전달했으나 행정 착오로 일부 지급됨. 적극적 수령 의사 없었음.', sources:['답변서 바항','갑10~13호증'], confidence:80, note:'착오 경위 증거 보강 필요', time:'2026. 5. 6.' },
+          { id:'i021', title:'피항소인 해명 방송은 방어 목적의 정당한 행위', body:'피고의 인스타(5.24)·유튜브(6.3) 게시 후 방어 목적으로 1회 해명(6.5). 이후 추가 공개 없이 법적 절차로만 대응.', sources:['답변서 라항'], confidence:85, note:'', time:'2026. 5. 6.' }
+        ],
+        opponent: [
+          { id:'i030', title:'[상대 주장] 영상 게시는 공익적 해명 행위', body:'피항소인이 먼저 언론에 제보했고, 공적 인물로서 왜곡된 여론을 바로잡을 필요가 있었다. 실명·얼굴 노출 없었고 수익도 없었다.', sources:['항소이유서 가항'], confidence:null, note:'⚠️ 상대방 주장. 반박: 마항 CCTV 역설, 갑14호증', time:'2026. 5. 6.' },
+          { id:'i031', title:'[상대 주장] 위자료 과다 + 공탁금으로 전보되어야', body:'원고가 탄원서로 형사 엄벌 유도 후 민사 청구 — 신의칙 위반. 공탁금 2,000만원으로 위자료 전보되어야 한다.', sources:['항소이유서 나항'], confidence:null, note:'⚠️ 상대방 주장. 반박: 형사합의≠민사청구, 형사소송법 294조의2', time:'2026. 5. 6.' }
+        ],
+        doc: [
+          { id:'i040', title:'원심 판결문 (2024가단5350608)', body:'서울중앙지방법원 2025.12.12 선고. 판사 오연수. 15,501,000원 인용, 나머지 기각.', sources:['법원 공식 문서'], confidence:100, note:'', time:'2026. 5. 6.' },
+          { id:'i041', title:'항소이유서 (2026나529)', body:'피고(항소인) 측 이돈호 변호사 제출. 2026.02.19. 명예훼손 위법성 조각 + 위자료 감액 주장.', sources:['전자소송 기록'], confidence:100, note:'', time:'2026. 5. 6.' },
+          { id:'i042', title:'답변서 (2026나529)', body:'피항소인 서정은 직접 제출. 2026.02.26. 가~사 7항목 구성.', sources:['전자소송 기록'], confidence:100, note:'', time:'2026. 5. 6.' },
+          { id:'i043', title:'형사 판결문 (2024고단785, 2024노2216)', body:'1심 징역 1년, 항소심 징역 9월. 모든 범행 인정됨.', sources:['법원 공식 문서'], confidence:100, note:'', time:'2026. 5. 6.' }
+        ],
+        evidence: [
+          { id:'i050', title:'갑14호증 — CCTV 유튜브 공개 자료', body:'항소인이 사건 CCTV 영상을 유튜브에 직접 게시한 증거. 피항소인은 수사기관에 요청했으나 "피해자 인권 보호" 사유로 거절당함.', sources:['답변서 마항'], confidence:95, note:'항소심 핵심 논거', time:'2026. 5. 6.' },
+          { id:'i051', title:'갑10~13호증 — 공탁금 관련 카카오톡 4개', body:'공탁금 수령 거부 의사 표시 및 변호사 착오 관련 카카오톡 대화. 수령 의사 없었음 입증 자료.', sources:['원고 직접 보관'], confidence:90, note:'착오 경위 입증 핵심 증거', time:'2026. 5. 6.' },
+          { id:'i052', title:'갑8호증 — 변호사 사무실 카톡 (240524)', body:'뉴스 보도(2024.05.23) 후 피항소인이 사건 공개 경위 확인을 위해 변호사에게 문의한 카카오톡. 언론 제보 부인 근거.', sources:['원고 직접 보관'], confidence:92, note:'언론 제보 주체 논쟁 핵심 증거', time:'2026. 5. 6.' },
+          { id:'i053', title:'갑2~5호증 — 피고 인스타그램 게시물 4건', body:'뉴스 보도(5.23) 다음날 피고가 피항소인을 특정할 수 있는 저격성 게시글 작성. 사건 공개 주체가 피고임을 입증.', sources:['인스타그램 캡처'], confidence:95, note:'시간순서 입증 핵심 증거', time:'2026. 5. 6.' }
+        ]
+      }
+    };
+    cases.push(defaultCase);
+    save();
+  }
+  selectCase(0);
+}
+
+renderCaseList();
+initDefaultCase();
+</script>
+</body>
+</html>

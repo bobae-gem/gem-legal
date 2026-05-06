@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>실시간 상황실 — 보배 법률전략실</title>
+<style>
+:root{--bg:#070910;--sur:#0d1017;--sur2:#121620;--sur3:#181d28;--bdr:#222a3a;--bdr2:#1a2030;--acc:#4d7aff;--acc2:#7a4dff;--red:#ff3a3a;--org:#ff8822;--yel:#ffcc22;--grn:#22ffaa;--tel:#22ccff;--txt:#edf0ff;--txt2:#8492b0;--txt3:#424f68}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Malgun Gothic',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;font-size:14px}
+nav{display:flex;align-items:center;padding:0 28px;height:54px;background:var(--sur);border-bottom:2px solid var(--bdr);gap:6px;position:sticky;top:0;z-index:100}
+.nlogo{font-size:15px;font-weight:900;color:var(--txt);margin-right:20px}.nlogo span{color:var(--acc)}
+a.nl{text-decoration:none;color:var(--txt3);font-size:13px;font-weight:700;padding:6px 14px;border-radius:8px;transition:all .15s;border:1px solid transparent}
+a.nl:hover{color:var(--txt2);background:var(--sur2)}a.nl.on{color:var(--acc);background:#4d7aff14;border-color:#4d7aff30}
+.nr{margin-left:auto;display:flex;align-items:center;gap:14px}
+.live{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--grn)}
+.ldot{width:7px;height:7px;border-radius:50%;background:var(--grn);box-shadow:0 0 7px var(--grn);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.clk{font-size:13px;font-weight:800;color:var(--txt3);font-variant-numeric:tabular-nums}
+.tbar{padding:17px 28px 13px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--bdr2)}
+.ttl{font-size:20px;font-weight:900}.ttl span{color:var(--acc)}
+.tmeta{font-size:12px;color:var(--txt3);margin-top:3px;font-weight:600}
+.tact{display:flex;gap:8px}
+.btn{padding:8px 16px;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;border:none;transition:all .15s}
+.bg{background:var(--sur2);color:var(--txt2);border:2px solid var(--bdr)}.bg:hover{border-color:var(--acc);color:var(--acc)}
+.bp{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff}.bp:hover{opacity:.85;transform:translateY(-1px)}
+.br{background:#ff3a3a14;color:var(--red);border:2px solid #ff3a3a30}.br:hover{background:#ff3a3a22}
+.sm{padding:6px 12px;font-size:12px}
+.grid{display:grid;grid-template-columns:295px 1fr 1fr;gap:13px;padding:13px 28px 36px}
+.panel{background:var(--sur);border:2px solid var(--bdr);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;position:relative}
+.panel::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--pc,var(--acc));opacity:.75}
+.ph{padding:12px 16px 10px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--bdr2)}
+.phl{display:flex;align-items:center;gap:8px}
+.pico{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;background:color-mix(in srgb,var(--pc,var(--acc)) 15%,transparent);border:1px solid color-mix(in srgb,var(--pc,var(--acc)) 30%,transparent);flex-shrink:0}
+.ptit{font-size:14px;font-weight:800;color:var(--txt)}
+.pbadge{font-size:11px;font-weight:800;padding:2px 8px;border-radius:20px;background:color-mix(in srgb,var(--pc,var(--acc)) 15%,transparent);color:var(--pc,var(--acc));border:1px solid color-mix(in srgb,var(--pc,var(--acc)) 30%,transparent)}
+.pb{padding:12px;flex:1;overflow-y:auto;max-height:330px}
+.pf{padding:9px 12px;border-top:1px solid var(--bdr2);display:flex;gap:7px}
+.cbl{--pc:#4d7aff}.crd{--pc:#ff3a3a}.cor{--pc:#ff8822}.cyl{--pc:#ffcc22}.cgr{--pc:#22ffaa}.cpr{--pc:#7a4dff}.ctl{--pc:#22ccff}.cpk{--pc:#ff44cc}
+.s2{grid-column:span 2}.s3{grid-column:span 3}
+
+/* AI 상태 */
+.aibox{display:flex;flex-direction:column}
+.mblock{padding:15px 16px;border-bottom:1px solid var(--bdr2)}
+.slbl{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--txt3);margin-bottom:7px}
+.mval{font-size:17px;font-weight:900;color:var(--acc);line-height:1.3}
+.msub{font-size:12px;color:var(--txt3);margin-top:3px;font-weight:600}
+.ateams{padding:12px 16px;border-bottom:1px solid var(--bdr2)}
+.tpill{display:flex;align-items:center;gap:8px;background:var(--sur2);border:1px solid var(--bdr2);border-radius:8px;padding:7px 10px;margin-bottom:5px;font-size:13px;font-weight:700;color:var(--txt2)}
+.tpill:last-child{margin-bottom:0}
+.tpdot{width:7px;height:7px;border-radius:50%;flex-shrink:0;animation:blink 2s infinite}
+.prlist{padding:12px 16px;flex:1}
+.pritem{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--bdr2);font-size:13px;font-weight:700;color:var(--txt2)}
+.pritem:last-child{border-bottom:none}
+.prnum{width:20px;height:20px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;flex-shrink:0}
+.aierow{display:flex;gap:7px;padding:9px 16px;border-top:1px solid var(--bdr2)}
+
+/* 위험도 */
+.rg{padding:15px 16px}
+.rtop{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
+.rnum{font-size:30px;font-weight:900}
+.rlbl{font-size:13px;font-weight:800;padding:4px 12px;border-radius:8px}
+.rbar{height:9px;background:var(--sur3);border-radius:5px;overflow:hidden;margin-bottom:12px}
+.rfill{height:100%;border-radius:5px;transition:width .5s}
+.rlow{--rc:#22ffaa}.rmid{--rc:#ffcc22}.rhigh{--rc:#ff8822}.rdgr{--rc:#ff3a3a}
+.rnum,.rfill{color:var(--rc,#22ffaa);background:var(--rc,#22ffaa)}
+.rnum{background:none}
+.rlbl{background:color-mix(in srgb,var(--rc,#22ffaa) 15%,transparent);color:var(--rc,#22ffaa);border:1px solid color-mix(in srgb,var(--rc,#22ffaa) 30%,transparent)}
+.rfi{display:flex;align-items:center;justify-content:space-between;background:var(--sur2);border-radius:8px;padding:8px 10px;margin-bottom:5px;border:1px solid var(--bdr2)}
+.rfi:last-child{margin-bottom:0}
+.rfin{font-size:13px;font-weight:700;color:var(--txt2)}
+.rfib{font-size:11px;font-weight:800;padding:3px 9px;border-radius:6px}
+.rfh{background:#ff3a3a18;color:#ff5555;border:1px solid #ff3a3a33}
+.rfm{background:#ffcc2218;color:#ffdd55;border:1px solid #ffcc2233}
+.rfl{background:#22ffaa18;color:#44ffbb;border:1px solid #22ffaa33}
+
+/* 사건 카드 */
+.cc{background:var(--sur2);border:2px solid var(--bdr2);border-radius:12px;padding:12px 14px;margin-bottom:8px;transition:border-color .15s}
+.cc:last-child{margin-bottom:0}.cc:hover{border-color:var(--acc)}
+.cctop{display:flex;align-items:center;gap:7px;margin-bottom:8px}
+.ccname{font-size:15px;font-weight:900;color:var(--txt);flex:1}
+.ccrb{font-size:11px;font-weight:800;padding:3px 10px;border-radius:6px}
+.crh{background:#ff3a3a18;color:#ff5555;border:1px solid #ff3a3a33}
+.crm{background:#ffcc2218;color:#ffdd55;border:1px solid #ffcc2233}
+.crl{background:#22ffaa18;color:#44ffbb;border:1px solid #22ffaa33}
+.ccgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:7px}
+.ccf{background:var(--sur3);border-radius:7px;padding:7px 9px}
+.ccfl{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--txt3);margin-bottom:3px}
+.ccfv{font-size:13px;font-weight:700;color:var(--txt2)}
+.ccnxt{background:#4d7aff0d;border:1px solid #4d7aff25;border-radius:7px;padding:7px 9px;display:flex;align-items:center;gap:6px}
+.ccnxt span{font-size:12px;font-weight:700;color:var(--acc)}
+.delbtn{cursor:pointer;color:var(--txt3);font-size:12px;padding:0 2px;transition:color .15s;flex-shrink:0}
+.delbtn:hover{color:var(--red)}
+
+/* 알림 */
+.ai{display:flex;align-items:flex-start;gap:9px;background:var(--sur2);border-radius:10px;padding:10px 11px;margin-bottom:7px;border:1px solid var(--bdr2)}
+.ai:last-child{margin-bottom:0}
+.aih{border-left:3px solid var(--red)}.aim{border-left:3px solid var(--org)}.ail{border-left:3px solid var(--yel)}
+.adot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:3px}
+.dr{background:var(--red);box-shadow:0 0 6px var(--red);animation:blink 1.5s infinite}
+.do{background:var(--org)}.dy{background:var(--yel)}
+.actx{flex:1}.att{font-size:13px;font-weight:800;color:var(--txt);line-height:1.4}.atm{font-size:11px;color:var(--txt3);margin-top:2px;font-weight:600}
+
+/* 리스트 아이템 */
+.li{display:flex;align-items:center;gap:8px;background:var(--sur2);border-radius:9px;padding:9px 11px;margin-bottom:7px;border:1px solid var(--bdr2);font-size:13px;font-weight:700;color:var(--txt2);transition:border-color .15s}
+.li:last-child{margin-bottom:0}.li:hover{border-color:var(--bdr)}
+.ldot2{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.ltxt{flex:1}
+
+/* 검수 */
+.ri{display:flex;align-items:center;gap:8px;background:var(--sur2);border-radius:9px;padding:9px 11px;margin-bottom:7px;border:1px solid var(--bdr2)}
+.ri:last-child{margin-bottom:0}
+.rtyp{font-size:10px;font-weight:800;padding:3px 9px;border-radius:6px;background:#ff882218;color:#ffaa44;border:1px solid #ff882230;flex-shrink:0}
+.rnam{flex:1;font-size:13px;font-weight:700;color:var(--txt2)}
+.rrisk{font-size:11px;font-weight:800;padding:2px 8px;border-radius:5px;flex-shrink:0}
+
+/* 빠른 실행 */
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:7px;padding:12px}
+.cbtn{background:var(--sur2);border:2px solid var(--bdr);border-radius:10px;padding:9px 11px;font-size:13px;font-weight:800;color:var(--txt2);cursor:pointer;text-align:left;transition:all .15s;display:flex;align-items:center;gap:8px}
+.cbtn:hover{border-color:var(--acc);color:var(--acc);background:#4d7aff08}
+.cico{font-size:14px;flex-shrink:0}
+
+/* 인풋 */
+.pi{flex:1;background:var(--sur2);border:2px solid var(--bdr);border-radius:8px;padding:7px 11px;color:var(--txt);font-size:13px;font-weight:600;outline:none;transition:border-color .15s}
+.pi:focus{border-color:var(--acc)}.pi::placeholder{color:var(--txt3);font-weight:500}
+.ps{background:var(--sur2);border:2px solid var(--bdr);border-radius:8px;padding:7px 10px;color:var(--txt2);font-size:12px;font-weight:700;outline:none;cursor:pointer}
+.ps:focus{border-color:var(--acc)}.ps option{background:var(--sur2)}
+
+/* 모달 */
+.mbg{display:none;position:fixed;inset:0;background:#00000099;z-index:200;align-items:center;justify-content:center}
+.mbg.open{display:flex}
+.modal{background:var(--sur);border:2px solid var(--bdr);border-radius:18px;padding:24px;width:470px;max-width:92vw}
+.mtit{font-size:17px;font-weight:900;margin-bottom:17px;color:var(--txt)}
+.f{margin-bottom:12px}
+.f label{display:block;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--txt3);margin-bottom:6px}
+.f input,.f select,.f textarea{width:100%;background:var(--sur2);border:2px solid var(--bdr);border-radius:9px;padding:9px 12px;color:var(--txt);font-size:13px;font-weight:600;outline:none;transition:border-color .15s;font-family:inherit}
+.f input:focus,.f select:focus,.f textarea:focus{border-color:var(--acc)}
+.f select option{background:var(--sur2)}.f textarea{resize:vertical;min-height:65px}
+.mbtns{display:flex;gap:8px;margin-top:19px;justify-content:flex-end}
+.empty{text-align:center;padding:24px 14px;color:var(--txt3);font-size:13px;font-weight:600}
+.eico{font-size:22px;margin-bottom:6px;opacity:.4}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nlogo">보배 <span>법률전략실</span></div>
+  <a href="상황실.html" class="nl on">🔴 메인 상황실</a>
+  <a href="업데이터.html" class="nl">🤖 상황실 업데이터</a>
+  <a href="사건.html" class="nl">📁 사건 관리실</a>
+  <a href="검수실.html" class="nl">🛡️ 콘텐츠 검수실</a>
+  <a href="리서치.html" class="nl">🔍 리서치 센터</a>
+  <a href="메모리.html" class="nl">🧠 메모리 관리실</a>
+  <a href="대시보드.html" class="nl">📊 시스템구조</a>
+  <div class="nr">
+    <div class="live"><div class="ldot"></div>LIVE</div>
+    <div class="clk" id="clk">--:--:--</div>
+  </div>
+</nav>
+
+<div class="tbar">
+  <div>
+    <div class="ttl">실시간 <span>상황실</span></div>
+    <div class="tmeta" id="tdate">로딩 중...</div>
+  </div>
+  <div class="tact">
+    <button class="btn bg sm" onclick="resetAll()">초기화</button>
+    <button class="btn bp sm" onclick="openM('case')">+ 사건 등록</button>
+    <button class="btn br sm" onclick="openM('alert')">🚨 긴급 알림</button>
+  </div>
+</div>
+
+<div class="grid">
+
+  <!-- AI 현재 상태 -->
+  <div class="panel cbl aibox" style="grid-row:span 3">
+    <div class="ph"><div class="phl"><div class="pico">🤖</div><div class="ptit">현재 AI 상태</div></div></div>
+    <div class="mblock">
+      <div class="slbl">현재 모드</div>
+      <div class="mval" id="ai-mode">민사항소 대응 모드</div>
+      <div class="msub" id="ai-sub">2026 항소심 진행 중</div>
+    </div>
+    <div class="ateams">
+      <div class="slbl">활성 분석팀</div>
+      <div id="ai-teams"></div>
+    </div>
+    <div class="prlist">
+      <div class="slbl">현재 우선순위</div>
+      <div id="ai-pri"></div>
+    </div>
+    <div class="aierow">
+      <input class="pi" id="ai-inp" placeholder="모드 변경..." style="font-size:12px" onkeydown="if(event.key==='Enter')updateMode()">
+      <button class="btn bp sm" onclick="updateMode()">변경</button>
+    </div>
+  </div>
+
+  <!-- 위험도 -->
+  <div class="panel crd">
+    <div class="ph">
+      <div class="phl"><div class="pico">⚠️</div><div class="ptit">현재 위험도</div></div>
+      <select class="ps" id="rsel" onchange="updateRisk()">
+        <option value="low">낮음</option><option value="mid" selected>중간</option>
+        <option value="high">높음</option><option value="danger">매우 높음</option>
+      </select>
+    </div>
+    <div class="pb" style="max-height:none">
+      <div class="rg">
+        <div class="rtop"><div class="rnum rmid" id="rpct">45%</div><div class="rlbl rmid" id="rlbl">중간</div></div>
+        <div class="rbar"><div class="rfill rmid" id="rbar" style="width:45%"></div></div>
+        <div class="slbl" style="margin-bottom:8px">위험 요소</div>
+        <div id="rfactors">
+          <div class="rfi"><span class="rfin">준비서면 법리 미보강</span><span class="rfib rfh">높음</span></div>
+          <div class="rfi"><span class="rfin">상대 새 변호사 서면 가능성</span><span class="rfib rfm">중간</span></div>
+          <div class="rfi"><span class="rfin">공탁금 신의칙 위반 주장</span><span class="rfib rfm">중간</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 긴급 알림 -->
+  <div class="panel crd">
+    <div class="ph">
+      <div class="phl"><div class="pico">🚨</div><div class="ptit">긴급 위험 알림</div><span class="pbadge" id="cnt-alert">0</span></div>
+      <button class="btn br sm" onclick="openM('alert')">+ 추가</button>
+    </div>
+    <div class="pb" id="list-alert"><div class="empty"><div class="eico">✅</div>위험 알림 없음</div></div>
+  </div>
+
+  <!-- 활성 사건 -->
+  <div class="panel cbl s2">
+    <div class="ph">
+      <div class="phl"><div class="pico">⚖️</div><div class="ptit">현재 활성 사건</div><span class="pbadge" id="cnt-case">0</span></div>
+      <button class="btn bg sm" onclick="openM('case')">+ 사건 등록</button>
+    </div>
+    <div class="pb" id="list-case" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;max-height:none">
+      <div class="empty" style="grid-column:span 2"><div class="eico">📂</div>등록된 사건 없음</div>
+    </div>
+  </div>
+
+  <!-- 오늘 추천 행동 -->
+  <div class="panel cyl">
+    <div class="ph">
+      <div class="phl"><div class="pico">📌</div><div class="ptit">오늘 추천 행동</div><span class="pbadge" id="cnt-todo">0</span></div>
+      <button class="btn bg sm" onclick="openM('todo')">+ 추가</button>
+    </div>
+    <div class="pb" id="list-todo"><div class="empty"><div class="eico">🎯</div>추천 행동 없음</div></div>
+    <div class="pf">
+      <input class="pi" id="todo-q" placeholder="빠른 추가..." onkeydown="if(event.key==='Enter')quickTodo()">
+      <button class="btn bp sm" onclick="quickTodo()">추가</button>
+    </div>
+  </div>
+
+  <!-- 최근 분석 결과 -->
+  <div class="panel cpr">
+    <div class="ph">
+      <div class="phl"><div class="pico">🔍</div><div class="ptit">최근 분석 결과</div><span class="pbadge" id="cnt-analysis">0</span></div>
+      <button class="btn bg sm" onclick="openM('analysis')">+ 추가</button>
+    </div>
+    <div class="pb" id="list-analysis"><div class="empty"><div class="eico">📋</div>분석 결과 없음</div></div>
+  </div>
+
+  <!-- 검수 대기 -->
+  <div class="panel cor">
+    <div class="ph">
+      <div class="phl"><div class="pico">🛡️</div><div class="ptit">검수 대기 콘텐츠</div><span class="pbadge" id="cnt-review">0</span></div>
+      <button class="btn bg sm" onclick="openM('review')">+ 추가</button>
+    </div>
+    <div class="pb" id="list-review"><div class="empty"><div class="eico">✨</div>대기 콘텐츠 없음</div></div>
+    <div class="pf">
+      <input class="pi" id="rev-q" placeholder="콘텐츠명..." onkeydown="if(event.key==='Enter')quickReview()">
+      <button class="btn bp sm" onclick="quickReview()">등록</button>
+    </div>
+  </div>
+
+  <!-- 빠른 실행 -->
+  <div class="panel ctl s2">
+    <div class="ph"><div class="phl"><div class="pico">⚡</div><div class="ptit">빠른 실행</div></div></div>
+    <div class="cgrid">
+      <button class="cbtn" onclick="openCmd('case')"><span class="cico">⚖️</span>사건 분석 시작</button>
+      <button class="cbtn" onclick="openCmd('judge')"><span class="cico">👨‍⚖️</span>판사 시점 분석</button>
+      <button class="cbtn" onclick="openCmd('content')"><span class="cico">🛡️</span>콘텐츠 검수</button>
+      <button class="cbtn" onclick="openCmd('live')"><span class="cico">📡</span>라이브 위험 분석</button>
+      <button class="cbtn" onclick="openCmd('civil')"><span class="cico">📜</span>민사 전략 분석</button>
+      <button class="cbtn" onclick="openCmd('comment')"><span class="cico">💬</span>댓글 검수</button>
+      <button class="cbtn" onclick="openCmd('wash')"><span class="cico">✍️</span>표현 안전화</button>
+      <button class="cbtn" onclick="openCmd('evidence')"><span class="cico">📊</span>증거 강도 분석</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- 모달들 -->
+<div class="mbg" id="m-case" onclick="if(event.target===this)closeM('case')">
+  <div class="modal"><div class="mtit">⚖️ 사건 등록</div>
+    <div class="f"><label>사건명</label><input id="cn" placeholder="예: 민사항소_2026"></div>
+    <div class="f"><label>진행 상태</label><select id="cs"><option>항소심 진행 중</option><option>1심 진행 중</option><option>판결 대기</option><option>준비서면 작성 중</option><option>조정/합의 중</option><option>수사 단계</option><option>기타</option></select></div>
+    <div class="f"><label>최근 업데이트</label><input id="cu" placeholder="예: 상대방 변호사 교체"></div>
+    <div class="f"><label>현재 위험도</label><select id="cr"><option value="low">낮음</option><option value="mid" selected>중간</option><option value="high">높음</option></select></div>
+    <div class="f"><label>다음 예상</label><input id="cne" placeholder="예: 변론기일 지정 가능성"></div>
+    <div class="mbtns"><button class="btn bg" onclick="closeM('case')">취소</button><button class="btn bp" onclick="addCase()">등록</button></div>
+  </div>
+</div>
+
+<div class="mbg" id="m-alert" onclick="if(event.target===this)closeM('alert')">
+  <div class="modal"><div class="mtit">🚨 긴급 알림 추가</div>
+    <div class="f"><label>알림 내용</label><input id="at" placeholder="예: 감정적 라이브 위험 감지"></div>
+    <div class="f"><label>위험 수준</label><select id="al"><option value="high">🔴 높음</option><option value="mid" selected>🟠 중간</option><option value="low">🟡 낮음</option></select></div>
+    <div class="mbtns"><button class="btn bg" onclick="closeM('alert')">취소</button><button class="btn br" onclick="addAlert()">추가</button></div>
+  </div>
+</div>
+
+<div class="mbg" id="m-analysis" onclick="if(event.target===this)closeM('analysis')">
+  <div class="modal"><div class="mtit">🔍 분석 결과 추가</div>
+    <div class="f"><label>분석 내용</label><input id="ant" placeholder="예: 항소이유서 분석 완료"></div>
+    <div class="f"><label>분석 팀</label><select id="anm"><option>사건분석팀</option><option>판사시점분석팀</option><option>증거강도분석팀</option><option>민사소송팀</option><option>콘텐츠검수팀</option><option>행동위험차단팀</option><option>콘텐츠세탁팀</option></select></div>
+    <div class="f"><label>결과 요약</label><textarea id="and" placeholder="핵심 내용..."></textarea></div>
+    <div class="mbtns"><button class="btn bg" onclick="closeM('analysis')">취소</button><button class="btn bp" onclick="addAnalysis()">저장</button></div>
+  </div>
+</div>
+
+<div class="mbg" id="m-review" onclick="if(event.target===this)closeM('review')">
+  <div class="modal"><div class="mtit">🛡️ 검수 대기 등록</div>
+    <div class="f"><label>콘텐츠명</label><input id="rn" placeholder="예: 유튜브 쇼츠 자막"></div>
+    <div class="f"><label>유형</label><select id="rt"><option>유튜브 영상</option><option>쇼츠/릴스</option><option>자막</option><option>썸네일</option><option>해명문</option><option>SNS 게시물</option><option>댓글/DM</option><option>라이브 멘트</option><option>협찬 계약서</option></select></div>
+    <div class="f"><label>위험 예상</label><select id="rr"><option value="high">🔴 높음</option><option value="mid" selected>🟠 중간</option><option value="low">🟢 낮음</option></select></div>
+    <div class="mbtns"><button class="btn bg" onclick="closeM('review')">취소</button><button class="btn bp" onclick="addReview()">등록</button></div>
+  </div>
+</div>
+
+<div class="mbg" id="m-todo" onclick="if(event.target===this)closeM('todo')">
+  <div class="modal"><div class="mtit">📌 오늘 추천 행동 추가</div>
+    <div class="f"><label>행동 내용</label><input id="tt" placeholder="예: 감정적 댓글 금지"></div>
+    <div class="f"><label>중요도</label><select id="tl"><option value="high">🔴 높음</option><option value="mid" selected>🟠 중간</option><option value="low">🟢 낮음</option></select></div>
+    <div class="mbtns"><button class="btn bg" onclick="closeM('todo')">취소</button><button class="btn bp" onclick="addTodo()">추가</button></div>
+  </div>
+</div>
+
+<div class="mbg" id="m-cmd" onclick="if(event.target===this)closeM('cmd')">
+  <div class="modal"><div class="mtit" id="cmd-ttl">분석 시작</div>
+    <div class="f"><label>분석 내용</label><textarea id="cmd-c" placeholder="분석할 내용을 붙여넣으세요..." style="min-height:110px"></textarea></div>
+    <div style="background:var(--sur2);border-radius:9px;padding:11px;font-size:12px;color:var(--txt3);font-weight:600;line-height:1.6;border:1px solid var(--bdr2)">💡 복사 후 Claude Code 채팅에 붙여넣으면 해당 팀이 분석합니다</div>
+    <div class="mbtns"><button class="btn bg" onclick="closeM('cmd')">닫기</button><button class="btn bp" id="cpybtn" onclick="copyCmd()">📋 복사하기</button></div>
+  </div>
+</div>
+
+<script>
+function tick(){const n=new Date();document.getElementById('clk').textContent=n.toLocaleTimeString('ko-KR',{hour12:false});document.getElementById('tdate').textContent=n.toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric',weekday:'long'});}
+setInterval(tick,1000);tick();
+
+const API='http://localhost:8080/api';
+const KS=['case','alert','analysis','review','todo'];
+const D={case:[],alert:[],analysis:[],review:[],todo:[]};
+const sv=k=>{}; // 서버 연동 시 localStorage 저장 불필요
+
+async function loadFromServer(){
+  try{
+    const r=await fetch(API+'/data');
+    if(!r.ok) throw new Error();
+    const sd=await r.json();
+    D.case  = sd.cases   || [];
+    D.alert = sd.alerts  || [];
+    D.analysis = sd.analysis || [];
+    D.todo  = sd.todos   || [];
+    D.review= sd.review  || [];
+    if(sd.risk) { document.getElementById('rsel').value=sd.risk; updateRisk(); }
+    renderAll();
+  } catch(e){
+    // 서버 없으면 localStorage 폴백
+    const DEF={
+      case:[{name:'서정은 vs 황철순 (2026나529)',status:'항소심 진행 중',update:'상대방 변호사 교체 (2026.05.01)',risk:'mid',next:'변론기일 대기 / 상대 새 서면 모니터링',time:'2026. 5. 6.'}],
+      alert:[],
+      analysis:[{title:'항소이유서·답변서 분석 완료',team:'민사소송팀',detail:'마항 CCTV 역설 핵심 논거. 공탁금은 형사합의와 민사청구 별개.',time:'2026. 5. 6.'}],
+      review:[],
+      todo:[{title:'전자소송 수시 확인',lvl:'high',time:'2026. 5. 6.'},{title:'준비서면 판례·법령 보강',lvl:'high',time:'2026. 5. 6.'}]
+    };
+    KS.forEach(k=>D[k]=JSON.parse(localStorage.getItem('g_'+k)||JSON.stringify(DEF[k]||[])));
+    renderAll();
+  }
+}
+
+const AI=JSON.parse(localStorage.getItem('g_ai')||JSON.stringify({mode:'민사항소 대응 모드',sub:'2026나529 항소심 — 본인 소송 진행 중',teams:['민사소송팀','판사시점분석팀','증거강도분석팀'],priorities:['전자소송 새 서면 모니터링','준비서면 법리 보강 (판례+법령)','공탁금·탄원서 법리 정리']}));
+const svAI=()=>localStorage.setItem('g_ai',JSON.stringify(AI));
+const TC={'판사시점분석팀':'#ffda5a','민사전략팀':'#ff9a5a','민사소송팀':'#ff9a5a','행동위험차단팀':'#ff5a5a','사건분석팀':'#5acfff','콘텐츠검수팀':'#cf5aff','증거강도분석팀':'#5affaa','콘텐츠세탁팀':'#ff5acf','긴급팀':'#5a8aff'};
+
+function renderAI(){
+  document.getElementById('ai-mode').textContent=AI.mode;
+  document.getElementById('ai-sub').textContent=AI.sub;
+  document.getElementById('ai-teams').innerHTML=AI.teams.map(t=>`<div class="tpill"><div class="tpdot" style="background:${TC[t]||'#5a8aff'}"></div>${t}</div>`).join('');
+  document.getElementById('ai-pri').innerHTML=AI.priorities.map((p,i)=>`<div class="pritem"><div class="prnum">${i+1}</div>${p}</div>`).join('');
+}
+function updateMode(){const v=document.getElementById('ai-inp').value.trim();if(!v)return;AI.mode=v;AI.sub=new Date().toLocaleDateString('ko-KR',{month:'long',day:'numeric'})+' 업데이트';svAI();renderAI();document.getElementById('ai-inp').value='';}
+
+const RM={low:{p:20,l:'낮음',c:'rlow'},mid:{p:45,l:'중간',c:'rmid'},high:{p:72,l:'높음',c:'rhigh'},danger:{p:92,l:'매우 높음',c:'rdgr'}};
+function updateRisk(){const v=document.getElementById('rsel').value,r=RM[v];const pe=document.getElementById('rpct'),le=document.getElementById('rlbl'),be=document.getElementById('rbar');pe.className='rnum '+r.c;pe.textContent=r.p+'%';le.className='rlbl '+r.c;le.textContent=r.l;be.className='rfill '+r.c;be.style.width=r.p+'%';localStorage.setItem('g_risk',v);}
+document.getElementById('rsel').value=localStorage.getItem('g_risk')||'mid';updateRisk();
+
+const CRB={low:'crl',mid:'crm',high:'crh'},CRL={low:'낮음',mid:'중간',high:'높음'};
+function renderCases(){
+  const el=document.getElementById('list-case'),cnt=document.getElementById('cnt-case'),it=D.case;
+  cnt.textContent=it.length;
+  if(!it.length){el.innerHTML='<div class="empty" style="grid-column:span 2"><div class="eico">📂</div>등록된 사건 없음</div>';return;}
+  el.innerHTML=it.map((c,i)=>`<div class="cc"><div class="cctop"><div class="ccname">⚖️ ${c.name}</div><div class="ccrb ${CRB[c.risk]||'crm'}">${CRL[c.risk]||'중간'}</div><span class="delbtn" onclick="del('case',${i})">✕</span></div><div class="ccgrid"><div class="ccf"><div class="ccfl">진행 상태</div><div class="ccfv">${c.status}</div></div><div class="ccf"><div class="ccfl">최근 업데이트</div><div class="ccfv">${c.update||'—'}</div></div></div>${c.next?`<div class="ccnxt"><span>→</span><span>${'다음 예상: '+c.next}</span></div>`:''}</div>`).join('');
+}
+
+const ADC={high:'dr',mid:'do',low:'dy'},ALC={high:'aih',mid:'aim',low:'ail'};
+function renderAlerts(){
+  const el=document.getElementById('list-alert'),cnt=document.getElementById('cnt-alert'),it=D.alert;
+  cnt.textContent=it.length;
+  if(!it.length){el.innerHTML='<div class="empty"><div class="eico">✅</div>위험 알림 없음</div>';return;}
+  el.innerHTML=it.map((a,i)=>`<div class="ai ${ALC[a.lvl]}"><div class="adot ${ADC[a.lvl]}"></div><div class="actx"><div class="att">${a.title}</div><div class="atm">${a.time}</div></div><span class="delbtn" onclick="del('alert',${i})">✕</span></div>`).join('');
+}
+
+const TCM={'사건분석팀':'#5acfff','판사시점분석팀':'#ffda5a','증거강도분석팀':'#5affaa','민사소송팀':'#ff9a5a','콘텐츠검수팀':'#cf5aff','행동위험차단팀':'#ff5a5a','콘텐츠세탁팀':'#ff5acf'};
+function renderAnalysis(){
+  const el=document.getElementById('list-analysis'),cnt=document.getElementById('cnt-analysis'),it=D.analysis;
+  cnt.textContent=it.length;
+  if(!it.length){el.innerHTML='<div class="empty"><div class="eico">📋</div>분석 결과 없음</div>';return;}
+  el.innerHTML=it.map((a,i)=>`<div class="li"><div class="ldot2" style="background:${TCM[a.team]||'#7a4dff'}"></div><div class="ltxt"><div style="font-weight:800;color:var(--txt)">${a.title}</div>${a.detail?`<div style="font-size:12px;color:var(--txt3);margin-top:1px">${a.detail}</div>`:''}<div style="font-size:11px;color:var(--txt3);margin-top:1px">${a.team} · ${a.time}</div></div><span class="delbtn" onclick="del('analysis',${i})">✕</span></div>`).join('');
+}
+
+const RRB={high:'background:#ff3a3a18;color:#ff5555;border:1px solid #ff3a3a30',mid:'background:#ffcc2218;color:#ffdd44;border:1px solid #ffcc2230',low:'background:#22ffaa18;color:#44ffbb;border:1px solid #22ffaa30'},RRL={high:'위험',mid:'주의',low:'안전'};
+function renderReview(){
+  const el=document.getElementById('list-review'),cnt=document.getElementById('cnt-review'),it=D.review;
+  cnt.textContent=it.length;
+  if(!it.length){el.innerHTML='<div class="empty"><div class="eico">✨</div>대기 콘텐츠 없음</div>';return;}
+  el.innerHTML=it.map((r,i)=>`<div class="ri"><div class="rtyp">${r.type}</div><div class="rnam">${r.name}</div><div class="rrisk" style="${RRB[r.risk]}">${RRL[r.risk]}</div><span class="delbtn" onclick="del('review',${i})">✕</span></div>`).join('');
+}
+
+function renderTodo(){
+  const el=document.getElementById('list-todo'),cnt=document.getElementById('cnt-todo'),it=D.todo;
+  cnt.textContent=it.length;
+  if(!it.length){el.innerHTML='<div class="empty"><div class="eico">🎯</div>추천 행동 없음</div>';return;}
+  el.innerHTML=it.map((t,i)=>`<div class="li"><div class="ldot2" style="background:${t.lvl==='high'?'var(--red)':t.lvl==='low'?'var(--grn)':'var(--org)'}"></div><div class="ltxt">${t.title}</div><span class="delbtn" onclick="del('todo',${i})">✕</span></div>`).join('');
+}
+
+function renderAll(){renderCases();renderAlerts();renderAnalysis();renderReview();renderTodo();renderAI();}
+async function del(k,i){
+  D[k].splice(i,1);
+  // 서버에도 반영
+  try{
+    const r=await fetch(API+'/data'); const sd=await r.json();
+    const map={case:'cases',alert:'alerts',analysis:'analysis',todo:'todos',review:'review'};
+    if(map[k]) sd[map[k]]=D[k];
+    await fetch(API+'/data',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(sd)});
+  }catch(e){}
+  if(k==='case')renderCases();else if(k==='alert')renderAlerts();else if(k==='analysis')renderAnalysis();else if(k==='review')renderReview();else if(k==='todo')renderTodo();
+}
+const ts=()=>new Date().toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'});
+
+function addCase(){const n=document.getElementById('cn').value.trim();if(!n)return;D.case.unshift({name:n,status:document.getElementById('cs').value,update:document.getElementById('cu').value,risk:document.getElementById('cr').value,next:document.getElementById('cne').value,time:ts()});sv('case');renderCases();closeM('case');}
+function addAlert(){const t=document.getElementById('at').value.trim();if(!t)return;D.alert.unshift({title:t,lvl:document.getElementById('al').value,time:ts()});sv('alert');renderAlerts();closeM('alert');}
+function addAnalysis(){const t=document.getElementById('ant').value.trim();if(!t)return;D.analysis.unshift({title:t,team:document.getElementById('anm').value,detail:document.getElementById('and').value,time:ts()});sv('analysis');renderAnalysis();closeM('analysis');}
+function addReview(){const n=document.getElementById('rn').value.trim();if(!n)return;D.review.unshift({name:n,type:document.getElementById('rt').value,risk:document.getElementById('rr').value,time:ts()});sv('review');renderReview();closeM('review');}
+function addTodo(){const t=document.getElementById('tt').value.trim();if(!t)return;D.todo.unshift({title:t,lvl:document.getElementById('tl').value,time:ts()});sv('todo');renderTodo();closeM('todo');}
+function quickTodo(){const v=document.getElementById('todo-q').value.trim();if(!v)return;D.todo.unshift({title:v,lvl:'mid',time:ts()});sv('todo');renderTodo();document.getElementById('todo-q').value='';}
+function quickReview(){const v=document.getElementById('rev-q').value.trim();if(!v)return;D.review.unshift({name:v,type:'기타',risk:'mid',time:ts()});sv('review');renderReview();document.getElementById('rev-q').value='';}
+
+function openM(id){document.getElementById('m-'+id).classList.add('open');setTimeout(()=>{const i=document.querySelector('#m-'+id+' input');if(i)i.focus();},80);}
+function closeM(id){document.getElementById('m-'+id).classList.remove('open');}
+
+const CL={'case':'⚖️ 사건 분석 시작','judge':'👨‍⚖️ 판사 시점 분석','content':'🛡️ 콘텐츠 검수','live':'📡 라이브 위험 분석','civil':'📜 민사 전략 분석','comment':'💬 댓글 검수','wash':'✍️ 표현 안전화','evidence':'📊 증거 강도 분석'};
+const CP={'case':'아래 자료를 2단계 사건분석팀으로 분석해줘:\n\n','judge':'아래 내용을 판사시점분석팀으로 분석해줘 (재판부 설득력, 객관성 점수, 문장 수정):\n\n','content':'아래 콘텐츠를 3단계 콘텐츠검수팀으로 검수해줘 (10개 항목, 위험도, 수정 추천):\n\n','live':'지금 라이브 방송을 해도 안전한지 행동위험차단팀으로 분석해줘:\n\n','civil':'아래 사건을 4단계 민사소송전략팀으로 분석해줘 (불법행위, 손해, 위자료, 항소):\n\n','comment':'아래 댓글/DM을 콘텐츠세탁팀과 행동위험차단팀으로 검수해줘:\n\n','wash':'아래 표현을 콘텐츠세탁팀으로 안전하게 리라이팅해줘:\n\n','evidence':'아래 증거를 증거강도분석팀으로 분석해줘 (100점, S~D 등급, 보강방법):\n\n'};
+let curCmd='';
+function openCmd(type){curCmd=type;document.getElementById('cmd-ttl').textContent=CL[type];document.getElementById('cmd-c').value='';document.getElementById('m-cmd').classList.add('open');setTimeout(()=>document.getElementById('cmd-c').focus(),80);}
+function copyCmd(){const c=document.getElementById('cmd-c').value.trim(),p=CP[curCmd]+(c||'(내용 없음)');navigator.clipboard.writeText(p).then(()=>{const b=document.getElementById('cpybtn');b.textContent='✅ 복사됨!';b.style.background='#22ffaa44';setTimeout(()=>{b.textContent='📋 복사하기';b.style.background='';},1500);});}
+
+function resetAll(){if(!confirm('모든 데이터를 초기화합니까?'))return;KS.forEach(k=>{D[k]=[];});renderAll();}
+// 서버에서 데이터 로드 + 30초 자동 갱신
+loadFromServer();
+setInterval(loadFromServer, 30000);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')['case','alert','analysis','review','todo','cmd'].forEach(closeM);});
+['case','alert','analysis','review','todo'].forEach(id=>{const m=document.getElementById('m-'+id);if(m)m.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.tagName!=='TEXTAREA'){if(id==='case')addCase();else if(id==='alert')addAlert();else if(id==='analysis')addAnalysis();else if(id==='review')addReview();else if(id==='todo')addTodo();}});});
+renderAll();
+</script>
+</body>
+</html>

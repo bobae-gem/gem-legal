@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>온라인 모니터링 센터 — 보배 법률전략실</title>
+<style>
+:root{--bg:#070910;--sur:#0d1017;--sur2:#121620;--sur3:#181d28;--bdr:#222a3a;--bdr2:#1a2030;--acc:#4d7aff;--acc2:#7a4dff;--red:#ff3a3a;--org:#ff8822;--yel:#ffcc22;--grn:#22ffaa;--tel:#22ccff;--txt:#edf0ff;--txt2:#8492b0;--txt3:#424f68}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Malgun Gothic',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;font-size:13px}
+nav{display:flex;align-items:center;padding:0 20px;height:52px;background:var(--sur);border-bottom:1px solid var(--bdr);gap:3px;position:sticky;top:0;z-index:100;overflow-x:auto}
+.nlogo{font-size:14px;font-weight:900;color:var(--txt);margin-right:12px;white-space:nowrap}.nlogo span{color:var(--acc)}
+a.nl{text-decoration:none;color:var(--txt3);font-size:12px;font-weight:700;padding:5px 10px;border-radius:7px;transition:all .15s;border:1px solid transparent;white-space:nowrap;flex-shrink:0}
+a.nl:hover{color:var(--txt2);background:var(--sur2)}a.nl.on{color:var(--acc);background:#4d7aff12;border-color:#4d7aff28}
+.nr{margin-left:auto;white-space:nowrap;font-size:12px;color:var(--txt3);padding-left:10px}
+
+.layout{display:grid;grid-template-columns:230px 1fr;height:calc(100vh - 52px)}
+
+.sidebar{background:var(--sur);border-right:1px solid var(--bdr);overflow-y:auto;padding:12px 10px}
+.sb-sec{margin-bottom:14px}
+.sb-title{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--txt3);margin-bottom:8px;padding:0 4px}
+.menu-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;cursor:pointer;border:1px solid transparent;transition:all .15s;margin-bottom:3px}
+.menu-item:hover{background:var(--sur2);border-color:var(--bdr)}
+.menu-item.on{background:var(--sur2);border-color:#4d7aff28}
+.mi-ico{font-size:14px;flex-shrink:0}
+.mi-name{font-size:12px;font-weight:700;color:var(--txt2)}
+.menu-item.on .mi-name{color:var(--acc)}
+.mi-cnt{font-size:10px;font-weight:800;padding:1px 6px;border-radius:8px;background:var(--sur3);color:var(--txt3);margin-left:auto}
+.mi-cnt.has{background:#ff3a3a18;color:#ff6666}
+.div-line{height:1px;background:var(--bdr2);margin:10px 0}
+
+.main{display:flex;flex-direction:column;overflow:hidden}
+.mhead{padding:14px 20px;border-bottom:1px solid var(--bdr2);background:var(--sur);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.mh-left{flex:1}
+.mh-title{font-size:15px;font-weight:900}
+.mh-sub{font-size:11px;color:var(--txt3);margin-top:2px}
+.pb{flex:1;overflow-y:auto;padding:16px 20px}
+
+.btn{padding:7px 14px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;border:none;transition:all .15s}
+.bg{background:var(--sur2);color:var(--txt2);border:1px solid var(--bdr)}.bg:hover{border-color:var(--acc);color:var(--acc)}
+.bp{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff}.bp:hover{opacity:.85}
+.br{background:#ff3a3a12;color:var(--red);border:1px solid #ff3a3a28}.br:hover{background:#ff3a3a20}
+.sm{padding:5px 10px;font-size:11px}
+
+/* 위험도 뱃지 */
+.risk{font-size:10px;font-weight:800;padding:3px 9px;border-radius:5px}
+.r-low{background:#22ffaa18;color:#33ffaa;border:1px solid #22ffaa30}
+.r-mid{background:#ffcc2218;color:#ffdd44;border:1px solid #ffcc2230}
+.r-high{background:#ff882218;color:#ffaa44;border:1px solid #ff882230}
+.r-urgent{background:#ff3a3a18;color:#ff5555;border:1px solid #ff3a3a30}
+
+/* 위험 유형 태그 */
+.vtag{font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;background:#ff3a3a12;color:#ff6666;border:1px solid #ff3a3a28}
+
+/* 모니터링 카드 */
+.mcard{background:var(--sur);border:1px solid var(--bdr);border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:border-color .15s}
+.mcard:hover{border-color:var(--bdr)}
+.mcard.urgent{border-color:#ff3a3a40;background:#ff3a3a04}
+.mcard.high{border-color:#ff882240}
+.mc-top{display:flex;align-items:center;gap:7px;margin-bottom:10px;flex-wrap:wrap}
+.mc-platform{font-size:10px;font-weight:800;padding:3px 9px;border-radius:5px}
+.pl-youtube{background:#ff3a3a18;color:#ff6666;border:1px solid #ff3a3a28}
+.pl-instagram{background:#7a4dff18;color:#aa7fff;border:1px solid #7a4dff28}
+.pl-community{background:#4d7aff18;color:#7a9fff;border:1px solid #4d7aff28}
+.pl-tiktok{background:#22ccff18;color:#44ddff;border:1px solid #22ccff28}
+.pl-news{background:#ffcc2218;color:#ffdd55;border:1px solid #ffcc2228}
+.pl-other{background:#424f6818;color:#6b7fa3;border:1px solid #424f6828}
+.mc-date{font-size:10px;color:var(--txt3);margin-left:auto;font-family:monospace}
+.mc-title{font-size:14px;font-weight:800;color:var(--txt);margin-bottom:6px;line-height:1.4}
+.mc-body{font-size:12px;color:var(--txt2);line-height:1.6;margin-bottom:8px;background:var(--sur2);border-radius:7px;padding:8px 10px;border:1px solid var(--bdr2)}
+.mc-url{font-size:11px;color:var(--acc);margin-bottom:8px;word-break:break-all}
+.mc-meta{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:8px}
+.mc-m{background:var(--sur2);border-radius:6px;padding:6px 8px;border:1px solid var(--bdr2)}
+.mc-ml{font-size:10px;color:var(--txt3);margin-bottom:2px}
+.mc-mv{font-size:11px;font-weight:700;color:var(--txt2)}
+.mc-vtags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px}
+.mc-actions{display:flex;gap:7px;flex-wrap:wrap}
+.mc-connect{font-size:11px;color:var(--grn);background:#22ffaa10;border-radius:5px;padding:5px 8px;border:1px solid #22ffaa28;margin-bottom:8px}
+
+/* 통계 패널 */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
+.stat-box{background:var(--sur);border:1px solid var(--bdr);border-radius:10px;padding:12px 14px;text-align:center}
+.stat-num{font-size:22px;font-weight:900;margin-bottom:3px}
+.stat-lbl{font-size:10px;color:var(--txt3);font-weight:600}
+.sn-urgent{color:var(--red)}
+.sn-high{color:var(--org)}
+.sn-mid{color:var(--yel)}
+.sn-low{color:var(--grn)}
+
+/* 모달 */
+.modal-bg{display:none;position:fixed;inset:0;background:#00000088;z-index:200;align-items:center;justify-content:center}
+.modal-bg.open{display:flex}
+.modal{background:var(--sur);border:1px solid var(--bdr);border-radius:14px;padding:22px;width:580px;max-width:92vw;max-height:90vh;overflow-y:auto}
+.mtit{font-size:15px;font-weight:900;margin-bottom:14px}
+.f{margin-bottom:10px}
+.f label{display:block;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--txt3);margin-bottom:5px}
+.f input,.f select,.f textarea{width:100%;background:var(--sur2);border:1px solid var(--bdr);border-radius:8px;padding:8px 11px;color:var(--txt);font-size:12px;font-weight:600;outline:none;transition:border-color .15s;font-family:inherit}
+.f input:focus,.f select:focus,.f textarea:focus{border-color:var(--acc)}
+.f select option{background:var(--sur2)}.f textarea{resize:vertical;min-height:70px}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.checkbox-row{display:flex;flex-wrap:wrap;gap:8px}
+.cb-item{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--txt2);cursor:pointer}
+.cb-item input{width:auto}
+.mbtns{display:flex;gap:7px;margin-top:16px;justify-content:flex-end}
+.empty{text-align:center;padding:40px;color:var(--txt3);font-size:12px}
+.empty-ico{font-size:32px;opacity:.3;margin-bottom:8px}
+
+/* 필터바 */
+.filter-bar{display:flex;gap:7px;padding:12px 20px;border-bottom:1px solid var(--bdr2);background:var(--sur);flex-shrink:0;overflow-x:auto}
+.fbtn{padding:5px 12px;border-radius:7px;font-size:11px;font-weight:700;cursor:pointer;color:var(--txt3);border:1px solid transparent;white-space:nowrap;background:none}
+.fbtn:hover{color:var(--txt2);background:var(--sur2)}
+.fbtn.on{color:var(--acc);background:#4d7aff12;border-color:#4d7aff28}
+.fbtn.r-urgent-f.on{color:#ff5555;background:#ff3a3a12;border-color:#ff3a3a28}
+.fbtn.r-high-f.on{color:#ffaa44;background:#ff882212;border-color:#ff882228}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nlogo">보배 <span>법률전략실</span></div>
+  <a href="상황실.html" class="nl">🔴 메인 상황실</a>
+  <a href="업데이터.html" class="nl">🤖 상황실 업데이터</a>
+  <a href="사건.html" class="nl">📁 사건 관리실</a>
+  <a href="검수실.html" class="nl">🛡️ 콘텐츠 검수실</a>
+  <a href="리서치.html" class="nl">🔍 리서치 센터</a>
+  <a href="모니터링.html" class="nl on">👁️ 모니터링 센터</a>
+  <a href="메모리.html" class="nl">🧠 메모리 관리실</a>
+  <a href="대시보드.html" class="nl">📊 시스템구조</a>
+  <div class="nr" id="clk">--:--:--</div>
+</nav>
+
+<div class="layout">
+  <!-- 사이드바 -->
+  <div class="sidebar">
+    <div class="sb-sec">
+      <div class="sb-title">위험도 필터</div>
+      <div class="menu-item on" onclick="filterRisk('all',this)"><div class="mi-ico">📋</div><div class="mi-name">전체</div><div class="mi-cnt has" id="cnt-all">0</div></div>
+      <div class="menu-item" onclick="filterRisk('urgent',this)"><div class="mi-ico">🔴</div><div class="mi-name">매우 높음</div><div class="mi-cnt" id="cnt-urgent">0</div></div>
+      <div class="menu-item" onclick="filterRisk('high',this)"><div class="mi-ico">🟠</div><div class="mi-name">높음</div><div class="mi-cnt" id="cnt-high">0</div></div>
+      <div class="menu-item" onclick="filterRisk('mid',this)"><div class="mi-ico">🟡</div><div class="mi-name">중간</div><div class="mi-cnt" id="cnt-mid">0</div></div>
+      <div class="menu-item" onclick="filterRisk('low',this)"><div class="mi-ico">🟢</div><div class="mi-name">낮음</div><div class="mi-cnt" id="cnt-low">0</div></div>
+    </div>
+    <div class="div-line"></div>
+    <div class="sb-sec">
+      <div class="sb-title">플랫폼 필터</div>
+      <div class="menu-item" onclick="filterPlatform('유튜브',this)"><div class="mi-ico">▶️</div><div class="mi-name">유튜브</div><div class="mi-cnt" id="cnt-yt">0</div></div>
+      <div class="menu-item" onclick="filterPlatform('인스타그램',this)"><div class="mi-ico">📸</div><div class="mi-name">인스타그램</div><div class="mi-cnt" id="cnt-ig">0</div></div>
+      <div class="menu-item" onclick="filterPlatform('커뮤니티',this)"><div class="mi-ico">💬</div><div class="mi-name">커뮤니티</div><div class="mi-cnt" id="cnt-cm">0</div></div>
+      <div class="menu-item" onclick="filterPlatform('틱톡',this)"><div class="mi-ico">🎵</div><div class="mi-name">틱톡</div><div class="mi-cnt" id="cnt-tt">0</div></div>
+      <div class="menu-item" onclick="filterPlatform('뉴스',this)"><div class="mi-ico">📰</div><div class="mi-name">뉴스</div><div class="mi-cnt" id="cnt-nw">0</div></div>
+    </div>
+    <div class="div-line"></div>
+    <div class="sb-sec">
+      <div class="sb-title">운영 원칙</div>
+      <div style="font-size:11px;color:var(--txt3);line-height:1.7;padding:4px">
+        ✓ 공개 게시물만<br>
+        ✓ 원문 그대로 저장<br>
+        ✗ 비공개 접근 금지<br>
+        ✗ 해킹 금지<br>
+        ✗ 불법 수집 금지<br>
+        ✗ 역고소 유도 금지
+      </div>
+    </div>
+  </div>
+
+  <!-- 메인 -->
+  <div class="main">
+    <div class="mhead">
+      <div class="mh-left">
+        <div class="mh-title">👁️ 온라인 모니터링 센터</div>
+        <div class="mh-sub">공개 게시물·영상·댓글 감지 및 증거보존 — 공개 범위만 대상</div>
+      </div>
+      <button class="btn bp sm" onclick="openModal()">+ 감지 항목 등록</button>
+    </div>
+
+    <div class="pb" id="main-area">
+      <div class="stats-row">
+        <div class="stat-box"><div class="stat-num sn-urgent" id="s-urgent">0</div><div class="stat-lbl">매우 높음</div></div>
+        <div class="stat-box"><div class="stat-num sn-high" id="s-high">0</div><div class="stat-lbl">높음</div></div>
+        <div class="stat-box"><div class="stat-num sn-mid" id="s-mid">0</div><div class="stat-lbl">중간</div></div>
+        <div class="stat-box"><div class="stat-num sn-low" id="s-low">0</div><div class="stat-lbl">낮음</div></div>
+      </div>
+      <div id="list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 등록 모달 -->
+<div class="modal-bg" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <div class="mtit">👁️ 감지 항목 등록</div>
+    <div class="f-row">
+      <div class="f"><label>플랫폼</label>
+        <select id="f-platform">
+          <option>유튜브</option><option>인스타그램</option><option>커뮤니티</option>
+          <option>틱톡</option><option>뉴스</option><option>샤오홍슈</option><option>기타</option>
+        </select>
+      </div>
+      <div class="f"><label>게시물 유형</label>
+        <select id="f-type">
+          <option>영상</option><option>쇼츠/릴스</option><option>게시글</option>
+          <option>댓글</option><option>스토리</option><option>기사</option><option>렉카 영상</option>
+        </select>
+      </div>
+    </div>
+    <div class="f"><label>제목</label><input id="f-title" placeholder="게시물·영상 제목"></div>
+    <div class="f"><label>작성자/채널명</label><input id="f-author" placeholder="공개된 이름만"></div>
+    <div class="f"><label>URL</label><input id="f-url" placeholder="https://..."></div>
+    <div class="f"><label>본문/댓글 내용 (원문 그대로)</label><textarea id="f-body" placeholder="원문을 그대로 붙여넣으세요..."></textarea></div>
+    <div class="f-row">
+      <div class="f"><label>위험도</label>
+        <select id="f-risk">
+          <option value="urgent">🔴 매우 높음</option>
+          <option value="high">🟠 높음</option>
+          <option value="mid" selected>🟡 중간</option>
+          <option value="low">🟢 낮음</option>
+        </select>
+      </div>
+      <div class="f"><label>삭제 가능성</label>
+        <select id="f-del">
+          <option>매우 높음 (스토리)</option><option>높음</option><option>중간</option><option>낮음</option>
+        </select>
+      </div>
+    </div>
+    <div class="f"><label>위험 유형 (복수 선택)</label>
+      <div class="checkbox-row">
+        <label class="cb-item"><input type="checkbox" value="악플"> 악플</label>
+        <label class="cb-item"><input type="checkbox" value="허위사실"> 허위사실</label>
+        <label class="cb-item"><input type="checkbox" value="명예훼손"> 명예훼손</label>
+        <label class="cb-item"><input type="checkbox" value="모욕"> 모욕</label>
+        <label class="cb-item"><input type="checkbox" value="사생활 침해"> 사생활 침해</label>
+        <label class="cb-item"><input type="checkbox" value="렉카 확산"> 렉카 확산</label>
+      </div>
+    </div>
+    <div class="f-row">
+      <div class="f"><label>조회수</label><input id="f-views" placeholder="예: 12,400"></div>
+      <div class="f"><label>좋아요/댓글 수</label><input id="f-likes" placeholder="예: 좋아요 320 / 댓글 48"></div>
+    </div>
+    <div class="f"><label>캡처 여부</label>
+      <select id="f-cap"><option>완료</option><option>예정</option><option>불필요</option></select>
+    </div>
+    <div class="f"><label>추천 대응</label><textarea id="f-action" placeholder="추천 대응 방향..." style="min-height:50px"></textarea></div>
+    <div class="f"><label>연결 팀</label>
+      <div class="checkbox-row">
+        <label class="cb-item"><input type="checkbox" value="법률전략실"> 법률전략실</label>
+        <label class="cb-item"><input type="checkbox" value="콘텐츠 검수실"> 콘텐츠 검수실</label>
+        <label class="cb-item"><input type="checkbox" value="행동위험차단팀"> 행동위험차단팀</label>
+        <label class="cb-item"><input type="checkbox" value="판사시점분석팀"> 판사시점분석팀</label>
+      </div>
+    </div>
+    <div class="mbtns">
+      <button class="btn bg" onclick="closeModal()">취소</button>
+      <button class="btn bp" onclick="saveItem()">등록</button>
+    </div>
+  </div>
+</div>
+
+<script>
+setInterval(()=>{ document.getElementById('clk').textContent = new Date().toLocaleTimeString('ko-KR',{hour12:false}); },1000);
+
+let items = JSON.parse(localStorage.getItem('monitoring_v1')||'[]');
+let currentRisk = 'all';
+let currentPlatform = 'all';
+
+const RISK_LABEL = {urgent:'매우 높음',high:'높음',mid:'중간',low:'낮음'};
+const RISK_CSS = {urgent:'r-urgent',high:'r-high',mid:'r-mid',low:'r-low'};
+const PLATFORM_CSS = {유튜브:'pl-youtube',인스타그램:'pl-instagram',커뮤니티:'pl-community',틱톡:'pl-tiktok',뉴스:'pl-news'};
+
+function save(){ localStorage.setItem('monitoring_v1', JSON.stringify(items)); }
+function ts(){ return new Date().toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}); }
+
+function getChecked(name){
+  return [...document.querySelectorAll(`.modal input[type=checkbox][value="${name}"]`)].filter(e=>e.checked);
+}
+function getAllChecked(container){
+  return [...document.querySelectorAll('.modal input[type=checkbox]:checked')].map(e=>e.value);
+}
+
+function filterRisk(risk, el){
+  currentRisk = risk;
+  currentPlatform = 'all';
+  document.querySelectorAll('.menu-item').forEach(m=>m.classList.remove('on'));
+  if(el) el.classList.add('on');
+  renderList();
+}
+
+function filterPlatform(platform, el){
+  currentPlatform = platform;
+  currentRisk = 'all';
+  document.querySelectorAll('.menu-item').forEach(m=>m.classList.remove('on'));
+  if(el) el.classList.add('on');
+  renderList();
+}
+
+function renderList(){
+  const el = document.getElementById('list');
+  let filtered = [...items];
+  if(currentRisk !== 'all') filtered = filtered.filter(i=>i.risk===currentRisk);
+  if(currentPlatform !== 'all') filtered = filtered.filter(i=>i.platform===currentPlatform);
+
+  updateStats();
+  updateCounts();
+
+  if(!filtered.length){
+    el.innerHTML='<div class="empty"><div class="empty-ico">👁️</div>감지된 항목이 없습니다<br><span style="font-size:11px;margin-top:6px;display:block">+ 감지 항목 등록 버튼으로 추가하세요</span></div>';
+    return;
+  }
+
+  el.innerHTML = filtered.map((item, idx)=>{
+    const realIdx = items.indexOf(item);
+    const vtags = (item.vtypes||[]).map(v=>`<span class="vtag">${v}</span>`).join('');
+    const connects = (item.connects||[]).join(' · ');
+    const plCSS = PLATFORM_CSS[item.platform]||'pl-other';
+    return `<div class="mcard ${item.risk==='urgent'?'urgent':item.risk==='high'?'high':''}">
+      <div class="mc-top">
+        <span class="mc-platform ${plCSS}">${item.platform}</span>
+        <span style="font-size:10px;color:var(--txt3)">${item.ptype||''}</span>
+        <span class="risk ${RISK_CSS[item.risk]}">${RISK_LABEL[item.risk]}</span>
+        <span class="mc-date">${item.date||''}</span>
+      </div>
+      <div class="mc-title">${item.title}</div>
+      ${item.author?`<div style="font-size:11px;color:var(--txt3);margin-bottom:6px">작성자: ${item.author}</div>`:''}
+      ${item.body?`<div class="mc-body">${item.body}</div>`:''}
+      ${item.url?`<div class="mc-url">🔗 ${item.url}</div>`:''}
+      <div class="mc-meta">
+        ${item.views?`<div class="mc-m"><div class="mc-ml">조회수</div><div class="mc-mv">${item.views}</div></div>`:''}
+        ${item.likes?`<div class="mc-m"><div class="mc-ml">좋아요/댓글</div><div class="mc-mv">${item.likes}</div></div>`:''}
+        ${item.capStatus?`<div class="mc-m"><div class="mc-ml">캡처</div><div class="mc-mv">${item.capStatus}</div></div>`:''}
+        ${item.delRisk?`<div class="mc-m"><div class="mc-ml">삭제 가능성</div><div class="mc-mv" style="color:var(--org)">${item.delRisk}</div></div>`:''}
+      </div>
+      ${vtags?`<div class="mc-vtags">${vtags}</div>`:''}
+      ${connects?`<div class="mc-connect">→ 연결: ${connects}</div>`:''}
+      ${item.action?`<div style="font-size:11px;color:var(--txt2);margin-bottom:10px;padding:6px 8px;background:var(--sur2);border-radius:5px;border:1px solid var(--bdr2)">추천 대응: ${item.action}</div>`:''}
+      <div style="display:flex;gap:6px">
+        <button class="btn br sm" onclick="delItem(${realIdx})">삭제</button>
+        ${item.url?`<a href="${item.url}" target="_blank" class="btn bg sm">원문 보기</a>`:''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function updateStats(){
+  const cnt = r => items.filter(i=>i.risk===r).length;
+  document.getElementById('s-urgent').textContent = cnt('urgent');
+  document.getElementById('s-high').textContent = cnt('high');
+  document.getElementById('s-mid').textContent = cnt('mid');
+  document.getElementById('s-low').textContent = cnt('low');
+}
+
+function updateCounts(){
+  const total = items.length;
+  document.getElementById('cnt-all').textContent = total;
+  document.getElementById('cnt-all').className = 'mi-cnt'+(total>0?' has':'');
+  const rCnts = {urgent:0,high:0,mid:0,low:0};
+  const pCnts = {유튜브:0,인스타그램:0,커뮤니티:0,틱톡:0,뉴스:0};
+  items.forEach(i=>{
+    if(rCnts[i.risk]!=null) rCnts[i.risk]++;
+    if(pCnts[i.platform]!=null) pCnts[i.platform]++;
+  });
+  ['urgent','high','mid','low'].forEach(r=>{
+    const el = document.getElementById('cnt-'+r);
+    if(el){ el.textContent=rCnts[r]; el.className='mi-cnt'+(rCnts[r]>0?' has':''); }
+  });
+  const pMap = {유튜브:'yt',인스타그램:'ig',커뮤니티:'cm',틱톡:'tt',뉴스:'nw'};
+  Object.keys(pMap).forEach(p=>{
+    const el = document.getElementById('cnt-'+pMap[p]);
+    if(el){ el.textContent=pCnts[p]; el.className='mi-cnt'+(pCnts[p]>0?' has':''); }
+  });
+}
+
+function openModal(){ document.getElementById('modal').classList.add('open'); setTimeout(()=>document.getElementById('f-title').focus(),80); }
+function closeModal(){ document.getElementById('modal').classList.remove('open'); }
+
+function saveItem(){
+  const title = document.getElementById('f-title').value.trim();
+  if(!title){ alert('제목을 입력하세요'); return; }
+  const vtypes = getAllChecked('vtypes');
+  const connects = [...document.querySelectorAll('.modal input[type=checkbox]:checked')]
+    .map(e=>e.value)
+    .filter(v=>['법률전략실','콘텐츠 검수실','행동위험차단팀','판사시점분석팀'].includes(v));
+  const vtypes2 = [...document.querySelectorAll('.modal input[type=checkbox]:checked')]
+    .map(e=>e.value)
+    .filter(v=>['악플','허위사실','명예훼손','모욕','사생활 침해','렉카 확산'].includes(v));
+
+  const item = {
+    id: 'm'+Date.now(),
+    platform: document.getElementById('f-platform').value,
+    ptype: document.getElementById('f-type').value,
+    title,
+    author: document.getElementById('f-author').value,
+    url: document.getElementById('f-url').value,
+    body: document.getElementById('f-body').value,
+    risk: document.getElementById('f-risk').value,
+    delRisk: document.getElementById('f-del').value,
+    vtypes: vtypes2,
+    views: document.getElementById('f-views').value,
+    likes: document.getElementById('f-likes').value,
+    capStatus: document.getElementById('f-cap').value,
+    action: document.getElementById('f-action').value,
+    connects,
+    date: ts()
+  };
+  items.unshift(item);
+  save(); closeModal();
+  // 체크박스 초기화
+  document.querySelectorAll('.modal input[type=checkbox]').forEach(c=>c.checked=false);
+  renderList();
+}
+
+function delItem(i){ if(!confirm('삭제하시겠습니까?')) return; items.splice(i,1); save(); renderList(); }
+
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
+renderList();
+</script>
+</body>
+</html>

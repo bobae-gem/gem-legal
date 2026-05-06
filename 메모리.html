@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>메모리 관리실 — 보배 법률전략실</title>
+<style>
+:root{--bg:#070910;--sur:#0d1017;--sur2:#121620;--sur3:#181d28;--bdr:#222a3a;--bdr2:#1a2030;--acc:#4d7aff;--acc2:#7a4dff;--red:#ff3a3a;--org:#ff8822;--yel:#ffcc22;--grn:#22ffaa;--txt:#edf0ff;--txt2:#8492b0;--txt3:#424f68}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Malgun Gothic',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;font-size:13px}
+nav{display:flex;align-items:center;padding:0 24px;height:52px;background:var(--sur);border-bottom:1px solid var(--bdr);gap:4px;position:sticky;top:0;z-index:100;overflow-x:auto}
+.nlogo{font-size:14px;font-weight:900;color:var(--txt);margin-right:14px;white-space:nowrap}.nlogo span{color:var(--acc)}
+a.nl{text-decoration:none;color:var(--txt3);font-size:12px;font-weight:700;padding:5px 10px;border-radius:7px;transition:all .15s;border:1px solid transparent;white-space:nowrap}
+a.nl:hover{color:var(--txt2);background:var(--sur2)}a.nl.on{color:var(--acc);background:#4d7aff12;border-color:#4d7aff28}
+.nr{margin-left:auto;white-space:nowrap;font-size:12px;color:var(--txt3);padding-left:12px}
+.wrap{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;height:calc(100vh - 52px)}
+.col{display:flex;flex-direction:column;border-right:1px solid var(--bdr);overflow:hidden}
+.col:last-child{border-right:none}
+.col-head{padding:14px 18px;border-bottom:1px solid var(--bdr2);background:var(--sur)}
+.col-title{font-size:14px;font-weight:900;display:flex;align-items:center;gap:7px}
+.col-sub{font-size:11px;color:var(--txt3);margin-top:3px;line-height:1.5}
+.col-rule{font-size:10px;color:var(--red);margin-top:5px;font-weight:700;padding:4px 7px;background:#ff3a3a10;border-radius:5px;border:1px solid #ff3a3a20;display:inline-block}
+.col-body{flex:1;overflow-y:auto;padding:14px 16px}
+.col-foot{padding:10px 14px;border-top:1px solid var(--bdr2);display:flex;gap:7px}
+.btn{padding:6px 12px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;border:none;transition:all .15s}
+.bg{background:var(--sur2);color:var(--txt2);border:1px solid var(--bdr)}.bg:hover{border-color:var(--acc);color:var(--acc)}
+.bp{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;font-size:11px;padding:6px 12px}.bp:hover{opacity:.85}
+.br{background:#ff3a3a12;color:var(--red);border:1px solid #ff3a3a28}.br:hover{background:#ff3a3a20}
+
+.mem-item{background:var(--sur2);border:1px solid var(--bdr2);border-radius:10px;padding:11px 13px;margin-bottom:8px;transition:border-color .15s}
+.mem-item:hover{border-color:var(--bdr)}
+.mi-top{display:flex;align-items:center;gap:7px;margin-bottom:6px}
+.mi-tag{font-size:10px;font-weight:800;padding:2px 7px;border-radius:5px}
+.t-sys{background:#4d7aff18;color:#7a9fff;border:1px solid #4d7aff28}
+.t-case{background:#22ffaa18;color:#44ffbb;border:1px solid #22ffaa28}
+.t-temp{background:#ffcc2218;color:#ffdd55;border:1px solid #ffcc2228}
+.mi-time{font-size:10px;color:var(--txt3);margin-left:auto}
+.mi-title{font-size:13px;font-weight:800;color:var(--txt);margin-bottom:3px}
+.mi-body{font-size:11px;color:var(--txt2);line-height:1.6}
+.mi-actions{display:flex;gap:5px;margin-top:8px}
+.empty{text-align:center;padding:32px 16px;color:var(--txt3);font-size:12px}
+.empty-ico{font-size:28px;opacity:.3;margin-bottom:8px}
+
+.rule-box{background:var(--sur2);border:1px solid var(--bdr2);border-radius:10px;padding:12px 14px;margin-bottom:10px}
+.rb-title{font-size:11px;font-weight:800;color:var(--txt3);margin-bottom:6px;letter-spacing:.5px}
+.rb-list{list-style:none}
+.rb-list li{font-size:11px;color:var(--txt2);padding:3px 0;border-bottom:1px solid var(--bdr2);line-height:1.5}
+.rb-list li:last-child{border-bottom:none}
+.rb-list li::before{content:'→ ';color:var(--txt3)}
+
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:12px}
+.stat-box{background:var(--sur2);border-radius:9px;padding:10px 12px;border:1px solid var(--bdr2);text-align:center}
+.stat-num{font-size:20px;font-weight:900;color:var(--acc)}
+.stat-lbl{font-size:10px;color:var(--txt3);margin-top:2px;font-weight:600}
+
+.modal-bg{display:none;position:fixed;inset:0;background:#00000088;z-index:200;align-items:center;justify-content:center}
+.modal-bg.open{display:flex}
+.modal{background:var(--sur);border:1px solid var(--bdr);border-radius:14px;padding:22px;width:480px;max-width:92vw}
+.mtit{font-size:15px;font-weight:900;margin-bottom:14px}
+.f{margin-bottom:11px}
+.f label{display:block;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--txt3);margin-bottom:5px}
+.f input,.f select,.f textarea{width:100%;background:var(--sur2);border:1px solid var(--bdr);border-radius:8px;padding:8px 11px;color:var(--txt);font-size:12px;font-weight:600;outline:none;transition:border-color .15s;font-family:inherit}
+.f input:focus,.f textarea:focus{border-color:var(--acc)}.f textarea{resize:vertical;min-height:80px}
+.mbtns{display:flex;gap:7px;margin-top:16px;justify-content:flex-end}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nlogo">보배 <span>법률전략실</span></div>
+  <a href="상황실.html" class="nl">🔴 메인 상황실</a>
+  <a href="업데이터.html" class="nl">🤖 상황실 업데이터</a>
+  <a href="사건.html" class="nl">📁 사건 관리실</a>
+  <a href="검수실.html" class="nl">🛡️ 콘텐츠 검수실</a>
+  <a href="리서치.html" class="nl">🔍 리서치 센터</a>
+  <a href="메모리.html" class="nl on">🧠 메모리 관리실</a>
+  <a href="대시보드.html" class="nl">📊 시스템구조</a>
+  <div class="nr" id="clk">--:--:--</div>
+</nav>
+
+<div class="wrap">
+  <!-- 시스템 저장공간 -->
+  <div class="col">
+    <div class="col-head">
+      <div class="col-title">🏛️ 시스템 저장공간</div>
+      <div class="col-sub">구조·역할·원칙·규칙만 저장<br>사건 정보 오염 절대 금지</div>
+      <div class="col-rule">오염 금지</div>
+    </div>
+    <div class="col-body">
+      <div class="stats-grid">
+        <div class="stat-box"><div class="stat-num" id="sys-cnt">0</div><div class="stat-lbl">시스템 항목</div></div>
+        <div class="stat-box"><div class="stat-num" style="color:var(--grn)">✓</div><div class="stat-lbl">오염 상태</div></div>
+      </div>
+      <div class="rule-box">
+        <div class="rb-title">저장 가능 항목</div>
+        <ul class="rb-list">
+          <li>팀 구조·역할 정의</li>
+          <li>운영 원칙·규칙</li>
+          <li>에이전트 프롬프트</li>
+          <li>참고 소스 정책</li>
+          <li>분류 기준·체크리스트</li>
+        </ul>
+      </div>
+      <div id="list-sys">
+        <div class="empty"><div class="empty-ico">🏛️</div>시스템 항목이 없습니다</div>
+      </div>
+    </div>
+    <div class="col-foot">
+      <button class="btn bp" onclick="openAdd('sys')">+ 추가</button>
+      <button class="btn bg" onclick="clearType('sys')">전체 삭제</button>
+    </div>
+  </div>
+
+  <!-- 사건 저장공간 -->
+  <div class="col">
+    <div class="col-head">
+      <div class="col-title">📁 사건 저장공간</div>
+      <div class="col-sub">사건별 완전 분리 보관<br>사용자 승인 후 저장</div>
+      <div class="col-rule">승인 후 저장</div>
+    </div>
+    <div class="col-body">
+      <div class="stats-grid">
+        <div class="stat-box"><div class="stat-num" id="case-cnt">0</div><div class="stat-lbl">사건 항목</div></div>
+        <div class="stat-box"><div class="stat-num" id="case-cnt2" style="color:var(--acc)">0</div><div class="stat-lbl">활성 사건</div></div>
+      </div>
+      <div class="rule-box">
+        <div class="rb-title">저장 가능 항목</div>
+        <ul class="rb-list">
+          <li>판결문 핵심 내용</li>
+          <li>제출 서면 요약</li>
+          <li>증거 목록·강도</li>
+          <li>타임라인</li>
+          <li>확정된 사실관계</li>
+        </ul>
+      </div>
+      <div id="list-case">
+        <div class="empty"><div class="empty-ico">📁</div>사건 항목이 없습니다</div>
+      </div>
+    </div>
+    <div class="col-foot">
+      <button class="btn bp" onclick="openAdd('case')">+ 추가</button>
+      <button class="btn bg" onclick="clearType('case')">전체 삭제</button>
+    </div>
+  </div>
+
+  <!-- 임시 저장공간 -->
+  <div class="col">
+    <div class="col-head">
+      <div class="col-title">⏳ 임시 저장공간</div>
+      <div class="col-sub">감정·추측·미확정 의견<br>자동 장기저장 절대 금지</div>
+      <div class="col-rule">장기저장 금지</div>
+    </div>
+    <div class="col-body">
+      <div class="stats-grid">
+        <div class="stat-box"><div class="stat-num" id="temp-cnt">0</div><div class="stat-lbl">임시 항목</div></div>
+        <div class="stat-box"><div class="stat-num" id="temp-old" style="color:var(--red)">0</div><div class="stat-lbl">3일 초과</div></div>
+      </div>
+      <div class="rule-box">
+        <div class="rb-title">저장 가능 항목</div>
+        <ul class="rb-list">
+          <li>아이디어·전략 추측</li>
+          <li>감정 기록 (참고용)</li>
+          <li>미확인 정보</li>
+          <li>대화 중 임시 메모</li>
+          <li>추후 확인 필요 항목</li>
+        </ul>
+      </div>
+      <div id="list-temp">
+        <div class="empty"><div class="empty-ico">⏳</div>임시 항목이 없습니다</div>
+      </div>
+    </div>
+    <div class="col-foot">
+      <button class="btn bp" onclick="openAdd('temp')">+ 추가</button>
+      <button class="btn br" onclick="clearOld()">3일 초과 정리</button>
+    </div>
+  </div>
+</div>
+
+<!-- 추가 모달 -->
+<div class="modal-bg" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <div class="mtit" id="modal-title">항목 추가</div>
+    <div class="f"><label>제목</label><input id="f-title" placeholder="항목 제목"></div>
+    <div class="f"><label>내용</label><textarea id="f-body" placeholder="내용을 입력하세요..."></textarea></div>
+    <div class="mbtns">
+      <button class="btn bg" onclick="closeModal()">취소</button>
+      <button class="btn bp" onclick="saveAdd()">저장</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let mem = JSON.parse(localStorage.getItem('memory_data')||'{"sys":[],"case":[],"temp":[]}');
+let addType = '';
+
+setInterval(()=>{ document.getElementById('clk').textContent = new Date().toLocaleTimeString('ko-KR',{hour12:false}); },1000);
+
+function save(){ localStorage.setItem('memory_data', JSON.stringify(mem)); }
+function ts(){ return new Date().toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}); }
+
+function renderAll(){
+  const types = {sys:{tag:'t-sys',label:'시스템'},case:{tag:'t-case',label:'사건'},temp:{tag:'t-temp',label:'임시'}};
+  ['sys','case','temp'].forEach(type=>{
+    const el = document.getElementById('list-'+type);
+    const items = mem[type]||[];
+    const now = Date.now();
+    document.getElementById(type+'-cnt').textContent = items.length;
+    if(!items.length){ el.innerHTML=`<div class="empty"><div class="empty-ico">${type==='sys'?'🏛️':type==='case'?'📁':'⏳'}</div>항목이 없습니다</div>`; return; }
+    el.innerHTML = items.map((it,i)=>{
+      const old = type==='temp' && (now - new Date(it.ts).getTime()) > 3*24*60*60*1000;
+      return `<div class="mem-item" style="${old?'border-color:#ff3a3a28':''}">
+        <div class="mi-top"><span class="mi-tag ${types[type].tag}">${types[type].label}</span>${old?'<span style="font-size:10px;color:var(--red);font-weight:800">3일 초과</span>':''}<span class="mi-time">${it.time}</span></div>
+        <div class="mi-title">${it.title}</div>
+        <div class="mi-body">${it.body}</div>
+        <div class="mi-actions">
+          ${type==='temp'?`<button class="btn bg" onclick="moveItem('temp','case',${i})" style="font-size:10px;padding:4px 8px">→ 사건 이동</button>`:''}
+          <button class="btn br" onclick="delItem('${type}',${i})" style="font-size:10px;padding:4px 8px">삭제</button>
+        </div>
+      </div>`;
+    }).join('');
+  });
+  // 통계
+  const tempOld = (mem.temp||[]).filter(it=>(Date.now()-new Date(it.ts).getTime())>3*24*60*60*1000).length;
+  if(document.getElementById('temp-old')) document.getElementById('temp-old').textContent = tempOld;
+  const caseActive = (mem.case||[]).length;
+  if(document.getElementById('case-cnt2')) document.getElementById('case-cnt2').textContent = caseActive;
+}
+
+function openAdd(type){
+  addType = type;
+  const labels = {sys:'시스템 저장공간',case:'사건 저장공간',temp:'임시 저장공간'};
+  document.getElementById('modal-title').textContent = labels[type]+' 항목 추가';
+  document.getElementById('f-title').value='';
+  document.getElementById('f-body').value='';
+  document.getElementById('modal').classList.add('open');
+  setTimeout(()=>document.getElementById('f-title').focus(),80);
+}
+
+function closeModal(){ document.getElementById('modal').classList.remove('open'); }
+
+function saveAdd(){
+  const title = document.getElementById('f-title').value.trim();
+  const body = document.getElementById('f-body').value.trim();
+  if(!title) return;
+  if(!mem[addType]) mem[addType]=[];
+  mem[addType].unshift({id:'m'+Date.now(), title, body, time:ts(), ts:new Date().toISOString()});
+  save(); closeModal(); renderAll();
+}
+
+function delItem(type, i){ mem[type].splice(i,1); save(); renderAll(); }
+
+function moveItem(from, to, i){
+  const item = mem[from][i];
+  if(!mem[to]) mem[to]=[];
+  mem[to].unshift({...item, time:ts(), ts:new Date().toISOString()});
+  mem[from].splice(i,1);
+  save(); renderAll();
+}
+
+function clearType(type){ if(!confirm('전체 삭제하시겠습니까?')) return; mem[type]=[]; save(); renderAll(); }
+
+function clearOld(){
+  const now = Date.now();
+  const before = (mem.temp||[]).length;
+  mem.temp = (mem.temp||[]).filter(it=>(now-new Date(it.ts).getTime())<=3*24*60*60*1000);
+  const removed = before - mem.temp.length;
+  save(); renderAll();
+  alert(`${removed}개 항목이 정리됐습니다.`);
+}
+
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
+renderAll();
+</script>
+</body>
+</html>

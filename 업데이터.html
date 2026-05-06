@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>상황실 업데이터 — AI 작업공간</title>
+<style>
+:root{--bg:#050709;--sur:#0a0d12;--sur2:#0f1318;--sur3:#141920;--bdr:#1a2232;--bdr2:#111825;--acc:#4d7aff;--acc2:#7a4dff;--red:#ff3a3a;--org:#ff8822;--yel:#ffcc22;--grn:#22ffaa;--tel:#22ccff;--txt:#cdd5f0;--txt2:#6b7fa3;--txt3:#3a4560;--mono:'JetBrains Mono','Consolas',monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Malgun Gothic',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;font-size:13px}
+nav{display:flex;align-items:center;padding:0 24px;height:52px;background:var(--sur);border-bottom:1px solid var(--bdr);gap:4px;position:sticky;top:0;z-index:100}
+.nlogo{font-size:14px;font-weight:900;color:var(--txt);margin-right:16px;white-space:nowrap}.nlogo span{color:var(--acc)}
+a.nl{text-decoration:none;color:var(--txt3);font-size:12px;font-weight:700;padding:5px 11px;border-radius:7px;transition:all .15s;border:1px solid transparent;white-space:nowrap}
+a.nl:hover{color:var(--txt2);background:var(--sur2)}a.nl.on{color:var(--acc);background:#4d7aff12;border-color:#4d7aff28}
+.nr{margin-left:auto;display:flex;align-items:center;gap:12px}
+.sync{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--txt3);font-family:var(--mono)}
+.sdot{width:6px;height:6px;border-radius:50%;background:var(--grn);box-shadow:0 0 6px var(--grn);animation:blink 2s infinite}
+.sdot.err{background:var(--red);box-shadow:0 0 6px var(--red)}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.clk{font-size:12px;font-weight:700;color:var(--txt3);font-family:var(--mono)}
+
+.wrap{display:grid;grid-template-columns:220px 1fr 260px;gap:0;height:calc(100vh - 52px)}
+
+/* 왼쪽 사이드바 */
+.sidebar{background:var(--sur);border-right:1px solid var(--bdr);padding:16px 12px;overflow-y:auto}
+.sb-title{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--txt3);margin-bottom:10px;padding:0 4px}
+.cat-item{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-radius:8px;margin-bottom:3px;cursor:pointer;border:1px solid transparent;transition:all .15s}
+.cat-item:hover{background:var(--sur2);border-color:var(--bdr)}
+.cat-item.on{background:var(--sur2);border-color:var(--acc)28}
+.cat-left{display:flex;align-items:center;gap:7px}
+.cat-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.cat-name{font-size:12px;font-weight:700;color:var(--txt2)}
+.cat-cnt{font-size:11px;font-weight:800;padding:2px 7px;border-radius:10px;background:var(--sur3);color:var(--txt3)}
+.cat-cnt.has{background:#4d7aff18;color:var(--acc)}
+
+.div-line{height:1px;background:var(--bdr2);margin:12px 0}
+.sb-stat{padding:4px}
+.ss-row{display:flex;justify-content:space-between;margin-bottom:6px;font-size:11px}
+.ss-lbl{color:var(--txt3);font-weight:600}
+.ss-val{color:var(--txt2);font-weight:700;font-family:var(--mono)}
+
+/* 메인 영역 */
+.main{overflow-y:auto;display:flex;flex-direction:column}
+.mhead{padding:14px 20px 12px;border-bottom:1px solid var(--bdr2);display:flex;align-items:center;justify-content:space-between;background:var(--sur)}
+.mh-left{display:flex;align-items:center;gap:10px}
+.mh-title{font-size:15px;font-weight:900;color:var(--txt)}
+.mh-badge{font-size:10px;font-weight:800;padding:3px 9px;border-radius:10px;background:#4d7aff18;color:var(--acc);border:1px solid #4d7aff28}
+.mh-right{display:flex;gap:7px}
+.btn{padding:7px 14px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;border:none;transition:all .15s}
+.bg{background:var(--sur2);color:var(--txt2);border:1px solid var(--bdr)}.bg:hover{border-color:var(--acc);color:var(--acc)}
+.bp{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff}.bp:hover{opacity:.85}
+.br{background:#ff3a3a12;color:var(--red);border:1px solid #ff3a3a28}.br:hover{background:#ff3a3a20}
+.by{background:#ffcc2212;color:var(--yel);border:1px solid #ffcc2228}.by:hover{background:#ffcc2220}
+.sm{padding:5px 10px;font-size:11px}
+
+.plist{flex:1;padding:16px 20px}
+.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;height:300px;gap:10px;color:var(--txt3)}
+.empty-ico{font-size:32px;opacity:.3}
+.empty-txt{font-size:13px;font-weight:600}
+
+/* 펜딩 카드 */
+.pcard{background:var(--sur);border:1px solid var(--bdr);border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:border-color .15s}
+.pcard:hover{border-color:var(--bdr)}
+.pcard.selected{border-color:var(--acc)50;background:#4d7aff06}
+.pc-top{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.pc-cat{font-size:10px;font-weight:800;padding:3px 9px;border-radius:6px;letter-spacing:.5px}
+.pc-time{font-size:10px;color:var(--txt3);font-family:var(--mono);margin-left:auto}
+.pc-title{font-size:14px;font-weight:800;color:var(--txt);margin-bottom:5px;line-height:1.4}
+.pc-detail{font-size:12px;color:var(--txt2);line-height:1.6;margin-bottom:8px;background:var(--sur2);border-radius:7px;padding:8px 10px;border:1px solid var(--bdr2);font-family:var(--mono)}
+.pc-source{font-size:10px;color:var(--txt3);margin-bottom:12px;display:flex;align-items:center;gap:4px}
+.pc-source span{color:var(--txt2);font-weight:600}
+.pc-actions{display:flex;gap:7px}
+.pa-approve{padding:7px 18px;border-radius:8px;font-size:12px;font-weight:800;cursor:pointer;border:none;background:linear-gradient(135deg,#22ffaa,#22ccff);color:#050709;transition:all .15s}
+.pa-approve:hover{opacity:.85;transform:translateY(-1px)}
+.pa-hold{padding:7px 14px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;background:#ffcc2212;color:var(--yel);border:1px solid #ffcc2228;transition:all .15s}
+.pa-hold:hover{background:#ffcc2220}
+.pa-del{padding:7px 14px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;background:#ff3a3a12;color:var(--red);border:1px solid #ff3a3a28;transition:all .15s}
+.pa-del:hover{background:#ff3a3a20}
+.hold-badge{font-size:10px;font-weight:800;padding:2px 7px;border-radius:5px;background:#ffcc2218;color:var(--yel);border:1px solid #ffcc2228;margin-left:6px}
+
+/* 카테고리별 색상 */
+.cat-case{background:#4d7aff18;color:#7a9fff;border:1px solid #4d7aff28}
+.cat-todo{background:#ffcc2218;color:#ffdd55;border:1px solid #ffcc2228}
+.cat-alert{background:#ff3a3a18;color:#ff6666;border:1px solid #ff3a3a28}
+.cat-analysis{background:#7a4dff18;color:#aa7fff;border:1px solid #7a4dff28}
+.cat-risk{background:#ff882218;color:#ffaa55;border:1px solid #ff882228}
+.cat-review{background:#22ccff18;color:#55ddff;border:1px solid #22ccff28}
+.cat-confirmed{background:#22ffaa18;color:#55ffbb;border:1px solid #22ffaa28}
+.cat-memo{background:#424f6818;color:#6b7fa3;border:1px solid #424f6828}
+
+.dot-case{background:#4d7aff}
+.dot-todo{background:#ffcc22}
+.dot-alert{background:#ff3a3a}
+.dot-analysis{background:#7a4dff}
+.dot-risk{background:#ff8822}
+.dot-review{background:#22ccff}
+.dot-confirmed{background:#22ffaa}
+.dot-memo{background:#424f68}
+
+/* 오른쪽 로그 */
+.logpanel{background:var(--sur);border-left:1px solid var(--bdr);display:flex;flex-direction:column}
+.lp-head{padding:12px 14px;border-bottom:1px solid var(--bdr2);font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--txt3)}
+.lp-body{flex:1;overflow-y:auto;padding:10px 12px}
+.log-item{display:flex;gap:8px;padding:8px 0;border-bottom:1px solid var(--bdr2)}
+.log-item:last-child{border-bottom:none}
+.li-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.li-approved{background:var(--grn)}
+.li-held{background:var(--yel)}
+.li-deleted{background:var(--red)}
+.li-body{flex:1}
+.li-action{font-size:10px;font-weight:800;margin-bottom:2px}
+.li-act-a{color:var(--grn)}.li-act-h{color:var(--yel)}.li-act-d{color:var(--red)}
+.li-title{font-size:11px;color:var(--txt2);font-weight:600;line-height:1.4}
+.li-time{font-size:10px;color:var(--txt3);font-family:var(--mono);margin-top:2px}
+
+/* 위험도 리스크 카드 */
+.risk-card{background:var(--sur2);border:1px solid var(--bdr2);border-radius:9px;padding:10px 12px;margin-top:8px}
+.risk-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.risk-lbl{font-size:10px;font-weight:700;color:var(--txt3)}
+.risk-val{font-size:12px;font-weight:800}
+.rv-low{color:var(--grn)}.rv-mid{color:var(--yel)}.rv-high{color:var(--org)}.rv-danger{color:var(--red)}
+.risk-reason{font-size:11px;color:var(--txt2);line-height:1.5;margin-top:6px;padding-top:6px;border-top:1px solid var(--bdr2)}
+
+/* 모달 */
+.mbg{display:none;position:fixed;inset:0;background:#00000088;z-index:200;align-items:center;justify-content:center}
+.mbg.open{display:flex}
+.modal{background:var(--sur);border:1px solid var(--bdr);border-radius:14px;padding:22px;width:500px;max-width:92vw}
+.mtit{font-size:15px;font-weight:900;margin-bottom:14px}
+.f{margin-bottom:11px}
+.f label{display:block;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--txt3);margin-bottom:5px}
+.f input,.f select,.f textarea{width:100%;background:var(--sur2);border:1px solid var(--bdr);border-radius:8px;padding:8px 11px;color:var(--txt);font-size:12px;font-weight:600;outline:none;transition:border-color .15s;font-family:inherit}
+.f input:focus,.f select:focus,.f textarea:focus{border-color:var(--acc)}
+.f select option{background:var(--sur2)}.f textarea{resize:vertical;min-height:70px;font-family:var(--mono);font-size:11px}
+.mbtns{display:flex;gap:7px;margin-top:16px;justify-content:flex-end}
+
+.toast{position:fixed;bottom:24px;right:24px;background:var(--sur);border:1px solid var(--bdr);border-radius:10px;padding:11px 16px;font-size:12px;font-weight:700;color:var(--txt);z-index:300;display:none;align-items:center;gap:8px;box-shadow:0 8px 32px #000a}
+.toast.show{display:flex}
+
+/* 우선순위 뱃지 */
+.pri{font-size:10px;font-weight:800;padding:3px 8px;border-radius:5px;letter-spacing:.3px}
+.pri-urgent{background:#ff3a3a20;color:#ff5555;border:1px solid #ff3a3a35}
+.pri-high{background:#ff882220;color:#ffaa44;border:1px solid #ff882235}
+.pri-mid{background:#ffcc2220;color:#ffdd44;border:1px solid #ffcc2235}
+.pri-low{background:#22ffaa20;color:#33ffaa;border:1px solid #22ffaa35}
+.pri-watch{background:#22ccff20;color:#33ccff;border:1px solid #22ccff35}
+
+/* 상태 뱃지 */
+.st{font-size:10px;font-weight:800;padding:3px 8px;border-radius:5px}
+.st-pending{background:#4d7aff18;color:#7a9fff;border:1px solid #4d7aff28}
+.st-approved{background:#22ffaa18;color:#33ffaa;border:1px solid #22ffaa28}
+.st-hold{background:#ffcc2218;color:#ffdd44;border:1px solid #ffcc2228}
+.st-rejected{background:#ff3a3a18;color:#ff5555;border:1px solid #ff3a3a28}
+
+/* AI 신뢰도 */
+.conf-wrap{margin-bottom:10px;background:var(--sur2);border-radius:7px;padding:8px 10px;border:1px solid var(--bdr2)}
+.conf-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px}
+.conf-lbl{font-size:10px;font-weight:700;color:var(--txt3)}
+.conf-pct{font-size:12px;font-weight:900}
+.conf-high{color:var(--grn)}.conf-mid{color:var(--yel)}.conf-low{color:var(--red)}
+.conf-bar{height:4px;background:var(--sur3);border-radius:2px;overflow:hidden;margin-bottom:5px}
+.conf-fill{height:100%;border-radius:2px;transition:width .4s}
+.conf-reasons{display:flex;flex-wrap:wrap;gap:4px}
+.conf-reason{font-size:10px;color:var(--txt3);background:var(--sur3);padding:2px 6px;border-radius:4px}
+
+/* 출처 태그 */
+.src-wrap{margin-bottom:10px}
+.src-lbl{font-size:10px;font-weight:700;color:var(--txt3);margin-bottom:4px}
+.src-tags{display:flex;flex-wrap:wrap;gap:4px}
+.src-tag{font-size:10px;font-weight:700;padding:2px 7px;border-radius:5px;background:var(--sur2);color:var(--txt2);border:1px solid var(--bdr2)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nlogo">보배 <span>법률전략실</span></div>
+  <a href="상황실.html" class="nl">🔴 메인 상황실</a>
+  <a href="업데이터.html" class="nl on">🤖 상황실 업데이터</a>
+  <a href="사건.html" class="nl">📁 사건 관리실</a>
+  <a href="검수실.html" class="nl">🛡️ 콘텐츠 검수실</a>
+  <a href="리서치.html" class="nl">🔍 리서치 센터</a>
+  <a href="메모리.html" class="nl">🧠 메모리 관리실</a>
+  <a href="대시보드.html" class="nl">📊 시스템구조</a>
+  <div class="nr">
+    <div class="sync"><div class="sdot" id="sdot"></div><span id="sync-txt">서버 연결 중...</span></div>
+    <div class="clk" id="clk">--:--:--</div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- 왼쪽 사이드바 -->
+  <div class="sidebar">
+    <div class="sb-title">분류 카테고리</div>
+    <div class="cat-item on" onclick="filterCat('all')" id="cat-all">
+      <div class="cat-left"><div class="cat-dot" style="background:var(--acc)"></div><div class="cat-name">전체</div></div>
+      <div class="cat-cnt has" id="cnt-all">0</div>
+    </div>
+    <div class="cat-item" onclick="filterCat('case')" id="cat-case">
+      <div class="cat-left"><div class="cat-dot dot-case"></div><div class="cat-name">활성 사건</div></div>
+      <div class="cat-cnt" id="cnt-case">0</div>
+    </div>
+    <div class="cat-item" onclick="filterCat('todo')" id="cat-todo">
+      <div class="cat-left"><div class="cat-dot dot-todo"></div><div class="cat-name">오늘 추천 행동</div></div>
+      <div class="cat-cnt" id="cnt-todo">0</div>
+    </div>
+    <div class="cat-item" onclick="filterCat('alert')" id="cat-alert">
+      <div class="cat-left"><div class="cat-dot dot-alert"></div><div class="cat-name">긴급 알림</div></div>
+      <div class="cat-cnt" id="cnt-alert">0</div>
+    </div>
+    <div class="cat-item" onclick="filterCat('analysis')" id="cat-analysis">
+      <div class="cat-left"><div class="cat-dot dot-analysis"></div><div class="cat-name">분석 결과</div></div>
+      <div class="cat-cnt" id="cnt-analysis">0</div>
+    </div>
+    <div class="cat-item" onclick="filterCat('risk')" id="cat-risk">
+      <div class="cat-left"><div class="cat-dot dot-risk"></div><div class="cat-name">위험도 변화</div></div>
+      <div class="cat-cnt" id="cnt-risk">0</div>
+    </div>
+    <div class="cat-item" onclick="filterCat('review')" id="cat-review">
+      <div class="cat-left"><div class="cat-dot dot-review"></div><div class="cat-name">검토 대기</div></div>
+      <div class="cat-cnt" id="cnt-review">0</div>
+    </div>
+    <div class="cat-item" onclick="filterCat('confirmed')" id="cat-confirmed">
+      <div class="cat-left"><div class="cat-dot dot-confirmed"></div><div class="cat-name">확정 사실</div></div>
+      <div class="cat-cnt" id="cnt-confirmed">0</div>
+    </div>
+    <div class="cat-item" onclick="filterCat('memo')" id="cat-memo">
+      <div class="cat-left"><div class="cat-dot dot-memo"></div><div class="cat-name">임시 메모</div></div>
+      <div class="cat-cnt" id="cnt-memo">0</div>
+    </div>
+
+    <div class="div-line"></div>
+    <div class="sb-title">현황</div>
+    <div class="sb-stat">
+      <div class="ss-row"><span class="ss-lbl">대기 중</span><span class="ss-val" id="stat-pending">0</span></div>
+      <div class="ss-row"><span class="ss-lbl">보류 중</span><span class="ss-val" id="stat-hold">0</span></div>
+      <div class="ss-row"><span class="ss-lbl">오늘 승인</span><span class="ss-val" id="stat-approved">0</span></div>
+      <div class="ss-row"><span class="ss-lbl">오늘 삭제</span><span class="ss-val" id="stat-deleted">0</span></div>
+    </div>
+
+    <div class="div-line"></div>
+    <button class="btn bg" style="width:100%;font-size:11px" onclick="openAddModal()">+ 수동 항목 추가</button>
+  </div>
+
+  <!-- 메인 영역 -->
+  <div class="main">
+    <div class="mhead">
+      <div class="mh-left">
+        <div class="mh-title">검토 대기 항목</div>
+        <div class="mh-badge" id="pending-badge">0개 대기 중</div>
+      </div>
+      <div class="mh-right">
+        <button class="btn by sm" onclick="approveAll()">전체 승인</button>
+        <button class="btn bg sm" onclick="loadData()">새로고침</button>
+      </div>
+    </div>
+    <div class="plist" id="plist">
+      <div class="empty-state"><div class="empty-ico">🤖</div><div class="empty-txt">AI가 분류한 항목이 없습니다</div><div style="font-size:11px;color:var(--txt3);margin-top:4px">Claude와 대화하면 자동으로 여기에 표시됩니다</div></div>
+    </div>
+  </div>
+
+  <!-- 오른쪽 로그 -->
+  <div class="logpanel">
+    <div class="lp-head">변경 기록</div>
+    <div class="lp-body" id="logbody">
+      <div style="text-align:center;padding:20px;color:var(--txt3);font-size:11px">기록 없음</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- 수동 추가 모달 -->
+<div class="mbg" id="m-add" onclick="if(event.target===this)closeModal()">
+  <div class="modal" style="max-height:88vh;overflow-y:auto">
+    <div class="mtit">🤖 항목 수동 추가</div>
+    <div class="f">
+      <label>카테고리</label>
+      <select id="add-cat">
+        <option value="case">📁 활성 사건</option>
+        <option value="todo" selected>📌 오늘 추천 행동</option>
+        <option value="alert">🚨 긴급 알림</option>
+        <option value="analysis">🔍 분석 결과</option>
+        <option value="risk">⚠️ 위험도 변화</option>
+        <option value="review">🔄 검토 대기</option>
+        <option value="confirmed">✅ 확정 사실</option>
+        <option value="memo">📝 임시 메모</option>
+      </select>
+    </div>
+    <div class="f">
+      <label>우선순위</label>
+      <select id="add-pri">
+        <option value="urgent">🔴 긴급</option>
+        <option value="high">🟠 높음</option>
+        <option value="mid" selected>🟡 보통</option>
+        <option value="low">🟢 낮음</option>
+        <option value="watch">🔵 관찰중</option>
+      </select>
+    </div>
+    <div class="f"><label>제목</label><input id="add-title" placeholder="항목 제목"></div>
+    <div class="f"><label>내용</label><textarea id="add-detail" placeholder="상세 내용..."></textarea></div>
+    <div class="f"><label>출처 (쉼표로 구분)</label><input id="add-source" placeholder="예: 판결문, 답변서 분석, 사용자 대화"></div>
+    <div class="f"><label>AI 신뢰도 (0~100, 선택)</label><input id="add-conf" type="number" min="0" max="100" placeholder="예: 85"></div>
+    <div class="f"><label>신뢰도 근거 (쉼표로 구분, 선택)</label><input id="add-conf-reasons" placeholder="예: 공식 문서 기반, 반복 확인됨"></div>
+    <div class="mbtns">
+      <button class="btn bg" onclick="closeModal()">취소</button>
+      <button class="btn bp" onclick="addManual()">검토 대기에 추가</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const API = 'http://localhost:8080/api';
+let pending = [];
+let logData = [];
+let mainData = {};
+let currentFilter = 'all';
+let connected = false;
+
+const CAT_LABEL = {case:'활성 사건',todo:'오늘 추천 행동',alert:'긴급 알림',analysis:'분석 결과',risk:'위험도 변화',review:'검토 대기',confirmed:'확정 사실',memo:'임시 메모'};
+const CAT_CSS = {case:'cat-case',todo:'cat-todo',alert:'cat-alert',analysis:'cat-analysis',risk:'cat-risk',review:'cat-review',confirmed:'cat-confirmed',memo:'cat-memo'};
+const DOT_CSS = {case:'dot-case',todo:'dot-todo',alert:'dot-alert',analysis:'dot-analysis',risk:'dot-risk',review:'dot-review',confirmed:'dot-confirmed',memo:'dot-memo'};
+
+function tick(){
+  const n = new Date();
+  document.getElementById('clk').textContent = n.toLocaleTimeString('ko-KR',{hour12:false});
+}
+setInterval(tick,1000); tick();
+
+async function api(path, method='GET', body=null){
+  try {
+    const opt = {method, headers:{'Content-Type':'application/json'}};
+    if(body) opt.body = JSON.stringify(body);
+    const r = await fetch(API+path, opt);
+    return await r.json();
+  } catch(e) { return null; }
+}
+
+async function loadData(){
+  const [p, l, d] = await Promise.all([api('/pending'), api('/log'), api('/data')]);
+  if(!p){ setConnected(false); return; }
+  setConnected(true);
+  pending = p.pending || [];
+  logData = l.log || [];
+  mainData = d || {};
+  renderAll();
+}
+
+function setConnected(v){
+  connected = v;
+  const dot = document.getElementById('sdot');
+  const txt = document.getElementById('sync-txt');
+  if(v){ dot.className='sdot'; txt.textContent='서버 연결됨'; }
+  else { dot.className='sdot err'; txt.textContent='서버 미연결 (server.py 실행 필요)'; }
+}
+
+function renderAll(){
+  renderPending();
+  renderLog();
+  renderSidebar();
+}
+
+function renderSidebar(){
+  const cats = ['case','todo','alert','analysis','risk','review','confirmed','memo'];
+  const counts = {};
+  cats.forEach(c => counts[c] = 0);
+  pending.forEach(p => { if(p.status !== 'deleted' && p.status !== 'approved' && p.status !== 'del_pending') counts[p.category] = (counts[p.category]||0)+1; });
+  const total = Object.values(counts).reduce((a,b)=>a+b,0);
+
+  document.getElementById('cnt-all').textContent = total;
+  document.getElementById('cnt-all').className = 'cat-cnt' + (total>0?' has':'');
+  cats.forEach(c => {
+    const el = document.getElementById('cnt-'+c);
+    if(el){ el.textContent = counts[c]; el.className = 'cat-cnt'+(counts[c]>0?' has':''); }
+  });
+
+  const active = pending.filter(p=>p.status==='pending').length;
+  const hold = pending.filter(p=>p.status==='hold').length;
+  const today = new Date().toDateString();
+  const approved = logData.filter(l=>l.action==='approved'&&new Date(l.timestamp).toDateString()===today).length;
+  const deleted = logData.filter(l=>l.action==='deleted'&&new Date(l.timestamp).toDateString()===today).length;
+
+  document.getElementById('stat-pending').textContent = active;
+  document.getElementById('stat-hold').textContent = hold;
+  document.getElementById('stat-approved').textContent = approved;
+  document.getElementById('stat-deleted').textContent = deleted;
+
+  const pendingCount = pending.filter(p=>p.status!=='deleted'&&p.status!=='approved'&&p.status!=='del_pending').length;
+  document.getElementById('pending-badge').textContent = pendingCount+'개 대기 중';
+}
+
+const PRI_LABEL = {urgent:'긴급',high:'높음',mid:'보통',low:'낮음',watch:'관찰중'};
+const PRI_CSS   = {urgent:'pri-urgent',high:'pri-high',mid:'pri-mid',low:'pri-low',watch:'pri-watch'};
+const ST_LABEL  = {pending:'검토 대기',approved:'승인 완료',hold:'보류',rejected:'삭제됨'};
+const ST_CSS    = {pending:'st-pending',approved:'st-approved',hold:'st-hold',rejected:'st-rejected'};
+
+function confClass(n){ return n>=70?'conf-high':n>=50?'conf-mid':'conf-low'; }
+function confColor(n){ return n>=70?'#22ffaa':n>=50?'#ffcc22':'#ff3a3a'; }
+
+function renderPending(){
+  const el = document.getElementById('plist');
+  let items = pending.filter(p => p.status !== 'deleted' && p.status !== 'approved' && p.status !== 'del_pending');
+  if(currentFilter !== 'all') items = items.filter(p=>p.category===currentFilter);
+
+  if(!items.length){
+    el.innerHTML = '<div class="empty-state"><div class="empty-ico">🤖</div><div class="empty-txt">AI가 분류한 항목이 없습니다</div><div style="font-size:11px;color:var(--txt3);margin-top:4px">Claude와 대화하면 자동으로 여기에 표시됩니다</div></div>';
+    return;
+  }
+
+  el.innerHTML = items.map(item => {
+    const isHold = item.status === 'hold';
+    const pri = item.priority || 'mid';
+    const conf = item.confidence != null ? item.confidence : null;
+    const sources = Array.isArray(item.sources) ? item.sources : (item.source ? [item.source] : ['AI 분류']);
+
+    // 출처 태그
+    const srcHtml = `<div class="src-wrap"><div class="src-lbl">출처</div><div class="src-tags">${sources.map(s=>`<span class="src-tag">${s}</span>`).join('')}</div></div>`;
+
+    // AI 신뢰도
+    let confHtml = '';
+    if(conf !== null){
+      const reasons = item.confidence_reasons || [];
+      confHtml = `<div class="conf-wrap">
+        <div class="conf-top"><span class="conf-lbl">AI 신뢰도</span><span class="conf-pct ${confClass(conf)}">${conf}%</span></div>
+        <div class="conf-bar"><div class="conf-fill" style="width:${conf}%;background:${confColor(conf)}"></div></div>
+        ${reasons.length?`<div class="conf-reasons">${reasons.map(r=>`<span class="conf-reason">${r}</span>`).join('')}</div>`:''}
+      </div>`;
+    }
+
+    // 위험도 변화 카드
+    let extra = '';
+    if(item.category === 'risk'){
+      extra = `<div class="risk-card"><div class="risk-row"><span class="risk-lbl">현재</span><span class="risk-val rv-${item.current||'mid'}">${riskLabel(item.current)}</span></div><div class="risk-row"><span class="risk-lbl">제안</span><span class="risk-val rv-${item.proposed||'mid'}">${riskLabel(item.proposed)}</span></div><div class="risk-reason">${item.reason||''}</div></div>`;
+    }
+
+    return `<div class="pcard${isHold?' hold':''}">
+      <div class="pc-top">
+        <span class="pri ${PRI_CSS[pri]}">${PRI_LABEL[pri]}</span>
+        <span class="pc-cat ${CAT_CSS[item.category]||''}">${CAT_LABEL[item.category]||item.category}</span>
+        <span class="st ${ST_CSS[item.status]||'st-pending'}">${ST_LABEL[item.status]||'검토 대기'}</span>
+        <span class="pc-time">${item.time||''}</span>
+      </div>
+      <div class="pc-title">${item.title}</div>
+      <div class="pc-detail">${item.detail||'—'}</div>
+      ${extra}
+      ${srcHtml}
+      ${confHtml}
+      <div class="pc-actions">
+        <button class="pa-approve" onclick="approve('${item.id}')">✓ 대표 승인</button>
+        <button class="pa-hold" onclick="hold('${item.id}')">${isHold?'대기 복원':'보류'}</button>
+        <button class="pa-del" onclick="del('${item.id}')">삭제</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderLog(){
+  const el = document.getElementById('logbody');
+  const delPending = pending.filter(p=>p.status==='del_pending');
+  const recent = [...logData].reverse().slice(0,30);
+
+  let html = '';
+
+  // 삭제 대기 항목 (상단 고정)
+  if(delPending.length){
+    html += `<div style="font-size:10px;font-weight:800;letter-spacing:1px;color:var(--red);padding:4px 2px 6px">🗑 삭제 대기 — 확정 전</div>`;
+    html += delPending.map(p=>`
+      <div class="log-item" style="border-left:2px solid #ff3a3a50;background:#ff3a3a06;border-radius:6px;padding:8px 10px;margin-bottom:6px">
+        <div class="li-dot" style="background:var(--red);box-shadow:0 0 5px var(--red);animation:blink 1.5s infinite"></div>
+        <div class="li-body">
+          <div class="li-action li-act-d">삭제 대기 · ${CAT_LABEL[p.category]||p.category}</div>
+          <div class="li-title">${p.title}</div>
+          <div style="display:flex;gap:5px;margin-top:6px">
+            <button onclick="confirmDel('${p.id}')" style="padding:4px 10px;border-radius:6px;font-size:10px;font-weight:800;cursor:pointer;background:#ff3a3a22;color:#ff5555;border:1px solid #ff3a3a40">🗑 삭제 확정</button>
+            <button onclick="restoreDel('${p.id}')" style="padding:4px 10px;border-radius:6px;font-size:10px;font-weight:700;cursor:pointer;background:var(--sur2);color:var(--txt3);border:1px solid var(--bdr)">↩ 복원</button>
+          </div>
+        </div>
+      </div>`).join('');
+    html += `<div style="height:1px;background:var(--bdr2);margin:8px 0"></div>`;
+  }
+
+  if(!recent.length && !delPending.length){
+    el.innerHTML='<div style="text-align:center;padding:20px;color:var(--txt3);font-size:11px">기록 없음</div>';
+    return;
+  }
+
+  const ACT = {approved:'승인',restored:'복원',held:'보류',deleted:'삭제'};
+  const DOT = {approved:'li-approved',restored:'li-approved',held:'li-held',deleted:'li-deleted'};
+  const CLS = {approved:'li-act-a',restored:'li-act-a',held:'li-act-h',deleted:'li-act-d'};
+
+  html += recent.map(l=>`
+    <div class="log-item">
+      <div class="li-dot ${DOT[l.action]||'li-deleted'}"></div>
+      <div class="li-body">
+        <div class="li-action ${CLS[l.action]||'li-act-d'}">${ACT[l.action]||l.action} · ${CAT_LABEL[l.category]||l.category}</div>
+        <div class="li-title">${l.title}</div>
+        <div class="li-time">${l.timestamp||''}</div>
+      </div>
+    </div>`).join('');
+
+  el.innerHTML = html;
+}
+
+function riskLabel(v){ return {low:'낮음',mid:'중간',high:'높음',danger:'매우 높음'}[v]||v; }
+
+function ts(){ return new Date().toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}); }
+
+async function approve(id){
+  const item = pending.find(p=>p.id===id);
+  if(!item) return;
+
+  // 메인 데이터에 반영
+  if(item.category === 'case') { if(!mainData.cases) mainData.cases=[]; mainData.cases.unshift({id:item.id, name:item.title, status:'진행 중', update:item.detail, risk:'mid', time:ts()}); }
+  else if(item.category === 'todo') { if(!mainData.todos) mainData.todos=[]; mainData.todos.unshift({id:item.id, title:item.title, lvl:'mid', time:ts()}); }
+  else if(item.category === 'alert') { if(!mainData.alerts) mainData.alerts=[]; mainData.alerts.unshift({id:item.id, title:item.title, lvl:'high', time:ts()}); }
+  else if(item.category === 'analysis') { if(!mainData.analysis) mainData.analysis=[]; mainData.analysis.unshift({id:item.id, title:item.title, team:'AI 분류', detail:item.detail, time:ts()}); }
+  else if(item.category === 'confirmed') { if(!mainData.confirmed_facts) mainData.confirmed_facts=[]; mainData.confirmed_facts.unshift({id:item.id, content:item.title+': '+item.detail, source:item.source, time:ts()}); }
+  else if(item.category === 'risk') { mainData.risk = item.proposed||'mid'; }
+
+  item.status = 'approved';
+  logData.push({id:'l'+Date.now(), action:'approved', category:item.category, title:item.title, timestamp:ts()});
+  mainData.last_updated = new Date().toISOString();
+
+  await Promise.all([api('/pending','POST',{pending}), api('/data','POST',mainData), api('/log','POST',{log:logData})]);
+  renderAll();
+  showToast('✅ 승인되어 메인 상황실에 반영됐습니다');
+}
+
+async function hold(id){
+  const item = pending.find(p=>p.id===id);
+  if(!item) return;
+  const wasHold = item.status === 'hold';        // 상태 변경 전에 체크
+  item.status = wasHold ? 'pending' : 'hold';
+  const action = wasHold ? 'restored' : 'held';
+  logData.push({id:'l'+Date.now(), action, category:item.category, title:item.title, timestamp:ts()});
+  await Promise.all([api('/pending','POST',{pending}), api('/log','POST',{log:logData})]);
+  renderAll();
+  showToast(wasHold ? '▶ 대기로 복원됐습니다' : '⏸ 보류 처리됐습니다');
+}
+
+// 1단계: 삭제 대기 (변경기록으로 이동)
+async function del(id){
+  const item = pending.find(p=>p.id===id);
+  if(!item) return;
+  item.status = 'del_pending';
+  await api('/pending','POST',{pending});
+  renderAll();
+  showToast('🗑 변경기록에서 [삭제 확정]을 눌러주세요');
+}
+
+// 2단계: 삭제 확정 (영구 삭제)
+async function confirmDel(id){
+  const item = pending.find(p=>p.id===id);
+  if(!item) return;
+  item.status = 'deleted';
+  logData.push({id:'l'+Date.now(), action:'deleted', category:item.category, title:item.title, timestamp:ts()});
+  await Promise.all([api('/pending','POST',{pending}), api('/log','POST',{log:logData})]);
+  renderAll();
+  showToast('🗑 삭제됐습니다');
+}
+
+// 삭제 대기에서 복원
+async function restoreDel(id){
+  const item = pending.find(p=>p.id===id);
+  if(!item) return;
+  item.status = 'pending';
+  logData.push({id:'l'+Date.now(), action:'restored', category:item.category, title:item.title, timestamp:ts()});
+  await Promise.all([api('/pending','POST',{pending}), api('/log','POST',{log:logData})]);
+  renderAll();
+  showToast('↩ 대기 목록으로 복원됐습니다');
+}
+
+async function approveAll(){
+  const items = pending.filter(p=>p.status==='pending');
+  if(!items.length){ showToast('승인할 항목이 없습니다'); return; }
+  for(const item of items) await approve(item.id);
+  showToast(`✅ ${items.length}개 전체 승인됐습니다`);
+}
+
+function filterCat(cat){
+  currentFilter = cat;
+  document.querySelectorAll('.cat-item').forEach(el=>el.classList.remove('on'));
+  document.getElementById('cat-'+cat)?.classList.add('on');
+  renderPending();
+}
+
+function openAddModal(){ document.getElementById('m-add').classList.add('open'); setTimeout(()=>document.getElementById('add-title').focus(),80); }
+function closeModal(){ document.getElementById('m-add').classList.remove('open'); }
+
+async function addManual(){
+  const title = document.getElementById('add-title').value.trim();
+  if(!title){ showToast('제목을 입력하세요'); return; }
+  const srcRaw = document.getElementById('add-source').value;
+  const sources = srcRaw ? srcRaw.split(',').map(s=>s.trim()).filter(Boolean) : ['수동 입력'];
+  const confRaw = document.getElementById('add-conf').value;
+  const confReasons = document.getElementById('add-conf-reasons').value;
+  const item = {
+    id: 'p'+Date.now(),
+    category: document.getElementById('add-cat').value,
+    priority: document.getElementById('add-pri').value,
+    title,
+    detail: document.getElementById('add-detail').value,
+    sources,
+    confidence: confRaw ? parseInt(confRaw) : null,
+    confidence_reasons: confReasons ? confReasons.split(',').map(s=>s.trim()).filter(Boolean) : [],
+    time: ts(),
+    status: 'pending'
+  };
+  pending.unshift(item);
+  await api('/pending','POST',{pending});
+  closeModal();
+  document.getElementById('add-title').value='';
+  document.getElementById('add-detail').value='';
+  document.getElementById('add-source').value='';
+  renderAll();
+  showToast('➕ 검토 대기에 추가됐습니다');
+}
+
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
+
+// 자동 새로고침 (30초)
+loadData();
+setInterval(loadData, 30000);
+</script>
+</body>
+</html>

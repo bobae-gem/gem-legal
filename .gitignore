@@ -1,0 +1,16 @@
+# 서버 런타임
+__pycache__/
+*.pyc
+
+# 로컬 임시 파일
+*.tmp
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 보안: 실제 사건 민감 정보는 별도 관리
+# 필요시 아래 주석 해제
+# 저장공간/사건/

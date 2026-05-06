@@ -1,0 +1,74 @@
+{
+  "log": [
+    {
+      "id": "l1778048622304",
+      "action": "approved",
+      "category": "todo",
+      "title": "전자소송 수시 확인 — 상대방 새 서면 모니터링",
+      "timestamp": "5. 6. 오후 03:23"
+    },
+    {
+      "id": "l1778048661921",
+      "action": "approved",
+      "category": "alert",
+      "title": "상대방 새 변호사 — 준비서면 추가 가능성",
+      "timestamp": "5. 6. 오후 03:24"
+    },
+    {
+      "id": "l1778048857707",
+      "action": "approved",
+      "category": "alert",
+      "title": "준비서면 법리 미보강 — 대응 시급",
+      "timestamp": "5. 6. 오후 03:27"
+    },
+    {
+      "id": "l1778048859146",
+      "action": "approved",
+      "category": "analysis",
+      "title": "마항 CCTV 역설 — 항소심 핵심 논거",
+      "timestamp": "5. 6. 오후 03:27"
+    },
+    {
+      "id": "l1778048901046",
+      "action": "approved",
+      "category": "confirmed",
+      "title": "답변서 본인 직접 제출 (2026.02.26)",
+      "timestamp": "5. 6. 오후 03:28"
+    },
+    {
+      "id": "l1778049299917",
+      "action": "approved",
+      "category": "analysis",
+      "title": "상대방 항소이유 3가지 공격 포인트 분석",
+      "timestamp": "5. 6. 오후 03:34"
+    },
+    {
+      "id": "l1778049879892",
+      "action": "approved",
+      "category": "todo",
+      "title": "준비서면 작성 — 공탁금·탄원서·CCTV 법리 보강",
+      "timestamp": "5. 6. 오후 03:44"
+    },
+    {
+      "id": "l1778049881283",
+      "action": "approved",
+      "category": "todo",
+      "title": "공탁금 실제 수령 금액·경위 변호사에게 확인",
+      "timestamp": "5. 6. 오후 03:44"
+    },
+    {
+      "id": "l1778050116174",
+      "action": "approved",
+      "category": "confirmed",
+      "title": "피고 형사: 징역 9월 확정 (2024.11.13)",
+      "timestamp": "5. 6. 오후 03:48"
+    },
+    {
+      "id": "l1778050117406",
+      "action": "approved",
+      "category": "confirmed",
+      "title": "상대방 변호사 교체 확인 (2026.05.01)",
+      "timestamp": "5. 6. 오후 03:48"
+    }
+  ]
+}
