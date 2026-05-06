@@ -139,6 +139,11 @@ a.nl:hover{color:var(--txt2);background:var(--sur2)}a.nl.on{color:var(--acc);bac
 .mbtns{display:flex;gap:8px;margin-top:19px;justify-content:flex-end}
 .empty{text-align:center;padding:24px 14px;color:var(--txt3);font-size:13px;font-weight:600}
 .eico{font-size:22px;margin-bottom:6px;opacity:.4}
+
+.subnav{display:flex;align-items:center;gap:12px;padding:0 20px;height:36px;background:#0a0c12;border-bottom:1px solid #ff3a3a22;flex-shrink:0;position:sticky;top:52px;z-index:99}
+.snl{text-decoration:none;color:#ff6666;font-size:12px;font-weight:800;padding:4px 12px;border-radius:6px;border:1px solid #ff3a3a28;background:#ff3a3a12;white-space:nowrap;transition:all .15s}
+.snl:hover{background:#ff3a3a20}.snl.on{background:#ff3a3a22;border-color:#ff3a3a40}
+.sn-desc{font-size:11px;color:#424f68;font-weight:600}
 </style>
 </head>
 <body>
@@ -157,6 +162,10 @@ a.nl:hover{color:var(--txt2);background:var(--sur2)}a.nl.on{color:var(--acc);bac
     <div class="clk" id="clk">--:--:--</div>
   </div>
 </nav>
+<div class="subnav">
+  <a href="모니터링.html" class="snl ">👁️ 온라인 모니터링 센터</a>
+  <span class="sn-desc">공개 게시물 감지 · 키워드 모니터링 · 증거보존 · 법률전략실 연결</span>
+</div>
 
 <div class="tbar">
   <div>
@@ -285,6 +294,34 @@ a.nl:hover{color:var(--txt2);background:var(--sur2)}a.nl.on{color:var(--acc);bac
       <button class="cbtn" onclick="openCmd('wash')"><span class="cico">✍️</span>표현 안전화</button>
       <button class="cbtn" onclick="openCmd('evidence')"><span class="cico">📊</span>증거 강도 분석</button>
     </div>
+  </div>
+
+  <!-- 온라인 모니터링 센터 요약 -->
+  <div class="panel s3" style="--pc:#ff3a3a">
+    <div class="ph">
+      <div class="phl"><div class="pico">👁️</div><div class="ptit">온라인 모니터링 센터</div><span class="pbadge" id="mon-badge" style="background:#ff3a3a18;color:#ff6666;border:1px solid #ff3a3a28">0</span></div>
+      <a href="모니터링.html" class="btn bg sm" style="text-decoration:none">전체 보기 →</a>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;padding:12px 12px 8px">
+      <div style="background:var(--sur2);border-radius:9px;padding:10px 12px;border:1px solid var(--bdr2);text-align:center">
+        <div style="font-size:20px;font-weight:900;color:#ff5555" id="mon-urgent">0</div>
+        <div style="font-size:10px;color:var(--txt3);margin-top:2px">매우 높음</div>
+      </div>
+      <div style="background:var(--sur2);border-radius:9px;padding:10px 12px;border:1px solid var(--bdr2);text-align:center">
+        <div style="font-size:20px;font-weight:900;color:#ffaa44" id="mon-high">0</div>
+        <div style="font-size:10px;color:var(--txt3);margin-top:2px">높음</div>
+      </div>
+      <div style="background:var(--sur2);border-radius:9px;padding:10px 12px;border:1px solid var(--bdr2);text-align:center">
+        <div style="font-size:20px;font-weight:900;color:#ffdd44" id="mon-mid">0</div>
+        <div style="font-size:10px;color:var(--txt3);margin-top:2px">중간</div>
+      </div>
+      <div style="background:var(--sur2);border-radius:9px;padding:10px 12px;border:1px solid var(--bdr2);text-align:center">
+        <div style="font-size:20px;font-weight:900;color:var(--grn)" id="mon-low">0</div>
+        <div style="font-size:10px;color:var(--txt3);margin-top:2px">낮음</div>
+      </div>
+    </div>
+    <div style="padding:0 12px 8px;display:flex;gap:6px;flex-wrap:wrap" id="mon-keywords-preview"></div>
+    <div class="pb" style="max-height:160px" id="mon-recent"></div>
   </div>
 
 </div>
@@ -468,6 +505,30 @@ function resetAll(){if(!confirm('모든 데이터를 초기화합니까?'))retur
 // 서버에서 데이터 로드 + 30초 자동 갱신
 loadFromServer();
 setInterval(loadFromServer, 30000);
+
+// 모니터링 센터 요약 로드
+function loadMonitoring(){
+  const items = JSON.parse(localStorage.getItem('monitoring_v1')||'[]');
+  const keywords = JSON.parse(localStorage.getItem('mon_keywords')||'[]');
+  const cnt = {urgent:0,high:0,mid:0,low:0};
+  items.forEach(i=>{ if(cnt[i.risk]!=null) cnt[i.risk]++; });
+  document.getElementById('mon-urgent').textContent = cnt.urgent;
+  document.getElementById('mon-high').textContent   = cnt.high;
+  document.getElementById('mon-mid').textContent    = cnt.mid;
+  document.getElementById('mon-low').textContent    = cnt.low;
+  document.getElementById('mon-badge').textContent  = items.length;
+  const kp = document.getElementById('mon-keywords-preview');
+  if(kp) kp.innerHTML = keywords.slice(0,8).map(k=>`<span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;background:#ff3a3a12;color:#ff6666;border:1px solid #ff3a3a25">${k.word}</span>`).join('');
+  const RLC = {urgent:'#ff5555',high:'#ffaa44'};
+  const RLL = {urgent:'매우 높음',high:'높음'};
+  const recent = items.filter(i=>i.risk==='urgent'||i.risk==='high').slice(0,3);
+  const el = document.getElementById('mon-recent');
+  if(!el) return;
+  if(!recent.length){ el.innerHTML='<div style="text-align:center;padding:14px;color:var(--txt3);font-size:12px">위험 항목 없음</div>'; return; }
+  el.innerHTML = recent.map(i=>`<div style="display:flex;align-items:center;gap:8px;background:var(--sur2);border-radius:8px;padding:8px 10px;margin-bottom:6px;border:1px solid var(--bdr2)"><div style="width:6px;height:6px;border-radius:50%;background:${RLC[i.risk]};flex-shrink:0"></div><div style="flex:1"><div style="font-size:12px;font-weight:700;color:var(--txt)">${i.title}</div><div style="font-size:10px;color:var(--txt3);margin-top:1px">${i.platform} · ${i.date||''}</div></div><span style="font-size:10px;font-weight:800;padding:2px 7px;border-radius:4px;background:${RLC[i.risk]}18;color:${RLC[i.risk]};border:1px solid ${RLC[i.risk]}28">${RLL[i.risk]}</span></div>`).join('');
+}
+loadMonitoring();
+setInterval(loadMonitoring, 30000);
 document.addEventListener('keydown',e=>{if(e.key==='Escape')['case','alert','analysis','review','todo','cmd'].forEach(closeM);});
 ['case','alert','analysis','review','todo'].forEach(id=>{const m=document.getElementById('m-'+id);if(m)m.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.tagName!=='TEXTAREA'){if(id==='case')addCase();else if(id==='alert')addAlert();else if(id==='analysis')addAnalysis();else if(id==='review')addReview();else if(id==='todo')addTodo();}});});
 renderAll();

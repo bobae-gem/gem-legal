@@ -14,7 +14,7 @@ a.nl{text-decoration:none;color:var(--txt3);font-size:12px;font-weight:700;paddi
 a.nl:hover{color:var(--txt2);background:var(--sur2)}a.nl.on{color:var(--acc);background:#4d7aff14;border-color:#4d7aff30}
 .nr{margin-left:auto;white-space:nowrap;font-size:12px;color:var(--txt3);padding-left:10px}
 
-.layout{display:grid;grid-template-columns:260px 1fr;height:calc(100vh - 52px)}
+.layout{display:grid;grid-template-columns:260px 1fr;height:calc(100vh - 88px)}
 
 /* 사이드바 */
 .sidebar{background:var(--sur);border-right:1px solid var(--bdr);display:flex;flex-direction:column;overflow:hidden}
@@ -96,6 +96,11 @@ a.nl:hover{color:var(--txt2);background:var(--sur2)}a.nl.on{color:var(--acc);bac
 .f input:focus,.f select:focus,.f textarea:focus{border-color:var(--acc)}
 .f select option{background:var(--sur2)}.f textarea{resize:vertical;min-height:80px}
 .mbtns{display:flex;gap:7px;margin-top:16px;justify-content:flex-end}
+
+.subnav{display:flex;align-items:center;gap:12px;padding:0 20px;height:36px;background:#0a0c12;border-bottom:1px solid #ff3a3a22;flex-shrink:0;position:sticky;top:52px;z-index:99}
+.snl{text-decoration:none;color:#ff6666;font-size:12px;font-weight:800;padding:4px 12px;border-radius:6px;border:1px solid #ff3a3a28;background:#ff3a3a12;white-space:nowrap;transition:all .15s}
+.snl:hover{background:#ff3a3a20}.snl.on{background:#ff3a3a22;border-color:#ff3a3a40}
+.sn-desc{font-size:11px;color:#424f68;font-weight:600}
 </style>
 </head>
 <body>
@@ -110,6 +115,10 @@ a.nl:hover{color:var(--txt2);background:var(--sur2)}a.nl.on{color:var(--acc);bac
   <a href="대시보드.html" class="nl">📊 시스템구조</a>
   <div class="nr" id="clk">--:--:--</div>
 </nav>
+<div class="subnav">
+  <a href="모니터링.html" class="snl ">👁️ 온라인 모니터링 센터</a>
+  <span class="sn-desc">공개 게시물 감지 · 키워드 모니터링 · 증거보존 · 법률전략실 연결</span>
+</div>
 
 <div class="layout">
   <!-- 사이드바: 사건 목록 -->
