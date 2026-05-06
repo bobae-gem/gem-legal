@@ -35,7 +35,19 @@ log = logging.getLogger(__name__)
 
 def load_config():
     with open("config.json", encoding="utf-8") as f:
-        return json.load(f)
+        config = json.load(f)
+    # .env 파일에서 API 키 읽기 (config.json에 없으면)
+    env_path = os.path.join(BASE_DIR, '..', '.env')
+    env_path = os.path.normpath(env_path)
+    if os.path.exists(env_path):
+        with open(env_path, encoding='utf-8') as f:
+            for line in f:
+                line = line.strip()
+                if line.startswith('YOUTUBE_API_KEY='):
+                    key = line.split('=', 1)[1].strip()
+                    if key:
+                        config['youtube_api_key'] = key
+    return config
 
 def load_keywords():
     with open("keywords/keywords.json", encoding="utf-8") as f:
