@@ -20,5 +20,10 @@
     "high_views": 10000,
     "alert_comments": 100
   },
-  "legal_notice": "공개 게시물만 수집. 비공개 계정 접근 절대 금지."
+  "legal_notice": "공개 게시물만 수집. 비공개 계정 접근 절대 금지.",
+  "scheduler": {
+    "enabled": true,
+    "auto_start_with_server": false,
+    "comment": "auto_start_with_server=true 시 start_all.py --monitor 없이도 자동 실행"
+  }
 }

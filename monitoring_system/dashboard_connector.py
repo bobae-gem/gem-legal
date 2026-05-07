@@ -43,11 +43,34 @@ class DashboardConnector:
         """
         data = self._load()
         items = data.get("items", [])
-        url = post.get("url", "")
+        url   = post.get("url", "")
+        title = post.get("title", "").strip()
+        author = post.get("channel") or post.get("author", "")
+        platform = post.get("platform", "")
 
-        # 중복 체크
-        if any(i.get("url") == url and url for i in items):
-            return False
+        # 고도화된 중복 체크: URL + 제목 유사도 + 작성자 + 플랫폼
+        for existing in items:
+            # 1) URL 완전 일치
+            if url and existing.get("url") == url:
+                return False
+            # 2) 제목 유사도 80% 이상 + 같은 플랫폼
+            ex_title = existing.get("title", "")
+            if title and ex_title and platform == existing.get("platform", ""):
+                t1_words = set(title.split())
+                t2_words = set(ex_title.split())
+                if t1_words and t2_words:
+                    overlap = len(t1_words & t2_words) / max(len(t1_words), len(t2_words))
+                    if overlap >= 0.8:
+                        return False
+            # 3) 같은 작성자 + 같은 플랫폼 + 제목 50% 이상 유사
+            if author and author == existing.get("author", existing.get("channel", "")):
+                if platform == existing.get("platform", "") and title and ex_title:
+                    t1_words = set(title.split())
+                    t2_words = set(ex_title.split())
+                    if t1_words and t2_words:
+                        overlap = len(t1_words & t2_words) / max(len(t1_words), len(t2_words))
+                        if overlap >= 0.5:
+                            return False
 
         now = datetime.now()
         ts = f"{now.year}. {now.month}. {now.day}. {now.strftime('%H:%M')}"

@@ -180,6 +180,7 @@ a.nl:hover{color:var(--txt2);background:var(--sur2)}a.nl.on{color:var(--acc);bac
     <div class="tmeta" id="tdate">로딩 중...</div>
   </div>
   <div class="tact">
+    <button class="btn bg sm" onclick="manualRefresh()" id="refresh-btn">↻ 새로고침</button>
     <button class="btn bg sm" onclick="resetAll()">초기화</button>
     <button class="btn bp sm" onclick="openM('case')">+ 사건 등록</button>
     <button class="btn br sm" onclick="openM('alert')">🚨 긴급 알림</button>
@@ -510,6 +511,13 @@ function openCmd(type){curCmd=type;document.getElementById('cmd-ttl').textConten
 function copyCmd(){const c=document.getElementById('cmd-c').value.trim(),p=CP[curCmd]+(c||'(내용 없음)');navigator.clipboard.writeText(p).then(()=>{const b=document.getElementById('cpybtn');b.textContent='✅ 복사됨!';b.style.background='#22ffaa44';setTimeout(()=>{b.textContent='📋 복사하기';b.style.background='';},1500);});}
 
 function resetAll(){if(!confirm('모든 데이터를 초기화합니까?'))return;KS.forEach(k=>{D[k]=[];});renderAll();}
+async function manualRefresh(){
+  const btn = document.getElementById('refresh-btn');
+  if(btn){ btn.textContent='↻ 동기화중...'; btn.disabled=true; }
+  await loadFromServer();
+  loadMonitoring();
+  if(btn){ btn.textContent='↻ 새로고침'; btn.disabled=false; }
+}
 // 서버에서 데이터 로드 + 30초 자동 갱신
 loadFromServer();
 setInterval(loadFromServer, 30000);

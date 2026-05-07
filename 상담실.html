@@ -195,7 +195,6 @@ a.nl:hover{color:var(--txt2);background:var(--sur2)}a.nl.on{color:var(--acc);bac
           <span class="form-label">사건 연결 (선택)</span>
           <select class="sel-input" id="case-link">
             <option value="">— 사건 연결 안 함 —</option>
-            <option value="2026나529">서정은 vs 황철순 (2026나529)</option>
           </select>
         </div>
         <div class="form-group">
@@ -517,6 +516,51 @@ function delConsult(id){
 }
 
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+// 사건 목록 동적 로드 — 하드코딩 제거
+async function loadCaseOptions(){
+  const sel = document.getElementById('case-link');
+  if(!sel) return;
+  try {
+    const r = await fetch('http://localhost:8080/api/data');
+    if(!r.ok) throw new Error();
+    const data = await r.json();
+    const cases = data.cases || [];
+    // 기존 옵션 유지 후 추가
+    const existing = new Set([...sel.options].map(o=>o.value).filter(v=>v));
+    cases.forEach(c=>{
+      const val = c.id || c.name;
+      if(!existing.has(val)){
+        const opt = document.createElement('option');
+        opt.value = val;
+        opt.textContent = `${c.name}${c.status?' ('+c.status+')':''}`;
+        sel.appendChild(opt);
+      }
+    });
+    // 사건.html localStorage에서도 추가 (서버 외 데이터)
+    const localCases = JSON.parse(localStorage.getItem('case_data')||'[]');
+    localCases.forEach(c=>{
+      const val = c.id;
+      if(!existing.has(val)){
+        const opt = document.createElement('option');
+        opt.value = val;
+        opt.textContent = `${c.casenum} ${c.name}`;
+        sel.appendChild(opt);
+      }
+    });
+  } catch(e){
+    // 서버 없으면 localStorage fallback만
+    const localCases = JSON.parse(localStorage.getItem('case_data')||'[]');
+    localCases.forEach(c=>{
+      const opt = document.createElement('option');
+      opt.value = c.id;
+      opt.textContent = `${c.casenum} ${c.name}`;
+      sel.appendChild(opt);
+    });
+  }
+}
+
+loadCaseOptions();
 renderRecList();
 </script>
 </body>

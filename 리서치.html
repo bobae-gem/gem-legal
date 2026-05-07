@@ -325,7 +325,12 @@ function renderPrecedent(){
   if(!data.precedent.length){ el.innerHTML='<div class="empty"><div class="empty-ico">⚖️</div>수집된 판례가 없습니다</div>'; return; }
   el.innerHTML = data.precedent.map((c,i)=>`
     <div class="card">
-      <div class="card-top"><span class="card-tag ct-precedent">${c.favor||'참고'}</span><span style="font-size:10px;color:var(--txt3)">${c.court||''}</span><span class="card-date">${c.date||''}</span></div>
+      <div class="card-top">
+        <span class="card-tag ct-precedent">${c.favor||'참고'}</span>
+        <span style="font-size:10px;color:var(--txt3)">${c.court||''}</span>
+        ${c.caseLink?`<span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;background:#4d7aff12;color:#7a9fff;border:1px solid #4d7aff28">📁 ${c.caseLink}</span>`:''}
+        <span class="card-date">${c.date||''}</span>
+      </div>
       <div class="card-title">${c.casenum||''} ${c.title}</div>
       <div class="card-body">${c.summary}</div>
       ${c.use?`<div style="font-size:11px;color:var(--acc);background:#4d7aff10;border-radius:5px;padding:6px 8px;border:1px solid #4d7aff20;margin-bottom:8px">서면 활용: ${c.use}</div>`:''}
@@ -422,18 +427,32 @@ function togglePattern(header){
   else { body.classList.add('open'); arrow.textContent='▲'; }
 }
 
+// 사건 연결 옵션 동적 생성
+function getCaseLinkField(){
+  const localCases = JSON.parse(localStorage.getItem('case_data')||'[]');
+  const opts = localCases.map(c=>`<option value="${c.id}">${c.casenum} ${c.name}</option>`).join('');
+  return `<div class="f"><label>사건 연결 (선택)</label>
+    <select id="f-case-link">
+      <option value="">— 연결 안 함 —</option>
+      <option value="c_main">2026나529 서정은 vs 황철순</option>
+      ${opts}
+    </select></div>`;
+}
+
 const MODAL_FIELDS = {
   precedent:`<div class="f"><label>사건번호</label><input id="f-casenum" placeholder="대법원 2024. 1. 1. 선고 2023다12345 판결"></div>
     <div class="f"><label>제목/요지</label><input id="f-title" placeholder="판결 핵심 내용"></div>
     <div class="f"><label>법원</label><input id="f-court" placeholder="대법원 / 고등법원 / 지방법원"></div>
     <div class="f"><label>유리/불리 여부</label><select id="f-favor"><option>유리</option><option>불리</option><option>참고</option></select></div>
     <div class="f"><label>요약</label><textarea id="f-summary" placeholder="판결 내용 요약..."></textarea></div>
-    <div class="f"><label>서면 활용 문구</label><textarea id="f-use" placeholder="대법원은 이 판결에서 '...'라고 판시하였는바..." style="min-height:50px"></textarea></div>`,
+    <div class="f"><label>서면 활용 문구</label><textarea id="f-use" placeholder="대법원은 이 판결에서 '...'라고 판시하였는바..." style="min-height:50px"></textarea></div>
+    \${getCaseLinkField()}`,
   news:`<div class="f"><label>제목</label><input id="f-title" placeholder="기사 제목"></div>
     <div class="f"><label>날짜</label><input id="f-date" placeholder="2024. 5. 23."></div>
     <div class="f"><label>요약</label><textarea id="f-summary" placeholder="사건 핵심 내용..."></textarea></div>
     <div class="f"><label>위험 패턴 (쉼표 구분)</label><input id="f-patterns" placeholder="감정 라이브, 저격 방송..."></div>
-    <div class="f"><label>원문 URL (선택)</label><input id="f-url" placeholder="https://..."></div>`,
+    <div class="f"><label>원문 URL (선택)</label><input id="f-url" placeholder="https://..."></div>
+    \${getCaseLinkField()}`,
   streamer:`<div class="f"><label>사건 유형</label><input id="f-ctype" placeholder="예: 유튜브 해명 방송, 라이브 실언"></div>
     <div class="f"><label>채널/플랫폼</label><input id="f-platform" placeholder="예: 유튜브, 아프리카TV, 틱톡"></div>
     <div class="f"><label>사건 개요</label><textarea id="f-title" placeholder="무슨 일이 있었는가..."></textarea></div>
@@ -463,7 +482,9 @@ const MODAL_TITLES = {precedent:'⚖️ 판례 추가',news:'📰 뉴스 사례 
 function openModal(type){
   currentModal = type;
   document.getElementById('modal-title').textContent = MODAL_TITLES[type];
-  document.getElementById('modal-fields').innerHTML = MODAL_FIELDS[type];
+  // 사건 연결 필드 동적 삽입 (템플릿 리터럴 처리)
+  const rawField = MODAL_FIELDS[type] || '';
+  document.getElementById('modal-fields').innerHTML = rawField.replace(/\$\{getCaseLinkField\(\)\}/g, getCaseLinkField());
   document.getElementById('modal').classList.add('open');
 }
 function closeModal(){ document.getElementById('modal').classList.remove('open'); }
@@ -473,12 +494,13 @@ function saveItem(){
   const gv = id => { const el=document.getElementById(id); return el?el.value.trim():''; };
   const gpat = id => { const v=gv(id); return v?v.split(',').map(s=>s.trim()).filter(Boolean):[]; };
 
+  const caseLink = gv('f-case-link') || '';  // 사건 연결
   if(currentModal==='precedent'){
     if(!gv('f-title')){ alert('제목을 입력하세요'); return; }
-    data.precedent.unshift({casenum:gv('f-casenum'),title:gv('f-title'),court:gv('f-court'),favor:gv('f-favor'),summary:gv('f-summary'),use:gv('f-use'),date:d});
+    data.precedent.unshift({casenum:gv('f-casenum'),title:gv('f-title'),court:gv('f-court'),favor:gv('f-favor'),summary:gv('f-summary'),use:gv('f-use'),date:d,caseLink});
   } else if(currentModal==='news'){
     if(!gv('f-title')){ alert('제목을 입력하세요'); return; }
-    data.news.unshift({title:gv('f-title'),date:gv('f-date')||d,summary:gv('f-summary'),patterns:gpat('f-patterns'),url:gv('f-url')});
+    data.news.unshift({title:gv('f-title'),date:gv('f-date')||d,summary:gv('f-summary'),patterns:gpat('f-patterns'),url:gv('f-url'),caseLink});
   } else if(currentModal==='streamer'){
     if(!gv('f-title')){ alert('내용을 입력하세요'); return; }
     data.streamer.unshift({ctype:gv('f-ctype'),platform:gv('f-platform'),title:gv('f-title'),behavior:gv('f-behavior'),why:gv('f-why'),result:gv('f-result'),patterns:gpat('f-patterns'),lesson:gv('f-lesson'),date:d});

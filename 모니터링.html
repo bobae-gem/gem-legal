@@ -335,6 +335,7 @@ setInterval(()=>{ document.getElementById('clk').textContent = new Date().toLoca
 // 데이터 — 서버 API 우선, 없으면 localStorage 폴백
 const API = 'http://localhost:8080/api';
 let items = [];
+let classifications = {};  // 분류실 결과 실시간 반영
 let keywords = JSON.parse(localStorage.getItem('mon_keywords')||'[]');
 
 // 기본 키워드
@@ -353,16 +354,24 @@ let serverConnected = false;
 
 async function loadFromServer(){
   try {
-    const r = await fetch(API+'/monitoring');
-    if(!r.ok) throw new Error();
-    const data = await r.json();
+    // 모니터링 데이터 + 분류 결과 동시 로드
+    const [mRes, cRes] = await Promise.all([
+      fetch(API+'/monitoring'),
+      fetch(API+'/classifications')
+    ]);
+    if(!mRes.ok) throw new Error();
+    const data = await mRes.json();
     items = data.items || [];
+    if(cRes.ok){
+      const cData = await cRes.json();
+      classifications = cData.classifications || {};
+    }
     serverConnected = true;
     document.getElementById('sdot').className='sdot';
     document.getElementById('sync-txt').textContent='서버 연결됨';
   } catch(e) {
-    // 서버 없으면 localStorage 폴백
     items = JSON.parse(localStorage.getItem('monitoring_v1')||'[]');
+    classifications = JSON.parse(localStorage.getItem('mon_classifications')||'{}');
     serverConnected = false;
     document.getElementById('sdot').className='sdot err';
     document.getElementById('sync-txt').textContent='서버 미연결 — monitoring_v1 사용 중';
@@ -455,6 +464,24 @@ function renderList(){
     return;
   }
 
+  // 분류 상태 표시용 상수
+  const CLS_LABEL = {
+    discarded:             '🗑 버려짐',
+    monitoring_only:       '👀 모니터링만',
+    needs_evidence:        '📦 증거보존',
+    needs_legal_review:    '⚖️ 법률검토',
+    needs_dashboard_alert: '🚨 상황실알림',
+    unclassified:          '❓ 미분류'
+  };
+  const CLS_STYLE = {
+    discarded:             'background:#424f6818;color:#6b7fa3;border:1px solid #424f6828',
+    monitoring_only:       'background:#22ccff18;color:#44ddff;border:1px solid #22ccff28',
+    needs_evidence:        'background:#ffcc2218;color:#ffdd44;border:1px solid #ffcc2228',
+    needs_legal_review:    'background:#ff882218;color:#ffaa44;border:1px solid #ff882228',
+    needs_dashboard_alert: 'background:#ff3a3a18;color:#ff5555;border:1px solid #ff3a3a28',
+    unclassified:          'background:#4d7aff12;color:#7a9fff;border:1px solid #4d7aff28'
+  };
+
   el.innerHTML = filtered.map(item=>{
     const realIdx = items.indexOf(item);
     const vtags = (item.vtypes||[]).map(v=>`<span class="vtag">${v}</span>`).join('');
@@ -462,11 +489,16 @@ function renderList(){
     const capClass = item.capStatus==='done'?'cap-done':item.capStatus==='need'?'cap-need':'';
     const capLabel = item.capStatus==='done'?'✅ 캡처 완료':item.capStatus==='need'?'⚠️ 즉시 캡처 필요':'—';
 
+    // 분류실에서 분류된 상태 실시간 반영
+    const clsStatus = classifications[item.id] || item.class_status || 'unclassified';
+    const clsBadge = `<span style="font-size:10px;font-weight:800;padding:3px 8px;border-radius:5px;${CLS_STYLE[clsStatus]||CLS_STYLE.unclassified}">${CLS_LABEL[clsStatus]||'❓ 미분류'}</span>`;
+
     return `<div class="mcard ${item.risk||''}">
       <div class="mc-top">
         <span class="mc-plat ${PLAT_CSS[item.platform]||'pl-etc'}">${item.platform}</span>
         <span style="font-size:10px;color:var(--txt3)">${item.ptype||''}</span>
         <span class="risk-badge ${RISK_CSS[item.risk]||'rb-m'}">${RISK_LABEL[item.risk]||'중간'}</span>
+        ${clsBadge}
         <span class="mc-date">발견: ${item.founddate||item.date||''}</span>
       </div>
       <div class="mc-title">${item.title}</div>
