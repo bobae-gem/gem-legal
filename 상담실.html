@@ -212,11 +212,21 @@ a.nl:hover{color:var(--txt2);background:var(--sur2)}a.nl.on{color:var(--acc);bac
 
 예: 상대가 유튜브에 내 사생활을 올렸어. 지금 어떻게 해야 해?
 예: 라이브에서 이런 말을 해도 돼?
-예: 항소심에서 이 주장을 어떻게 반박해?"></textarea>
-      <div class="form-actions">
-        <span class="hint">⚠️ AI 보조 시스템 — 최종 판단은 변호사 검토 필요</span>
+예: 항소심에서 이 주장을 어떻게 반박해?" oninput="onQuestionInput()"></textarea>
+
+      <!-- 키워드·컨텍스트 미리보기 -->
+      <div id="ctx-preview" style="display:none;margin-top:8px;background:var(--sur2);border:1px solid var(--bdr2);border-radius:8px;padding:9px 12px">
+        <div style="font-size:10px;font-weight:800;letter-spacing:1px;color:var(--txt3);margin-bottom:5px">🔍 감지된 키워드 · 자동 수집될 컨텍스트</div>
+        <div id="ctx-keywords" style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:5px"></div>
+        <div id="ctx-summary" style="font-size:11px;color:var(--txt3);line-height:1.6"></div>
+      </div>
+
+      <div class="form-actions" style="flex-wrap:wrap;gap:6px;margin-top:10px">
+        <span class="hint" style="width:100%;margin-bottom:2px">⚠️ AI 보조 시스템 — 최종 판단은 변호사 검토 필요</span>
         <button class="btn bg sm" onclick="copyPrompt()">📋 프롬프트 복사</button>
-        <button class="btn bp" onclick="startConsult()">상담 등록 →</button>
+        <button class="btn bp sm" onclick="startConsult()">상담 등록</button>
+        <button class="btn sm" style="background:#22ffaa18;color:var(--grn);border:1px solid #22ffaa28;font-weight:700;cursor:pointer" onclick="aiAnalyze(false)">🤖 AI 분석 (무료)</button>
+        <button class="btn sm" style="background:#7a4dff18;color:#aa7fff;border:1px solid #7a4dff28;font-weight:700;cursor:pointer" onclick="confirmApiCall()">⚡ API 직접 분석 (유료)</button>
       </div>
     </div>
 
@@ -559,6 +569,203 @@ async function loadCaseOptions(){
       sel.appendChild(opt);
     });
   }
+}
+
+loadCaseOptions();
+renderRecList();
+
+// ══════════════════════════════════════════════
+// AI 분석 엔진
+// ══════════════════════════════════════════════
+
+const STOP_WORDS = new Set(['이','가','을','를','은','는','에','의','와','과','도','로','으로','그','이런','저런','어떤','어떻게','지금','여기','거기','이거','저거','해야','해도','되나요','될까요','있어','없어','했어','했는데']);
+
+// 질문 입력 시 실시간 키워드 미리보기
+let _kwTimer = null;
+function onQuestionInput(){
+  clearTimeout(_kwTimer);
+  _kwTimer = setTimeout(()=>{
+    const q = document.getElementById('q-input').value.trim();
+    if(q.length < 5){ document.getElementById('ctx-preview').style.display='none'; return; }
+    const kws = extractKeywords(q);
+    if(kws.length === 0) return;
+    document.getElementById('ctx-preview').style.display='block';
+    document.getElementById('ctx-keywords').innerHTML = kws.map(k=>`<span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;background:#4d7aff18;color:#7a9fff;border:1px solid #4d7aff28">${k}</span>`).join('');
+    document.getElementById('ctx-summary').textContent = `사건·증거·분석 데이터에서 관련 내용을 자동으로 수집합니다`;
+  }, 400);
+}
+
+function extractKeywords(text){
+  const words = text.match(/[가-힣a-zA-Z]{2,}/g) || [];
+  return words.filter(w => !STOP_WORDS.has(w)).slice(0,8);
+}
+
+// 서버에서 컨텍스트 수집 + 강화 프롬프트 생성
+async function aiAnalyze(useApi){
+  const q = document.getElementById('q-input').value.trim();
+  if(!q){ alert('질문을 먼저 입력하세요'); return; }
+
+  const btn = document.querySelector('[onclick="aiAnalyze(false)"]');
+  const orig = btn.textContent;
+  btn.textContent = '⏳ 컨텍스트 수집 중...';
+  btn.disabled = true;
+
+  try {
+    const r = await fetch('http://localhost:8080/api/consult',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        question: q,
+        category: currentCat,
+        urgency:  currentUrg,
+        collect_context: true,
+        use_api: useApi
+      })
+    });
+    const data = await r.json();
+
+    if(!data.ok){ alert('분석 실패: '+data.error); return; }
+
+    // 상담 등록 (없으면 새로 생성)
+    let c = consults.find(x=>x.id===currentId);
+    if(!c){
+      c = {
+        id: 'c'+Date.now(), cat: currentCat, urg: currentUrg,
+        question: q, caseLink: document.getElementById('case-link').value,
+        status: 'pending', analysis: {}, date: ts()
+      };
+      consults.push(c);
+      currentId = c.id;
+    }
+
+    // 수집된 컨텍스트 저장
+    c.context = data.context;
+    c.context_detail = data.context_detail;
+    c.enhanced_prompt = data.enhanced_prompt;
+
+    // API 답변이 있으면 자동 저장
+    if(data.ai_answer){
+      c.status = 'done';
+      parseAndSaveAnswer(c, data.ai_answer);
+      save(); renderRecList(); renderConsult(c);
+      showToast('✅ AI 분석 완료 — 자동 저장됨');
+    } else {
+      save(); renderRecList();
+      renderConsultWithContext(c, data);
+    }
+
+  } catch(e){
+    alert('서버 연결 실패 — python server.py 실행 후 재시도');
+  } finally {
+    btn.textContent = orig;
+    btn.disabled = false;
+  }
+}
+
+// AI 답변 자동 파싱 → 10항목에 저장
+function parseAndSaveAnswer(c, answer){
+  if(!c.analysis) c.analysis = {};
+  const lines = answer.split('\n');
+  let currentItem = null;
+  let buffer = [];
+
+  const ITEM_PATTERNS = [
+    /^1[\.\)]\s*(상황|상황 요약)/,/^2[\.\)]\s*(법적|법적 위험)/,
+    /^3[\.\)]\s*(즉시|즉시 금지)/,/^4[\.\)]\s*(허용|허용 행동)/,
+    /^5[\.\)]\s*(증거|증거 보존)/,/^6[\.\)]\s*(연결|연결 필요)/,
+    /^7[\.\)]\s*(변호사|변호사 확인)/,/^8[\.\)]\s*(최종|최종 추천)/,
+    /^9[\.\)]\s*(AI|신뢰도)/,/^10[\.\)]\s*(근거|출처)/
+  ];
+
+  for(const line of lines){
+    let matched = false;
+    for(let i=0; i<ITEM_PATTERNS.length; i++){
+      if(ITEM_PATTERNS[i].test(line)){
+        if(currentItem !== null && buffer.length){
+          c.analysis[currentItem] = buffer.join('\n').trim();
+        }
+        currentItem = i+1;
+        buffer = [];
+        matched = true;
+        break;
+      }
+    }
+    if(!matched && currentItem !== null){
+      buffer.push(line);
+    }
+  }
+  if(currentItem !== null && buffer.length){
+    c.analysis[currentItem] = buffer.join('\n').trim();
+  }
+  c.answered = Object.values(c.analysis).some(v=>v);
+}
+
+// 컨텍스트 수집 결과 화면에 표시
+function renderConsultWithContext(c, data){
+  const ctx = data.context || {};
+  const area = document.getElementById('result-area');
+
+  // 기존 상담 뷰 렌더 후 컨텍스트 패널 추가
+  renderConsult(c);
+
+  const ctxHtml = `
+    <div style="background:var(--sur2);border:1px solid #22ffaa28;border-radius:12px;padding:14px 16px;margin-top:10px">
+      <div style="font-size:12px;font-weight:900;color:var(--grn);margin-bottom:10px">🔍 수집된 컨텍스트</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin-bottom:12px">
+        <div style="background:var(--sur);border-radius:8px;padding:8px 10px;text-align:center;border:1px solid var(--bdr2)">
+          <div style="font-size:18px;font-weight:900;color:var(--acc)">${ctx.cases_count||0}</div>
+          <div style="font-size:10px;color:var(--txt3)">사건</div>
+        </div>
+        <div style="background:var(--sur);border-radius:8px;padding:8px 10px;text-align:center;border:1px solid var(--bdr2)">
+          <div style="font-size:18px;font-weight:900;color:var(--grn)">${ctx.facts_count||0}</div>
+          <div style="font-size:10px;color:var(--txt3)">확정 사실</div>
+        </div>
+        <div style="background:var(--sur);border-radius:8px;padding:8px 10px;text-align:center;border:1px solid var(--bdr2)">
+          <div style="font-size:18px;font-weight:900;color:var(--yel)">${ctx.analysis_count||0}</div>
+          <div style="font-size:10px;color:var(--txt3)">분석 결과</div>
+        </div>
+        <div style="background:var(--sur);border-radius:8px;padding:8px 10px;text-align:center;border:1px solid var(--bdr2)">
+          <div style="font-size:18px;font-weight:900;color:var(--red)">${ctx.monitoring_count||0}</div>
+          <div style="font-size:10px;color:var(--txt3)">모니터링</div>
+        </div>
+      </div>
+      <div style="font-size:11px;color:var(--txt3);margin-bottom:10px">
+        감지 키워드: ${(data.context_detail?.keywords||[]).map(k=>`<span style="background:#4d7aff12;color:#7a9fff;padding:1px 5px;border-radius:3px;margin-right:3px">${k}</span>`).join('')}
+      </div>
+      <div style="font-size:11px;font-weight:700;color:var(--txt3);margin-bottom:6px">강화 프롬프트 생성 완료 — 이 채팅창에 붙여넣으세요:</div>
+      <div style="display:flex;gap:7px">
+        <button class="btn bp sm" onclick="navigator.clipboard.writeText(${JSON.stringify(data.enhanced_prompt)}).then(()=>showToast('✅ 복사됨!'))">📋 강화 프롬프트 복사</button>
+        <button class="btn sm" style="background:#7a4dff18;color:#aa7fff;border:1px solid #7a4dff28;font-weight:700;cursor:pointer" onclick="confirmApiCall()">⚡ API로 직접 분석</button>
+      </div>
+    </div>`;
+
+  const existingCtx = area.querySelector('.ctx-panel');
+  if(existingCtx) existingCtx.remove();
+  const div = document.createElement('div');
+  div.className = 'ctx-panel';
+  div.innerHTML = ctxHtml;
+  area.appendChild(div);
+}
+
+// API 직접 분석 — 비용 경고 후 실행
+function confirmApiCall(){
+  const confirmed = confirm(
+    '⚠️ Claude API 직접 분석\n\n' +
+    '이 기능은 Anthropic API를 직접 호출합니다.\n' +
+    'Claude Max 구독과 별개로 API 사용료가 발생합니다.\n\n' +
+    '(Claude Haiku 모델 사용 — 가장 저렴한 옵션)\n\n' +
+    '계속하시겠습니까?'
+  );
+  if(confirmed) aiAnalyze(true);
+}
+
+// 토스트 메시지
+function showToast(msg){
+  const t = document.createElement('div');
+  t.style.cssText = 'position:fixed;bottom:24px;right:24px;background:var(--sur);border:1px solid var(--bdr);border-radius:10px;padding:11px 16px;font-size:12px;font-weight:700;color:var(--txt);z-index:300;box-shadow:0 8px 32px #000a';
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(), 2500);
 }
 
 loadCaseOptions();
