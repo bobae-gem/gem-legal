@@ -186,10 +186,6 @@ a.nl:hover{color:var(--txt2);background:var(--sur2)}a.nl.on{color:var(--acc);bac
 <div class="layout">
   <!-- 사이드바 -->
   <div class="sidebar">
-    <div class="sb-head">
-      <div class="sb-title-main">👁️ 온라인 모니터링 센터</div>
-      <div class="sb-sub">공개 게시물만 대상 · 증거보존 우선</div>
-    </div>
 
     <!-- 스케줄러 미니 패널 -->
     <div class="sched-sec">
@@ -213,18 +209,6 @@ a.nl:hover{color:var(--txt2);background:var(--sur2)}a.nl.on{color:var(--acc);bac
           <button class="sa-approve" onclick="schedApprove()">✓ 승인</button>
           <button class="sa-cancel"  onclick="schedCancel()">취소</button>
         </div>
-      </div>
-    </div>
-
-    <!-- 감지 키워드 관리 -->
-    <div class="kw-section">
-      <div class="kw-top">
-        <div class="kw-lbl">감지 키워드 (<span id="kw-cnt">0</span>)</div>
-      </div>
-      <div class="kw-list" id="kw-list"></div>
-      <div class="kw-add">
-        <input class="kw-inp" id="kw-inp" placeholder="키워드 추가..." onkeydown="if(event.key==='Enter')addKeyword()">
-        <button class="kw-btn" onclick="addKeyword()">+</button>
       </div>
     </div>
 
@@ -272,6 +256,18 @@ a.nl:hover{color:var(--txt2);background:var(--sur2)}a.nl.on{color:var(--acc);bac
       <div class="rule-item" style="color:#ff6666">❌ 비공개 접근 금지</div>
       <div class="rule-item" style="color:#ff6666">❌ 해킹 금지</div>
       <div class="rule-item" style="color:#ff6666">❌ 역고소 유도 금지</div>
+    </div>
+
+    <!-- 감지 키워드 관리 (맨 아래) -->
+    <div class="kw-section" style="border-top:1px solid var(--bdr2);border-bottom:none;flex:1;overflow-y:auto">
+      <div class="kw-top">
+        <div class="kw-lbl">감지 키워드 (<span id="kw-cnt">0</span>)</div>
+      </div>
+      <div class="kw-list" id="kw-list"></div>
+      <div class="kw-add">
+        <input class="kw-inp" id="kw-inp" placeholder="키워드 추가..." onkeydown="if(event.key==='Enter')addKeyword()">
+        <button class="kw-btn" onclick="addKeyword()">+</button>
+      </div>
     </div>
   </div>
 
