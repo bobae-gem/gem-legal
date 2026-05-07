@@ -401,11 +401,12 @@ async function loadFromServer(){
     const r=await fetch(API+'/data');
     if(!r.ok) throw new Error();
     const sd=await r.json();
-    D.case  = sd.cases   || [];
-    D.alert = sd.alerts  || [];
-    D.analysis = sd.analysis || [];
-    D.todo  = sd.todos   || [];
-    D.review= sd.review  || [];
+    // cases가 비었을 때 기본값 유지 (패널 깨짐 방지)
+    D.case  = (sd.cases   && sd.cases.length)   ? sd.cases   : D.case;
+    D.alert = (sd.alerts  && sd.alerts.length)  ? sd.alerts  : D.alert;
+    D.analysis = (sd.analysis && sd.analysis.length) ? sd.analysis : D.analysis;
+    D.todo  = (sd.todos   && sd.todos.length)   ? sd.todos   : D.todo;
+    D.review= sd.review  || D.review;
     if(sd.risk) { document.getElementById('rsel').value=sd.risk; updateRisk(); }
     renderAll();
   } catch(e){

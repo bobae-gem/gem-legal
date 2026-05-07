@@ -5,339 +5,221 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>구성원 소개 — 보배 법률전략실</title>
 <style>
-:root {
-  --bg: #080a0f;
-  --surface: #0e1118;
-  --surface2: #141820;
-  --surface3: #1a1f2e;
-  --border: #252d40;
-  --border2: #1e2535;
-  --accent: #5a8aff;
-  --text: #eef0ff;
-  --text2: #8895b0;
-  --text3: #4a566e;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  font-size: 15px;
-}
-
-nav {
-  display: flex; align-items: center;
-  padding: 0 20px; height: 52px;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  gap: 3px; position: sticky; top: 0; z-index: 100; overflow-x: auto;
-}
-.nav-logo { font-size: 14px; font-weight: 900; color: var(--text); margin-right: 12px; white-space: nowrap; flex-shrink: 0; }
-.nav-logo span { color: var(--accent); }
-.nav-link {
-  text-decoration: none; color: var(--text3); font-size: 12px; font-weight: 700;
-  padding: 5px 10px; border-radius: 7px; transition: all 0.15s; border: 1px solid transparent; white-space: nowrap; flex-shrink: 0;
-}
-.nav-link:hover { color: var(--text2); background: var(--surface2); }
-.nav-link.active { color: var(--accent); background: #5a8aff12; border-color: #5a8aff28; }
-.nav-right { margin-left: auto; white-space: nowrap; padding-left: 10px; flex-shrink: 0; }
-.live-dot { width: 8px; height: 8px; border-radius: 50%; background: #33ffaa; box-shadow: 0 0 8px #33ffaa; animation: pulse 2s infinite; display: inline-block; }
-@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-
-.page-header {
-  padding: 36px 40px 28px;
-  border-bottom: 1px solid var(--border2);
-}
-.page-title { font-size: 28px; font-weight: 900; letter-spacing: -0.5px; }
-.page-title span { color: var(--accent); }
-.page-sub { font-size: 14px; color: var(--text3); margin-top: 6px; font-weight: 500; }
-
-.stats-row {
-  display: flex;
-  gap: 20px;
-  padding: 24px 40px;
-  border-bottom: 1px solid var(--border2);
-}
-.stat {
-  background: var(--surface);
-  border: 2px solid var(--border);
-  border-radius: 14px;
-  padding: 20px 28px;
-  text-align: center;
-  min-width: 120px;
-}
-.stat-num { font-size: 40px; font-weight: 900; color: var(--accent); line-height: 1; margin-bottom: 6px; }
-.stat-label { font-size: 13px; font-weight: 600; color: var(--text2); }
-
-.content { padding: 32px 40px 60px; }
-
-.team-section {
-  margin-bottom: 52px;
-}
-.team-header {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 20px;
-  padding-bottom: 16px;
-  border-bottom: 2px solid var(--border);
-}
-.team-icon {
-  width: 52px; height: 52px;
-  border-radius: 14px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 24px;
-  flex-shrink: 0;
-}
-.team-info { flex: 1; }
-.team-name { font-size: 22px; font-weight: 900; color: var(--text); }
-.team-stage { font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 3px; }
-.team-desc { font-size: 14px; color: var(--text2); font-weight: 500; margin-top: 3px; }
-.team-count-badge {
-  font-size: 14px;
-  font-weight: 800;
-  padding: 7px 16px;
-  border-radius: 20px;
-  flex-shrink: 0;
-}
-
-.agents-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 14px;
-}
-.agent-card {
-  background: var(--surface);
-  border: 2px solid var(--border);
-  border-radius: 14px;
-  padding: 20px;
-  transition: transform 0.15s, border-color 0.15s;
-  position: relative;
-  overflow: hidden;
-}
-.agent-card::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 3px;
-  background: var(--team-color);
-}
-.agent-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--team-color);
-}
-.agent-num-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 26px; height: 26px;
-  border-radius: 7px;
-  font-size: 12px;
-  font-weight: 800;
-  margin-bottom: 10px;
-  background: color-mix(in srgb, var(--team-color) 15%, transparent);
-  color: var(--team-color);
-  border: 1px solid color-mix(in srgb, var(--team-color) 30%, transparent);
-}
-.agent-name { font-size: 17px; font-weight: 800; color: var(--text); margin-bottom: 6px; }
-.agent-role { font-size: 13px; color: var(--text2); font-weight: 500; line-height: 1.5; }
-.agent-tag {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 3px 9px;
-  border-radius: 6px;
-  margin-top: 10px;
-  background: color-mix(in srgb, var(--team-color) 12%, transparent);
-  color: var(--team-color);
-  border: 1px solid color-mix(in srgb, var(--team-color) 25%, transparent);
-}
-
-/* team color vars injected inline */
-
+:root{--bg:#0a0c10;--surface:#111318;--surface2:#181c24;--border:#2a3045;--accent:#5a8aff;--red:#ff5555;--orange:#ff9a5a;--yellow:#ffda5a;--green:#5affaa;--text:#f0f2ff;--text2:#b0bace;--text3:#6a7a96}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Malgun Gothic',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:13px}
+nav{display:flex;align-items:center;padding:0 20px;height:52px;background:var(--surface);border-bottom:1px solid var(--border);gap:3px;position:sticky;top:0;z-index:100;overflow-x:auto}
+.nav-logo{font-size:14px;font-weight:900;color:var(--text);margin-right:12px;white-space:nowrap;text-decoration:none;flex-shrink:0}.nav-logo:hover{opacity:.8}.nav-logo span{color:var(--accent)}
+.nav-link{text-decoration:none;color:var(--text3);font-size:12px;font-weight:700;padding:5px 10px;border-radius:7px;transition:all .15s;border:1px solid transparent;white-space:nowrap;flex-shrink:0}
+.nav-link:hover{color:var(--text2);background:var(--surface2)}.nav-link.active{color:var(--accent);background:#5a8aff12;border-color:#5a8aff28}
+.nav-right{margin-left:auto;white-space:nowrap;font-size:12px;color:var(--text3);padding-left:10px}
 .subnav{display:flex;align-items:center;gap:10px;padding:0 20px;height:36px;background:#0a0c12;border-bottom:1px solid #ff3a3a22;flex-shrink:0;position:sticky;top:52px;z-index:99}
 .snl{text-decoration:none;color:#ff6666;font-size:12px;font-weight:800;padding:4px 12px;border-radius:6px;border:1px solid #ff3a3a28;background:#ff3a3a12;white-space:nowrap;transition:all .15s}
-.snl:hover{background:#ff3a3a20}.snl.on{background:#ff3a3a22;border-color:#ff3a3a40}
-.sn-arr{color:#ff3a3a55;font-size:11px;font-weight:700}
-.sn-flow{display:flex;align-items:center;gap:6px}
+.snl:hover{background:#ff3a3a20}.sn-arr{color:#ff3a3a55;font-size:11px}.sn-flow{display:flex;align-items:center;gap:6px}
 .sn-desc{font-size:11px;color:#424f68;font-weight:600;margin-left:8px}
+.page-header{padding:32px 36px 24px;border-bottom:1px solid var(--border);background:var(--surface)}
+.header-badge{display:inline-block;font-size:11px;font-weight:800;color:var(--accent);background:#5a8aff18;border:1px solid #5a8aff30;padding:4px 12px;border-radius:20px;margin-bottom:10px;letter-spacing:1px}
+.page-header h1{font-size:26px;font-weight:900;margin-bottom:6px}
+.page-header p{color:var(--text3);font-size:12px;line-height:1.7;max-width:580px}
+.stats-row{display:flex;gap:20px;margin-top:16px;flex-wrap:wrap}
+.stat{text-align:center}.stat-n{font-size:24px;font-weight:900;color:var(--accent)}.stat-l{font-size:10px;color:var(--text3);margin-top:2px;font-weight:600}
+.content{padding:28px 36px;max-width:1200px}
+.team-section{margin-bottom:36px}
+.team-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:11px}
+.team-icon{font-size:20px;flex-shrink:0}
+.team-name{font-size:15px;font-weight:900}
+.team-desc{font-size:11px;color:var(--text3);margin-top:2px;line-height:1.5}
+.team-count{margin-left:auto;font-size:11px;font-weight:800;padding:3px 10px;border-radius:7px;background:#5a8aff18;color:var(--accent);border:1px solid #5a8aff28;white-space:nowrap;flex-shrink:0}
+.team-badge{font-size:9px;font-weight:800;padding:2px 7px;border-radius:4px;background:#ff9a5a18;color:#ff9a5a;border:1px solid #ff9a5a28;margin-left:6px;vertical-align:middle}
+.agents-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px}
+.agent-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;transition:border-color .15s}
+.agent-card:hover{border-color:var(--accent)}
+.agent-top{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.agent-num{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;color:#fff;flex-shrink:0}
+.agent-name{font-size:13px;font-weight:800;color:var(--text)}
+.agent-role{font-size:11px;color:var(--text3);line-height:1.6;margin-bottom:6px}
+.agent-tags{display:flex;flex-wrap:wrap;gap:4px}
+.agent-tag{font-size:10px;font-weight:600;padding:2px 6px;border-radius:4px;background:var(--surface2);color:var(--text3);border:1px solid var(--border)}
+.t1{background:#5a8aff}.t2{background:#ff9a5a}.t3{background:#cf5aff}.t4{background:#ff5a5a}
+.t5{background:#c8a800}.t6{background:#22aa66}.t7{background:#ff5acf}.t8{background:#22aacc}
+.t9{background:#ff6644}.t10{background:#44aaff}.t11{background:#aa44ff}
 </style>
 </head>
 <body>
-
 <nav>
-  <a href="상담실.html" class="nav-logo" style="text-decoration:none">보배 <span>법률전략실</span></a>
+  <a href="상담실.html" class="nav-logo">보배 <span>법률전략실</span></a>
   <a href="상황실.html" class="nav-link">🔴 메인 상황실</a>
+  <a href="상담실.html" class="nav-link">💬 법률 상담실</a>
   <a href="업데이터.html" class="nav-link">🤖 상황실 업데이터</a>
   <a href="사건.html" class="nav-link">📁 사건 관리실</a>
   <a href="검수실.html" class="nav-link">🛡️ 콘텐츠 검수실</a>
   <a href="리서치.html" class="nav-link">🔍 리서치 센터</a>
   <a href="메모리.html" class="nav-link">🧠 메모리 관리실</a>
+  <a href="구성원.html" class="nav-link active">👥 구성원</a>
   <a href="대시보드.html" class="nav-link">📊 시스템구조</a>
+  <div class="nav-right" id="clk">--:--:--</div>
 </nav>
 <div class="subnav">
-  <span class="sn-flow"><a href="모니터링.html" class="snl">👁️ 모니터링 센터</a>
-  <span class="sn-arr">→</span>
-  <a href="분류실.html"   class="snl">📋 분류실</a>
-  <span class="sn-arr">→</span>
-  <a href="증거보존.html" class="snl">📦 증거보존팀</a></span>
-  <span class="sn-desc">공개 게시물만 · 수집 → 분류 → 증거보존 → 상황실</span>
+  <span class="sn-flow">
+    <a href="모니터링.html" class="snl">👁️ 모니터링</a>
+    <span class="sn-arr">→</span>
+    <a href="분류실.html" class="snl">📋 분류실</a>
+    <span class="sn-arr">→</span>
+    <a href="증거보존.html" class="snl">📦 증거보존</a>
+  </span>
+  <span class="sn-desc">11팀 · 80명 에이전트 · 구성원 소개</span>
 </div>
 
 <div class="page-header">
-  <div class="page-title">구성원 <span>소개</span></div>
-  <div class="page-sub">보배 법률전략실 소속 AI 에이전트 전원 · 8팀 50명</div>
+  <div class="header-badge">Legal Strategy AI · 2026</div>
+  <h1>보배 법률전략실 구성원</h1>
+  <p>스트리머·유튜버·BJ·인플루언서 대표의 법적 리스크 전담 AI 팀.<br>말 한마디, 자막 한 줄, 썸네일 하나가 공격 포인트가 될 수 있는 환경에 특화.</p>
+  <div class="stats-row">
+    <div class="stat"><div class="stat-n">11</div><div class="stat-l">팀</div></div>
+    <div class="stat"><div class="stat-n">80+</div><div class="stat-l">에이전트</div></div>
+    <div class="stat"><div class="stat-n">12</div><div class="stat-l">HTML 페이지</div></div>
+    <div class="stat"><div class="stat-n">7</div><div class="stat-l">시스템 규칙</div></div>
+    <div class="stat"><div class="stat-n">305</div><div class="stat-l">증거보존 파일</div></div>
+  </div>
 </div>
 
-<div class="stats-row">
-  <div class="stat"><div class="stat-num">8</div><div class="stat-label">팀</div></div>
-  <div class="stat"><div class="stat-num">50</div><div class="stat-label">에이전트</div></div>
-  <div class="stat"><div class="stat-num">4</div><div class="stat-label">핵심팀 ★</div></div>
-  <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">상시 운영</div></div>
+<div class="content">
+
+<div class="team-section">
+  <div class="team-header"><span class="team-icon">🚨</span><div><div class="team-name">1단계 · 긴급 법률상담팀<span class="team-badge">★핵심</span></div><div class="team-desc">"나 이런 상황인데 어떡해?" → 7단 형식 즉시 답변</div></div><span class="team-count">4명</span></div>
+  <div class="agents-grid">
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t1">1</div><div class="agent-name">상황판단 변호사</div></div><div class="agent-role">사건 분류·전체 그림 파악</div><div class="agent-tags"><span class="agent-tag">상황요약</span><span class="agent-tag">분류</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t1">2</div><div class="agent-name">리스크 분석 변호사</div></div><div class="agent-role">최악 시나리오·법적 위험 분석</div><div class="agent-tags"><span class="agent-tag">형사</span><span class="agent-tag">민사</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t1">3</div><div class="agent-name">즉시대응 코치</div></div><div class="agent-role">지금 해야 할 것·하면 안 되는 것</div><div class="agent-tags"><span class="agent-tag">금지행동</span><span class="agent-tag">허용행동</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t1">4</div><div class="agent-name">감정진정 담당</div></div><div class="agent-role">감정 안정·답변 톤 조율</div><div class="agent-tags"><span class="agent-tag">감정관리</span></div></div>
+  </div>
 </div>
 
-<div class="content" id="content"></div>
+<div class="team-section">
+  <div class="team-header"><span class="team-icon">🔍</span><div><div class="team-name">2단계 · 사건분석·증거정리팀</div><div class="team-desc">판결문·카톡·녹취·항소이유서 분석</div></div><span class="team-count">5명</span></div>
+  <div class="agents-grid">
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t2">1</div><div class="agent-name">타임라인 정리 변호사</div></div><div class="agent-role">사건 시간순 정리</div><div class="agent-tags"><span class="agent-tag">타임라인</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t2">2</div><div class="agent-name">쟁점분석 변호사</div></div><div class="agent-role">핵심 법적 쟁점 추출</div><div class="agent-tags"><span class="agent-tag">쟁점</span><span class="agent-tag">법리</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t2">3</div><div class="agent-name">증거분류 담당</div></div><div class="agent-role">증거 강도·유형 분류</div><div class="agent-tags"><span class="agent-tag">증거</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t2">4</div><div class="agent-name">상대주장 반박 담당</div></div><div class="agent-role">상대방 주장 약점 분석</div><div class="agent-tags"><span class="agent-tag">반박</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t2">5</div><div class="agent-name">판례검색 담당</div></div><div class="agent-role">유사 판례 수집·서면 활용</div><div class="agent-tags"><span class="agent-tag">판례</span></div></div>
+  </div>
+</div>
 
+<div class="team-section">
+  <div class="team-header"><span class="team-icon">🛡️</span><div><div class="team-name">3단계 · 콘텐츠·자료 법률검수팀</div><div class="team-desc">업로드 전 10개 항목 전수 검수·위험도 등급</div></div><span class="team-count">7명</span></div>
+  <div class="agents-grid">
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t3">1</div><div class="agent-name">명예훼손 검수 변호사</div></div><div class="agent-role">사회적 평가 저하 분석</div><div class="agent-tags"><span class="agent-tag">명예훼손</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t3">2</div><div class="agent-name">모욕·비방 검수</div></div><div class="agent-role">경멸적 표현 분석</div><div class="agent-tags"><span class="agent-tag">모욕</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t3">3</div><div class="agent-name">개인정보·초상권 검수</div></div><div class="agent-role">동의 없는 개인정보 공개</div><div class="agent-tags"><span class="agent-tag">초상권</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t3">4</div><div class="agent-name">저작권 검수 변호사</div></div><div class="agent-role">음악·영상 저작물 침해</div><div class="agent-tags"><span class="agent-tag">저작권</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t3">5</div><div class="agent-name">광고·협찬 표기 검수</div></div><div class="agent-role">유료광고 미표기 위험</div><div class="agent-tags"><span class="agent-tag">협찬</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t3">6</div><div class="agent-name">방송자막 리스크 검수</div></div><div class="agent-role">자막·썸네일 위험 표현</div><div class="agent-tags"><span class="agent-tag">자막</span><span class="agent-tag">썸네일</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t3">7</div><div class="agent-name">증거화 가능성 검토</div></div><div class="agent-role">상대방 법적 증거 활용 가능성</div><div class="agent-tags"><span class="agent-tag">증거화</span></div></div>
+  </div>
+</div>
+
+<div class="team-section">
+  <div class="team-header"><span class="team-icon">⚖️</span><div><div class="team-name">4단계 · 민사소송 전략팀</div><div class="team-desc">손해배상·위자료·항소심·준비서면·판결문 분석</div></div><span class="team-count">6명</span></div>
+  <div class="agents-grid">
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t4">1</div><div class="agent-name">민사 손해배상 변호사</div></div><div class="agent-role">불법행위 손해배상 전략</div><div class="agent-tags"><span class="agent-tag">손해배상</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t4">2</div><div class="agent-name">위자료 산정 변호사</div></div><div class="agent-role">위자료 금액 분석·증액 전략</div><div class="agent-tags"><span class="agent-tag">위자료</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t4">3</div><div class="agent-name">항소심 전략 변호사</div></div><div class="agent-role">항소 이유·1심 오류 분석</div><div class="agent-tags"><span class="agent-tag">항소심</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t4">4</div><div class="agent-name">준비서면 작성 변호사</div></div><div class="agent-role">서면 논리·구조 설계</div><div class="agent-tags"><span class="agent-tag">준비서면</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t4">5</div><div class="agent-name">상대 항소이유 반박</div></div><div class="agent-role">상대방 항소 논거 반박</div><div class="agent-tags"><span class="agent-tag">반박</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t4">6</div><div class="agent-name">판결문 분석 변호사</div></div><div class="agent-role">판결 이유·논리 구조 분석</div><div class="agent-tags"><span class="agent-tag">판결문</span></div></div>
+  </div>
+</div>
+
+<div class="team-section">
+  <div class="team-header"><span class="team-icon">👨‍⚖️</span><div><div class="team-name">판사시점분석팀<span class="team-badge">★핵심</span></div><div class="team-desc">감정 배제·재판부 시점으로 분석·객관성 점수화</div></div><span class="team-count">7명</span></div>
+  <div class="agents-grid">
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t5">1</div><div class="agent-name">감정 표현 위험 분석</div></div><div class="agent-role">감정 표현의 법적 위험</div><div class="agent-tags"><span class="agent-tag">감정</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t5">2</div><div class="agent-name">재판부 거부감 분석</div></div><div class="agent-role">판사가 거부감 느낄 요소</div><div class="agent-tags"><span class="agent-tag">거부감</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t5">3</div><div class="agent-name">논리 비약 체크</div></div><div class="agent-role">주장의 논리적 비약 검출</div><div class="agent-tags"><span class="agent-tag">논리</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t5">4</div><div class="agent-name">객관성 점수 분석</div></div><div class="agent-role">0~100점 객관성 수치화</div><div class="agent-tags"><span class="agent-tag">점수</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t5">5</div><div class="agent-name">주장 신빙성 분석</div></div><div class="agent-role">법원 입장에서 신빙성 평가</div><div class="agent-tags"><span class="agent-tag">신빙성</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t5">6</div><div class="agent-name">과장 표현 검수</div></div><div class="agent-role">과도한 표현·과장 탐지</div><div class="agent-tags"><span class="agent-tag">과장</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t5">7</div><div class="agent-name">판사 시점 문장 수정</div></div><div class="agent-role">위험 문장 → 객관적 리라이팅</div><div class="agent-tags"><span class="agent-tag">수정</span></div></div>
+  </div>
+</div>
+
+<div class="team-section">
+  <div class="team-header"><span class="team-icon">📊</span><div><div class="team-name">증거강도분석팀<span class="team-badge">★핵심</span></div><div class="team-desc">100점 점수화 S~D 5등급 · 모든 증거 자료 적용</div></div><span class="team-count">7명</span></div>
+  <div class="agents-grid">
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t6">1</div><div class="agent-name">직접증거 여부 분석</div></div><div class="agent-role">직접/간접 증거 구분 (20점)</div><div class="agent-tags"><span class="agent-tag">직접증거</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t6">2</div><div class="agent-name">원본 여부 분석</div></div><div class="agent-role">원본 신뢰도 1~5등급 (25점)</div><div class="agent-tags"><span class="agent-tag">원본</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t6">3</div><div class="agent-name">편집 가능성 분석</div></div><div class="agent-role">편집·조작 가능성 (20점)</div><div class="agent-tags"><span class="agent-tag">편집</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t6">4</div><div class="agent-name">시간 연속성 분석</div></div><div class="agent-role">타임라인 연속성 (15점)</div><div class="agent-tags"><span class="agent-tag">시간</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t6">5</div><div class="agent-name">진술 일치도 분석</div></div><div class="agent-role">기존 진술과 일치 (10점)</div><div class="agent-tags"><span class="agent-tag">진술</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t6">6</div><div class="agent-name">반박 가능성 분석</div></div><div class="agent-role">상대방 반박 취약점 (10점)</div><div class="agent-tags"><span class="agent-tag">반박</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t6">7</div><div class="agent-name">재판부 설득력 점수</div></div><div class="agent-role">종합 100점 / S~D 등급</div><div class="agent-tags"><span class="agent-tag">S~D등급</span></div></div>
+  </div>
+</div>
+
+<div class="team-section">
+  <div class="team-header"><span class="team-icon">🚧</span><div><div class="team-name">행동위험차단팀<span class="team-badge">★핵심</span></div><div class="team-desc">감정적 행동으로 새로운 불리한 증거 생성 사전 차단</div></div><span class="team-count">7명</span></div>
+  <div class="agents-grid">
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t7">1</div><div class="agent-name">방송 발언 위험 분석</div></div><div class="agent-role">녹화 방송 발언 사전 체크</div><div class="agent-tags"><span class="agent-tag">방송</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t7">2</div><div class="agent-name">라이브 위험 체크</div></div><div class="agent-role">실시간 방송 고위험 요소 감지</div><div class="agent-tags"><span class="agent-tag">라이브</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t7">3</div><div class="agent-name">댓글·DM 위험 체크</div></div><div class="agent-role">댓글 대응의 역고소 위험</div><div class="agent-tags"><span class="agent-tag">댓글</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t7">4</div><div class="agent-name">감정적 업로드 차단</div></div><div class="agent-role">24시간 규칙 적용</div><div class="agent-tags"><span class="agent-tag">24h</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t7">5</div><div class="agent-name">추가 명예훼손 분석</div></div><div class="agent-role">내 행동이 새 명예훼손 될 위험</div><div class="agent-tags"><span class="agent-tag">명예훼손</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t7">6</div><div class="agent-name">상대방 증거화 분석</div></div><div class="agent-role">내 행동이 상대 증거 될 가능성</div><div class="agent-tags"><span class="agent-tag">증거화</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t7">7</div><div class="agent-name">커뮤니티 확산 분석</div></div><div class="agent-role">커뮤니티 확산 위험 패턴</div><div class="agent-tags"><span class="agent-tag">확산</span></div></div>
+  </div>
+</div>
+
+<div class="team-section">
+  <div class="team-header"><span class="team-icon">✍️</span><div><div class="team-name">콘텐츠세탁팀<span class="team-badge">★핵심</span></div><div class="team-desc">위험 표현 → 법적으로 안전한 문장으로 리라이팅</div></div><span class="team-count">7명</span></div>
+  <div class="agents-grid">
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t8">1</div><div class="agent-name">공격적 표현 완화</div></div><div class="agent-role">적대적 표현 → 중립 표현</div><div class="agent-tags"><span class="agent-tag">완화</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t8">2</div><div class="agent-name">단정 표현 수정</div></div><div class="agent-role">"했다" → "했다고 느꼈습니다"</div><div class="agent-tags"><span class="agent-tag">단정</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t8">3</div><div class="agent-name">감정 표현 정리</div></div><div class="agent-role">감정 → 객관적 서술</div><div class="agent-tags"><span class="agent-tag">감정</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t8">4</div><div class="agent-name">안전한 해명문 생성</div></div><div class="agent-role">법적으로 안전한 해명 작성</div><div class="agent-tags"><span class="agent-tag">해명문</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t8">5</div><div class="agent-name">방송 멘트 안전화</div></div><div class="agent-role">방송 위험 표현 → 안전화</div><div class="agent-tags"><span class="agent-tag">방송</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t8">6</div><div class="agent-name">댓글 표현 수정</div></div><div class="agent-role">역고소 위험 댓글 수정</div><div class="agent-tags"><span class="agent-tag">댓글</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t8">7</div><div class="agent-name">SNS 문장 리라이팅</div></div><div class="agent-role">인스타·트위터 게시물 안전화</div><div class="agent-tags"><span class="agent-tag">SNS</span></div></div>
+  </div>
+</div>
+
+<div class="team-section">
+  <div class="team-header"><span class="team-icon">📚</span><div><div class="team-name">법률리서치팀</div><div class="team-desc">판례·뉴스·스트리머 사건·플랫폼 정책 수집 및 위험 패턴 학습</div></div><span class="team-count">6명</span></div>
+  <div class="agents-grid">
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t9">1</div><div class="agent-name">판례 수집 담당</div></div><div class="agent-role">최신 판례 검색·서면 활용</div><div class="agent-tags"><span class="agent-tag">판례</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t9">2</div><div class="agent-name">뉴스 사례 수집</div></div><div class="agent-role">기사 검색·사건 흐름 정리</div><div class="agent-tags"><span class="agent-tag">뉴스</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t9">3</div><div class="agent-name">스트리머 사건 분석</div></div><div class="agent-role">방송 분쟁·라이브 사고 수집</div><div class="agent-tags"><span class="agent-tag">스트리머</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t9">4</div><div class="agent-name">플랫폼 정책 분석</div></div><div class="agent-role">유튜브·틱톡·인스타·샤오홍슈</div><div class="agent-tags"><span class="agent-tag">플랫폼</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t9">5</div><div class="agent-name">실패 사례 분석</div></div><div class="agent-role">왜 실패했는지 원인 분석</div><div class="agent-tags"><span class="agent-tag">실패</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t9">6</div><div class="agent-name">위험 패턴 분류</div></div><div class="agent-role">감정라이브·저격·역고소 패턴</div><div class="agent-tags"><span class="agent-tag">패턴</span></div></div>
+  </div>
+</div>
+
+<div class="team-section">
+  <div class="team-header"><span class="team-icon">👁️</span><div><div class="team-name">온라인 모니터링 센터</div><div class="team-desc">공개 인터넷 감지 → 분류 → 증거보존 → 상황실 연결 자동화</div></div><span class="team-count">7명</span></div>
+  <div class="agents-grid">
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t10">1</div><div class="agent-name">키워드 감지 담당</div></div><div class="agent-role">본명·닉네임·변형 키워드 감지</div><div class="agent-tags"><span class="agent-tag">키워드</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t10">2</div><div class="agent-name">커뮤니티 감지</div></div><div class="agent-role">공개 커뮤니티 게시글·댓글</div><div class="agent-tags"><span class="agent-tag">커뮤니티</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t10">3</div><div class="agent-name">유튜브 감지</div></div><div class="agent-role">영상·댓글·쇼츠·렉카 감지</div><div class="agent-tags"><span class="agent-tag">유튜브</span><span class="agent-tag">렉카</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t10">4</div><div class="agent-name">인스타 감지</div></div><div class="agent-role">공개 게시물·릴스·스토리</div><div class="agent-tags"><span class="agent-tag">인스타</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t10">5</div><div class="agent-name">악플·허위사실 분류</div></div><div class="agent-role">단순의견↔허위사실↔명예훼손</div><div class="agent-tags"><span class="agent-tag">분류</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t10">6</div><div class="agent-name">증거보존 담당</div></div><div class="agent-role">URL·원문·시각·통계 즉시 저장</div><div class="agent-tags"><span class="agent-tag">즉시저장</span></div></div>
+    <div class="agent-card"><div class="agent-top"><div class="agent-num t10">7</div><div class="agent-name">법적대응 연결</div></div><div class="agent-role">위험도별 팀 자동 연결</div><div class="agent-tags"><span class="agent-tag">자동연결</span></div></div>
+  </div>
+</div>
+
+<div class="team-section">
+  <div class="team-header"><span class="team-icon">🤖</span><div><div class="team-name">상황실 업데이터<span class="team-badge">AI 작업공간</span></div><div class="team-desc">대화 내용 분류 → pending → 대표 승인 → 메인 상황실 반영 워크플로우</div></div><span class="team-count">단독 에이전트</span></div>
+  <div class="agents-grid">
+    <div class="agent-card" style="grid-column:1/-1"><div class="agent-top"><div class="agent-num t11">AI</div><div class="agent-name">상황실 업데이터 에이전트</div></div>
+    <div class="agent-role">대화 내용을 8가지로 분류 (활성사건/추천행동/긴급알림/분석결과/위험도변화/검토대기/확정사실/임시메모). pending → approved/hold/rejected 워크플로우. 메인 상황실은 approved 상태만 표시.</div>
+    <div class="agent-tags" style="margin-top:8px"><span class="agent-tag">8분류</span><span class="agent-tag">pending</span><span class="agent-tag">승인워크플로우</span><span class="agent-tag">상태관리</span><span class="agent-tag">출처추적</span><span class="agent-tag">AI신뢰도</span></div></div>
+  </div>
+</div>
+
+</div>
 <script>
-const TEAMS = [
-  {
-    icon:'🚨', name:'긴급 법률상담팀', stage:'1단계',
-    color:'#5a8aff', core: false,
-    desc:'"나 이런 상황인데 어떡해?"에 즉시 답변 · 7단 형식으로 지금 당장 해야 할 것을 알려준다',
-    agents:[
-      { name:'상황판단 변호사', role:'사건이 들어오면 가장 먼저 작동. 법적 성격 분류 및 전체 그림 파악', tag:'SITUATION' },
-      { name:'리스크 분석 변호사', role:'위험 요소 식별 및 최악 시나리오 예측. 사용자가 듣기 싫은 말도 반드시 전달', tag:'RISK' },
-      { name:'즉시대응 코치', role:'지금 당장 해야 할 것 / 하면 안 되는 것을 구체적 행동 단위로 제시', tag:'ACTION' },
-      { name:'감정진정 담당', role:'사용자 감정 상태 진단 및 냉정한 판단 유지 지원. 답변 전체 톤 조율', tag:'CALM' },
-    ]
-  },
-  {
-    icon:'🔍', name:'사건분석·증거정리팀', stage:'2단계',
-    color:'#5acfff', core: false,
-    desc:'판결문·카톡·녹취·전자소송 기록 투입 → 타임라인·쟁점·반박 전략 정리',
-    agents:[
-      { name:'타임라인 정리 변호사', role:'모든 자료에서 날짜 추출 → 시간순 재배열 · 모순·공백 탐지', tag:'TIMELINE' },
-      { name:'쟁점분석 변호사', role:'인정된 사실 vs 다투는 사실 분리 · 쟁점별 유불리 평가', tag:'ISSUE' },
-      { name:'증거분류 담당', role:'증거 전수 목록화 · 효력 평가 · 빠진 증거 체크리스트 제공', tag:'EVIDENCE' },
-      { name:'상대주장 반박 담당', role:'상대방 주장 전수 추출 · 반박 논리 설계 · 내부 모순 탐지', tag:'REBUTTAL' },
-      { name:'판례검색 담당', role:'유리한 판례 발굴 및 서면 인용 형태로 정리 · 불리한 판례 미리 파악', tag:'PRECEDENT' },
-    ]
-  },
-  {
-    icon:'🛡️', name:'콘텐츠·자료 법률검수팀', stage:'3단계',
-    color:'#cf5aff', core: false,
-    desc:'말 한마디, 자막 한 줄, 썸네일 하나가 공격 포인트 · 올리기 전에 10개 항목 전수 검수',
-    agents:[
-      { name:'명예훼손 검수 변호사', role:'특정 가능성 · 사실·의견 구분 · 허위 표현 · 증거 없는 단정 검수', tag:'DEFAMATION' },
-      { name:'모욕·비방 표현 검수 변호사', role:'욕설·비하·조롱·비꼬는 표현 · 스트리머 즉흥 발언 패턴 분석', tag:'INSULT' },
-      { name:'개인정보·초상권 검수 변호사', role:'실명·얼굴·닉네임·사생활 · 채널별 초상권 체크리스트', tag:'PRIVACY' },
-      { name:'저작권 검수 변호사', role:'음원·영상·이미지 저작권 · 플랫폼별 정책 · 댄스 커버 특화', tag:'COPYRIGHT' },
-      { name:'광고·협찬표기 검수 담당', role:'공시 의무 발생 조건 · 플랫폼별 표시 방법 · 과장광고 위험 표현', tag:'AD' },
-      { name:'방송자막 리스크 검수 담당', role:'자막·편집·효과음·썸네일·제목 · 라이브 즉흥 발언 사후 편집', tag:'CAPTION' },
-      { name:'증거화 가능성 검토 담당', role:'소송 자료화 시뮬레이션 · 최종 올려도 됨/수정 후/금지 판단', tag:'EVIDENCE RISK' },
-    ]
-  },
-  {
-    icon:'⚖️', name:'민사소송 전략팀', stage:'4단계',
-    color:'#ff9a5a', core: false,
-    desc:'손해배상·위자료·항소심·준비서면 전담 · 8가지 핵심 쟁점 분석 후 소송 전략 설계',
-    agents:[
-      { name:'민사 손해배상 변호사', role:'불법행위 4요건 분석 · 손해액 산정 · 과실상계 시뮬레이션', tag:'DAMAGES' },
-      { name:'위자료 산정 분석 변호사', role:'위자료 증감 요소 분석 · 공탁금 영향 · 시나리오별 금액 예측', tag:'CONSOLATION' },
-      { name:'항소심 전략 변호사', role:'사실오인·법리오해·새증거 항소 이유 설계 · 뒤집힐 가능성 진단', tag:'APPEAL' },
-      { name:'준비서면 작성 변호사', role:'서면 구조 설계 및 초안 작성 · 주장-증거 연결 최적화', tag:'BRIEF' },
-      { name:'상대 항소이유 반박 변호사', role:'상대방 서면 전수 분석 · 주장별 반박 논리 · 탄핵 포인트 설계', tag:'REBUTTAL' },
-      { name:'판결문 분석 변호사', role:'인정·배척 사실 분리 · 항소 근거 추출 · 패소 이유 분석', tag:'VERDICT' },
-    ]
-  },
-  {
-    icon:'👨‍⚖️', name:'판사시점분석팀', stage:'핵심팀 ★',
-    color:'#ffda5a', core: true,
-    desc:'감정·억울함 중심이 아닌 실제 재판부 관점으로 분석 · 객관성 점수(0~100) + 문장 수정',
-    agents:[
-      { name:'감정 표현 위험 분석', role:'감정 과잉 표현 탐지 · 감정→법리 변환 가이드 제공', tag:'EMOTION' },
-      { name:'재판부 거부감 요소 분석', role:'일방성·인격공격·언론압박 등 7가지 거부감 패턴 탐지', tag:'REJECTION' },
-      { name:'논리 비약 체크', role:'주장-증거 연결 · 추측 사실 표현 · 논리 흐름 5가지 문제 유형', tag:'LOGIC' },
-      { name:'객관성 점수 분석', role:'100점 감점 방식 · 항목별 점수 산출 · 등급 판정', tag:'OBJECTIVITY' },
-      { name:'주장 신빙성 분석', role:'진술 일관성 · 과장 의혹 · 자기모순 · 증거 공백 설명 분석', tag:'CREDIBILITY' },
-      { name:'과장 표현 검수', role:'극단적 수량 표현 · 손해액 과장 · 방송 특유 과장 패턴 탐지', tag:'EXAGGERATION' },
-      { name:'판사 시점 문장 수정', role:'원문→수정문 대조 출력 · 서면·방송·해명문 유형별 수정 원칙', tag:'REWRITE' },
-    ]
-  },
-  {
-    icon:'📊', name:'증거강도분석팀', stage:'핵심팀 ★',
-    color:'#5affaa', core: true,
-    desc:'모든 증거를 100점 척도로 수치화 · S~D 5등급 부여 + 등급별 사용 전략 제시',
-    agents:[
-      { name:'직접증거 여부 분석', role:'직접/간접/정황증거 분류 · 증거 유형별 직접성 평가', tag:'DIRECT' },
-      { name:'원본 여부 분석', role:'원본 1~5등급 분류 · 자료별 원본 확보 방법 · 포위 전략 설계', tag:'ORIGINAL' },
-      { name:'편집 가능성 분석', role:'편집 의혹 위험도 분류 · 차단 방법 · 상대방 증거 탄핵 전략', tag:'EDIT' },
-      { name:'시간 연속성 분석', role:'날짜 추출 · 공백 탐지 · 증거 간 시간 정합성 체크', tag:'TIMELINE' },
-      { name:'진술 일치도 분석', role:'서면·방송·법정 진술 교차 검증 · 불일치 위험도 평가', tag:'CONSISTENCY' },
-      { name:'반박 가능성 분석', role:'증거 유형별 상대방 예상 공격 시뮬레이션 · 방어 준비 전략', tag:'REBUTTAL' },
-      { name:'재판부 설득력 점수화', role:'6개 항목 100점 산정 · S/A/B/C/D 등급 · 등급별 사용 전략', tag:'SCORE' },
-    ]
-  },
-  {
-    icon:'🚫', name:'행동위험차단팀', stage:'핵심팀 ★',
-    color:'#ff5a5a', core: true,
-    desc:'감정적 행동으로 새로운 불리한 증거를 만들지 않도록 차단 · 스트리머·유튜버·BJ 특화',
-    agents:[
-      { name:'방송 발언 위험 분석', role:'녹화 영상 발언 위험 3등급 분류 · 분쟁 중 방송 가이드라인', tag:'BROADCAST' },
-      { name:'라이브 진행 위험 체크', role:'라이브 금지 상황 체크리스트 · 위험 채팅 패턴 7가지', tag:'LIVE' },
-      { name:'댓글·DM 위험 체크', role:'전송 금지 메시지 유형 · 발송 전 5문항 자가체크', tag:'COMMENT' },
-      { name:'감정적 업로드 차단', role:'24시간 규칙 강제 적용 · 해명 영상 특별 주의사항', tag:'UPLOAD' },
-      { name:'추가 명예훼손 위험 분석', role:'방송·해명·커뮤니티·팬덤 5가지 추가 명예훼손 경로 차단', tag:'DEFAMATION' },
-      { name:'상대방 증거화 가능성 분석', role:'민사·형사·반소 시나리오별 상대방 활용 시뮬레이션', tag:'EVIDENCE' },
-      { name:'커뮤니티 확산 위험 분석', role:'확산 3단계별 대응 전략 · 팬덤 위험 관리 · 언론 대응', tag:'COMMUNITY' },
-    ]
-  },
-  {
-    icon:'✍️', name:'콘텐츠세탁팀', stage:'핵심팀 ★',
-    color:'#ff5acf', core: true,
-    desc:'위험한 표현을 법적으로 안전한 문장으로 리라이팅 · 같은 말을 하되 공격 빌미 제거',
-    agents:[
-      { name:'공격적 표현 완화', role:'공격적 표현→경험 중심 전환 공식 · 삭제 권고 표현 목록', tag:'AGGRESSIVE' },
-      { name:'단정 표현 수정', role:'단정→의견 표현 전환 공식 · 사실 주장 vs 의견 표현 구분 기준', tag:'DEFINITIVE' },
-      { name:'감정 표현 정리', role:'제거/보존/완화 3분류 처리 · 위자료 목적 감정 서술 보존', tag:'EMOTION' },
-      { name:'안전한 해명문 생성', role:'해명문 3유형 구조 설계 · 인정 범위 최소화 · 금지 문구 목록', tag:'STATEMENT' },
-      { name:'방송 멘트 안전화', role:'분쟁 관련 채팅 대응 멘트 · 채널별 톤 가이드', tag:'BROADCAST' },
-      { name:'댓글 표현 수정', role:'악플 대응 원칙 · 커뮤니티 글 금지 내용 · 발송 전 체크', tag:'COMMENT' },
-      { name:'SNS 문장 리라이팅', role:'플랫폼별 리라이팅 원칙 · 올리기 전 5문항 체크', tag:'SNS' },
-    ]
-  },
-];
-
-const content = document.getElementById('content');
-TEAMS.forEach(team => {
-  const section = document.createElement('div');
-  section.className = 'team-section';
-  section.innerHTML = `
-    <div class="team-header">
-      <div class="team-icon" style="background:${team.color}18;border:2px solid ${team.color}33">${team.icon}</div>
-      <div class="team-info">
-        <div class="team-stage" style="color:${team.color}">${team.stage}</div>
-        <div class="team-name">${team.name}${team.core ? ' <span style="font-size:14px;color:#ffda5a">★</span>' : ''}</div>
-        <div class="team-desc">${team.desc}</div>
-      </div>
-      <div class="team-count-badge" style="background:${team.color}15;color:${team.color};border:2px solid ${team.color}33">
-        ${team.agents.length}명
-      </div>
-    </div>
-    <div class="agents-grid">
-      ${team.agents.map((a, i) => `
-        <div class="agent-card" style="--team-color:${team.color}">
-          <div class="agent-num-badge">${i+1}</div>
-          <div class="agent-name">${a.name}</div>
-          <div class="agent-role">${a.role}</div>
-          <div class="agent-tag">${a.tag}</div>
-        </div>
-      `).join('')}
-    </div>
-  `;
-  content.appendChild(section);
-});
+setInterval(()=>{ document.getElementById('clk').textContent = new Date().toLocaleTimeString('ko-KR',{hour12:false}); },1000);
 </script>
 </body>
 </html>

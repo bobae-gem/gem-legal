@@ -4,9 +4,25 @@
 config.json
 monitoring_system/config.json
 
+# 증거보존 파일 — 로컬에만 보관 (용량·보안)
+monitoring_system/evidence_storage/youtube/
+monitoring_system/evidence_storage/news/
+monitoring_system/evidence_storage/instagram/
+monitoring_system/evidence_storage/community/
+monitoring_system/evidence_storage/shorts/
+# 단, __init__.py는 추적 유지
+!monitoring_system/evidence_storage/__init__.py
+
+# 모니터링 수집 원본 (69건 로컬 데이터)
+raw_monitoring.json
+monitoring_classifications.json
+
 # 서버 런타임
 __pycache__/
 *.pyc
+monitoring_system/__pycache__/
+monitoring_system/monitoring/__pycache__/
+monitoring_system/ai_analysis/__pycache__/
 
 # 로컬 임시 파일
 *.tmp

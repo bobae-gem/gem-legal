@@ -209,8 +209,9 @@ a.nl:hover{color:var(--txt2);background:var(--sur2)}a.nl.on{color:var(--acc);bac
 setInterval(()=>{ document.getElementById('clk').textContent = new Date().toLocaleTimeString('ko-KR',{hour12:false}); },1000);
 
 let items = [];
-let classifications = JSON.parse(localStorage.getItem('mon_classifications')||'{}');
+let classifications = {};
 let currentFilter = 'all';
+let serverConnected = false;
 
 const STATUS_LABEL = {
   unclassified:          '❓ 미분류',
@@ -230,7 +231,19 @@ const STATUS_CSS = {
 };
 const PLAT_CSS = {유튜브:'pl-yt',인스타그램:'pl-ig',커뮤니티:'pl-cm',뉴스:'pl-nw'};
 
-function saveClassifications(){ localStorage.setItem('mon_classifications', JSON.stringify(classifications)); }
+async function saveClassifications(){
+  // 서버 우선 저장, 실패 시 localStorage 폴백
+  localStorage.setItem('mon_classifications', JSON.stringify(classifications));
+  if(serverConnected){
+    try {
+      await fetch(API+'/classifications',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({classifications})
+      });
+    } catch(e){ console.warn('분류 서버 저장 실패, localStorage만 저장됨'); }
+  }
+}
 
 function getStatus(item){
   return classifications[item.id] || item.class_status || 'unclassified';
@@ -240,13 +253,29 @@ const API = 'http://localhost:8080/api';
 
 async function loadItems(){
   try {
-    const r = await fetch(API+'/monitoring');
-    if(!r.ok) throw new Error();
-    const data = await r.json();
-    items = data.items || [];
+    // 모니터링 데이터 로드
+    const [mRes, cRes] = await Promise.all([
+      fetch(API+'/monitoring'),
+      fetch(API+'/classifications')
+    ]);
+    if(!mRes.ok) throw new Error();
+    const mData = await mRes.json();
+    items = mData.items || [];
+    // 분류 데이터 로드 (서버 우선, 없으면 localStorage)
+    if(cRes.ok){
+      const cData = await cRes.json();
+      classifications = cData.classifications || {};
+      // localStorage도 동기화
+      localStorage.setItem('mon_classifications', JSON.stringify(classifications));
+    } else {
+      classifications = JSON.parse(localStorage.getItem('mon_classifications')||'{}');
+    }
+    serverConnected = true;
   } catch(e) {
-    // 폴백: localStorage
+    // 서버 없으면 localStorage 폴백
     items = JSON.parse(localStorage.getItem('monitoring_v1')||'[]');
+    classifications = JSON.parse(localStorage.getItem('mon_classifications')||'{}');
+    serverConnected = false;
   }
   // 중복 제거 (같은 URL)
   const seen = new Set();
