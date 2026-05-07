@@ -13,7 +13,7 @@ nav{display:flex;align-items:center;padding:0 24px;height:52px;background:var(--
 a.nl{text-decoration:none;color:var(--txt3);font-size:12px;font-weight:700;padding:5px 10px;border-radius:7px;transition:all .15s;border:1px solid transparent;white-space:nowrap}
 a.nl:hover{color:var(--txt2);background:var(--sur2)}a.nl.on{color:var(--acc);background:#4d7aff12;border-color:#4d7aff28}
 .nr{margin-left:auto;white-space:nowrap;font-size:12px;color:var(--txt3);padding-left:12px}
-.page{display:grid;grid-template-columns:1fr 1fr;gap:0;height:calc(100vh - 52px)}
+.page{display:grid;grid-template-columns:1fr 1fr;gap:0;height:calc(100vh - 88px)}
 .left-panel{border-right:1px solid var(--bdr);display:flex;flex-direction:column;overflow:hidden}
 .right-panel{display:flex;flex-direction:column;overflow:hidden}
 .ph{padding:14px 20px;border-bottom:1px solid var(--bdr2);display:flex;align-items:center;justify-content:space-between;background:var(--sur)}
@@ -89,6 +89,17 @@ a.nl:hover{color:var(--txt2);background:var(--sur2)}a.nl.on{color:var(--acc);bac
   <a href="대시보드.html" class="nl">📊 시스템구조</a>
 <div class="nr" id="clk">--:--:--</div>
 </nav>
+<div class="subnav">
+  <span class="sn-flow">
+    <a href="스케줄러.html" class="snl">⚙️ 스케줄러</a>
+    <span class="sn-arr">→</span>
+    <a href="모니터링.html" class="snl">👁️ 모니터링</a>
+    <span class="sn-arr">→</span>
+    <a href="분류실.html" class="snl">📋 분류실</a>
+    <span class="sn-arr">→</span>
+    <a href="증거보존.html" class="snl">📦 증거보존</a>
+  </span>
+</div>
 
 <div class="page">
   <!-- 왼쪽: 입력 -->

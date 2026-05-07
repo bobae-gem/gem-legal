@@ -18,7 +18,7 @@ a.nl:hover{color:var(--txt2);background:var(--sur2)}a.nl.on{color:var(--acc);bac
 .snl:hover{background:#ff3a3a20}.snl.on{background:#ff3a3a22;border-color:#ff3a3a40}
 .sn-arr{color:#ff3a3a55;font-size:11px}.sn-flow{display:flex;align-items:center;gap:6px}
 .sn-desc{font-size:11px;color:#424f68;font-weight:600;margin-left:8px}
-.layout{display:grid;grid-template-columns:280px 1fr;height:calc(100vh - 52px)}
+.layout{display:grid;grid-template-columns:280px 1fr;height:calc(100vh - 88px)}
 .sidebar{background:var(--sur);border-right:1px solid var(--bdr);display:flex;flex-direction:column;overflow:hidden}
 .sb-head{padding:13px 15px 11px;border-bottom:1px solid var(--bdr2);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
 .sb-title{font-size:14px;font-weight:900}
@@ -143,6 +143,17 @@ a.nl:hover{color:var(--txt2);background:var(--sur2)}a.nl.on{color:var(--acc);bac
   <a href="대시보드.html" class="nl">📊 시스템구조</a>
 <div class="nr" id="clk">--:--:--</div>
 </nav>
+<div class="subnav">
+  <span class="sn-flow">
+    <a href="스케줄러.html" class="snl">⚙️ 스케줄러</a>
+    <span class="sn-arr">→</span>
+    <a href="모니터링.html" class="snl">👁️ 모니터링</a>
+    <span class="sn-arr">→</span>
+    <a href="분류실.html" class="snl">📋 분류실</a>
+    <span class="sn-arr">→</span>
+    <a href="증거보존.html" class="snl">📦 증거보존</a>
+  </span>
+</div>
 
 <div class="layout">
   <div class="sidebar">
