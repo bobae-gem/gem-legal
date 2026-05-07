@@ -232,8 +232,9 @@ const STATUS_CSS = {
 const PLAT_CSS = {유튜브:'pl-yt',인스타그램:'pl-ig',커뮤니티:'pl-cm',뉴스:'pl-nw'};
 
 async function saveClassifications(){
-  // 서버 우선 저장, 실패 시 localStorage 폴백
   localStorage.setItem('mon_classifications', JSON.stringify(classifications));
+  // 모니터링.html 탭에 즉시 반영 신호 (storage 이벤트로 cross-tab 동기화)
+  localStorage.setItem('cls_updated', Date.now().toString());
   if(serverConnected){
     try {
       await fetch(API+'/classifications',{

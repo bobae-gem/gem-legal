@@ -579,6 +579,25 @@ document.getElementById('kw-inp').addEventListener('keydown',e=>e.stopPropagatio
 renderKeywords();
 loadFromServer();
 setInterval(loadFromServer, 30000);
+
+// [즉시 반영] 분류실에서 분류 시 storage 이벤트로 즉시 동기화
+window.addEventListener('storage', e => {
+  if(e.key === 'cls_updated' || e.key === 'mon_classifications'){
+    // 다른 탭(분류실)에서 분류가 변경됨 → 즉시 분류 데이터만 재로드
+    fetch(API+'/classifications')
+      .then(r=>r.json())
+      .then(d=>{ classifications = d.classifications||{}; renderList(); updateStats(); })
+      .catch(()=>{
+        classifications = JSON.parse(localStorage.getItem('mon_classifications')||'{}');
+        renderList(); updateStats();
+      });
+  }
+});
+
+// [즉시 반영] 탭 전환 후 돌아올 때도 즉시 재로드
+document.addEventListener('visibilitychange', () => {
+  if(document.visibilityState === 'visible') loadFromServer();
+});
 </script>
 </body>
 </html>

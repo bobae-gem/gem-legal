@@ -344,7 +344,11 @@ function renderNews(){
   if(!data.news.length){ el.innerHTML='<div class="empty"><div class="empty-ico">📰</div>수집된 뉴스가 없습니다</div>'; return; }
   el.innerHTML = data.news.map((n,i)=>`
     <div class="card">
-      <div class="card-top"><span class="card-tag ct-news">뉴스</span><span class="card-date">${n.date||''}</span></div>
+      <div class="card-top">
+        <span class="card-tag ct-news">뉴스</span>
+        ${n.caseLink?`<span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;background:#4d7aff12;color:#7a9fff;border:1px solid #4d7aff28">📁 ${n.caseLink}</span>`:''}
+        <span class="card-date">${n.date||''}</span>
+      </div>
       <div class="card-title">${n.title}</div>
       <div class="card-body">${n.summary}</div>
       ${n.patterns&&n.patterns.length?`<div class="card-patterns">${n.patterns.map(p=>`<span class="pattern-tag">${p}</span>`).join('')}</div>`:''}
@@ -359,7 +363,12 @@ function renderStreamer(){
   if(!data.streamer.length){ el.innerHTML='<div class="empty"><div class="empty-ico">📡</div>수집된 스트리머 사건이 없습니다</div>'; return; }
   el.innerHTML = data.streamer.map((s,i)=>`
     <div class="card">
-      <div class="card-top"><span class="card-tag ct-streamer">${s.ctype||'스트리머 사건'}</span><span style="font-size:10px;color:var(--txt3)">${s.platform||''}</span><span class="card-date">${s.date||''}</span></div>
+      <div class="card-top">
+        <span class="card-tag ct-streamer">${s.ctype||'스트리머 사건'}</span>
+        <span style="font-size:10px;color:var(--txt3)">${s.platform||''}</span>
+        ${s.caseLink?`<span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;background:#4d7aff12;color:#7a9fff;border:1px solid #4d7aff28">📁 ${s.caseLink}</span>`:''}
+        <span class="card-date">${s.date||''}</span>
+      </div>
       <div class="card-title">${s.title}</div>
       ${s.behavior?`<div class="card-field"><div class="cf-lbl">문제 행동</div><div class="cf-val">${s.behavior}</div></div>`:''}
       ${s.why?`<div class="card-field"><div class="cf-lbl">왜 문제됐는가</div><div class="cf-val">${s.why}</div></div>`:''}
@@ -460,7 +469,8 @@ const MODAL_FIELDS = {
     <div class="f"><label>왜 문제됐는가</label><textarea id="f-why" placeholder="법적 판단 이유..." style="min-height:50px"></textarea></div>
     <div class="f"><label>결과</label><input id="f-result" placeholder="예: 민사 위자료 인정, 형사 고소"></div>
     <div class="f"><label>위험 패턴 (쉼표 구분)</label><input id="f-patterns" placeholder="감정 라이브, 반복 언급..."></div>
-    <div class="f"><label>교훈</label><textarea id="f-lesson" placeholder="이 사례에서 배울 점..." style="min-height:50px"></textarea></div>`,
+    <div class="f"><label>교훈</label><textarea id="f-lesson" placeholder="이 사례에서 배울 점..." style="min-height:50px"></textarea></div>
+    \${getCaseLinkField()}`,
   platform:`<div class="f"><label>플랫폼</label><select id="f-platform"><option>유튜브</option><option>틱톡</option><option>인스타그램</option><option>샤오홍슈</option><option>기타</option></select></div>
     <div class="f"><label>변경 내용 제목</label><input id="f-title" placeholder="정책 변경 내용"></div>
     <div class="f"><label>상세 내용</label><textarea id="f-content" placeholder="정책 변경 상세..."></textarea></div>
@@ -503,7 +513,7 @@ function saveItem(){
     data.news.unshift({title:gv('f-title'),date:gv('f-date')||d,summary:gv('f-summary'),patterns:gpat('f-patterns'),url:gv('f-url'),caseLink});
   } else if(currentModal==='streamer'){
     if(!gv('f-title')){ alert('내용을 입력하세요'); return; }
-    data.streamer.unshift({ctype:gv('f-ctype'),platform:gv('f-platform'),title:gv('f-title'),behavior:gv('f-behavior'),why:gv('f-why'),result:gv('f-result'),patterns:gpat('f-patterns'),lesson:gv('f-lesson'),date:d});
+    data.streamer.unshift({ctype:gv('f-ctype'),platform:gv('f-platform'),title:gv('f-title'),behavior:gv('f-behavior'),why:gv('f-why'),result:gv('f-result'),patterns:gpat('f-patterns'),lesson:gv('f-lesson'),date:d,caseLink});
   } else if(currentModal==='platform'){
     if(!gv('f-title')){ alert('제목을 입력하세요'); return; }
     if(!data.platform) data.platform=[];
