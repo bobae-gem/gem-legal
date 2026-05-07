@@ -46,7 +46,31 @@ a.nl:hover{color:var(--txt2);background:var(--sur2)}a.nl.on{color:var(--acc);bac
 .f-cnt{font-size:10px;font-weight:800;padding:1px 6px;border-radius:6px;background:var(--sur3);color:var(--txt3)}
 .f-cnt.has{background:#ff3a3a18;color:#ff6666}
 
-.rule-sec{padding:10px 12px;flex:1}
+.rule-sec{padding:10px 12px}
+
+/* 스케줄러 미니 패널 */
+.sched-sec{padding:10px 12px;border-bottom:1px solid var(--bdr2)}
+.sched-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.sched-lbl{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--txt3)}
+.sched-status{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:800}
+.sc-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.sc-run{background:var(--grn);box-shadow:0 0 5px var(--grn);animation:blink 1.5s infinite}
+.sc-stop{background:var(--txt3)}
+.sc-pend{background:var(--yel);animation:blink 1s infinite}
+.sc-once{background:var(--tel);animation:blink .8s infinite}
+.sched-info{font-size:10px;color:var(--txt3);margin-bottom:8px;line-height:1.6}
+.sched-btns{display:flex;gap:5px;flex-wrap:wrap}
+.sb-btn{padding:5px 10px;border-radius:6px;font-size:10px;font-weight:800;cursor:pointer;border:1px solid;transition:all .15s;white-space:nowrap}
+.sb-start{color:var(--grn);border-color:#22ffaa35;background:#22ffaa0a}.sb-start:hover{background:#22ffaa18}
+.sb-stop{color:var(--red);border-color:#ff3a3a35;background:#ff3a3a0a}.sb-stop:hover{background:#ff3a3a18}
+.sb-once{color:var(--tel);border-color:#22ccff35;background:#22ccff0a}.sb-once:hover{background:#22ccff18}
+.sb-btn:disabled{opacity:.35;cursor:not-allowed}
+/* 승인 미니 패널 */
+.sched-approval{background:#ffcc2210;border:1px solid #ffcc2230;border-radius:8px;padding:8px 10px;margin-top:6px;display:none}
+.sa-txt{font-size:11px;color:var(--yel);margin-bottom:6px;line-height:1.5}
+.sa-btns{display:flex;gap:5px}
+.sa-approve{padding:4px 12px;border-radius:6px;font-size:10px;font-weight:900;cursor:pointer;background:linear-gradient(135deg,var(--grn),var(--tel));color:#050709;border:none}
+.sa-cancel{padding:4px 9px;border-radius:6px;font-size:10px;font-weight:700;cursor:pointer;background:var(--sur2);color:var(--txt3);border:1px solid var(--bdr)}
 .rule-lbl{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--txt3);margin-bottom:7px}
 .rule-item{font-size:11px;color:var(--txt3);padding:3px 0;display:flex;align-items:center;gap:5px;line-height:1.4}
 
@@ -165,6 +189,31 @@ a.nl:hover{color:var(--txt2);background:var(--sur2)}a.nl.on{color:var(--acc);bac
     <div class="sb-head">
       <div class="sb-title-main">👁️ 온라인 모니터링 센터</div>
       <div class="sb-sub">공개 게시물만 대상 · 증거보존 우선</div>
+    </div>
+
+    <!-- 스케줄러 미니 패널 -->
+    <div class="sched-sec">
+      <div class="sched-head">
+        <div class="sched-lbl">스케줄러</div>
+        <div class="sched-status" id="mini-status">
+          <div class="sc-dot sc-stop" id="mini-dot"></div>
+          <span id="mini-status-txt">로딩 중</span>
+        </div>
+      </div>
+      <div class="sched-info" id="mini-info">— / —</div>
+      <div class="sched-btns">
+        <button class="sb-btn sb-start" id="mini-start" onclick="schedAction('start')">▶ 켜기</button>
+        <button class="sb-btn sb-stop"  id="mini-stop"  onclick="schedAction('stop')" disabled>■ 끄기</button>
+        <button class="sb-btn sb-once"  id="mini-once"  onclick="schedAction('run_once')">⚡ 즉시</button>
+      </div>
+      <!-- 승인 미니 패널 -->
+      <div class="sched-approval" id="mini-approval">
+        <div class="sa-txt" id="mini-approval-txt">승인이 필요합니다</div>
+        <div class="sa-btns">
+          <button class="sa-approve" onclick="schedApprove()">✓ 승인</button>
+          <button class="sa-cancel"  onclick="schedCancel()">취소</button>
+        </div>
+      </div>
     </div>
 
     <!-- 감지 키워드 관리 -->
@@ -580,6 +629,95 @@ document.getElementById('kw-inp').addEventListener('keydown',e=>e.stopPropagatio
 renderKeywords();
 loadFromServer();
 setInterval(loadFromServer, 30000);
+
+// ── 스케줄러 미니 패널 ──
+let _schedPending = null;
+
+const SCHED_DOT = {running:'sc-run',stopped:'sc-stop',pending:'sc-pend',running_once:'sc-once'};
+const SCHED_TXT = {running:'실행 중',stopped:'중지',pending:'승인 대기',running_once:'1회 실행 중'};
+const SCHED_ACTION_LBL = {start:'켜기',stop:'끄기',run_once:'즉시 실행'};
+
+async function loadSchedStatus(){
+  try {
+    const r = await fetch(API+'/scheduler');
+    if(!r.ok) return;
+    const d = await r.json();
+    renderSchedMini(d);
+  } catch(e){ /* 서버 꺼져있으면 패널 숨김 */ }
+}
+
+function renderSchedMini(d){
+  const st = d.status || 'stopped';
+  // 닷 + 텍스트
+  document.getElementById('mini-dot').className = `sc-dot ${SCHED_DOT[st]||'sc-stop'}`;
+  document.getElementById('mini-status-txt').textContent = SCHED_TXT[st] || st;
+  // 정보
+  const last = d.last_run ? d.last_run.slice(5,16) : '—';
+  const next = d.next_run ? d.next_run.slice(5,16) : '—';
+  document.getElementById('mini-info').textContent = `마지막: ${last}   다음: ${next}`;
+  // 버튼
+  const isRun = st === 'running' || st === 'running_once';
+  document.getElementById('mini-start').disabled = isRun;
+  document.getElementById('mini-stop').disabled  = !isRun;
+  document.getElementById('mini-once').disabled  = st === 'running_once';
+  // pending
+  if(d.pending_action){
+    _schedPending = d.pending_action;
+    document.getElementById('mini-approval-txt').textContent =
+      `"${SCHED_ACTION_LBL[d.pending_action]||d.pending_action}" — 승인하시겠습니까?`;
+    document.getElementById('mini-approval').style.display = 'block';
+  } else {
+    _schedPending = null;
+    document.getElementById('mini-approval').style.display = 'none';
+  }
+}
+
+async function schedAction(action){
+  try {
+    const r = await fetch(API+'/scheduler/action',{
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({action, approved:false})
+    });
+    const d = await r.json();
+    if(d.status === 'pending'){
+      _schedPending = action;
+      document.getElementById('mini-approval-txt').textContent =
+        `"${SCHED_ACTION_LBL[action]||action}" — 승인하시겠습니까?`;
+      document.getElementById('mini-approval').style.display = 'block';
+    }
+    await loadSchedStatus();
+  } catch(e){ alert('서버 연결 실패 — python server.py 실행 후 재시도'); }
+}
+
+async function schedApprove(){
+  if(!_schedPending) return;
+  try {
+    const r = await fetch(API+'/scheduler/action',{
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({action:_schedPending, approved:true, note:'모니터링 페이지에서 승인'})
+    });
+    const d = await r.json();
+    if(!d.ok) alert(`실행 실패: ${d.error||'오류'}`);
+    document.getElementById('mini-approval').style.display = 'none';
+    _schedPending = null;
+    await loadSchedStatus();
+  } catch(e){ alert('서버 오류'); }
+}
+
+async function schedCancel(){
+  try {
+    await fetch(API+'/scheduler/action',{
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({action:'cancel_pending', approved:true})
+    });
+  } catch(e){}
+  document.getElementById('mini-approval').style.display = 'none';
+  _schedPending = null;
+  await loadSchedStatus();
+}
+
+loadSchedStatus();
+setInterval(loadSchedStatus, 10000);
 
 // [즉시 반영] 분류실에서 분류 시 storage 이벤트로 즉시 동기화
 window.addEventListener('storage', e => {
