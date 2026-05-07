@@ -10,8 +10,8 @@
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Malgun Gothic',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:13px}
 nav{display:flex;align-items:center;padding:0 20px;height:52px;background:var(--surface);border-bottom:1px solid var(--border);gap:3px;position:sticky;top:0;z-index:100;overflow-x:auto}
 .nav-logo{font-size:14px;font-weight:900;color:var(--text);margin-right:12px;white-space:nowrap;text-decoration:none;flex-shrink:0}.nav-logo:hover{opacity:.8}.nav-logo span{color:var(--accent)}
-.nav-link{text-decoration:none;color:var(--text3);font-size:12px;font-weight:700;padding:5px 10px;border-radius:7px;transition:all .15s;border:1px solid transparent;white-space:nowrap;flex-shrink:0}
-.nav-link:hover{color:var(--text2);background:var(--surface2)}.nav-link.active{color:var(--accent);background:#5a8aff12;border-color:#5a8aff28}
+.nl{text-decoration:none;color:var(--text3);font-size:12px;font-weight:700;padding:5px 10px;border-radius:7px;transition:all .15s;border:1px solid transparent;white-space:nowrap;flex-shrink:0}
+.nl:hover{color:var(--text2);background:var(--surface2)}.nl.on{color:var(--accent);background:#5a8aff12;border-color:#5a8aff28}
 .nav-right{margin-left:auto;white-space:nowrap;font-size:12px;color:var(--text3);padding-left:10px}
 .subnav{display:flex;align-items:center;gap:10px;padding:0 20px;height:36px;background:#0a0c12;border-bottom:1px solid #ff3a3a22;flex-shrink:0;position:sticky;top:52px;z-index:99}
 .snl{text-decoration:none;color:#ff6666;font-size:12px;font-weight:800;padding:4px 12px;border-radius:6px;border:1px solid #ff3a3a28;background:#ff3a3a12;white-space:nowrap;transition:all .15s}
@@ -49,15 +49,15 @@ nav{display:flex;align-items:center;padding:0 20px;height:52px;background:var(--
 <nav>
   <a href="상담실.html" class="nlogo">보배 <span>법률전략실</span></a>
   <a href="상담실.html" class="nav-logo">보배 <span>법률전략실</span></a>
-  <a href="상황실.html" class="nav-link">🔴 메인 상황실</a>
-  <a href="상담실.html" class="nav-link">💬 법률 상담실</a>
-  <a href="업데이터.html" class="nav-link">🤖 상황실 업데이터</a>
-  <a href="사건.html" class="nav-link">📁 사건 관리실</a>
-  <a href="검수실.html" class="nav-link">🛡️ 콘텐츠 검수실</a>
-  <a href="리서치.html" class="nav-link">🔍 리서치 센터</a>
-  <a href="메모리.html" class="nav-link">🧠 메모리 관리실</a>
-  <a href="구성원.html" class="nav-link active">👥 구성원</a>
-  <a href="대시보드.html" class="nav-link">📊 시스템구조</a>
+  <a href="상황실.html" class="nl">🔴 메인 상황실</a>
+  <a href="상담실.html" class="nl">💬 법률 상담실</a>
+  <a href="업데이터.html" class="nl">🤖 상황실 업데이터</a>
+  <a href="사건.html" class="nl">📁 사건 관리실</a>
+  <a href="검수실.html" class="nl">🛡️ 콘텐츠 검수실</a>
+  <a href="리서치.html" class="nl">🔍 리서치 센터</a>
+  <a href="메모리.html" class="nl">🧠 메모리 관리실</a>
+  <a href="구성원.html" class="nl on">👥 구성원</a>
+  <a href="대시보드.html" class="nl">📊 시스템구조</a>
   <div class="nav-right" id="clk">--:--:--</div>
 </nav>
 <div class="subnav">
