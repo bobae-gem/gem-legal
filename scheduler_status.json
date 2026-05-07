@@ -1,0 +1,10 @@
+{
+  "status": "stopped",
+  "pid": null,
+  "last_run": null,
+  "next_run": null,
+  "auto_start_registered": false,
+  "pending_action": null,
+  "pending_at": null,
+  "log": []
+}

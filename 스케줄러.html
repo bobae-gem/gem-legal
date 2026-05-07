@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>스케줄러 제어 — 보배 법률전략실</title>
+<style>
+:root{--bg:#070910;--sur:#0d1017;--sur2:#121620;--sur3:#181d28;--bdr:#222a3a;--bdr2:#1a2030;--acc:#4d7aff;--acc2:#7a4dff;--red:#ff3a3a;--org:#ff8822;--yel:#ffcc22;--grn:#22ffaa;--tel:#22ccff;--txt:#edf0ff;--txt2:#8492b0;--txt3:#424f68}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Malgun Gothic',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;font-size:13px}
+nav{display:flex;align-items:center;padding:0 20px;height:52px;background:var(--sur);border-bottom:1px solid var(--bdr);gap:3px;position:sticky;top:0;z-index:100;overflow-x:auto}
+.nlogo{font-size:14px;font-weight:900;color:var(--txt);margin-right:12px;white-space:nowrap;text-decoration:none}.nlogo:hover{opacity:.8}.nlogo span{color:var(--acc)}
+a.nl{text-decoration:none;color:var(--txt3);font-size:12px;font-weight:700;padding:5px 10px;border-radius:7px;transition:all .15s;border:1px solid transparent;white-space:nowrap;flex-shrink:0}
+a.nl:hover{color:var(--txt2);background:var(--sur2)}a.nl.on{color:var(--acc);background:#4d7aff12;border-color:#4d7aff28}
+.nr{margin-left:auto;white-space:nowrap;font-size:12px;color:var(--txt3);padding-left:10px}
+.subnav{display:flex;align-items:center;gap:10px;padding:0 20px;height:36px;background:#0a0c12;border-bottom:1px solid #ff3a3a22;flex-shrink:0;position:sticky;top:52px;z-index:99}
+.snl{text-decoration:none;color:#ff6666;font-size:12px;font-weight:800;padding:4px 12px;border-radius:6px;border:1px solid #ff3a3a28;background:#ff3a3a12;white-space:nowrap;transition:all .15s}
+.snl:hover{background:#ff3a3a20}.snl.on{background:#ff3a3a22;border-color:#ff3a3a40}
+.sn-arr{color:#ff3a3a55;font-size:11px}.sn-flow{display:flex;align-items:center;gap:6px}
+.sn-desc{font-size:11px;color:#424f68;font-weight:600;margin-left:8px}
+
+.page{max-width:900px;margin:0 auto;padding:24px 28px}
+
+/* 상태 카드 */
+.status-card{background:var(--sur);border:2px solid var(--bdr);border-radius:16px;padding:24px 28px;margin-bottom:16px;position:relative;overflow:hidden;transition:border-color .3s}
+.status-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;transition:background .3s}
+.status-card.running::before{background:var(--grn);box-shadow:0 0 12px var(--grn)}
+.status-card.running{border-color:#22ffaa44}
+.status-card.stopped::before{background:var(--txt3)}
+.status-card.pending::before{background:var(--yel);animation:pulse 1.5s infinite}
+.status-card.running_once::before{background:var(--tel);animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+.sc-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.sc-title{font-size:18px;font-weight:900}
+.status-badge{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:800;padding:7px 16px;border-radius:10px}
+.sb-running{background:#22ffaa18;color:var(--grn);border:1px solid #22ffaa35}
+.sb-stopped{background:#424f6818;color:var(--txt3);border:1px solid #424f6835}
+.sb-pending{background:#ffcc2218;color:var(--yel);border:1px solid #ffcc2235}
+.sb-running_once{background:#22ccff18;color:var(--tel);border:1px solid #22ccff35}
+.sdot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.dot-run{background:var(--grn);box-shadow:0 0 8px var(--grn);animation:blink 1.5s infinite}
+.dot-stop{background:var(--txt3)}
+.dot-pend{background:var(--yel);animation:blink 1s infinite}
+.dot-once{background:var(--tel);animation:blink .8s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* 정보 그리드 */
+.info-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px}
+.info-box{background:var(--sur2);border-radius:10px;padding:12px 14px;border:1px solid var(--bdr2)}
+.ib-lbl{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--txt3);margin-bottom:6px}
+.ib-val{font-size:13px;font-weight:700;color:var(--txt2);line-height:1.5}
+.ib-val.ok{color:var(--grn)}.ib-val.warn{color:var(--yel)}.ib-val.err{color:var(--red)}
+
+/* 자동시작 상태 */
+.auto-row{display:flex;align-items:center;justify-content:space-between;background:var(--sur2);border-radius:10px;padding:12px 14px;border:1px solid var(--bdr2);margin-bottom:20px}
+.ar-lbl{font-size:12px;font-weight:700;color:var(--txt2)}
+.ar-status{font-size:11px;font-weight:800;padding:3px 10px;border-radius:6px}
+.ar-on{background:#22ffaa18;color:var(--grn);border:1px solid #22ffaa28}
+.ar-off{background:#ff3a3a18;color:#ff6666;border:1px solid #ff3a3a28}
+
+/* 버튼 그룹 */
+.btn-group{display:flex;gap:10px;flex-wrap:wrap}
+.btn{padding:10px 20px;border-radius:9px;font-size:13px;font-weight:800;cursor:pointer;border:none;transition:all .15s;display:flex;align-items:center;gap:7px}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn-start{background:linear-gradient(135deg,#22ffaa,#22ccff);color:#050709}.btn-start:hover:not(:disabled){opacity:.85;transform:translateY(-1px)}
+.btn-stop{background:#ff3a3a18;color:#ff6666;border:1px solid #ff3a3a35}.btn-stop:hover:not(:disabled){background:#ff3a3a25}
+.btn-once{background:#4d7aff18;color:#7a9fff;border:1px solid #4d7aff35}.btn-once:hover:not(:disabled){background:#4d7aff25}
+.btn-refresh{background:var(--sur2);color:var(--txt2);border:1px solid var(--bdr)}.btn-refresh:hover:not(:disabled){border-color:var(--acc);color:var(--acc)}
+.btn-auto{background:#ffcc2218;color:var(--yel);border:1px solid #ffcc2235}.btn-auto:hover:not(:disabled){background:#ffcc2225}
+.btn-sm{padding:6px 13px;font-size:11px;border-radius:7px}
+
+/* 승인 패널 */
+.approval-panel{background:#ffcc2208;border:1px solid #ffcc2230;border-radius:12px;padding:16px 18px;margin-bottom:16px}
+.ap-header{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.ap-ico{font-size:18px}
+.ap-title{font-size:14px;font-weight:900;color:var(--yel)}
+.ap-desc{font-size:12px;color:var(--txt2);margin-bottom:14px;line-height:1.6}
+.ap-actions{display:flex;gap:8px}
+.btn-approve{background:linear-gradient(135deg,var(--grn),var(--tel));color:#050709;padding:9px 20px;border-radius:8px;font-size:13px;font-weight:900;cursor:pointer;border:none;transition:all .15s}
+.btn-approve:hover{opacity:.85;transform:translateY(-1px)}
+.btn-cancel-ap{background:var(--sur2);color:var(--txt3);border:1px solid var(--bdr);padding:9px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;transition:all .15s}
+.btn-cancel-ap:hover{border-color:var(--red);color:var(--red)}
+
+/* 변경 로그 */
+.log-section{background:var(--sur);border:1px solid var(--bdr);border-radius:12px;overflow:hidden}
+.ls-head{padding:13px 16px;border-bottom:1px solid var(--bdr2);display:flex;align-items:center;justify-content:space-between;background:var(--sur)}
+.ls-title{font-size:13px;font-weight:900}
+.ls-count{font-size:11px;color:var(--txt3)}
+.log-list{max-height:320px;overflow-y:auto}
+.log-item{display:flex;align-items:flex-start;gap:10px;padding:10px 16px;border-bottom:1px solid var(--bdr2);transition:background .15s}
+.log-item:last-child{border-bottom:none}
+.log-item:hover{background:var(--sur2)}
+.li-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.li-started{background:var(--grn)}.li-stopped{background:var(--red)}
+.li-run_once{background:var(--tel)}.li-auto_register{background:var(--acc)}
+.li-auto_unregister{background:var(--txt3)}.li-default{background:var(--txt3)}
+.li-body{flex:1}
+.li-action{font-size:12px;font-weight:800;margin-bottom:2px}
+.act-started{color:var(--grn)}.act-stopped{color:var(--red)}
+.act-run_once{color:var(--tel)}.act-auto_register{color:var(--acc)}
+.act-auto_unregister{color:var(--txt3)}
+.li-note{font-size:11px;color:var(--txt3)}
+.li-time{font-size:10px;color:var(--txt3);font-family:monospace;margin-top:2px}
+
+.empty-log{text-align:center;padding:32px;color:var(--txt3);font-size:12px}
+
+/* 연결 오류 */
+.conn-error{background:#ff3a3a10;border:1px solid #ff3a3a30;border-radius:10px;padding:14px 16px;margin-bottom:16px;font-size:12px;color:#ff6666;display:none}
+.conn-error.show{display:block}
+</style>
+</head>
+<body>
+<nav>
+  <a href="상담실.html" class="nlogo">보배 <span>법률전략실</span></a>
+  <a href="상황실.html" class="nl">🔴 메인 상황실</a>
+  <a href="상담실.html" class="nl">💬 법률 상담실</a>
+  <a href="업데이터.html" class="nl">🤖 상황실 업데이터</a>
+  <a href="사건.html" class="nl">📁 사건 관리실</a>
+  <a href="검수실.html" class="nl">🛡️ 콘텐츠 검수실</a>
+  <a href="리서치.html" class="nl">🔍 리서치 센터</a>
+  <a href="스케줄러.html" class="nl on">⚙️ 스케줄러</a>
+  <a href="메모리.html" class="nl">🧠 메모리 관리실</a>
+  <a href="대시보드.html" class="nl">📊 시스템구조</a>
+  <div class="nr" id="clk">--:--:--</div>
+</nav>
+<div class="subnav">
+  <span class="sn-flow">
+    <a href="모니터링.html" class="snl">👁️ 모니터링</a>
+    <span class="sn-arr">→</span>
+    <a href="분류실.html" class="snl">📋 분류실</a>
+    <span class="sn-arr">→</span>
+    <a href="증거보존.html" class="snl">📦 증거보존</a>
+  </span>
+  <span class="sn-desc">모니터링 스케줄러 제어 · 대표 승인 후 작동</span>
+</div>
+
+<div class="page">
+
+  <!-- 서버 연결 오류 -->
+  <div class="conn-error" id="conn-error">
+    ⚠️ 서버 연결 실패 — <code>python server.py</code> 실행 후 새로고침하세요
+  </div>
+
+  <!-- 승인 패널 (pending 시 표시) -->
+  <div class="approval-panel" id="approval-panel" style="display:none">
+    <div class="ap-header"><span class="ap-ico">⚠️</span><span class="ap-title">대표 승인 필요</span></div>
+    <div class="ap-desc" id="approval-desc">이 작업을 실행하려면 대표 승인이 필요합니다.</div>
+    <div class="ap-actions">
+      <button class="btn-approve" onclick="approve()">✓ 승인하고 실행</button>
+      <button class="btn-cancel-ap" onclick="cancelPending()">취소</button>
+    </div>
+  </div>
+
+  <!-- 스케줄러 상태 카드 -->
+  <div class="status-card" id="status-card">
+    <div class="sc-header">
+      <div class="sc-title">⚙️ 모니터링 스케줄러</div>
+      <div class="status-badge sb-stopped" id="status-badge">
+        <div class="sdot dot-stop" id="status-dot"></div>
+        <span id="status-text">로딩 중...</span>
+      </div>
+    </div>
+
+    <!-- 정보 그리드 -->
+    <div class="info-grid">
+      <div class="info-box">
+        <div class="ib-lbl">마지막 실행</div>
+        <div class="ib-val" id="last-run">—</div>
+      </div>
+      <div class="info-box">
+        <div class="ib-lbl">다음 실행 예정</div>
+        <div class="ib-val" id="next-run">—</div>
+      </div>
+      <div class="info-box">
+        <div class="ib-lbl">프로세스 PID</div>
+        <div class="ib-val" id="pid-val">—</div>
+      </div>
+    </div>
+
+    <!-- 자동시작 상태 -->
+    <div class="auto-row">
+      <div>
+        <div class="ar-lbl">Windows 자동시작 등록</div>
+        <div style="font-size:11px;color:var(--txt3);margin-top:2px">로그인 시 서버 자동 시작 여부</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span class="ar-status" id="auto-status">확인 중</span>
+        <button class="btn btn-auto btn-sm" id="auto-btn" onclick="toggleAuto()">등록</button>
+      </div>
+    </div>
+
+    <!-- 제어 버튼 -->
+    <div class="btn-group">
+      <button class="btn btn-start" id="btn-start" onclick="requestAction('start')">
+        ▶ 켜기
+      </button>
+      <button class="btn btn-stop" id="btn-stop" onclick="requestAction('stop')" disabled>
+        ■ 끄기
+      </button>
+      <button class="btn btn-once" id="btn-once" onclick="requestAction('run_once')">
+        ⚡ 즉시 실행
+      </button>
+      <button class="btn btn-refresh" onclick="loadStatus()">
+        ↻ 상태 새로고침
+      </button>
+    </div>
+  </div>
+
+  <!-- 변경 로그 -->
+  <div class="log-section">
+    <div class="ls-head">
+      <div class="ls-title">📋 변경 로그</div>
+      <div class="ls-count" id="log-count">0건</div>
+    </div>
+    <div class="log-list" id="log-list">
+      <div class="empty-log">변경 기록이 없습니다</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+setInterval(()=>{ document.getElementById('clk').textContent = new Date().toLocaleTimeString('ko-KR',{hour12:false}); },1000);
+
+const API = 'http://localhost:8080/api';
+let currentStatus = {};
+let pendingAction = null;
+
+const STATUS_LABEL = {
+  running:      '실행 중',
+  stopped:      '중지',
+  pending:      '승인 대기 중',
+  running_once: '1회 실행 중'
+};
+const STATUS_BADGE = {
+  running:      'sb-running',
+  stopped:      'sb-stopped',
+  pending:      'sb-pending',
+  running_once: 'sb-running_once'
+};
+const DOT_CSS = {
+  running:      'sdot dot-run',
+  stopped:      'sdot dot-stop',
+  pending:      'sdot dot-pend',
+  running_once: 'sdot dot-once'
+};
+
+const ACTION_LABEL = {
+  start:             '스케줄러 켜기',
+  stop:              '스케줄러 끄기',
+  run_once:          '모니터링 즉시 실행',
+  register_auto:     'Windows 자동시작 등록',
+  unregister_auto:   'Windows 자동시작 해제'
+};
+
+const LOG_ACTION_CSS = {
+  started:          'act-started',
+  stopped:          'act-stopped',
+  run_once:         'act-run_once',
+  auto_register:    'act-auto_register',
+  auto_unregister:  'act-auto_unregister'
+};
+const LOG_DOT_CSS = {
+  started:         'li-dot li-started',
+  stopped:         'li-dot li-stopped',
+  run_once:        'li-dot li-run_once',
+  auto_register:   'li-dot li-auto_register',
+  auto_unregister: 'li-dot li-auto_unregister'
+};
+
+async function api(path, method='GET', body=null){
+  const opt = { method, headers: { 'Content-Type': 'application/json' } };
+  if(body) opt.body = JSON.stringify(body);
+  const r = await fetch(API + path, opt);
+  return r.json();
+}
+
+async function loadStatus(){
+  try {
+    document.getElementById('conn-error').classList.remove('show');
+    const data = await api('/scheduler');
+    currentStatus = data;
+    renderStatus(data);
+  } catch(e) {
+    document.getElementById('conn-error').classList.add('show');
+  }
+}
+
+function renderStatus(data){
+  const st = data.status || 'stopped';
+
+  // 상태 카드 클래스
+  const card = document.getElementById('status-card');
+  card.className = `status-card ${st}`;
+
+  // 배지
+  const badge = document.getElementById('status-badge');
+  badge.className = `status-badge ${STATUS_BADGE[st] || 'sb-stopped'}`;
+  document.getElementById('status-dot').className = DOT_CSS[st] || 'sdot dot-stop';
+  document.getElementById('status-text').textContent = STATUS_LABEL[st] || st;
+
+  // 정보
+  document.getElementById('last-run').textContent = data.last_run || '—';
+  document.getElementById('next-run').textContent = data.next_run || '—';
+  const pidEl = document.getElementById('pid-val');
+  pidEl.textContent = data.pid ? `PID ${data.pid}` : '—';
+  pidEl.className = `ib-val ${data.pid ? 'ok' : ''}`;
+
+  // 자동시작
+  const autoEl = document.getElementById('auto-status');
+  const autoBtn = document.getElementById('auto-btn');
+  if(data.auto_start_registered){
+    autoEl.textContent = '✅ 등록됨';
+    autoEl.className = 'ar-status ar-on';
+    autoBtn.textContent = '해제';
+  } else {
+    autoEl.textContent = '❌ 미등록';
+    autoEl.className = 'ar-status ar-off';
+    autoBtn.textContent = '등록';
+  }
+
+  // 버튼 상태
+  const isRunning = st === 'running' || st === 'running_once';
+  document.getElementById('btn-start').disabled = isRunning;
+  document.getElementById('btn-stop').disabled  = !isRunning;
+  document.getElementById('btn-once').disabled  = st === 'running_once';
+
+  // pending 승인 패널
+  if(data.pending_action){
+    pendingAction = data.pending_action;
+    showApprovalPanel(data.pending_action, data.pending_at);
+  } else {
+    pendingAction = null;
+    document.getElementById('approval-panel').style.display = 'none';
+  }
+
+  // 로그
+  renderLog(data.log || []);
+}
+
+function showApprovalPanel(action, at){
+  const panel = document.getElementById('approval-panel');
+  panel.style.display = 'block';
+  document.getElementById('approval-desc').innerHTML =
+    `<strong style="color:var(--txt)">${ACTION_LABEL[action] || action}</strong> 요청이 대기 중입니다.<br>` +
+    `<span style="font-size:11px;color:var(--txt3)">요청 시각: ${at || '—'}</span><br><br>` +
+    `실제 실행을 승인하시겠습니까?`;
+}
+
+function renderLog(logs){
+  const el = document.getElementById('log-list');
+  document.getElementById('log-count').textContent = `${logs.length}건`;
+  if(!logs.length){
+    el.innerHTML='<div class="empty-log">변경 기록이 없습니다</div>';
+    return;
+  }
+  el.innerHTML = logs.map(l=>`
+    <div class="log-item">
+      <div class="${LOG_DOT_CSS[l.action] || 'li-dot li-default'}"></div>
+      <div class="li-body">
+        <div class="li-action ${LOG_ACTION_CSS[l.action] || ''}">${getActionKo(l.action)}</div>
+        ${l.note?`<div class="li-note">${l.note}</div>`:''}
+        <div class="li-time">${l.time || ''}</div>
+      </div>
+    </div>`).join('');
+}
+
+function getActionKo(action){
+  const map = {
+    started:         '▶ 스케줄러 시작',
+    stopped:         '■ 스케줄러 중지',
+    run_once:        '⚡ 즉시 실행',
+    auto_register:   '✅ 자동시작 등록',
+    auto_unregister: '❌ 자동시작 해제'
+  };
+  return map[action] || action;
+}
+
+// 버튼 클릭 → pending 요청 (승인 전)
+async function requestAction(action){
+  try {
+    const r = await api('/scheduler/action', 'POST', { action, approved: false });
+    if(r.status === 'pending'){
+      pendingAction = action;
+      showApprovalPanel(action, new Date().toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}));
+    }
+    await loadStatus();
+  } catch(e) {
+    alert('서버 연결 실패: python server.py를 실행하세요');
+  }
+}
+
+// 승인 버튼
+async function approve(){
+  if(!pendingAction) return;
+  const btn = document.querySelector('.btn-approve');
+  btn.textContent = '처리 중...';
+  btn.disabled = true;
+  try {
+    const r = await api('/scheduler/action', 'POST', {
+      action: pendingAction,
+      approved: true,
+      note: '대표 승인'
+    });
+    if(r.ok){
+      document.getElementById('approval-panel').style.display = 'none';
+      pendingAction = null;
+    } else {
+      alert(`실행 실패: ${r.error || '알 수 없는 오류'}`);
+    }
+  } catch(e) {
+    alert('서버 오류');
+  } finally {
+    btn.textContent = '✓ 승인하고 실행';
+    btn.disabled = false;
+    await loadStatus();
+  }
+}
+
+// 승인 취소
+async function cancelPending(){
+  await api('/scheduler/action', 'POST', { action: 'cancel_pending', approved: true });
+  pendingAction = null;
+  document.getElementById('approval-panel').style.display = 'none';
+  await loadStatus();
+}
+
+// 자동시작 토글
+async function toggleAuto(){
+  const action = currentStatus.auto_start_registered ? 'unregister_auto' : 'register_auto';
+  await requestAction(action);
+}
+
+// 초기 로드 + 10초마다 갱신
+loadStatus();
+setInterval(loadStatus, 10000);
+</script>
+</body>
+</html>
